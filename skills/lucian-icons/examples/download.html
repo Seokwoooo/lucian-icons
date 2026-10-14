@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lucian Icons: real Promise state integration</title>
+<style>body{max-width:650px;margin:50px auto;padding:24px;font:16px/1.7 system-ui;background:#f4f0e8;color:#171a19}button{font:inherit;padding:10px 15px;margin:5px;border:1px solid #aaa;border-radius:9px;background:white;color:inherit}button:focus-visible{outline:3px solid #7252c6}#export-report{display:inline-flex;align-items:center;gap:10px}button:disabled{opacity:.5}fieldset{border:1px solid #aaa;padding:20px;border-radius:12px}</style>
+<h1>Actual Promise. Explicit outcomes.</h1><p>This verification fixture waits for a real Promise. Use the test controls to resolve or reject it. It never schedules success. In a product, keep the existing download API in place of this fixture.</p>
+<button id="export-report" type="button"><lucian-download size="24" state="idle"></lucian-download><span>Export report</span></button><p id="status" role="status">Ready</p>
+<fieldset><legend>Test fixture controls</legend><button id="resolve" disabled>Resolve request</button><button id="reject" disabled>Reject request</button><button id="cancel" disabled>Cancel request</button></fieldset>
+<script type="module">
+import '../code/download.js';
+const button=document.querySelector('#export-report'),icon=button.querySelector('lucian-download'),status=document.querySelector('#status');
+const fixture=[...document.querySelectorAll('fieldset button')];
+let resolveRequest,rejectRequest;
+function requestReport(){return new Promise((resolve,reject)=>{resolveRequest=resolve;rejectRequest=reject})}
+button.addEventListener('click',async()=>{
+ if(button.disabled)return;
+ button.disabled=true;button.setAttribute('aria-busy','true');icon.setState('progress');icon.setProgress(0);status.textContent='Exporting report. Waiting for the request.';fixture.forEach(b=>b.disabled=false);
+ try{await requestReport();icon.setState('success');status.textContent='Report exported.'}
+ catch(error){icon.setState(error.name==='AbortError'?'idle':'error');status.textContent=error.name==='AbortError'?'Export cancelled.':'Export failed. Try again.'}
+ finally{button.disabled=false;button.removeAttribute('aria-busy');fixture.forEach(b=>b.disabled=true);resolveRequest=null;rejectRequest=null}
+});
+document.querySelector('#resolve').addEventListener('click',()=>resolveRequest?.());
+document.querySelector('#reject').addEventListener('click',()=>rejectRequest?.(new Error('Test request rejected')));
+document.querySelector('#cancel').addEventListener('click',()=>rejectRequest?.(new DOMException('Cancelled','AbortError')));
+</script></html>

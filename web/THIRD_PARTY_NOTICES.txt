@@ -1,0 +1,13 @@
+Lucian Icons: original code and SVG artwork, MIT License, Copyright (c) 2026 Seokwoooo.
+Design reference: Lucian UX/UI Prompt, MIT License, Copyright (c) 2026 Seokwoooo.
+The color values and typography direction follow that project. No third-party icon package is included.
+
+Pretendard Variable v1.3.9
+Copyright (c) 2021, Kil Hyung-jin (https://github.com/orioncactus/pretendard)
+Licensed under the SIL Open Font License, Version 1.1.
+The gallery requests this font through jsDelivr. It is not an analytics script.
+Source: https://github.com/orioncactus/pretendard
+License: https://github.com/orioncactus/pretendard/blob/main/LICENSE
+The full license is included in ./font-OFL.txt.
+
+System fonts are provided by the visitor's operating system and are not redistributed.

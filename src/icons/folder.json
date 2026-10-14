@@ -1,0 +1,7 @@
+{
+  "id":"folder","name":{"ko":"폴더","en":"Folder"},"keywords":["파일","문서","열기","directory","files","open"],"category":"files","version":"1.0.0","accent":"#e5b86f","defaultState":"closed","triggers":["click","hover","controlled"],"duration":380,
+  "description":{"ko":"앞면이 내려가며 안쪽 문서가 드러납니다.","en":"The front folds down to reveal a document."},
+  "parts":{"paper":{"transform":"translateY(4px)"},"front":{"transformOrigin":"24px 38px","transform":"skewX(0deg) scaleY(1)"}},
+  "states":{"closed":{},"open":{"paper":{"transform":"translateY(-4px)"},"front":{"transform":"skewX(-9deg) scaleY(.72)"}}},
+  "svg":"<path d=\"M6 15v22h34V15a3 3 0 0 0-3-3H23l-4-4H9a3 3 0 0 0-3 3z\" fill=\"var(--li-accent)\"/><g data-part=\"paper\"><rect x=\"13\" y=\"15\" width=\"22\" height=\"20\" rx=\"2\" fill=\"var(--li-paper)\"/><path d=\"M18 20h12m-12 5h8\" opacity=\".4\"/></g><g data-part=\"front\"><path d=\"M5 22a3 3 0 0 1 3-3h31a3 3 0 0 1 3 3l-2 16H8z\" fill=\"var(--li-accent)\"/><path d=\"M12 25h9\" opacity=\".6\"/></g>"
+}

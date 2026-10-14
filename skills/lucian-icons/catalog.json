@@ -1,0 +1,354 @@
+{
+  "version": "1.0.0",
+  "base": "https://lucianlabs.dev/icons/",
+  "runtimeSha256": "157a4a2a6c719abadb07bbc77cc2b33c9bff0cd253f51495dd3472bc42d7af23",
+  "icons": [
+    {
+      "id": "trash",
+      "name": {
+        "ko": "쓰레기통",
+        "en": "Trash"
+      },
+      "keywords": [
+        "삭제",
+        "휴지통",
+        "지우기",
+        "delete",
+        "remove",
+        "bin"
+      ],
+      "category": "files",
+      "version": "1.0.0",
+      "accent": "#b7a4ff",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "hover",
+        "controlled"
+      ],
+      "duration": 340,
+      "description": {
+        "ko": "오른쪽 경첩을 축으로 뚜껑이 열립니다.",
+        "en": "A hinged lid lifts from its right-hand pivot."
+      },
+      "sha256": "f8fd6e0c9dffc173a7a52997ae13079b634b38fb66554eee2f2536d015726199",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/trash.js"
+    },
+    {
+      "id": "folder",
+      "name": {
+        "ko": "폴더",
+        "en": "Folder"
+      },
+      "keywords": [
+        "파일",
+        "문서",
+        "열기",
+        "directory",
+        "files",
+        "open"
+      ],
+      "category": "files",
+      "version": "1.0.0",
+      "accent": "#e5b86f",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "hover",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "앞면이 내려가며 안쪽 문서가 드러납니다.",
+        "en": "The front folds down to reveal a document."
+      },
+      "sha256": "186dd7a14c776384cf525c859ba0092b738702ff6165536dd56ca563c7ce89b7",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/folder.js"
+    },
+    {
+      "id": "envelope",
+      "name": {
+        "ko": "봉투",
+        "en": "Envelope"
+      },
+      "keywords": [
+        "편지",
+        "메일",
+        "메시지",
+        "mail",
+        "letter",
+        "message"
+      ],
+      "category": "communication",
+      "version": "1.0.0",
+      "accent": "#9fb9d4",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "hover",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "덮개가 펼쳐지고 편지가 살짝 올라옵니다.",
+        "en": "The flap unfolds and a letter peeks out."
+      },
+      "sha256": "f0e236a9b32cc598cd7b147970050bdc9347f85b8b30efd8876d0fd9522b58c6",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/envelope.js"
+    },
+    {
+      "id": "lock",
+      "name": {
+        "ko": "자물쇠",
+        "en": "Lock"
+      },
+      "keywords": [
+        "잠금",
+        "보안",
+        "해제",
+        "unlock",
+        "secure",
+        "password"
+      ],
+      "category": "controls",
+      "version": "1.0.0",
+      "accent": "#a8c6b4",
+      "defaultState": "locked",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "고리의 한쪽이 풀리고 반대쪽 축에서 돌아갑니다.",
+        "en": "One end releases while the shackle turns on its anchor."
+      },
+      "sha256": "fdc56dd586baa35a4170ea3772e974f5e15a7627ba58b75fb390ec30ac874a8d",
+      "states": [
+        "locked",
+        "unlocked"
+      ],
+      "codePath": "modules/lock.js"
+    },
+    {
+      "id": "bell",
+      "name": {
+        "ko": "알림 종",
+        "en": "Bell"
+      },
+      "keywords": [
+        "알림",
+        "종",
+        "울림",
+        "notification",
+        "ring",
+        "alert"
+      ],
+      "category": "communication",
+      "version": "1.0.0",
+      "accent": "#e5b86f",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 220,
+      "description": {
+        "ko": "상단 축에서 울린 뒤 점차 잦아듭니다.",
+        "en": "A short ring settles around the top pivot."
+      },
+      "sha256": "904ae1764ca191072a476accfe6f2c11c0a77abb13a03fb956d6b6fbeb1ef9a2",
+      "states": [
+        "idle",
+        "ringing"
+      ],
+      "codePath": "modules/bell.js"
+    },
+    {
+      "id": "heart",
+      "name": {
+        "ko": "하트",
+        "en": "Heart"
+      },
+      "keywords": [
+        "좋아요",
+        "선택",
+        "즐겨찾기",
+        "like",
+        "favorite",
+        "love"
+      ],
+      "category": "controls",
+      "version": "1.0.0",
+      "accent": "#dc8d92",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 220,
+      "description": {
+        "ko": "선택하면 안쪽이 채워지고 짧게 반응합니다.",
+        "en": "A filled heart answers with a single soft beat."
+      },
+      "sha256": "67d64d66cc93f8fb239963560353a2b51cf5879291f1a8332c3b54215f10bd18",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/heart.js"
+    },
+    {
+      "id": "bookmark",
+      "name": {
+        "ko": "북마크",
+        "en": "Bookmark"
+      },
+      "keywords": [
+        "저장",
+        "책갈피",
+        "읽기",
+        "save",
+        "saved",
+        "read"
+      ],
+      "category": "controls",
+      "version": "1.0.0",
+      "accent": "#b7a4ff",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "저장 상태는 채움과 작은 표시로 구분됩니다.",
+        "en": "A filled ribbon and a mark make saved state clear."
+      },
+      "sha256": "8cdf39820e1910f7b380bcd3c0e6cd6fe48baccd001e335e60cfd36041462b22",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/bookmark.js"
+    },
+    {
+      "id": "download",
+      "name": {
+        "ko": "다운로드",
+        "en": "Download"
+      },
+      "keywords": [
+        "내려받기",
+        "진행",
+        "완료",
+        "실패",
+        "progress",
+        "success",
+        "error",
+        "file"
+      ],
+      "category": "files",
+      "version": "1.0.0",
+      "accent": "#a8c6b4",
+      "defaultState": "idle",
+      "triggers": [
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "대기, 실제 진행률, 성공, 실패를 각각 표시합니다.",
+        "en": "Idle, measured progress, success and failure stay distinct."
+      },
+      "sha256": "68c3d5c5e12166dab850b736b9ebd296a77cfcd0d8d2a5408a0376bfa194239a",
+      "states": [
+        "idle",
+        "progress",
+        "success",
+        "error"
+      ],
+      "codePath": "modules/download.js"
+    },
+    {
+      "id": "search",
+      "name": {
+        "ko": "검색",
+        "en": "Search"
+      },
+      "keywords": [
+        "찾기",
+        "탐색",
+        "돋보기",
+        "find",
+        "query",
+        "lookup"
+      ],
+      "category": "controls",
+      "version": "1.0.0",
+      "accent": "#9fb9d4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "렌즈 안의 작은 빛이 검색 시작을 알립니다.",
+        "en": "A quiet sweep inside the lens signals a new search."
+      },
+      "sha256": "cd46017d39e9e5d60e8c6a6731adfae63950eacd034e29972e044a9aadf17c3d",
+      "states": [
+        "idle",
+        "searching"
+      ],
+      "codePath": "modules/search.js"
+    },
+    {
+      "id": "power",
+      "name": {
+        "ko": "전원",
+        "en": "Power"
+      },
+      "keywords": [
+        "켜기",
+        "끄기",
+        "활성",
+        "on",
+        "off",
+        "enable",
+        "switch"
+      ],
+      "category": "controls",
+      "version": "1.0.0",
+      "accent": "#a8c6b4",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "전원 링과 표시등이 켜짐 상태를 전달합니다.",
+        "en": "The ring and indicator illuminate when power is on."
+      },
+      "sha256": "50e6152292ef917d1d3990e9d102f8de7f48b97d80f32819a7817c9aa2bb7eb0",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/power.js"
+    }
+  ]
+}

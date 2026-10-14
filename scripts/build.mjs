@@ -1,0 +1,46 @@
+import {readdir,readFile,mkdir,writeFile,cp,rm} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {staticSVG} from '../src/runtime/icon.js';
+import {standaloneHTML} from '../src/export.js';
+import {zipDirectory} from './zip.mjs';
+const root=new URL('../',import.meta.url),out=new URL('dist/icons/',root),skill=new URL('skills/lucian-icons/',root);
+const hash=s=>createHash('sha256').update(s).digest('hex');
+await rm(new URL('dist/',root),{recursive:true,force:true});
+for(const dir of ['modules/','runtime/','api/v1/icons/','downloads/svg/','downloads/html/','examples/code/'])await mkdir(new URL(dir,out),{recursive:true});
+await mkdir(new URL('code/',skill),{recursive:true});
+const defs=[],seen=new Set();
+for(const file of (await readdir(new URL('src/icons/',root))).filter(x=>x.endsWith('.json'))) {
+ const d=JSON.parse(await readFile(new URL('src/icons/'+file,root),'utf8'));
+ if(!/^[a-z]+$/.test(d.id)||seen.has(d.id)||!d.states[d.defaultState]||!d.version||!d.name.ko||!d.name.en)throw new Error('Invalid catalog entry: '+file);
+ if(/<script|\bid=|\bon\w+=|[\u00b7\u318d\u2022]/i.test(d.svg))throw new Error('Unsafe or inconsistent SVG: '+file);
+ seen.add(d.id);defs.push(d);
+ const code=`/* Lucian Icons ${d.version} | MIT (c) 2026 Seokwoooo */\nimport {defineIcon} from './runtime.js';\nexport const definition=${JSON.stringify(d)};\ndefineIcon(definition);\n`;
+ d.sha256=hash(code);
+ for(const where of [new URL('modules/'+d.id+'.js',out),new URL('code/'+d.id+'.js',skill)])await writeFile(where,code);
+ await writeFile(new URL('api/v1/icons/'+d.id+'.json',out),JSON.stringify(d));
+ await writeFile(new URL('downloads/svg/'+d.id+'.svg',out),staticSVG(d));
+ await writeFile(new URL('downloads/html/'+d.id+'.html',out),await standaloneHTML(d,{trigger:d.triggers[0]},'en'));
+}
+if(defs.length!==10)throw new Error('The first release must contain exactly 10 icons');
+const runtime=await readFile(new URL('src/runtime/icon.js',root),'utf8');
+for(const url of [new URL('modules/runtime.js',out),new URL('runtime/icon.js',out),new URL('code/runtime.js',skill)])await writeFile(url,runtime);
+const order=['trash','folder','envelope','lock','bell','heart','bookmark','download','search','power'];defs.sort((a,b)=>order.indexOf(a.id)-order.indexOf(b.id));
+const icons=defs.map(({svg,css,parts,states,...d})=>({...d,states:Object.keys(states),codePath:`modules/${d.id}.js`}));
+const catalog=JSON.stringify({version:'1.0.0',base:'https://lucianlabs.dev/icons/',runtimeSha256:hash(runtime),icons},null,2);
+for(const url of [new URL('catalog.json',out),new URL('api/v1/catalog.json',out),new URL('catalog.json',skill)])await writeFile(url,catalog);
+await cp(new URL('LICENSE',root),new URL('LICENSE',skill));
+await cp(new URL('web/',root),out,{recursive:true});
+await cp(new URL('src/export.js',root),new URL('export.js',out));await cp(new URL('LICENSE',root),new URL('LICENSE',out));
+await cp(new URL('examples/download.html',skill),new URL('examples/download.html',out));
+for(const name of ['download.js','runtime.js'])await cp(new URL('modules/'+name,out),new URL('examples/code/'+name,out));
+// The example's relative code path is adjusted for its public directory.
+const example=await readFile(new URL('examples/download.html',out),'utf8');await writeFile(new URL('examples/download.html',out),example.replace("'../code/download.js'","'./code/download.js'"));
+await zipDirectory(fileURLToPath(skill),fileURLToPath(new URL('downloads/lucian-icons-skill-1.0.0.zip',out)),'lucian-icons/');
+const stage=new URL('.artifacts/source-package/',root);await rm(stage,{recursive:true,force:true});await mkdir(stage,{recursive:true});
+for(const item of ['src','web','scripts','skills','tests','LICENSE','README.md','package.json'])await cp(new URL(item,root),new URL(item,stage),{recursive:true});
+await zipDirectory(fileURLToPath(stage),fileURLToPath(new URL('downloads/lucian-icons-source-1.0.0.zip',out)),'lucian-icons/');
+await writeFile(new URL('test.html',out),`<!doctype html><meta charset="utf-8"><title>Lucian Icons validation</title><style>body{background:#f4f0e8;font-family:system-ui;max-width:900px;margin:50px auto}section{display:flex;gap:40px;align-items:center;padding:22px;border-bottom:1px solid #ccc}button{background:none;border:0;padding:16px;cursor:pointer}label{width:100px}</style>${defs.map(d=>`<script type="module" src="./modules/${d.id}.js"></script><section><label>${d.id}</label>${[24,32,48,96].map(s=>`<button aria-label="${d.name.en} ${s}" onclick="const i=this.firstElementChild;i.setState(i.state==='${d.defaultState}'?'${Object.keys(d.states)[1]}':'${d.defaultState}')"><lucian-${d.id} size="${s}" state="${d.defaultState}"></lucian-${d.id}></button>`).join('')}</section>`).join('')}`);
+const files={};async function manifest(dir,relative=''){for(const e of await readdir(dir,{withFileTypes:true})){const rel=relative+e.name;if(e.isDirectory())await manifest(new URL(e.name+'/',dir),rel+'/');else{const b=await readFile(new URL(e.name,dir));files[rel]={bytes:b.length,sha256:hash(b)}}}}await manifest(out);
+await writeFile(new URL('manifest.json',out),JSON.stringify({version:'1.0.0',files},null,2));
+console.log(`Built ${defs.length} icons and ${Object.keys(files).length} files at dist/icons/`);
