@@ -2,7 +2,9 @@
 
 Ten original interactive SVG icons. Small motions, thoughtful details. Dependency-free, MIT licensed, with a portable Claude Code and Codex skill.
 
-Gallery target: https://lucianlabs.dev/icons/
+Gallery: https://lucianlabs.dev/icons/
+
+Source: https://github.com/Seokwoooo/lucian-icons (currently private). Public source and skill packages are available from the gallery without GitHub access.
 
 ## Icons
 

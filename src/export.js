@@ -1,4 +1,4 @@
-/* Lucian Icons v1.0.0 | MIT (c) 2026 Seokwoooo */
+/* Lucian Icons v1.0.0 | MIT (c) 2026 Lucian */
 import {normalize,staticSVG} from './runtime/icon.js';
 export {staticSVG};
 let runtimePromise;
@@ -11,7 +11,7 @@ export async function embeddableCode(def,options={},lang='en') {
  const o=normalize(def,options);const ko=lang==='ko';const trigger=def.triggers.includes(options.trigger)?options.trigger:def.triggers[0];
  const runtime=(await runtimeSource()).replace(/^export /gm,'');
  const dark=options.background==='dark';const label=escape(def.name[ko?'ko':'en']);
- return `<!-- Lucian Icons ${def.id} v${def.version} | MIT (c) 2026 Seokwoooo | https://lucianlabs.dev/icons/ -->
+ return `<!-- Lucian Icons ${def.id} v${def.version} | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ -->
 <section data-lucian-demo="${def.id}" lang="${ko?'ko':'en'}" style="--demo-background:${dark?'#121415':'#f4f0e8'};--demo-foreground:${dark?'#f4f0e8':'#171a19'}">
 <style>[data-lucian-demo]{box-sizing:border-box;display:block;font:15px/1.6 system-ui,sans-serif;background:var(--demo-background);color:var(--demo-foreground);padding:28px;max-width:660px;margin:16px auto;border-radius:16px}[data-lucian-demo] button,[data-lucian-demo] select,[data-lucian-demo] input{font:inherit;color:inherit}[data-lucian-demo] button,[data-lucian-demo] select{border:1px solid #8888;border-radius:12px;background:var(--demo-background);padding:12px;cursor:pointer}[data-lucian-demo] :is(button,select,input):focus-visible{outline:3px solid #9477d9;outline-offset:5px}[data-lucian-demo] .preview{display:flex;align-items:center;justify-content:center;min-width:160px;min-height:160px;margin:24px 0}[data-lucian-demo] label{display:block;margin:18px 0}[data-lucian-demo] p{max-width:55ch}[data-lucian-demo] code{word-break:break-word}[data-lucian-demo] .li-demo-title{font-size:24px;font-weight:600}</style>
 <p class="li-demo-title">${label}</p><p>${ko?'독립 실행 시연입니다. 아래 조작은 실제 작업을 실행하지 않습니다.':'Standalone visual demo. These controls do not perform a business operation.'}</p>

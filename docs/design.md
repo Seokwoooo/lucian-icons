@@ -14,6 +14,6 @@ Gallery: dark editorial hero with three usable icons, ten-icon searchable grid a
 
 Skill: installed folder skills/lucian-icons. Search reads catalog only, get reads only selected modules with runtime, tokens and version hashes. Existing functionality, labels, event handlers and real app state are preserved. CLI and sample project tested separately from agent-runtime execution claims.
 
-Deployment: /icons/ currently returns a Vercel 404. No root hosting repository or Vercel credentials have yet been identified. GitHub createRepository failed with integration permission error. Request missing source access while implementation proceeds. Never overwrite /icons/ if it becomes occupied. Preserve root and existing uxui paths. New source repo Seokwoooo/lucian-icons requested by user.
+Deployment: the existing Vercel CLI deployment is preserved. The new repository deploys to a separate project in the same Hobby team. Only /icons and /icons/ are connected through scoped project-level rules. Origin and public browser verification passed. See deployment.md for exact IDs and rollback instructions.
 
-License: original work MIT (c) 2026 Seokwoooo. Existing UX/UI source is MIT. Font usage retains separate SIL OFL notice. No original third-party icon paths reused. No tracking.
+License: original work MIT (c) 2026 Lucian. Existing UX/UI source is MIT. Font usage retains separate SIL OFL notice. No original third-party icon paths reused. No tracking.

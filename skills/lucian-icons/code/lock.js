@@ -1,4 +1,4 @@
-/* Lucian Icons 1.0.0 | MIT (c) 2026 Seokwoooo */
+/* Lucian Icons 1.0.0 | MIT (c) 2026 Lucian */
 import {defineIcon} from './runtime.js';
 export const definition={"id":"lock","name":{"ko":"자물쇠","en":"Lock"},"keywords":["잠금","보안","해제","unlock","secure","password"],"category":"controls","version":"1.0.0","accent":"#a8c6b4","defaultState":"locked","triggers":["click","controlled"],"duration":300,"description":{"ko":"고리의 한쪽이 풀리고 반대쪽 축에서 돌아갑니다.","en":"One end releases while the shackle turns on its anchor."},"parts":{"shackle":{"transformOrigin":"32px 22px","transform":"translateY(0px) rotate(0deg)"},"key":{"transform":"rotate(0deg)","transformOrigin":"24px 30px"}},"states":{"locked":{},"unlocked":{"shackle":{"transform":"translateY(-1px) rotate(28deg)"},"key":{"transform":"rotate(-90deg)"}}},"svg":"<path data-part=\"shackle\" d=\"M16 22v-8a8 8 0 0 1 16 0v8\" stroke-width=\"3\"/><rect x=\"10\" y=\"20\" width=\"28\" height=\"22\" rx=\"5\" fill=\"var(--li-accent)\"/><g data-part=\"key\"><circle cx=\"24\" cy=\"29\" r=\"2.5\" fill=\"var(--li-ink)\" stroke=\"none\"/><path d=\"M24 30v5\"/></g>"};
 defineIcon(definition);

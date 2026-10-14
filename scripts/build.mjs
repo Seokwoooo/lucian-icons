@@ -15,7 +15,7 @@ for(const file of (await readdir(new URL('src/icons/',root))).filter(x=>x.endsWi
  if(!/^[a-z]+$/.test(d.id)||seen.has(d.id)||!d.states[d.defaultState]||!d.version||!d.name.ko||!d.name.en)throw new Error('Invalid catalog entry: '+file);
  if(/<script|\bid=|\bon\w+=|[\u00b7\u318d\u2022]/i.test(d.svg))throw new Error('Unsafe or inconsistent SVG: '+file);
  seen.add(d.id);defs.push(d);
- const code=`/* Lucian Icons ${d.version} | MIT (c) 2026 Seokwoooo */\nimport {defineIcon} from './runtime.js';\nexport const definition=${JSON.stringify(d)};\ndefineIcon(definition);\n`;
+ const code=`/* Lucian Icons ${d.version} | MIT (c) 2026 Lucian */\nimport {defineIcon} from './runtime.js';\nexport const definition=${JSON.stringify(d)};\ndefineIcon(definition);\n`;
  d.sha256=hash(code);
  for(const where of [new URL('modules/'+d.id+'.js',out),new URL('code/'+d.id+'.js',skill)])await writeFile(where,code);
  await writeFile(new URL('api/v1/icons/'+d.id+'.json',out),JSON.stringify(d));

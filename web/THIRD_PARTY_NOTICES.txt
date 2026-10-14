@@ -1,4 +1,4 @@
-Lucian Icons: original code and SVG artwork, MIT License, Copyright (c) 2026 Seokwoooo.
+Lucian Icons: original code and SVG artwork, MIT License, Copyright (c) 2026 Lucian.
 Design reference: Lucian UX/UI Prompt, MIT License, Copyright (c) 2026 Seokwoooo.
 The color values and typography direction follow that project. No third-party icon package is included.
 

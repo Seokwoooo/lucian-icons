@@ -1,4 +1,4 @@
-/* Lucian Icons v1.0.0 | MIT (c) 2026 Seokwoooo | https://lucianlabs.dev/icons/ */
+/* Lucian Icons v1.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
 export const VERSION = '1.0.0';
 export const tokens = { accent: '#b7a4ff', ink: '#252b2a', paper: '#fffdf8' };
 export function normalize(def, options = {}) {
@@ -28,7 +28,7 @@ export function staticSVG(def, options = {}) {
     return `${attr} style="${style}"`;
   });
   drawing = drawing.replaceAll('var(--li-accent)',o.accent).replaceAll('var(--li-ink)',o.ink).replaceAll('var(--li-paper)',o.paper);
-  return `<!-- Lucian Icons ${def.id} v${def.version} | MIT (c) 2026 Seokwoooo -->\n<svg xmlns="http://www.w3.org/2000/svg" width="${o.size}" height="${o.size}" viewBox="0 0 48 48" fill="none" stroke="${o.ink}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${def.name.en} (${o.state})">${drawing}</svg>`;
+  return `<!-- Lucian Icons ${def.id} v${def.version} | MIT (c) 2026 Lucian -->\n<svg xmlns="http://www.w3.org/2000/svg" width="${o.size}" height="${o.size}" viewBox="0 0 48 48" fill="none" stroke="${o.ink}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${def.name.en} (${o.state})">${drawing}</svg>`;
 }
 export function defineIcon(def) {
   const tag = `lucian-${def.id}`;

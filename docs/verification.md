@@ -1,6 +1,6 @@
 # Verification record
 
-Date: 2026-10-14 UTC. Local release 1.0.0. Product path `/icons/`.
+Date: 2026-10-14 UTC. Published release 1.0.0. Product path `/icons/`.
 
 ## Passed locally
 
@@ -25,19 +25,22 @@ Date: 2026-10-14 UTC. Local release 1.0.0. Product path `/icons/`.
 
 ## Visual evidence
 
-Screenshots in `.artifacts/`: desktop.png, desktop-full.png, desktop-dark-en.png, mobile.png, mobile-full.png, mobile-dark-en.png, detail.png, mobile-detail.png, all-resting.png and all-active.png. These are actual Chromium screenshots of the local build. They are not production screenshots. Reference browser screenshots are stored separately in /workspace/scratch/reference/.
+Screenshots in `.artifacts/`: desktop.png, desktop-full.png, desktop-dark-en.png, mobile.png, mobile-full.png, mobile-dark-en.png, detail.png, mobile-detail.png, all-resting.png and all-active.png. The desktop, mobile, theme and inspector screenshots were recaptured from https://lucianlabs.dev/icons/ after deployment. all-resting.png and all-active.png are local runtime comparison fixtures. Reference browser screenshots are stored separately in /workspace/scratch/reference/.
 
 ## Production observations
 
 - https://lucianlabs.dev/ -> 200, correct lucianLabs title, no page error.
 - https://lucianlabs.dev/uxui-prompt/ -> 200, correct gallery title, no page error.
 - https://lucianlabs.dev/uxui-prompt/introducing/ -> 200, correct introduction title, no page error.
-- https://lucianlabs.dev/icons/ -> 404. NOT published.
-- No existing production source, routing, DNS or deployment was modified.
+- https://lucianlabs.dev/icons/ -> 200, correct product title and version, browser acceptance passed. `/icons` redirects to `/icons/`; a missing icon asset returns 404.
+- All 61 public manifest URLs return 200 and match both byte length and SHA-256. Skill and source ZIP downloads are valid. Downloaded skill searches Korean, retrieves only download.js/runtime.js/LICENSE and reports version 1.0.0.
+- Origin and canonical URL acceptance: all ten states/sizes/reversal/duplicate cases, 12 isolated HTML documents, real Promise outcomes, keyboard, reduced motion, both languages/themes and 320/390/768/1440 widths passed. Additional mobile touch context passed.
+- Public automated accessibility scan: zero WCAG 2 A/AA and 2.1 AA violations in light, dark and inspector views. No gallery console errors or failed requests.
+- Existing root and both UX/UI pages retain their titles and return 200 without page errors. 28 existing assets have exactly the same hashes as before the route addition.
+- Existing production deployment was preserved. Only two scoped project-level rules were added for /icons. No DNS or protection settings changed. See deployment.md.
 
-## Not verified / blocked
+## Limits
 
-- Public `/icons/` deployment, public asset and skill download URLs. Root hosting repository/project and Vercel deployment access are not available in this session.
 - Public GitHub visibility. Creation was initially denied by the integration; the user then created Seokwoooo/lucian-icons privately. Write access is available. Private visibility is retained pending explicit approval for that settings change.
 - Direct file:// navigation: Chromium administrator policy returns ERR_BLOCKED_BY_ADMINISTRATOR. Exact downloaded HTML contents were instead loaded into fresh about:blank pages and verified with no network resources. File:// behavior is not claimed as executed.
 - Actual installed Claude Code or Codex native runtime invocation. Documentation verified from official sources, CLI/package tested and a separate agent performed a skill-guided sample integration.
