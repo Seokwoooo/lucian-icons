@@ -64,4 +64,4 @@ Build outputs include the portable skill ZIP, complete source ZIP, per-icon stat
 
 ## License
 
-[MIT](LICENSE), Copyright (c) 2026 Seokwoooo. Retain this notice in redistributed code. Pretendard uses the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No external icon package, tracking script, or animation runtime.
+[MIT](LICENSE), Copyright (c) 2026 Lucian. Retain this notice in redistributed code. Pretendard uses the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No external icon package, tracking script, or animation runtime.
