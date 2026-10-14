@@ -38,7 +38,7 @@ Screenshots in `.artifacts/`: desktop.png, desktop-full.png, desktop-dark-en.png
 ## Not verified / blocked
 
 - Public `/icons/` deployment, public asset and skill download URLs. Root hosting repository/project and Vercel deployment access are not available in this session.
-- New GitHub repository publication. `gh repo create Seokwoooo/lucian-icons --public ...` was denied: `Resource not accessible by integration (createRepository)`. The requested repository remained absent at the last check.
+- Public GitHub visibility. Creation was initially denied by the integration; the user then created Seokwoooo/lucian-icons privately. Write access is available. Private visibility is retained pending explicit approval for that settings change.
 - Direct file:// navigation: Chromium administrator policy returns ERR_BLOCKED_BY_ADMINISTRATOR. Exact downloaded HTML contents were instead loaded into fresh about:blank pages and verified with no network resources. File:// behavior is not claimed as executed.
 - Actual installed Claude Code or Codex native runtime invocation. Documentation verified from official sources, CLI/package tested and a separate agent performed a skill-guided sample integration.
 - Safari/WebKit, Firefox, physical mobile devices and screen-reader manual audits.
