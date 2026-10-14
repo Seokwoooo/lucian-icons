@@ -1,0 +1,56 @@
+{
+  "id": "pin",
+  "name": {
+    "ko": "위치 핀",
+    "en": "Location pin"
+  },
+  "keywords": [
+    "위치",
+    "핀",
+    "장소",
+    "pin",
+    "location",
+    "place"
+  ],
+  "category": "lifestyle",
+  "version": "1.2.0",
+  "accent": "#d88e98",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 260,
+  "description": {
+    "ko": "핀의 가운데 표시가 채워져 선택한 장소를 나타냅니다.",
+    "en": "The center marker fills to indicate the selected place."
+  },
+  "parts": {
+    "center": {
+      "transformOrigin": "24px 19px",
+      "transform": "scale(.6)",
+      "fill": "var(--li-paper)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "selected": {
+      "center": {
+        "transform": "scale(1)",
+        "fill": "var(--li-accent)"
+      }
+    }
+  },
+  "svg": "<path d=\"M24 43S9 30 9 19a15 15 0 0 1 30 0c0 11-15 24-15 24Z\" fill=\"var(--li-paper)\"/><circle cx=\"24\" cy=\"19\" r=\"7\" fill=\"var(--li-accent)\"/><circle data-part=\"center\" cx=\"24\" cy=\"19\" r=\"4\" fill=\"var(--li-paper)\" stroke=\"none\"/>",
+  "order": 105,
+  "stateLabels": {
+    "ko": {
+      "idle": "기본",
+      "selected": "선택됨"
+    },
+    "en": {
+      "idle": "Idle",
+      "selected": "Selected"
+    }
+  }
+}

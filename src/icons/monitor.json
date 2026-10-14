@@ -1,0 +1,59 @@
+{
+  "id": "monitor",
+  "name": {
+    "ko": "모니터",
+    "en": "Monitor"
+  },
+  "keywords": [
+    "모니터",
+    "화면",
+    "데스크톱",
+    "monitor",
+    "screen",
+    "desktop"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "off",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 300,
+  "description": {
+    "ko": "화면이 밝아지고 전원 표시가 나타납니다.",
+    "en": "The screen brightens and the power indicator appears."
+  },
+  "stateLabels": {
+    "ko": {
+      "off": "꺼짐",
+      "on": "켜짐"
+    },
+    "en": {
+      "off": "Off",
+      "on": "On"
+    }
+  },
+  "parts": {
+    "screen": {
+      "fill": "var(--li-paper)"
+    },
+    "indicator": {
+      "opacity": "0"
+    }
+  },
+  "states": {
+    "off": {},
+    "on": {
+      "screen": {
+        "fill": "var(--li-accent)"
+      },
+      "indicator": {
+        "opacity": "1"
+      }
+    }
+  },
+  "svg": "<path d=\"M21 34v7m6-7v7m-12 0h18\"/><rect x=\"5\" y=\"8\" width=\"38\" height=\"26\" rx=\"3\" fill=\"var(--li-paper)\"/><rect data-part=\"screen\" x=\"8\" y=\"11\" width=\"32\" height=\"18\" rx=\"1\" stroke=\"none\"/><circle data-part=\"indicator\" cx=\"36\" cy=\"31\" r=\"1\" fill=\"var(--li-ink)\" stroke=\"none\"/>",
+  "order": 82
+}

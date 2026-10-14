@@ -1,0 +1,65 @@
+{
+  "id": "sliders",
+  "name": {
+    "ko": "조절 막대",
+    "en": "Sliders"
+  },
+  "keywords": [
+    "조절",
+    "설정",
+    "손잡이",
+    "controls",
+    "adjust",
+    "handles"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#a8c6b4",
+  "defaultState": "default",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "세 개의 손잡이가 각자의 설정 위치로 이동합니다.",
+    "en": "Three handles slide to independent setting positions."
+  },
+  "parts": {
+    "upper": {
+      "transform": "translateX(0px)"
+    },
+    "middle": {
+      "transform": "translateX(0px)"
+    },
+    "lower": {
+      "transform": "translateX(0px)"
+    }
+  },
+  "states": {
+    "default": {},
+    "adjusted": {
+      "upper": {
+        "transform": "translateX(14px)"
+      },
+      "middle": {
+        "transform": "translateX(-14px)"
+      },
+      "lower": {
+        "transform": "translateX(9px)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "default": "기본",
+      "adjusted": "조정됨"
+    },
+    "en": {
+      "default": "Default",
+      "adjusted": "Adjusted"
+    }
+  },
+  "svg": "<path d=\"M7 12h34M7 24h34M7 36h34\"/><rect data-part=\"upper\" x=\"11\" y=\"7\" width=\"7\" height=\"10\" rx=\"2\" fill=\"var(--li-paper)\"/><rect data-part=\"middle\" x=\"28\" y=\"19\" width=\"7\" height=\"10\" rx=\"2\" fill=\"var(--li-accent)\"/><rect data-part=\"lower\" x=\"15\" y=\"31\" width=\"7\" height=\"10\" rx=\"2\" fill=\"var(--li-paper)\"/>",
+  "order": 56
+}

@@ -1,0 +1,53 @@
+{
+  "id": "tablet",
+  "name": {
+    "ko": "태블릿",
+    "en": "Tablet"
+  },
+  "keywords": [
+    "태블릿",
+    "화면",
+    "회전",
+    "tablet",
+    "screen",
+    "orientation"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#a8c6b4",
+  "defaultState": "portrait",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 400,
+  "description": {
+    "ko": "태블릿이 세로 화면에서 가로 화면으로 회전합니다.",
+    "en": "The tablet turns from portrait to landscape orientation."
+  },
+  "stateLabels": {
+    "ko": {
+      "portrait": "세로",
+      "landscape": "가로"
+    },
+    "en": {
+      "portrait": "Portrait",
+      "landscape": "Landscape"
+    }
+  },
+  "parts": {
+    "device": {
+      "transform": "rotate(0deg)"
+    }
+  },
+  "states": {
+    "portrait": {},
+    "landscape": {
+      "device": {
+        "transform": "rotate(90deg)"
+      }
+    }
+  },
+  "svg": "<g data-part=\"device\"><rect x=\"11\" y=\"6\" width=\"26\" height=\"36\" rx=\"3\" fill=\"var(--li-paper)\"/><rect x=\"14\" y=\"10\" width=\"20\" height=\"26\" rx=\"1\" fill=\"var(--li-accent)\" stroke=\"none\"/><circle cx=\"24\" cy=\"39\" r=\"1\" fill=\"var(--li-ink)\" stroke=\"none\"/></g>",
+  "order": 84
+}

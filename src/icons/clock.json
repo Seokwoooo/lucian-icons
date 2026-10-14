@@ -1,0 +1,61 @@
+{
+  "id": "clock",
+  "name": {
+    "ko": "시계",
+    "en": "Clock"
+  },
+  "keywords": [
+    "시계",
+    "시간",
+    "시침",
+    "clock",
+    "time",
+    "hands"
+  ],
+  "category": "lifestyle",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "morning",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 400,
+  "description": {
+    "ko": "분침과 시침이 같은 축을 중심으로 이동합니다.",
+    "en": "The hour and minute hands advance around one pivot."
+  },
+  "parts": {
+    "hour": {
+      "transformOrigin": "24px 24px",
+      "transform": "rotate(-55deg)"
+    },
+    "minute": {
+      "transformOrigin": "24px 24px",
+      "transform": "rotate(60deg)"
+    }
+  },
+  "states": {
+    "morning": {},
+    "later": {
+      "hour": {
+        "transform": "rotate(-45deg)"
+      },
+      "minute": {
+        "transform": "rotate(180deg)"
+      }
+    }
+  },
+  "svg": "<circle cx=\"24\" cy=\"24\" r=\"17\" fill=\"var(--li-paper)\"/><path d=\"M24 7a17 17 0 0 1 17 17H24Z\" fill=\"var(--li-accent)\" stroke=\"none\"/><path d=\"M24 11v2m13 11h-2M24 37v-2M11 24h2\"/><path data-part=\"hour\" d=\"M24 24v-8\" stroke-width=\"2.5\"/><path data-part=\"minute\" d=\"M24 24V12\"/><circle cx=\"24\" cy=\"24\" r=\"2\" fill=\"var(--li-ink)\" stroke=\"none\"/>",
+  "order": 102,
+  "stateLabels": {
+    "ko": {
+      "morning": "오전",
+      "later": "이후"
+    },
+    "en": {
+      "morning": "Morning",
+      "later": "Later"
+    }
+  }
+}

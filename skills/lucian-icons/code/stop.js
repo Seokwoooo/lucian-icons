@@ -1,0 +1,4 @@
+/* Lucian Icons 1.2.0 | MIT (c) 2026 Lucian */
+import {defineIcon} from './runtime.js';
+export const definition={"id":"stop","name":{"ko":"정지","en":"Stop"},"keywords":["중지","종료","재생","stop","end","playback"],"category":"media","version":"1.2.0","accent":"#d88e98","defaultState":"idle","triggers":["click","controlled"],"duration":280,"description":{"ko":"정지 사각형이 모서리 표시 안으로 내려앉습니다.","en":"The stop square settles inside four corner marks."},"stateLabels":{"ko":{"idle":"대기","stopped":"정지"},"en":{"idle":"Idle","stopped":"Stopped"}},"parts":{"square":{"transform":"scale(1)","fill":"var(--li-paper)"},"corners":{"opacity":"0"}},"states":{"idle":{},"stopped":{"square":{"transform":"scale(.78)","fill":"var(--li-accent)"},"corners":{"opacity":"1"}}},"svg":"<path data-part=\"corners\" d=\"M8 15V8h7m18 0h7v7M8 33v7h7m18 0h7v-7\"/><rect data-part=\"square\" x=\"9\" y=\"9\" width=\"30\" height=\"30\" rx=\"3\"/>","order":75};
+defineIcon(definition);

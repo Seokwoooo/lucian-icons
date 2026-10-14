@@ -13,8 +13,8 @@
     "enable",
     "switch"
   ],
-  "category": "controls",
-  "version": "1.1.0",
+  "category": "devices",
+  "version": "1.2.0",
   "accent": "#a8c6b4",
   "defaultState": "off",
   "triggers": [
@@ -23,19 +23,17 @@
   ],
   "duration": 260,
   "description": {
-    "ko": "전원 링과 표시등이 켜짐 상태를 전달합니다.",
-    "en": "The ring and indicator illuminate when power is on."
+    "ko": "전원 기호의 열린 링에 색이 들어와 켜짐 상태를 표시합니다.",
+    "en": "The open power ring fills with color to show the on state."
   },
   "parts": {
     "body": {
       "fill": "var(--li-paper)"
     },
     "ring": {
-      "opacity": ".45"
-    },
-    "light": {
-      "fill": "var(--li-ink)",
-      "opacity": ".3"
+      "fill": "var(--li-paper)",
+      "transformOrigin": "24px 14px",
+      "transform": "translateY(0px)"
     }
   },
   "states": {
@@ -45,14 +43,21 @@
         "fill": "var(--li-accent)"
       },
       "ring": {
-        "opacity": "1"
-      },
-      "light": {
-        "fill": "var(--li-paper)",
-        "opacity": "1"
+        "fill": "var(--li-accent)",
+        "transform": "translateY(1px)"
       }
     }
   },
-  "svg": "<rect data-part=\"body\" x=\"6\" y=\"5\" width=\"36\" height=\"38\" rx=\"11\"/><g data-part=\"ring\"><path d=\"M18 15a10 10 0 1 0 12 0M24 10v12\" stroke-width=\"2.5\"/></g><circle data-part=\"light\" cx=\"24\" cy=\"37\" r=\"1.5\" stroke=\"none\"/>",
-  "order": 10
+  "svg": "<path data-part=\"body\" d=\"M14 10.3a17 17 0 1 0 20 0l-3 4.1a12 12 0 1 1-14 0z\"/><rect data-part=\"ring\" x=\"21.5\" y=\"5\" width=\"5\" height=\"18\" rx=\"2.5\"/>",
+  "order": 10,
+  "stateLabels": {
+    "ko": {
+      "off": "꺼짐",
+      "on": "켜짐"
+    },
+    "en": {
+      "off": "Off",
+      "on": "On"
+    }
+  }
 }

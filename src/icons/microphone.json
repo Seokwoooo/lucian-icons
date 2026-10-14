@@ -1,0 +1,61 @@
+{
+  "id": "microphone",
+  "name": {
+    "ko": "마이크",
+    "en": "Microphone"
+  },
+  "keywords": [
+    "마이크",
+    "음성",
+    "녹음",
+    "microphone",
+    "voice",
+    "recording"
+  ],
+  "category": "communication",
+  "version": "1.2.0",
+  "accent": "#d88e98",
+  "defaultState": "off",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 280,
+  "description": {
+    "ko": "마이크 캡슐이 밝아지고 양옆에 소리 표시가 나타납니다.",
+    "en": "The microphone capsule lights up and sound marks appear beside it."
+  },
+  "parts": {
+    "capsule": {
+      "fill": "var(--li-paper)"
+    },
+    "sound": {
+      "opacity": "0",
+      "transform": "scaleX(.8)"
+    }
+  },
+  "states": {
+    "off": {},
+    "on": {
+      "capsule": {
+        "fill": "var(--li-accent)"
+      },
+      "sound": {
+        "opacity": "1",
+        "transform": "scaleX(1)"
+      }
+    }
+  },
+  "svg": "<rect data-part=\"capsule\" x=\"17\" y=\"5\" width=\"14\" height=\"25\" rx=\"7\"/><path d=\"M21 11h6m-6 5h6m-6 5h6\" opacity=\".55\"/><path d=\"M11 23v2a13 13 0 0 0 26 0v-2M24 38v5m-7 0h14\"/><g data-part=\"sound\"><path d=\"M6 18v10m36-10v10\"/></g>",
+  "order": 38,
+  "stateLabels": {
+    "ko": {
+      "off": "꺼짐",
+      "on": "켜짐"
+    },
+    "en": {
+      "off": "Off",
+      "on": "On"
+    }
+  }
+}

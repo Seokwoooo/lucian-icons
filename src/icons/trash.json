@@ -13,7 +13,7 @@
     "bin"
   ],
   "category": "files",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "accent": "#b7a4ff",
   "defaultState": "closed",
   "triggers": [
@@ -41,5 +41,15 @@
     }
   },
   "svg": "<path d=\"M12 18h24l-1.8 19.3a3 3 0 0 1-3 2.7h-14.4a3 3 0 0 1-3-2.7z\" fill=\"var(--li-accent)\"/><path d=\"m19 24 1 10m9-10-1 10\" opacity=\".55\"/><g data-part=\"lid\"><path d=\"M19 12V8h10v4\"/><rect x=\"9\" y=\"12\" width=\"30\" height=\"5\" rx=\"2.5\" fill=\"var(--li-paper)\"/></g>",
-  "order": 1
+  "order": 1,
+  "stateLabels": {
+    "ko": {
+      "closed": "닫힘",
+      "open": "열림"
+    },
+    "en": {
+      "closed": "Closed",
+      "open": "Open"
+    }
+  }
 }

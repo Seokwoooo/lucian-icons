@@ -1,0 +1,61 @@
+{
+  "id": "bluetooth",
+  "name": {
+    "ko": "블루투스",
+    "en": "Bluetooth"
+  },
+  "keywords": [
+    "블루투스",
+    "무선",
+    "기기",
+    "bluetooth",
+    "wireless",
+    "device"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#b7a4ff",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "블루투스 기호가 채워지고 양옆에 신호 선이 나타납니다.",
+    "en": "The Bluetooth mark fills and signal curves appear beside it."
+  },
+  "stateLabels": {
+    "ko": {
+      "idle": "대기",
+      "active": "활성"
+    },
+    "en": {
+      "idle": "Idle",
+      "active": "Active"
+    }
+  },
+  "parts": {
+    "core": {
+      "fill": "var(--li-paper)"
+    },
+    "signals": {
+      "opacity": "0",
+      "transform": "scaleX(.85)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "active": {
+      "core": {
+        "fill": "var(--li-accent)"
+      },
+      "signals": {
+        "opacity": "1",
+        "transform": "scaleX(1)"
+      }
+    }
+  },
+  "svg": "<path data-part=\"core\" d=\"m24 6 10 10-10 8 10 8-10 10z\"/><path d=\"m14 16 20 16-10 10V6l10 10-20 16\"/><path data-part=\"signals\" d=\"M7 20a7 7 0 0 0 0 8m34-8a7 7 0 0 1 0 8\"/>",
+  "order": 89
+}

@@ -1,0 +1,4 @@
+/* Lucian Icons 1.2.0 | MIT (c) 2026 Lucian */
+import {defineIcon} from './runtime.js';
+export const definition={"id":"upload","name":{"ko":"업로드","en":"Upload"},"keywords":["업로드","전송","올리기","upload","transfer","send"],"category":"files","version":"1.2.0","accent":"#a8c6b4","defaultState":"resting","triggers":["click","controlled"],"duration":320,"description":{"ko":"화살표가 트레이 위로 올라갑니다.","en":"An arrow rises above the upload tray."},"parts":{"arrow":{"transform":"translateY(0px)"}},"states":{"resting":{},"raised":{"arrow":{"transform":"translateY(-5px)"}}},"svg":"<path d=\"M8 29v9a3 3 0 0 0 3 3h26a3 3 0 0 0 3-3v-9\"/><path d=\"M14 36h20\" stroke=\"var(--li-accent)\" stroke-width=\"4\"/><g data-part=\"arrow\"><path d=\"m15 21 9-9 9 9\"/><path d=\"M24 13v18\" stroke-width=\"2.5\"/></g>","order":17,"stateLabels":{"ko":{"resting":"기본","raised":"올림"},"en":{"resting":"Resting","raised":"Raised"}}};
+defineIcon(definition);

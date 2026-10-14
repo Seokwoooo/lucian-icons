@@ -1,0 +1,70 @@
+{
+  "id": "brush",
+  "name": {
+    "ko": "붓",
+    "en": "Brush"
+  },
+  "keywords": [
+    "붓",
+    "칠하기",
+    "붓털",
+    "paint",
+    "bristles",
+    "stroke"
+  ],
+  "category": "editing",
+  "version": "1.2.0",
+  "accent": "#b7a4ff",
+  "defaultState": "lifted",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 340,
+  "description": {
+    "ko": "붓대가 기울고 붓털이 휘며 색을 펴 바릅니다.",
+    "en": "The handle tilts and the bristles flex to spread paint."
+  },
+  "parts": {
+    "handle": {
+      "transformOrigin": "20px 30px",
+      "transform": "rotate(0deg)"
+    },
+    "bristles": {
+      "transformOrigin": "20px 30px",
+      "transform": "skewX(0deg)"
+    },
+    "paint": {
+      "opacity": "0",
+      "transformOrigin": "7px 41px",
+      "transform": "scaleX(.4)"
+    }
+  },
+  "states": {
+    "lifted": {},
+    "pressed": {
+      "handle": {
+        "transform": "rotate(-8deg)"
+      },
+      "bristles": {
+        "transform": "skewX(-10deg)"
+      },
+      "paint": {
+        "opacity": "1",
+        "transform": "scaleX(1)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "lifted": "들림",
+      "pressed": "누름"
+    },
+    "en": {
+      "lifted": "Lifted",
+      "pressed": "Pressed"
+    }
+  },
+  "svg": "<path data-part=\"paint\" d=\"M7 42q8 1 17-1\" stroke=\"var(--li-accent)\" stroke-width=\"3\"/><path data-part=\"bristles\" d=\"m14 26 9 8c-4 8-12 6-16 6 5-3 1-9 7-14z\" fill=\"var(--li-accent)\"/><g data-part=\"handle\"><path d=\"M22 22 33 8a3 3 0 0 1 5 4L28 28z\" fill=\"var(--li-paper)\"/><path d=\"m22 22 6 6-5 6-9-8z\" fill=\"var(--li-paper)\"/><path d=\"m18 25 7 6\" opacity=\".5\"/></g>",
+  "order": 68
+}

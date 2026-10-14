@@ -1,0 +1,53 @@
+{
+  "id": "receipt",
+  "name": {
+    "ko": "영수증",
+    "en": "Receipt"
+  },
+  "keywords": [
+    "영수증",
+    "결제",
+    "쿠폰",
+    "receipt",
+    "payment",
+    "coupon"
+  ],
+  "category": "files",
+  "version": "1.2.0",
+  "accent": "#a8c6b4",
+  "defaultState": "attached",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "점선 아래의 쿠폰 부분이 분리됩니다.",
+    "en": "The lower coupon separates along the perforation."
+  },
+  "parts": {
+    "coupon": {
+      "transform": "translateY(0px)"
+    }
+  },
+  "states": {
+    "attached": {},
+    "separated": {
+      "coupon": {
+        "transform": "translateY(4px)"
+      }
+    }
+  },
+  "svg": "<path d=\"m12 6 3 2 3-2 3 2 3-2 3 2 3-2 3 2 3-2v25H12z\" fill=\"var(--li-paper)\"/><path d=\"M18 14h12\" stroke=\"var(--li-accent)\" stroke-width=\"3\"/><path d=\"M17 21h7m5 0h2m-14 5h9m3 0h2\"/><g data-part=\"coupon\"><path d=\"M12 31h24v8l-3-2-3 2-3-2-3 2-3-2-3 2-3-2-3 2z\" fill=\"var(--li-accent)\"/><path d=\"M18 35h12\" opacity=\".4\"/></g><path d=\"M12 31h24\" stroke-dasharray=\"2 3\"/>",
+  "order": 25,
+  "stateLabels": {
+    "ko": {
+      "attached": "붙음",
+      "separated": "분리"
+    },
+    "en": {
+      "attached": "Attached",
+      "separated": "Separated"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "server",
+  "name": {
+    "ko": "서버",
+    "en": "Server"
+  },
+  "keywords": [
+    "서버",
+    "드라이브",
+    "랙",
+    "server",
+    "drive",
+    "rack"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "seated",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "하단 드라이브 베이가 랙에서 조금 나옵니다.",
+    "en": "The lower drive bay slides forward from its rack."
+  },
+  "parts": {
+    "drawer": {
+      "transform": "translate(0px,0px)"
+    }
+  },
+  "states": {
+    "seated": {},
+    "extended": {
+      "drawer": {
+        "transform": "translate(3px,2px)"
+      }
+    }
+  },
+  "svg": "<rect x=\"7\" y=\"6\" width=\"34\" height=\"36\" rx=\"4\" fill=\"var(--li-paper)\"/><rect x=\"10\" y=\"10\" width=\"28\" height=\"11\" rx=\"2\" fill=\"var(--li-accent)\"/><path d=\"M15 15.5h9\"/><circle cx=\"33\" cy=\"15.5\" r=\"1.5\" fill=\"var(--li-ink)\" stroke=\"none\"/><rect x=\"10\" y=\"26\" width=\"28\" height=\"11\" rx=\"2\" fill=\"var(--li-ink)\" opacity=\".2\"/><g data-part=\"drawer\"><rect x=\"10\" y=\"26\" width=\"28\" height=\"11\" rx=\"2\" fill=\"var(--li-accent)\"/><path d=\"M15 31.5h9\"/><circle cx=\"33\" cy=\"31.5\" r=\"1.5\" fill=\"var(--li-ink)\" stroke=\"none\"/></g>",
+  "order": 29,
+  "stateLabels": {
+    "ko": {
+      "seated": "장착",
+      "extended": "꺼냄"
+    },
+    "en": {
+      "seated": "Seated",
+      "extended": "Extended"
+    }
+  }
+}

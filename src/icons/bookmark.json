@@ -12,8 +12,8 @@
     "saved",
     "read"
   ],
-  "category": "controls",
-  "version": "1.1.0",
+  "category": "files",
+  "version": "1.2.0",
   "accent": "#b7a4ff",
   "defaultState": "off",
   "triggers": [
@@ -46,6 +46,16 @@
       }
     }
   },
-  "svg": "<path data-part=\"ribbon\" d=\"M12 41V10a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v31l-12-8z\"/><path data-part=\"mark\" d=\"m19 20 3 3 7-7\"/><path d=\"M18 11h12\" opacity=\".25\"/>",
-  "order": 7
+  "svg": "<path data-part=\"ribbon\" d=\"M15 7h18a3 3 0 0 1 3 3v30a.8.8 0 0 1-1.2.7L24 34l-10.8 6.7A.8.8 0 0 1 12 40V10a3 3 0 0 1 3-3z\"/><path data-part=\"mark\" d=\"m18.5 20 4 4 7.5-8\"/>",
+  "order": 7,
+  "stateLabels": {
+    "ko": {
+      "off": "저장 안 됨",
+      "on": "저장됨"
+    },
+    "en": {
+      "off": "Unsaved",
+      "on": "Saved"
+    }
+  }
 }

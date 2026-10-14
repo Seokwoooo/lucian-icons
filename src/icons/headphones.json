@@ -1,0 +1,70 @@
+{
+  "id": "headphones",
+  "name": {
+    "ko": "헤드폰",
+    "en": "Headphones"
+  },
+  "keywords": [
+    "헤드폰",
+    "듣기",
+    "오디오",
+    "headphones",
+    "listen",
+    "audio"
+  ],
+  "category": "media",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 340,
+  "description": {
+    "ko": "이어컵이 안쪽으로 기울고 작은 소리 선이 나타납니다.",
+    "en": "The ear cups tilt inward and small sound marks appear."
+  },
+  "stateLabels": {
+    "ko": {
+      "idle": "대기",
+      "listening": "청취"
+    },
+    "en": {
+      "idle": "Idle",
+      "listening": "Listening"
+    }
+  },
+  "parts": {
+    "left": {
+      "transformOrigin": "9px 25px",
+      "transform": "rotate(0deg)"
+    },
+    "right": {
+      "transformOrigin": "39px 25px",
+      "transform": "rotate(0deg)"
+    },
+    "sound": {
+      "opacity": "0",
+      "transform": "scaleY(.6)",
+      "transformOrigin": "24px 30px"
+    }
+  },
+  "states": {
+    "idle": {},
+    "listening": {
+      "left": {
+        "transform": "rotate(-9deg)"
+      },
+      "right": {
+        "transform": "rotate(9deg)"
+      },
+      "sound": {
+        "opacity": "1",
+        "transform": "scaleY(1)"
+      }
+    }
+  },
+  "svg": "<path d=\"M7 27v-4a17 17 0 0 1 34 0v4\"/><path d=\"M11 23a13 13 0 0 1 26 0\" opacity=\".35\"/><g data-part=\"left\"><rect x=\"6\" y=\"24\" width=\"9\" height=\"15\" rx=\"4\" fill=\"var(--li-accent)\"/></g><g data-part=\"right\"><rect x=\"33\" y=\"24\" width=\"9\" height=\"15\" rx=\"4\" fill=\"var(--li-accent)\"/></g><path data-part=\"sound\" d=\"M20 27v6m8-6v6\"/>",
+  "order": 78
+}

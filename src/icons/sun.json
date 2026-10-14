@@ -1,0 +1,63 @@
+{
+  "id": "sun",
+  "name": {
+    "ko": "해",
+    "en": "Sun"
+  },
+  "keywords": [
+    "해",
+    "햇빛",
+    "날씨",
+    "sun",
+    "sunlight",
+    "weather"
+  ],
+  "category": "lifestyle",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "soft",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "햇살이 중심에서 바깥으로 퍼집니다.",
+    "en": "The rays spread outward as the sun brightens."
+  },
+  "parts": {
+    "rays": {
+      "transformOrigin": "24px 24px",
+      "transform": "scale(1)",
+      "opacity": ".65"
+    },
+    "core": {
+      "transformOrigin": "24px 24px",
+      "transform": "scale(1)"
+    }
+  },
+  "states": {
+    "soft": {},
+    "bright": {
+      "rays": {
+        "transform": "scale(1.1)",
+        "opacity": "1"
+      },
+      "core": {
+        "transform": "scale(1.1)"
+      }
+    }
+  },
+  "svg": "<g data-part=\"rays\"><path d=\"M24 6v4m0 28v4M6 24h4m28 0h4M11.3 11.3l2.8 2.8m19.8 19.8 2.8 2.8M11.3 36.7l2.8-2.8m19.8-19.8 2.8-2.8\"/></g><circle data-part=\"core\" cx=\"24\" cy=\"24\" r=\"8\" fill=\"var(--li-accent)\"/>",
+  "order": 107,
+  "stateLabels": {
+    "ko": {
+      "soft": "은은함",
+      "bright": "밝음"
+    },
+    "en": {
+      "soft": "Soft",
+      "bright": "Bright"
+    }
+  }
+}

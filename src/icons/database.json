@@ -1,0 +1,59 @@
+{
+  "id": "database",
+  "name": {
+    "ko": "데이터베이스",
+    "en": "Database"
+  },
+  "keywords": [
+    "데이터베이스",
+    "저장",
+    "계층",
+    "database",
+    "storage",
+    "layers"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#a8c6b4",
+  "defaultState": "stacked",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "저장 장치의 층이 벌어져 구조를 보여줍니다.",
+    "en": "Storage layers separate to reveal their structure."
+  },
+  "parts": {
+    "upper": {
+      "transform": "translateY(0px)"
+    },
+    "lower": {
+      "transform": "translateY(0px)"
+    }
+  },
+  "states": {
+    "stacked": {},
+    "expanded": {
+      "upper": {
+        "transform": "translateY(-3px)"
+      },
+      "lower": {
+        "transform": "translateY(3px)"
+      }
+    }
+  },
+  "svg": "<g data-part=\"lower\"><path d=\"M8 29v7c0 7 32 7 32 0v-7\" fill=\"var(--li-accent)\"/><ellipse cx=\"24\" cy=\"29\" rx=\"16\" ry=\"5\" fill=\"var(--li-paper)\"/></g><path d=\"M8 20v7c0 7 32 7 32 0v-7\" fill=\"var(--li-accent)\"/><ellipse cx=\"24\" cy=\"20\" rx=\"16\" ry=\"5\" fill=\"var(--li-paper)\"/><g data-part=\"upper\"><path d=\"M8 11v7c0 7 32 7 32 0v-7\" fill=\"var(--li-accent)\"/><ellipse cx=\"24\" cy=\"11\" rx=\"16\" ry=\"5\" fill=\"var(--li-paper)\"/></g>",
+  "order": 28,
+  "stateLabels": {
+    "ko": {
+      "stacked": "겹침",
+      "expanded": "펼침"
+    },
+    "en": {
+      "stacked": "Stacked",
+      "expanded": "Expanded"
+    }
+  }
+}

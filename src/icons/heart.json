@@ -12,9 +12,9 @@
     "favorite",
     "love"
   ],
-  "category": "controls",
-  "version": "1.1.0",
-  "accent": "#dc8d92",
+  "category": "lifestyle",
+  "version": "1.2.0",
+  "accent": "#d88e98",
   "defaultState": "off",
   "triggers": [
     "click",
@@ -42,11 +42,21 @@
         "fill": "var(--li-accent)"
       },
       "shine": {
-        "opacity": ".55"
+        "opacity": ".23"
       }
     }
   },
-  "css": "svg[data-state=on] [data-part=heart]{animation:li-heart 320ms ease-out}@keyframes li-heart{0%,100%{transform:scale(1)}38%{transform:scale(1.09)}70%{transform:scale(.98)}}",
-  "svg": "<g data-part=\"heart\"><path d=\"M24 40S6 29 6 18c0-6 4-9 9-9 4 0 7 2 9 6 2-4 5-6 9-6 5 0 9 3 9 9 0 11-18 22-18 22z\"/><path data-part=\"shine\" d=\"M12 19c0-3 1-4 4-4\" stroke=\"var(--li-paper)\" stroke-width=\"3\"/></g>",
-  "order": 6
+  "css": "svg[data-state=on] [data-part=heart]{animation:li-heart 320ms ease-out}@keyframes li-heart{0%,100%{transform:scale(1)}38%{transform:scale(1.065)}70%{transform:scale(.985)}}",
+  "svg": "<g data-part=\"heart\"><path d=\"M24 39.5C21.5 37.7 6.5 27.4 6.5 18c0-5.4 3.8-9.5 9-9.5 3.6 0 6.4 1.9 8.5 5.2 2.1-3.3 4.9-5.2 8.5-5.2 5.2 0 9 4.1 9 9.5 0 9.4-15 19.7-17.5 21.5z\"/><path data-part=\"shine\" d=\"M12.5 18a4 4 0 0 1 4-4\" stroke=\"var(--li-ink)\" stroke-width=\"2.5\"/></g>",
+  "order": 6,
+  "stateLabels": {
+    "ko": {
+      "off": "좋아요 해제",
+      "on": "좋아요"
+    },
+    "en": {
+      "off": "Unliked",
+      "on": "Liked"
+    }
+  }
 }

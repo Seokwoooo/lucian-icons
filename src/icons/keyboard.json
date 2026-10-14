@@ -1,0 +1,55 @@
+{
+  "id": "keyboard",
+  "name": {
+    "ko": "키보드",
+    "en": "Keyboard"
+  },
+  "keywords": [
+    "키보드",
+    "입력",
+    "키",
+    "keyboard",
+    "typing",
+    "key"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "ready",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 200,
+  "description": {
+    "ko": "강조된 키 하나가 눌려 아래로 내려갑니다.",
+    "en": "One highlighted key presses down into the keyboard."
+  },
+  "stateLabels": {
+    "ko": {
+      "ready": "준비",
+      "pressed": "누름"
+    },
+    "en": {
+      "ready": "Ready",
+      "pressed": "Pressed"
+    }
+  },
+  "parts": {
+    "key": {
+      "transform": "translateY(0px)",
+      "fill": "var(--li-paper)"
+    }
+  },
+  "states": {
+    "ready": {},
+    "pressed": {
+      "key": {
+        "transform": "translateY(2px)",
+        "fill": "var(--li-accent)"
+      }
+    }
+  },
+  "svg": "<rect x=\"5\" y=\"12\" width=\"38\" height=\"25\" rx=\"3\" fill=\"var(--li-paper)\"/><path d=\"M10 19h2m4 0h2m4 0h2m13 0h1M10 26h2m4 0h2m4 0h2m4 0h2m6 0h2M17 32h14\"/><rect data-part=\"key\" x=\"28\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/>",
+  "order": 86
+}

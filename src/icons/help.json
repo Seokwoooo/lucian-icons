@@ -1,0 +1,63 @@
+{
+  "id": "help",
+  "name": {
+    "ko": "도움말",
+    "en": "Help"
+  },
+  "keywords": [
+    "도움말",
+    "질문",
+    "지원",
+    "help",
+    "question",
+    "support"
+  ],
+  "category": "communication",
+  "version": "1.2.0",
+  "accent": "#b7a4ff",
+  "defaultState": "resting",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 260,
+  "description": {
+    "ko": "물음표의 점이 커지고 바깥의 안내선이 펼쳐집니다.",
+    "en": "The question mark dot grows as its small guide rays open."
+  },
+  "parts": {
+    "dot": {
+      "transform": "scale(1)",
+      "transformOrigin": "24px 39px"
+    },
+    "rays": {
+      "opacity": "0",
+      "transform": "scale(.8)",
+      "transformOrigin": "24px 21px"
+    }
+  },
+  "states": {
+    "resting": {},
+    "focused": {
+      "dot": {
+        "transform": "scale(1.35)"
+      },
+      "rays": {
+        "opacity": "1",
+        "transform": "scale(1)"
+      }
+    }
+  },
+  "svg": "<path d=\"M15 16a9 9 0 0 1 18 0c0 5-6 7-8 10-1 1-1 3-1 5\" stroke-width=\"3\"/><circle data-part=\"dot\" cx=\"24\" cy=\"39\" r=\"2.5\" fill=\"var(--li-accent)\"/><g data-part=\"rays\" stroke=\"var(--li-accent)\" stroke-width=\"2.5\"><path d=\"M6 18h3m30 0h3M9 9l2 2m26-2-2 2\"/></g>",
+  "order": 52,
+  "stateLabels": {
+    "ko": {
+      "resting": "기본",
+      "focused": "강조"
+    },
+    "en": {
+      "resting": "Resting",
+      "focused": "Focused"
+    }
+  }
+}

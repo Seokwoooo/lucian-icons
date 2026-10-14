@@ -1,0 +1,55 @@
+{
+  "id": "fingerprint",
+  "name": {
+    "ko": "지문",
+    "en": "Fingerprint"
+  },
+  "keywords": [
+    "지문",
+    "인증",
+    "생체인식",
+    "fingerprint",
+    "identity",
+    "biometric"
+  ],
+  "category": "security",
+  "version": "1.2.0",
+  "accent": "#d88e98",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 380,
+  "description": {
+    "ko": "지문의 가운데 능선을 따라 강조선이 그려집니다.",
+    "en": "An accent traces the central fingerprint ridge."
+  },
+  "parts": {
+    "trace": {
+      "strokeDashoffset": "100",
+      "opacity": "0"
+    }
+  },
+  "states": {
+    "idle": {},
+    "tracing": {
+      "trace": {
+        "strokeDashoffset": "0",
+        "opacity": "1"
+      }
+    }
+  },
+  "svg": "<path d=\"M8 24v-3a16 16 0 0 1 32 0v5M8 29v4m32-2v4M13 26v-5a11 11 0 0 1 22 0v10q0 5 3 8M13 31q0 6-3 10M18 24v-3a6 6 0 0 1 12 0v9q0 8 4 13M18 29q0 9-3 13M24 22v8q0 7-3 13\"/><path data-part=\"trace\" d=\"M18 29v-8a6 6 0 0 1 12 0v9q0 8 4 13\" stroke=\"var(--li-accent)\" stroke-width=\"3\" pathLength=\"100\" stroke-dasharray=\"100\"/>",
+  "order": 50,
+  "stateLabels": {
+    "ko": {
+      "idle": "대기",
+      "tracing": "추적 중"
+    },
+    "en": {
+      "idle": "Idle",
+      "tracing": "Tracing"
+    }
+  }
+}

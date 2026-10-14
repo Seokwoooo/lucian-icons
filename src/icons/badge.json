@@ -1,0 +1,62 @@
+{
+  "id": "badge",
+  "name": {
+    "ko": "메달",
+    "en": "Badge"
+  },
+  "keywords": [
+    "메달",
+    "배지",
+    "리본",
+    "badge",
+    "medal",
+    "ribbon"
+  ],
+  "category": "people",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "folded",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 350,
+  "description": {
+    "ko": "메달 아래의 두 리본이 차례로 펼쳐집니다.",
+    "en": "The two ribbons beneath the medal unfold in sequence."
+  },
+  "parts": {
+    "left": {
+      "transform": "scaleY(.65)",
+      "transformOrigin": "20px 28px"
+    },
+    "right": {
+      "transform": "scaleY(.65)",
+      "transformOrigin": "28px 28px",
+      "transition": "transform 300ms ease 50ms"
+    }
+  },
+  "states": {
+    "folded": {},
+    "unfurled": {
+      "left": {
+        "transform": "scaleY(1)"
+      },
+      "right": {
+        "transform": "scaleY(1)"
+      }
+    }
+  },
+  "svg": "<path data-part=\"left\" d=\"m16 27-4 16 8-4 4 3 2-15\" fill=\"var(--li-accent)\"/><path data-part=\"right\" d=\"m32 27 4 16-8-4-4 3-2-15\" fill=\"var(--li-accent)\"/><path d=\"m24 5 4 3 5 1 1 5 3 4-2 5-1 5-5 1-5 3-5-3-5-1-1-5-2-5 3-4 1-5 5-1Z\" fill=\"var(--li-paper)\"/><circle cx=\"24\" cy=\"19\" r=\"8\" fill=\"var(--li-accent)\"/>",
+  "order": 47,
+  "stateLabels": {
+    "ko": {
+      "folded": "접힘",
+      "unfurled": "펼침"
+    },
+    "en": {
+      "folded": "Folded",
+      "unfurled": "Unfurled"
+    }
+  }
+}

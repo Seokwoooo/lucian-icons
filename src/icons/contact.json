@@ -1,0 +1,54 @@
+{
+  "id": "contact",
+  "name": {
+    "ko": "연락처",
+    "en": "Contact"
+  },
+  "keywords": [
+    "연락처",
+    "주소록",
+    "프로필",
+    "contact",
+    "addressbook",
+    "profile"
+  ],
+  "category": "people",
+  "version": "1.2.0",
+  "accent": "#d88e98",
+  "defaultState": "closed",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 360,
+  "description": {
+    "ko": "주소록 표지가 옆으로 열려 연락처 줄이 드러납니다.",
+    "en": "The address-book cover opens sideways to reveal contact lines."
+  },
+  "parts": {
+    "cover": {
+      "transform": "scaleX(1)",
+      "transformOrigin": "11px 24px"
+    }
+  },
+  "states": {
+    "closed": {},
+    "open": {
+      "cover": {
+        "transform": "scaleX(.72)"
+      }
+    }
+  },
+  "svg": "<path d=\"M37 12h4v7h-4m0 5h4v7h-4\" fill=\"var(--li-accent)\"/><rect x=\"11\" y=\"6\" width=\"26\" height=\"36\" rx=\"3\" fill=\"var(--li-paper)\"/><path d=\"M18 14h14m-14 7h14m-14 7h14m-14 7h10\" opacity=\".5\"/><g data-part=\"cover\"><rect x=\"11\" y=\"6\" width=\"26\" height=\"36\" rx=\"3\" fill=\"var(--li-accent)\"/><circle cx=\"24\" cy=\"19\" r=\"4\" fill=\"var(--li-paper)\"/><path d=\"M17 33v-2a7 5 0 0 1 14 0v2Z\" fill=\"var(--li-paper)\"/></g><path d=\"M11 6v36M7 13h6m-6 11h6m-6 11h6\"/>",
+  "order": 45,
+  "stateLabels": {
+    "ko": {
+      "closed": "닫힘",
+      "open": "열림"
+    },
+    "en": {
+      "closed": "Closed",
+      "open": "Open"
+    }
+  }
+}

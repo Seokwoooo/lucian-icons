@@ -1,5 +1,5 @@
-/* Lucian Icons v1.1.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '1.1.0';
+/* Lucian Icons v1.2.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '1.2.0';
 export const tokens = { accent: '#b7a4ff', ink: '#252b2a', paper: '#fffdf8' };
 export function normalize(def, options = {}) {
   const color = (value, fallback) => /^#[\da-f]{6}$/i.test(value || '') ? value : fallback;
@@ -24,7 +24,7 @@ export function staticSVG(def, options = {}) {
   const kebab = name => name.replace(/[A-Z]/g, c => '-'+c.toLowerCase());
   const styles = partStyles(def,o);
   let drawing = def.svg.replace(/data-part="([\w-]+)"/g, (attr, part) => {
-    const style = Object.entries(styles[part] || {}).map(([k,v]) => `${kebab(k)}:${v}`).join(';');
+    const style = Object.entries({transformBox:'view-box',transformOrigin:'24px 24px',...styles[part]}).map(([k,v]) => `${kebab(k)}:${v}`).join(';');
     return `${attr} style="${style}"`;
   });
   drawing = drawing.replaceAll('var(--li-accent)',o.accent).replaceAll('var(--li-ink)',o.ink).replaceAll('var(--li-paper)',o.paper);

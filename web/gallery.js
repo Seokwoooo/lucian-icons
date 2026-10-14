@@ -1,4 +1,4 @@
-import {copy,stateNames,triggerNames} from './i18n.js';
+import {copy,stateNames,triggerNames,categoryNames} from './i18n.js';
 import {createAutoplay} from './autoplay.js';
 const $=s=>document.querySelector(s);
 let lang='ko';try{lang=localStorage.getItem('lucian-icons-lang')||((navigator.language||'ko').startsWith('ko')?'ko':'en')}catch{}
@@ -6,7 +6,7 @@ if(!copy[lang])lang='ko';
 let catalog=[],selected=null,selectedDef=null,agent='claude',toastTimer,downloadTimer,downloadProgress=0;
 const modules=new Map(),urls=new Set();
 const t=k=>(copy[lang][k]||k).replaceAll('{count}',String(catalog.length||document.documentElement.dataset.iconCount));
-const stateText=(id,s)=>id==='power'?(lang==='ko'?(s==='on'?'켜짐':'꺼짐'):(s==='on'?'On':'Off')):stateNames[lang][s]||s;
+const stateText=(id,s)=>catalog.find(d=>d.id===id)?.stateLabels?.[lang]?.[s]||stateNames[lang][s]||s;
 const load=async id=>{if(!modules.has(id))modules.set(id,import(`./modules/${id}.js`));return (await modules.get(id)).definition};
 const autoplay=createAutoplay({load,t});
 const palette=dark=>dark?{ink:'#ede9df',paper:'#222628'}:{ink:'#252b2a',paper:'#fffdf8'};
@@ -22,6 +22,7 @@ function updateInstall(){const codex=agent==='codex';$('#install-path').textCont
 function localize(){
  document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(e=>e.innerHTML=t(e.dataset.i18n));
  $('#language').innerHTML=lang==='ko'?'KO <span>/ EN</span>':'<span>KO /</span> EN';$('#language').setAttribute('aria-label',lang==='ko'?'Switch to English':'한국어로 전환');
+ const category=$('#category').value||'all';$('#category').innerHTML='<option value="all">'+t('allCategories')+'</option>'+[...new Set(catalog.map(d=>d.category))].map(c=>`<option value="${c}">${categoryNames[lang][c]||c}</option>`).join('');$('#category').value=category;
  $('#search').placeholder=t('searchPlaceholder');$('#close-detail').setAttribute('aria-label',t('close'));$('#copy-text').setAttribute('aria-label',t('copyCode'));
  $('#demo-bell').setAttribute('aria-label',t('bellDemo'));$('#demo-heart').setAttribute('aria-label',t('heartDemo'));$('#demo-trash').setAttribute('aria-label',t('trashDemo'));$('#demo-outcome').setAttribute('aria-label',t('demoOutcome'));
  document.title=lang==='ko'?'Lucian Icons | 작은 움직임, 분명한 차이':'Lucian Icons | Small motions. Thoughtful details.';
@@ -29,7 +30,7 @@ function localize(){
  document.querySelectorAll('.hero-object').forEach(e=>{const d=catalog.find(x=>x.id===e.dataset.icon);e.setAttribute('aria-label',d.name[lang]+' '+t('try'));e.querySelector('.object-action').textContent=d.name[lang]+' ↗'});
  updateInstall();syncTheme();autoplay.localize();if(selected)updateDetailLabels();if(downloadTimer)$('#demo-download span').textContent=t('cancel');
 }
-function search(){const q=$('#search').value.trim().toLocaleLowerCase().normalize('NFKC');let count=0;for(const d of catalog){const hit=[d.id,d.name.ko,d.name.en,...d.keywords].join(' ').toLocaleLowerCase().normalize('NFKC').includes(q);$(`[data-card="${d.id}"]`).hidden=!hit;if(hit)count++}$('#result-count').textContent=`${String(count).padStart(2,'0')} / ${catalog.length}`;$('#empty').hidden=!!count;autoplay.refresh()}
+function search(){const q=$('#search').value.trim().toLocaleLowerCase().normalize('NFKC');let count=0;const category=$('#category').value;for(const d of catalog){const hit=(category==='all'||d.category===category)&&[d.id,d.name.ko,d.name.en,...d.keywords].join(' ').toLocaleLowerCase().normalize('NFKC').includes(q);$(`[data-card="${d.id}"]`).hidden=!hit;if(hit)count++}$('#result-count').textContent=`${String(count).padStart(2,'0')} / ${catalog.length}`;$('#empty').hidden=!!count;autoplay.refresh()}
 async function cycle(icon,d){await load(d.id);const next=d.states[(d.states.indexOf(icon.state)+1)%d.states.length];if(d.id==='download'&&next==='progress')icon.setProgress(45);icon.setState(next)}
 async function render(){
  const r=await fetch('./catalog.json');if(!r.ok)throw new Error('Catalog fetch failed');catalog=(await r.json()).icons;
@@ -76,7 +77,7 @@ function download(text,type,filename){const blob=new Blob([text],{type});const u
 function resetDemo(message=false){clearInterval(downloadTimer);downloadTimer=null;$('#demo-download span').textContent=t('downloadDemo');if(message){$('#demo-download lucian-download').setState('idle');$('#demo-status').textContent=t('cancelled')}}
 $('#language').addEventListener('click',()=>{lang=lang==='ko'?'en':'ko';try{localStorage.setItem('lucian-icons-lang',lang)}catch{}localize()});
 $('#theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';try{localStorage.setItem('lucian-icons-theme',dark?'dark':'light')}catch{}syncTheme()});
-$('#search').addEventListener('input',search);
+$('#search').addEventListener('input',search);$('#category').addEventListener('change',search);
 $('#close-detail').addEventListener('click',()=>$('#detail').close());$('#detail').addEventListener('close',()=>{selected=null;selectedDef=null;detailRequest++;autoplay.suspend(false);if(catalog.some(d=>`#${d.id}`===location.hash))history.replaceState(null,'','#gallery')});
 $('#close-fallback').addEventListener('click',()=>$('#copy-fallback').close());
 $('#preview-button').addEventListener('click',previewCycle);$('#preview-button').addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')previewSet(true)});$('#preview-button').addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')previewSet(false)});$('#preview-button').addEventListener('focus',()=>previewSet(true));$('#preview-button').addEventListener('blur',()=>previewSet(false));

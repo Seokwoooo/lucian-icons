@@ -1,0 +1,4 @@
+/* Lucian Icons 1.2.0 | MIT (c) 2026 Lucian */
+import {defineIcon} from './runtime.js';
+export const definition={"id":"umbrella","name":{"ko":"우산","en":"Umbrella"},"keywords":["우산","비","날씨","umbrella","rain","weather"],"category":"lifestyle","version":"1.2.0","accent":"#9fb9d4","defaultState":"open","triggers":["click","controlled"],"duration":380,"description":{"ko":"살대와 천이 손잡이 축을 따라 접힙니다.","en":"The ribs and canopy fold toward the central shaft."},"parts":{"canopy":{"transformOrigin":"24px 8px","transform":"scale(1,1)"}},"states":{"open":{},"folded":{"canopy":{"transform":"scale(.28,1.45)"}}},"svg":"<path d=\"M24 6v31a5 5 0 0 0 10 0\"/><g data-part=\"canopy\"><path d=\"M6 24C7 14 14 8 24 8s17 6 18 16q-6-5-12 0-6-5-12 0-6-5-12 0Z\" fill=\"var(--li-accent)\"/><path d=\"M24 8c-4 3-6 9-6 16m6-16c4 3 6 9 6 16\" opacity=\".55\"/></g>","order":109,"stateLabels":{"ko":{"open":"열림","folded":"접힘"},"en":{"open":"Open","folded":"Folded"}}};
+defineIcon(definition);

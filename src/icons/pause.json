@@ -1,0 +1,63 @@
+{
+  "id": "pause",
+  "name": {
+    "ko": "일시 정지",
+    "en": "Pause"
+  },
+  "keywords": [
+    "정지",
+    "재생",
+    "대기",
+    "pause",
+    "playback",
+    "hold"
+  ],
+  "category": "media",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 260,
+  "description": {
+    "ko": "두 막대가 안쪽으로 모여 일시 정지 상태를 표시합니다.",
+    "en": "Two bars draw together into the paused position."
+  },
+  "stateLabels": {
+    "ko": {
+      "idle": "대기",
+      "paused": "일시 정지"
+    },
+    "en": {
+      "idle": "Idle",
+      "paused": "Paused"
+    }
+  },
+  "parts": {
+    "left": {
+      "transform": "translateX(0px)",
+      "fill": "var(--li-paper)"
+    },
+    "right": {
+      "transform": "translateX(0px)",
+      "fill": "var(--li-paper)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "paused": {
+      "left": {
+        "transform": "translateX(2px)",
+        "fill": "var(--li-accent)"
+      },
+      "right": {
+        "transform": "translateX(-2px)",
+        "fill": "var(--li-accent)"
+      }
+    }
+  },
+  "svg": "<rect data-part=\"left\" x=\"11\" y=\"7\" width=\"9\" height=\"34\" rx=\"2.5\"/><rect data-part=\"right\" x=\"28\" y=\"7\" width=\"9\" height=\"34\" rx=\"2.5\"/>",
+  "order": 74
+}

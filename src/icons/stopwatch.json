@@ -1,0 +1,60 @@
+{
+  "id": "stopwatch",
+  "name": {
+    "ko": "스톱워치",
+    "en": "Stopwatch"
+  },
+  "keywords": [
+    "스톱워치",
+    "타이머",
+    "측정",
+    "stopwatch",
+    "timer",
+    "timing"
+  ],
+  "category": "lifestyle",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 380,
+  "description": {
+    "ko": "버튼이 눌리고 바늘이 정해진 위치로 이동합니다.",
+    "en": "The crown presses and the hand moves to a new position."
+  },
+  "parts": {
+    "button": {
+      "transform": "translateY(0px)"
+    },
+    "hand": {
+      "transformOrigin": "24px 27px",
+      "transform": "rotate(0deg)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "active": {
+      "button": {
+        "transform": "translateY(1.5px)"
+      },
+      "hand": {
+        "transform": "rotate(110deg)"
+      }
+    }
+  },
+  "svg": "<path d=\"M24 8v4m13 3 3-3\"/><rect data-part=\"button\" x=\"20\" y=\"4\" width=\"8\" height=\"4\" rx=\"1\" fill=\"var(--li-accent)\"/><circle cx=\"24\" cy=\"27\" r=\"15\" fill=\"var(--li-paper)\"/><path d=\"M24 12a15 15 0 0 1 15 15H24Z\" fill=\"var(--li-accent)\" stroke=\"none\"/><path d=\"M24 16v1m11 10h-1M24 38v-1M13 27h1\"/><path data-part=\"hand\" d=\"M24 27V18\"/><circle cx=\"24\" cy=\"27\" r=\"2\" fill=\"var(--li-ink)\" stroke=\"none\"/>",
+  "order": 103,
+  "stateLabels": {
+    "ko": {
+      "idle": "기본",
+      "active": "활성"
+    },
+    "en": {
+      "idle": "Idle",
+      "active": "Active"
+    }
+  }
+}

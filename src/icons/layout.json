@@ -1,0 +1,66 @@
+{
+  "id": "layout",
+  "name": {
+    "ko": "레이아웃",
+    "en": "Layout"
+  },
+  "keywords": [
+    "레이아웃",
+    "사이드바",
+    "화면",
+    "panels",
+    "sidebar",
+    "workspace"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "split",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "사이드바가 접히며 본문 공간이 넓어집니다.",
+    "en": "The sidebar folds inward to make room for the content."
+  },
+  "parts": {
+    "sidebar": {
+      "transformOrigin": "7px 24px",
+      "transform": "scaleX(1)"
+    },
+    "divider": {
+      "transform": "translateX(0px)"
+    },
+    "content": {
+      "transform": "translateX(0px)"
+    }
+  },
+  "states": {
+    "split": {},
+    "focus": {
+      "sidebar": {
+        "transform": "scaleX(.45)"
+      },
+      "divider": {
+        "transform": "translateX(-6px)"
+      },
+      "content": {
+        "transform": "translateX(-3px)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "split": "분할",
+      "focus": "집중"
+    },
+    "en": {
+      "split": "Split",
+      "focus": "Focus"
+    }
+  },
+  "svg": "<rect x=\"6\" y=\"8\" width=\"36\" height=\"32\" rx=\"3\" fill=\"var(--li-paper)\"/><path data-part=\"sidebar\" d=\"M9 9h9v30H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2z\" fill=\"var(--li-accent)\" stroke=\"none\"/><path data-part=\"divider\" d=\"M18 9v30\"/><path data-part=\"content\" d=\"M25 17h10M25 24h10M25 31h7\"/>",
+  "order": 59
+}

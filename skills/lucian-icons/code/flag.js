@@ -1,0 +1,4 @@
+/* Lucian Icons 1.2.0 | MIT (c) 2026 Lucian */
+import {defineIcon} from './runtime.js';
+export const definition={"id":"flag","name":{"ko":"깃발","en":"Flag"},"keywords":["깃발","표시","목표","flag","marker","goal"],"category":"lifestyle","version":"1.2.0","accent":"#d88e98","defaultState":"resting","triggers":["click","controlled"],"duration":360,"description":{"ko":"깃대에 고정된 천이 바람 방향으로 기울어집니다.","en":"The fabric leans with the breeze around its fixed pole."},"parts":{"cloth":{"transformOrigin":"10px 10px","transform":"scaleX(1) skewY(0deg)"}},"states":{"resting":{},"waving":{"cloth":{"transform":"scaleX(.9) skewY(7deg)"}}},"svg":"<path data-part=\"cloth\" d=\"M10 10c10-7 19 7 29 0v17c-10 7-19-7-29 0Z\" fill=\"var(--li-accent)\"/><path d=\"M10 6v36m-4 0h11\"/><circle cx=\"10\" cy=\"6\" r=\"1.5\" fill=\"var(--li-ink)\" stroke=\"none\"/>","order":104,"stateLabels":{"ko":{"resting":"기본","waving":"바람"},"en":{"resting":"Resting","waving":"Waving"}}};
+defineIcon(definition);

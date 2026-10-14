@@ -1,0 +1,68 @@
+{
+  "id": "sort",
+  "name": {
+    "ko": "정렬",
+    "en": "Sort"
+  },
+  "keywords": [
+    "정렬",
+    "순서",
+    "방향",
+    "order",
+    "ascending",
+    "descending"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "descending",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 280,
+  "description": {
+    "ko": "행의 길이와 화살촉이 정렬 방향을 바꿉니다.",
+    "en": "Row lengths and the arrowhead switch the sort direction."
+  },
+  "parts": {
+    "top": {
+      "transformOrigin": "8px 12px",
+      "transform": "scaleX(1)"
+    },
+    "bottom": {
+      "transformOrigin": "8px 36px",
+      "transform": "scaleX(1)"
+    },
+    "head": {
+      "transformOrigin": "36px 24px",
+      "transform": "scaleY(1)"
+    }
+  },
+  "states": {
+    "descending": {},
+    "ascending": {
+      "top": {
+        "transform": "scaleX(.4444)"
+      },
+      "bottom": {
+        "transform": "scaleX(2.25)"
+      },
+      "head": {
+        "transform": "scaleY(-1)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "descending": "내림차순",
+      "ascending": "오름차순"
+    },
+    "en": {
+      "descending": "Descending",
+      "ascending": "Ascending"
+    }
+  },
+  "svg": "<path data-part=\"top\" d=\"M8 12h18\"/><path d=\"M8 24h13\"/><path data-part=\"bottom\" d=\"M8 36h8\"/><path d=\"M36 10v28\"/><path data-part=\"head\" d=\"m31 32 5 6 5-6\" stroke=\"var(--li-accent)\" stroke-width=\"3\"/>",
+  "order": 58
+}

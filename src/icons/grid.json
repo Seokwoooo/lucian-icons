@@ -1,0 +1,71 @@
+{
+  "id": "grid",
+  "name": {
+    "ko": "그리드",
+    "en": "Grid"
+  },
+  "keywords": [
+    "그리드",
+    "격자",
+    "타일",
+    "tiles",
+    "spacing",
+    "arrange"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#b7a4ff",
+  "defaultState": "compact",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "네 개의 타일이 간격을 넓혀 펼쳐집니다.",
+    "en": "Four tiles move apart to open the grid spacing."
+  },
+  "parts": {
+    "tl": {
+      "transform": "translate(0px,0px)"
+    },
+    "tr": {
+      "transform": "translate(0px,0px)"
+    },
+    "bl": {
+      "transform": "translate(0px,0px)"
+    },
+    "br": {
+      "transform": "translate(0px,0px)"
+    }
+  },
+  "states": {
+    "compact": {},
+    "spread": {
+      "tl": {
+        "transform": "translate(-2px,-2px)"
+      },
+      "tr": {
+        "transform": "translate(2px,-2px)"
+      },
+      "bl": {
+        "transform": "translate(-2px,2px)"
+      },
+      "br": {
+        "transform": "translate(2px,2px)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "compact": "촘촘함",
+      "spread": "펼침"
+    },
+    "en": {
+      "compact": "Compact",
+      "spread": "Spread"
+    }
+  },
+  "svg": "<rect data-part=\"tl\" x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"3\" fill=\"var(--li-paper)\"/><rect data-part=\"tr\" x=\"26\" y=\"8\" width=\"14\" height=\"14\" rx=\"3\" fill=\"var(--li-accent)\"/><rect data-part=\"bl\" x=\"8\" y=\"26\" width=\"14\" height=\"14\" rx=\"3\" fill=\"var(--li-paper)\"/><rect data-part=\"br\" x=\"26\" y=\"26\" width=\"14\" height=\"14\" rx=\"3\" fill=\"var(--li-paper)\"/>",
+  "order": 60
+}

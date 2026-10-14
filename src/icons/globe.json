@@ -1,0 +1,54 @@
+{
+  "id": "globe",
+  "name": {
+    "ko": "지구",
+    "en": "Globe"
+  },
+  "keywords": [
+    "지구",
+    "세계",
+    "언어",
+    "globe",
+    "world",
+    "international"
+  ],
+  "category": "communication",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "wide",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 380,
+  "description": {
+    "ko": "지구의 중앙 경선이 좁아지며 회전을 표현합니다.",
+    "en": "The central meridian narrows to suggest a turn of the globe."
+  },
+  "parts": {
+    "meridian": {
+      "transform": "scaleX(1)",
+      "transformOrigin": "24px 24px"
+    }
+  },
+  "states": {
+    "wide": {},
+    "turned": {
+      "meridian": {
+        "transform": "scaleX(.45)"
+      }
+    }
+  },
+  "svg": "<circle cx=\"24\" cy=\"24\" r=\"18\" fill=\"var(--li-paper)\"/><ellipse data-part=\"meridian\" cx=\"24\" cy=\"24\" rx=\"8\" ry=\"18\" fill=\"var(--li-accent)\"/><path d=\"M6 24h36M9 14q15 7 30 0M9 34q15-7 30 0\"/>",
+  "order": 41,
+  "stateLabels": {
+    "ko": {
+      "wide": "기본",
+      "turned": "회전"
+    },
+    "en": {
+      "wide": "Wide",
+      "turned": "Turned"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "refresh",
+  "name": {
+    "ko": "새로 고침",
+    "en": "Refresh"
+  },
+  "keywords": [
+    "새로고침",
+    "순환",
+    "회전",
+    "reload",
+    "cycle",
+    "turn"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#a8c6b4",
+  "defaultState": "ready",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 400,
+  "description": {
+    "ko": "두 곡선 화살표가 중심 주위를 일정 각도로 회전합니다.",
+    "en": "Two curved arrows advance around a fixed center."
+  },
+  "parts": {
+    "arrows": {
+      "transform": "rotate(0deg)"
+    }
+  },
+  "states": {
+    "ready": {},
+    "turned": {
+      "arrows": {
+        "transform": "rotate(120deg)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "ready": "준비",
+      "turned": "회전됨"
+    },
+    "en": {
+      "ready": "Ready",
+      "turned": "Turned"
+    }
+  },
+  "svg": "<circle cx=\"24\" cy=\"24\" r=\"4\" fill=\"var(--li-accent)\" stroke=\"none\"/><g data-part=\"arrows\"><path d=\"M10 19a15 15 0 0 1 27-6l2 2M39 8v7h-7M38 29a15 15 0 0 1-27 6l-2-2M9 40v-7h7\"/></g>",
+  "order": 64
+}

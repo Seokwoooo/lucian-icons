@@ -1,0 +1,62 @@
+{
+  "id": "trophy",
+  "name": {
+    "ko": "트로피",
+    "en": "Trophy"
+  },
+  "keywords": [
+    "트로피",
+    "상",
+    "우승",
+    "trophy",
+    "award",
+    "prize"
+  ],
+  "category": "lifestyle",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "resting",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 300,
+  "description": {
+    "ko": "컵의 별이 선명해지고 작은 반짝임이 나타납니다.",
+    "en": "The cup emblem brightens and small glints appear."
+  },
+  "parts": {
+    "emblem": {
+      "fill": "var(--li-paper)"
+    },
+    "sparkles": {
+      "opacity": "0",
+      "transformOrigin": "24px 27px",
+      "transform": "scale(.8)"
+    }
+  },
+  "states": {
+    "resting": {},
+    "celebrated": {
+      "emblem": {
+        "fill": "var(--li-ink)"
+      },
+      "sparkles": {
+        "opacity": "1",
+        "transform": "scale(1)"
+      }
+    }
+  },
+  "svg": "<path d=\"M14 12H7v5a9 9 0 0 0 10 9m17-14h7v5a9 9 0 0 1-10 9\"/><path d=\"M24 29v8\"/><path d=\"M14 8h20v11a10 10 0 0 1-20 0Z\" fill=\"var(--li-accent)\"/><path data-part=\"emblem\" d=\"m24 12 1.5 3.3 3.5.5-2.5 2.5.6 3.7-3.1-1.8-3.1 1.8.6-3.7-2.5-2.5 3.5-.5Z\" fill=\"var(--li-paper)\" stroke=\"none\"/><path d=\"M18 37h12l2 5H16Z\" fill=\"var(--li-accent)\"/><g data-part=\"sparkles\"><path d=\"M7 31v6m-3-3h6m30-5v6m-3-3h6\"/></g>",
+  "order": 112,
+  "stateLabels": {
+    "ko": {
+      "resting": "기본",
+      "celebrated": "반짝임"
+    },
+    "en": {
+      "resting": "Resting",
+      "celebrated": "Celebrated"
+    }
+  }
+}

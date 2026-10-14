@@ -17,3 +17,8 @@ test('embeddable exports scope behavior to the nearest instance and include focu
  const {embeddableCode}=await import('../src/export.js');const code=await embeddableCode(trash,{trigger:'hover'},'en');
  assert.doesNotMatch(code,/<!doctype/);assert.match(code,/document.currentScript.closest/);assert.match(code,/addEventListener\('focus'/);assert.match(code,/addEventListener\('blur'/);
 });
+test('localized demo state labels retain exact controlled API values',async()=>{
+ const {embeddableCode}=await import('../src/export.js');const code=await embeddableCode(trash,{state:'open'},'ko');
+ assert.match(code,/<option value="open" selected>열림<\/option>/);
+ assert.match(code,/aria-label="쓰레기통: 열림"/);
+});

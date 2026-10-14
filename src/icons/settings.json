@@ -1,0 +1,59 @@
+{
+  "id": "settings",
+  "name": {
+    "ko": "설정",
+    "en": "Settings"
+  },
+  "keywords": [
+    "설정",
+    "톱니",
+    "조정",
+    "gear",
+    "preferences",
+    "adjust"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#b7a4ff",
+  "defaultState": "default",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 360,
+  "description": {
+    "ko": "톱니가 반 칸 돌아가며 중앙 다이얼을 조정합니다.",
+    "en": "The gear advances half a tooth as the center dial adjusts."
+  },
+  "parts": {
+    "gear": {
+      "transform": "rotate(0deg)"
+    },
+    "dial": {
+      "transform": "rotate(0deg)"
+    }
+  },
+  "states": {
+    "default": {},
+    "adjusted": {
+      "gear": {
+        "transform": "rotate(22.5deg)"
+      },
+      "dial": {
+        "transform": "rotate(90deg)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "default": "기본",
+      "adjusted": "조정됨"
+    },
+    "en": {
+      "default": "Default",
+      "adjusted": "Adjusted"
+    }
+  },
+  "svg": "<path data-part=\"gear\" d=\"M37.46 20.14 L41.73 20.87 L41.73 27.13 L37.46 27.86 L36.24 30.79 L38.74 34.32 L34.32 38.74 L30.79 36.24 L27.86 37.46 L27.13 41.73 L20.87 41.73 L20.14 37.46 L17.21 36.24 L13.68 38.74 L9.26 34.32 L11.76 30.79 L10.54 27.86 L6.27 27.13 L6.27 20.87 L10.54 20.14 L11.76 17.21 L9.26 13.68 L13.68 9.26 L17.21 11.76 L20.14 10.54 L20.87 6.27 L27.13 6.27 L27.86 10.54 L30.79 11.76 L34.32 9.26 L38.74 13.68 L36.24 17.21Z\" fill=\"var(--li-paper)\"/><circle cx=\"24\" cy=\"24\" r=\"7\" fill=\"var(--li-accent)\"/><path data-part=\"dial\" d=\"M24 24v-4\"/>",
+  "order": 55
+}

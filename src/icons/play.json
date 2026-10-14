@@ -1,0 +1,63 @@
+{
+  "id": "play",
+  "name": {
+    "ko": "재생",
+    "en": "Play"
+  },
+  "keywords": [
+    "재생",
+    "영상",
+    "시작",
+    "play",
+    "video",
+    "start"
+  ],
+  "category": "media",
+  "version": "1.2.0",
+  "accent": "#a8c6b4",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "재생 화살표가 앞으로 나아가며 짧은 움직임 선이 나타납니다.",
+    "en": "The play arrow advances and reveals a short motion trail."
+  },
+  "stateLabels": {
+    "ko": {
+      "idle": "대기",
+      "active": "활성"
+    },
+    "en": {
+      "idle": "Idle",
+      "active": "Active"
+    }
+  },
+  "parts": {
+    "arrow": {
+      "transform": "translateX(0px)",
+      "fill": "var(--li-paper)"
+    },
+    "trail": {
+      "opacity": "0",
+      "transform": "translateX(2px)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "active": {
+      "arrow": {
+        "transform": "translateX(2px)",
+        "fill": "var(--li-accent)"
+      },
+      "trail": {
+        "opacity": "1",
+        "transform": "translateX(0px)"
+      }
+    }
+  },
+  "svg": "<g data-part=\"trail\"><path d=\"M5 19h4m-4 10h4\"/></g><path data-part=\"arrow\" d=\"M14 8a1.6 1.6 0 0 1 2.4-1.4L40 22.6a1.7 1.7 0 0 1 0 2.8l-23.6 16A1.6 1.6 0 0 1 14 40z\"/>",
+  "order": 73
+}

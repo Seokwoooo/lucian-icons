@@ -1,0 +1,62 @@
+{
+  "id": "coin",
+  "name": {
+    "ko": "동전",
+    "en": "Coin"
+  },
+  "keywords": [
+    "동전",
+    "화폐",
+    "금액",
+    "coin",
+    "currency",
+    "money"
+  ],
+  "category": "commerce",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 280,
+  "description": {
+    "ko": "동전 가장자리의 빛과 가운데 색이 선명해집니다.",
+    "en": "The coin face fills as an edge glint appears."
+  },
+  "parts": {
+    "face": {
+      "fill": "var(--li-paper)"
+    },
+    "glint": {
+      "opacity": "0",
+      "transformOrigin": "37px 10px",
+      "transform": "scale(.5)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "selected": {
+      "face": {
+        "fill": "var(--li-accent)"
+      },
+      "glint": {
+        "opacity": "1",
+        "transform": "scale(1)"
+      }
+    }
+  },
+  "svg": "<circle cx=\"23\" cy=\"25\" r=\"17\" fill=\"var(--li-accent)\"/><circle data-part=\"face\" cx=\"23\" cy=\"25\" r=\"12\" fill=\"var(--li-paper)\"/><path d=\"M27 19h-6a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-6m4-15v18\"/><path data-part=\"glint\" d=\"M37 5v10m-5-5h10\" stroke-width=\"2.5\"/>",
+  "order": 99,
+  "stateLabels": {
+    "ko": {
+      "idle": "기본",
+      "selected": "선택됨"
+    },
+    "en": {
+      "idle": "Idle",
+      "selected": "Selected"
+    }
+  }
+}

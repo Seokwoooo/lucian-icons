@@ -1,0 +1,53 @@
+{
+  "id": "printer",
+  "name": {
+    "ko": "프린터",
+    "en": "Printer"
+  },
+  "keywords": [
+    "프린터",
+    "인쇄",
+    "출력",
+    "printer",
+    "print",
+    "output"
+  ],
+  "category": "devices",
+  "version": "1.2.0",
+  "accent": "#b7a4ff",
+  "defaultState": "resting",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 350,
+  "description": {
+    "ko": "출력 용지가 슬롯을 따라 앞으로 나옵니다.",
+    "en": "A printed sheet advances through the output slot."
+  },
+  "parts": {
+    "sheet": {
+      "transform": "translateY(0px)"
+    }
+  },
+  "states": {
+    "resting": {},
+    "extended": {
+      "sheet": {
+        "transform": "translateY(6px)"
+      }
+    }
+  },
+  "svg": "<path d=\"M14 18V7h20v11\" fill=\"var(--li-paper)\"/><path d=\"M19 12h10\" opacity=\".4\"/><rect x=\"6\" y=\"18\" width=\"36\" height=\"20\" rx=\"4\" fill=\"var(--li-accent)\"/><circle cx=\"35\" cy=\"24\" r=\"1.5\" fill=\"var(--li-ink)\" stroke=\"none\"/><path d=\"M12 30h24\" stroke-width=\"3\"/><svg x=\"12\" y=\"30\" width=\"24\" height=\"14\" viewBox=\"12 30 24 14\" overflow=\"hidden\"><g data-part=\"sheet\"><path d=\"M15 23h18v13H15z\" fill=\"var(--li-paper)\"/><path d=\"M20 28h8m-8 4h6\" opacity=\".5\"/></g></svg>",
+  "order": 27,
+  "stateLabels": {
+    "ko": {
+      "resting": "기본",
+      "extended": "꺼냄"
+    },
+    "en": {
+      "resting": "Resting",
+      "extended": "Extended"
+    }
+  }
+}

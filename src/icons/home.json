@@ -1,0 +1,54 @@
+{
+  "id": "home",
+  "name": {
+    "ko": "집",
+    "en": "Home"
+  },
+  "keywords": [
+    "집",
+    "현관",
+    "이동",
+    "house",
+    "door",
+    "navigate"
+  ],
+  "category": "navigation",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "closed",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 340,
+  "description": {
+    "ko": "현관문이 경첩을 따라 열립니다.",
+    "en": "The front door opens on its left hinge."
+  },
+  "parts": {
+    "door": {
+      "transformOrigin": "21px 32px",
+      "transform": "scaleX(1)"
+    }
+  },
+  "states": {
+    "closed": {},
+    "open": {
+      "door": {
+        "transform": "scaleX(.18)"
+      }
+    }
+  },
+  "stateLabels": {
+    "ko": {
+      "closed": "닫힘",
+      "open": "열림"
+    },
+    "en": {
+      "closed": "Closed",
+      "open": "Open"
+    }
+  },
+  "svg": "<path d=\"M10 21v19h28V21L24 8z\" fill=\"var(--li-paper)\"/><path d=\"M7 22 24 7l17 15M33 14V8h5v10\"/><rect x=\"13\" y=\"23\" width=\"5\" height=\"6\" rx=\"1\" fill=\"var(--li-accent)\"/><path d=\"M22 40V27h10v13\" fill=\"var(--li-ink)\" stroke=\"none\"/><g data-part=\"door\"><path d=\"M21 40V26h11v14\" fill=\"var(--li-accent)\"/><path d=\"M29 32v2\"/></g>",
+  "order": 53
+}

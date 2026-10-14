@@ -1,0 +1,54 @@
+{
+  "id": "tag",
+  "name": {
+    "ko": "태그",
+    "en": "Tag"
+  },
+  "keywords": [
+    "태그",
+    "라벨",
+    "분류",
+    "tag",
+    "label",
+    "classify"
+  ],
+  "category": "files",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "resting",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 320,
+  "description": {
+    "ko": "끈에 매달린 태그가 고리 주위로 움직입니다.",
+    "en": "The hanging tag pivots gently around its eyelet."
+  },
+  "parts": {
+    "tag": {
+      "transformOrigin": "19px 19px",
+      "transform": "rotate(0deg)"
+    }
+  },
+  "states": {
+    "resting": {},
+    "tilted": {
+      "tag": {
+        "transform": "rotate(-10deg)"
+      }
+    }
+  },
+  "svg": "<path d=\"M19 19C12 18 8 12 8 8c0-4 6-4 6 0 0 3-1 5-1 5\"/><g data-part=\"tag\"><path d=\"M12 12h13l16 16a3 3 0 0 1 0 4l-9 9a3 3 0 0 1-4 0L12 25z\" fill=\"var(--li-accent)\"/><circle cx=\"19\" cy=\"19\" r=\"2.5\" fill=\"var(--li-paper)\"/><path d=\"m24 28 7 7m-3-11 7 7\" opacity=\".5\"/></g>",
+  "order": 23,
+  "stateLabels": {
+    "ko": {
+      "resting": "기본",
+      "tilted": "기울임"
+    },
+    "en": {
+      "resting": "Resting",
+      "tilted": "Tilted"
+    }
+  }
+}

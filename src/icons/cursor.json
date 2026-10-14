@@ -13,18 +13,18 @@
     "click",
     "select"
   ],
-  "category": "input",
-  "version": "1.1.0",
+  "category": "navigation",
+  "version": "1.2.0",
   "accent": "#9fb9d4",
   "defaultState": "idle",
   "triggers": [
     "click",
     "controlled"
   ],
-  "duration": 140,
+  "duration": 180,
   "description": {
-    "ko": "포인터가 짧게 눌리며 선택을 표시합니다.",
-    "en": "A small press and a clear click signal mark the selection."
+    "ko": "균형 잡힌 화살표가 클릭 지점으로 살짝 움직이며 선택을 표시합니다.",
+    "en": "A balanced pointer presses toward the click point and fills on selection."
   },
   "parts": {
     "pointer": {
@@ -41,7 +41,7 @@
     "pressed": {
       "pointer": {
         "fill": "var(--li-accent)",
-        "transform": "translate(1px,1px)"
+        "transform": "translate(-1px,-1px)"
       },
       "rays": {
         "opacity": "1",
@@ -49,6 +49,16 @@
       }
     }
   },
-  "svg": "<g data-part=\"rays\"><path d=\"M8 10H4m7-4-2-3m9 3V2\"/></g><path data-part=\"pointer\" d=\"m13 10 24 17-12 3 6 11-6 3-6-11-6 7z\"/>",
-  "order": 12
+  "svg": "<g data-part=\"rays\"><path d=\"M6 10H2m7-6L7 1m10 4V1\"/></g><path data-part=\"pointer\" d=\"M10 7v31l9-8 7 13 6-3-7-13 13-2z\"/>",
+  "order": 12,
+  "stateLabels": {
+    "ko": {
+      "idle": "대기",
+      "pressed": "눌림"
+    },
+    "en": {
+      "idle": "Idle",
+      "pressed": "Pressed"
+    }
+  }
 }

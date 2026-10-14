@@ -2,6 +2,18 @@
 
 Date: 2026-10-14 UTC. Product path `/icons/`.
 
+## Release 1.2.0 local checks
+
+- Exactly 100 additional original definitions, 112 total, grouped into 10 categories. All have unique SVG source, IDs and order, bilingual descriptions/search terms/state labels and matching animated-part baselines.
+- All112 were rendered and visually reviewed at 24/32/48/80px in their default and active states. Independent batches inspected forward/reverse motion at0/60/120/220/400ms. Original12 also checked in both themes through800ms. Root inspected every authoring size sheet.
+- Existing designs: search, power, mouse and cursor redrawn; bell, heart and bookmark contours refined. Original IDs/states/triggers retained. Trash/folder/envelope/lock/download retain their corrected mechanisms.
+- Simultaneous autoplay is independent per preview, starts at90% visibility and stops offscreen. Direct input stops only that preview. Global pause persistence, category/search filtering, inspector, hidden document, reduced motion, delayed-import cancellation and destroy cleanup passed. No demo timers in icon modules or skill exports.
+- Node tests:7 passed. Full Chromium acceptance:112 icons,226 supported states,24/32/48px sizes, rapid reversal/remount/duplicates,114 independent HTML executions and474 local asset URLs passed. No page or HTTP errors.
+- Independent release review found a P1 static SVG transform-origin mismatch. Reproduced as a failing browser test, fixed by embedding runtime transform-box/origin defaults in every exported part, then checked all226 state renderings for matching live/exported geometry.
+- Three automated axe WCAG2 A/AA and2.1 AA scans: zero violations. Category/search/language interaction and both themes/layout widths320/390/768/1440 passed. First viewport module loading is measured by tests/catalog-gallery.py separately from later category browsing.
+- Selected-only skill retrieval works for the expanded catalog. Historical1.0.0 and1.1.0 archive URLs remain available. v1.2.0 source/skill archives contain the new drawings and runtime fix.
+- Evidence: `.artifacts/batch-*`, `.artifacts/v1.2/existing-before-after.png`, `.artifacts/small-{resting,active}-00.png` through `-09.png`. Public verification follows deployment and is saved separately in `.artifacts/production-verification.json` and `.artifacts/release.json`.
+
 ## Release 1.1.0 checks
 
 - Added mouse click and cursor icons, now 12 definitions from the same catalog. New source and skill archives use version 1.1.0; original 1.0.0 archive URLs are preserved.

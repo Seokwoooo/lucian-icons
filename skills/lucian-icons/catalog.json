@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "base": "https://lucianlabs.dev/icons/",
-  "runtimeSha256": "94c042a81722bc29701a7ad710bf217e5bda02b48665c296ff6ef2e2f24a87d2",
+  "runtimeSha256": "a3c9010c758370ba66a03e24ad6bd3d5fd78668737cc6324032dec0f10405097",
   "icons": [
     {
       "id": "trash",
@@ -18,7 +18,7 @@
         "bin"
       ],
       "category": "files",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "accent": "#b7a4ff",
       "defaultState": "closed",
       "triggers": [
@@ -32,7 +32,17 @@
         "en": "A hinged lid lifts from its right-hand pivot."
       },
       "order": 1,
-      "sha256": "7aa69e85649bf2db185287a6f2f2c72e91c2e3e93bd8433f7426aa6a8fd1c903",
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "bdbb5116c29ef0ac433186a8d87597f084962e0cee28a388e0b4342f5124430f",
       "states": [
         "closed",
         "open"
@@ -54,7 +64,7 @@
         "open"
       ],
       "category": "files",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "accent": "#e5b86f",
       "defaultState": "closed",
       "triggers": [
@@ -68,7 +78,17 @@
         "en": "The front folds down to reveal a document."
       },
       "order": 2,
-      "sha256": "83b411c5e888583dcbeca48bb8f057b037974c3eb1523a22b7f97c6bb7a5f57c",
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "f5154b267448d7740b41a21183ad2aa1a1bb589e15d006a505fdb82a2395e7c6",
       "states": [
         "closed",
         "open"
@@ -90,7 +110,7 @@
         "message"
       ],
       "category": "communication",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "accent": "#9fb9d4",
       "defaultState": "closed",
       "triggers": [
@@ -104,7 +124,17 @@
         "en": "The flap unfolds and a letter peeks out."
       },
       "order": 3,
-      "sha256": "b1e0d1d3b3ebde1e7fd469be5e8fd9aeae0964074b4881046adf71285027cf82",
+      "stateLabels": {
+        "ko": {
+          "closed": "봉함",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Sealed",
+          "open": "Open"
+        }
+      },
+      "sha256": "6dac64f66742f61c48169f3cef0df29c9cb30049aada539d6f080281a01e8c18",
       "states": [
         "closed",
         "open"
@@ -125,8 +155,8 @@
         "secure",
         "password"
       ],
-      "category": "controls",
-      "version": "1.1.0",
+      "category": "security",
+      "version": "1.2.0",
       "accent": "#a8c6b4",
       "defaultState": "locked",
       "triggers": [
@@ -139,7 +169,17 @@
         "en": "One end releases while the shackle turns on its anchor."
       },
       "order": 4,
-      "sha256": "73f4ca63c6b4fd45952c76161564a723b5e7365ad1dbecc51c950e7d4fe1307c",
+      "stateLabels": {
+        "ko": {
+          "locked": "잠김",
+          "unlocked": "잠금 해제"
+        },
+        "en": {
+          "locked": "Locked",
+          "unlocked": "Unlocked"
+        }
+      },
+      "sha256": "eddc2e4059fd477263540b725c27d5d8fb6e51b1f012c06980f86a434ad656ec",
       "states": [
         "locked",
         "unlocked"
@@ -161,7 +201,7 @@
         "alert"
       ],
       "category": "communication",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "accent": "#e5b86f",
       "defaultState": "idle",
       "triggers": [
@@ -174,7 +214,17 @@
         "en": "A short ring settles around the top pivot."
       },
       "order": 5,
-      "sha256": "7035415f21e9cd33d0393823b06005ef650bf9a626811d7d4c6be771b74e845b",
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "ringing": "울림"
+        },
+        "en": {
+          "idle": "Idle",
+          "ringing": "Ringing"
+        }
+      },
+      "sha256": "713268d1f3eddd1e0de27ee776abee65a3f0cede06487850c4b9514bc2c3eb45",
       "states": [
         "idle",
         "ringing"
@@ -195,9 +245,9 @@
         "favorite",
         "love"
       ],
-      "category": "controls",
-      "version": "1.1.0",
-      "accent": "#dc8d92",
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#d88e98",
       "defaultState": "off",
       "triggers": [
         "click",
@@ -209,7 +259,17 @@
         "en": "A filled heart answers with a single soft beat."
       },
       "order": 6,
-      "sha256": "dde2eac574185316b4e97a3d6a40ffd58a39f9298b2b90498134b02cb162ca3f",
+      "stateLabels": {
+        "ko": {
+          "off": "좋아요 해제",
+          "on": "좋아요"
+        },
+        "en": {
+          "off": "Unliked",
+          "on": "Liked"
+        }
+      },
+      "sha256": "971b80a20bc40ac748f26d08e7624e1024797a102346d3972d6a57f2126ff421",
       "states": [
         "off",
         "on"
@@ -230,8 +290,8 @@
         "saved",
         "read"
       ],
-      "category": "controls",
-      "version": "1.1.0",
+      "category": "files",
+      "version": "1.2.0",
       "accent": "#b7a4ff",
       "defaultState": "off",
       "triggers": [
@@ -244,7 +304,17 @@
         "en": "A filled ribbon and a mark make saved state clear."
       },
       "order": 7,
-      "sha256": "9a6f49d8a5fb935e43eb4bb30e54278e2dfef0d12a5f7e91204721cd08e7ea67",
+      "stateLabels": {
+        "ko": {
+          "off": "저장 안 됨",
+          "on": "저장됨"
+        },
+        "en": {
+          "off": "Unsaved",
+          "on": "Saved"
+        }
+      },
+      "sha256": "9894cfa16e544513b7a6bc7a0d9e0e66e9f6e4e774fc046f255c543d2ed9e937",
       "states": [
         "off",
         "on"
@@ -268,7 +338,7 @@
         "file"
       ],
       "category": "files",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "accent": "#a8c6b4",
       "defaultState": "idle",
       "triggers": [
@@ -280,7 +350,21 @@
         "en": "Idle, measured progress, success and failure stay distinct."
       },
       "order": 8,
-      "sha256": "c3684c95b1d3a9ddd938aabd60d512c069e4e3c9d7fb588dea961e4ff49a653e",
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "progress": "진행 중",
+          "success": "완료",
+          "error": "실패"
+        },
+        "en": {
+          "idle": "Idle",
+          "progress": "In progress",
+          "success": "Complete",
+          "error": "Failed"
+        }
+      },
+      "sha256": "0943075995cfd11acad69c1e29c242f1849d24384bd853d938639ac96ac751f6",
       "states": [
         "idle",
         "progress",
@@ -303,8 +387,8 @@
         "query",
         "lookup"
       ],
-      "category": "controls",
-      "version": "1.1.0",
+      "category": "navigation",
+      "version": "1.2.0",
       "accent": "#9fb9d4",
       "defaultState": "idle",
       "triggers": [
@@ -313,11 +397,21 @@
       ],
       "duration": 300,
       "description": {
-        "ko": "렌즈 안의 작은 빛이 검색 시작을 알립니다.",
-        "en": "A quiet sweep inside the lens signals a new search."
+        "ko": "돋보기의 렌즈에 색이 들어오고 빛이 가장자리를 따라 움직입니다.",
+        "en": "The lens gains color as a reflection travels around its edge."
       },
       "order": 9,
-      "sha256": "0ffb61b739e9f89072408a85dd0347c0905c64925998ae1db9f7eebad70d5538",
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "searching": "검색 중"
+        },
+        "en": {
+          "idle": "Idle",
+          "searching": "Searching"
+        }
+      },
+      "sha256": "b2d564aa9a3308cc1e35d08aa56b21d12c7f8c1d340b60966632f23d18949133",
       "states": [
         "idle",
         "searching"
@@ -339,8 +433,8 @@
         "enable",
         "switch"
       ],
-      "category": "controls",
-      "version": "1.1.0",
+      "category": "devices",
+      "version": "1.2.0",
       "accent": "#a8c6b4",
       "defaultState": "off",
       "triggers": [
@@ -349,11 +443,21 @@
       ],
       "duration": 260,
       "description": {
-        "ko": "전원 링과 표시등이 켜짐 상태를 전달합니다.",
-        "en": "The ring and indicator illuminate when power is on."
+        "ko": "전원 기호의 열린 링에 색이 들어와 켜짐 상태를 표시합니다.",
+        "en": "The open power ring fills with color to show the on state."
       },
       "order": 10,
-      "sha256": "52339f33105cf8a57c14af508f9a09a1bbddb8479f09552e5c3771be225a8a29",
+      "stateLabels": {
+        "ko": {
+          "off": "꺼짐",
+          "on": "켜짐"
+        },
+        "en": {
+          "off": "Off",
+          "on": "On"
+        }
+      },
+      "sha256": "122c06bbf735b1f0ed37f5f95f5e7f7d767378da39f77eaac21bf7b1c16a7105",
       "states": [
         "off",
         "on"
@@ -375,21 +479,31 @@
         "press",
         "input"
       ],
-      "category": "input",
-      "version": "1.1.0",
+      "category": "devices",
+      "version": "1.2.0",
       "accent": "#b7a4ff",
       "defaultState": "idle",
       "triggers": [
         "click",
         "controlled"
       ],
-      "duration": 140,
+      "duration": 180,
       "description": {
-        "ko": "왼쪽 버튼과 휠이 눌리고 짧은 선이 클릭을 알립니다.",
-        "en": "The left button and wheel respond with a short click signal."
+        "ko": "손에 맞는 곡선의 마우스에서 왼쪽 버튼이 눌리며 강조됩니다.",
+        "en": "The left button presses within a gently tapered mouse shell."
       },
       "order": 11,
-      "sha256": "af6feea065a5afb88fbd37bbdd9143d5da74f5456e69776d4977c7f313ff5e50",
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "pressed": "눌림"
+        },
+        "en": {
+          "idle": "Idle",
+          "pressed": "Pressed"
+        }
+      },
+      "sha256": "c69d5740ced1938bededaec46b398db1b975a737e0bea445480e637c72e5b7a7",
       "states": [
         "idle",
         "pressed"
@@ -411,26 +525,4536 @@
         "click",
         "select"
       ],
-      "category": "input",
-      "version": "1.1.0",
+      "category": "navigation",
+      "version": "1.2.0",
       "accent": "#9fb9d4",
       "defaultState": "idle",
       "triggers": [
         "click",
         "controlled"
       ],
-      "duration": 140,
+      "duration": 180,
       "description": {
-        "ko": "포인터가 짧게 눌리며 선택을 표시합니다.",
-        "en": "A small press and a clear click signal mark the selection."
+        "ko": "균형 잡힌 화살표가 클릭 지점으로 살짝 움직이며 선택을 표시합니다.",
+        "en": "A balanced pointer presses toward the click point and fills on selection."
       },
       "order": 12,
-      "sha256": "f6d6af041a5503d58ae6b545e042aa8ff6a83aebbe62c42c9116cf6e84391df9",
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "pressed": "눌림"
+        },
+        "en": {
+          "idle": "Idle",
+          "pressed": "Pressed"
+        }
+      },
+      "sha256": "0d0d6eb4ff8d38cb2786ba0829cd435425b1b8034923cab4d4cfebf21f918cb8",
       "states": [
         "idle",
         "pressed"
       ],
       "codePath": "modules/cursor.js"
+    },
+    {
+      "id": "document",
+      "name": {
+        "ko": "문서",
+        "en": "Document"
+      },
+      "keywords": [
+        "문서",
+        "본문",
+        "페이지",
+        "document",
+        "text",
+        "page"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "compact",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "본문 줄이 펼쳐지며 문서의 내용을 보여줍니다.",
+        "en": "Text lines extend to reveal more of the document."
+      },
+      "order": 13,
+      "stateLabels": {
+        "ko": {
+          "compact": "간략",
+          "expanded": "펼침"
+        },
+        "en": {
+          "compact": "Compact",
+          "expanded": "Expanded"
+        }
+      },
+      "sha256": "1ada96acd323c01f24aa16248af7b41439a4aeb1e71dd25029a23db1f44b32f0",
+      "states": [
+        "compact",
+        "expanded"
+      ],
+      "codePath": "modules/document.js"
+    },
+    {
+      "id": "clipboard",
+      "name": {
+        "ko": "클립보드",
+        "en": "Clipboard"
+      },
+      "keywords": [
+        "클립보드",
+        "종이",
+        "집게",
+        "clipboard",
+        "sheet",
+        "clip"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "clamped",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "클립이 들리며 고정된 종이를 놓아줍니다.",
+        "en": "The spring clip lifts to release its sheet."
+      },
+      "order": 14,
+      "stateLabels": {
+        "ko": {
+          "clamped": "고정",
+          "released": "해제"
+        },
+        "en": {
+          "clamped": "Clamped",
+          "released": "Released"
+        }
+      },
+      "sha256": "cacede2a35e8bd6dde84b8cff82c42cf2de589c93cc9e98ce718562e55e605e1",
+      "states": [
+        "clamped",
+        "released"
+      ],
+      "codePath": "modules/clipboard.js"
+    },
+    {
+      "id": "archive",
+      "name": {
+        "ko": "보관함",
+        "en": "Archive"
+      },
+      "keywords": [
+        "보관",
+        "상자",
+        "뚜껑",
+        "archive",
+        "storage",
+        "lid"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "상자 뚜껑을 들어 보관함을 엽니다.",
+        "en": "The fitted lid lifts from the archive box."
+      },
+      "order": 15,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "2fb9b48190b30f2bb03af4516ee72c4ec4ad3f8f9bd7e2070a9056bbc70164ab",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/archive.js"
+    },
+    {
+      "id": "inbox",
+      "name": {
+        "ko": "수신함",
+        "en": "Inbox"
+      },
+      "keywords": [
+        "수신함",
+        "트레이",
+        "편지",
+        "inbox",
+        "tray",
+        "letter"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "트레이 안의 편지가 위로 올라옵니다.",
+        "en": "A letter lifts out of the receiving tray."
+      },
+      "order": 16,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "raised": "올림"
+        },
+        "en": {
+          "resting": "Resting",
+          "raised": "Raised"
+        }
+      },
+      "sha256": "1f0df120d0620586d8e6b157344e31c84607369ab43c5aba622112661199b3ad",
+      "states": [
+        "resting",
+        "raised"
+      ],
+      "codePath": "modules/inbox.js"
+    },
+    {
+      "id": "upload",
+      "name": {
+        "ko": "업로드",
+        "en": "Upload"
+      },
+      "keywords": [
+        "업로드",
+        "전송",
+        "올리기",
+        "upload",
+        "transfer",
+        "send"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "화살표가 트레이 위로 올라갑니다.",
+        "en": "An arrow rises above the upload tray."
+      },
+      "order": 17,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "raised": "올림"
+        },
+        "en": {
+          "resting": "Resting",
+          "raised": "Raised"
+        }
+      },
+      "sha256": "750d2c39abf33b859dc12a616ee2917728a17505296b7eefbb69bee19bc73224",
+      "states": [
+        "resting",
+        "raised"
+      ],
+      "codePath": "modules/upload.js"
+    },
+    {
+      "id": "copy",
+      "name": {
+        "ko": "복사",
+        "en": "Copy"
+      },
+      "keywords": [
+        "복사",
+        "사본",
+        "종이",
+        "copy",
+        "duplicate",
+        "sheets"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "stacked",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "겹친 종이가 벌어져 두 장을 보여줍니다.",
+        "en": "Overlapping sheets separate to show the pair."
+      },
+      "order": 18,
+      "stateLabels": {
+        "ko": {
+          "stacked": "겹침",
+          "separated": "분리"
+        },
+        "en": {
+          "stacked": "Stacked",
+          "separated": "Separated"
+        }
+      },
+      "sha256": "bd95ab6273af49dd16d50591c1b5ad045d3ef381b8c946852892f491a7d99269",
+      "states": [
+        "stacked",
+        "separated"
+      ],
+      "codePath": "modules/copy.js"
+    },
+    {
+      "id": "attachment",
+      "name": {
+        "ko": "첨부",
+        "en": "Attachment"
+      },
+      "keywords": [
+        "첨부",
+        "클립",
+        "고정",
+        "attachment",
+        "paperclip",
+        "fasten"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "클립 안쪽의 탄성 끝이 벌어집니다.",
+        "en": "The inner spring of the paperclip flexes open."
+      },
+      "order": 19,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "efa67ffa4dcb27af42645f48f23d35d4f03cded4214b725dcdf41a5d64fe26e5",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/attachment.js"
+    },
+    {
+      "id": "link",
+      "name": {
+        "ko": "링크",
+        "en": "Link"
+      },
+      "keywords": [
+        "링크",
+        "연결",
+        "고리",
+        "link",
+        "connection",
+        "chain"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "loose",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "연결 고리 두 개가 부드럽게 당겨집니다.",
+        "en": "Two chain links pull gently against one another."
+      },
+      "order": 20,
+      "stateLabels": {
+        "ko": {
+          "loose": "느슨함",
+          "taut": "당김"
+        },
+        "en": {
+          "loose": "Loose",
+          "taut": "Taut"
+        }
+      },
+      "sha256": "1fcc2a19a51323f2fac6d31c20d76fbc8c17d5d6cc7abc89b6d1cadb1650569f",
+      "states": [
+        "loose",
+        "taut"
+      ],
+      "codePath": "modules/link.js"
+    },
+    {
+      "id": "book",
+      "name": {
+        "ko": "책",
+        "en": "Book"
+      },
+      "keywords": [
+        "책",
+        "읽기",
+        "페이지",
+        "book",
+        "reading",
+        "page"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "right",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 410,
+      "description": {
+        "ko": "책등을 축으로 한 페이지가 넘어갑니다.",
+        "en": "A page turns across the spine of an open book."
+      },
+      "order": 21,
+      "stateLabels": {
+        "ko": {
+          "right": "오른쪽",
+          "left": "왼쪽"
+        },
+        "en": {
+          "right": "Right",
+          "left": "Left"
+        }
+      },
+      "sha256": "21f97099b27f87d9351aa6d542aec1dd51aa95813d564191b2f5507419f228a7",
+      "states": [
+        "right",
+        "left"
+      ],
+      "codePath": "modules/book.js"
+    },
+    {
+      "id": "notebook",
+      "name": {
+        "ko": "노트",
+        "en": "Notebook"
+      },
+      "keywords": [
+        "노트",
+        "공책",
+        "제본",
+        "notebook",
+        "journal",
+        "binding"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "제본된 앞표지가 접히며 속지가 드러납니다.",
+        "en": "The bound cover folds back to reveal ruled paper."
+      },
+      "order": 22,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "43e2281308ded0480985f1dc5e791154e166552ea70a701a34b7a0a30760cf1b",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/notebook.js"
+    },
+    {
+      "id": "tag",
+      "name": {
+        "ko": "태그",
+        "en": "Tag"
+      },
+      "keywords": [
+        "태그",
+        "라벨",
+        "분류",
+        "tag",
+        "label",
+        "classify"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "끈에 매달린 태그가 고리 주위로 움직입니다.",
+        "en": "The hanging tag pivots gently around its eyelet."
+      },
+      "order": 23,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "tilted": "기울임"
+        },
+        "en": {
+          "resting": "Resting",
+          "tilted": "Tilted"
+        }
+      },
+      "sha256": "b29841541155457192e2dbf46d7349e3527a1ef2ca3cd4f36cd41c2ca5237765",
+      "states": [
+        "resting",
+        "tilted"
+      ],
+      "codePath": "modules/tag.js"
+    },
+    {
+      "id": "filezip",
+      "name": {
+        "ko": "압축 파일",
+        "en": "ZIP File"
+      },
+      "keywords": [
+        "압축",
+        "지퍼",
+        "파일",
+        "zip",
+        "archive",
+        "compressed"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "raised",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "지퍼 손잡이가 문서의 레일을 따라 내려갑니다.",
+        "en": "The zipper pull slides down its document track."
+      },
+      "order": 24,
+      "stateLabels": {
+        "ko": {
+          "raised": "올림",
+          "lowered": "내림"
+        },
+        "en": {
+          "raised": "Raised",
+          "lowered": "Lowered"
+        }
+      },
+      "sha256": "2191625989e79bdc185e9b398782b55d33b879f0ceef2cfaa6bb224a6cdb7db1",
+      "states": [
+        "raised",
+        "lowered"
+      ],
+      "codePath": "modules/filezip.js"
+    },
+    {
+      "id": "receipt",
+      "name": {
+        "ko": "영수증",
+        "en": "Receipt"
+      },
+      "keywords": [
+        "영수증",
+        "결제",
+        "쿠폰",
+        "receipt",
+        "payment",
+        "coupon"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "attached",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "점선 아래의 쿠폰 부분이 분리됩니다.",
+        "en": "The lower coupon separates along the perforation."
+      },
+      "order": 25,
+      "stateLabels": {
+        "ko": {
+          "attached": "붙음",
+          "separated": "분리"
+        },
+        "en": {
+          "attached": "Attached",
+          "separated": "Separated"
+        }
+      },
+      "sha256": "f3c3e8a5506bbc8d09939781b410082b2688d9266901a1e3aaf4752032b0f050",
+      "states": [
+        "attached",
+        "separated"
+      ],
+      "codePath": "modules/receipt.js"
+    },
+    {
+      "id": "scan",
+      "name": {
+        "ko": "스캔",
+        "en": "Scan"
+      },
+      "keywords": [
+        "스캔",
+        "문서",
+        "인식",
+        "scan",
+        "document",
+        "capture"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "top",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 410,
+      "description": {
+        "ko": "스캔 빔이 문서 위에서 아래로 이동합니다.",
+        "en": "A scanning beam travels down the document."
+      },
+      "order": 26,
+      "stateLabels": {
+        "ko": {
+          "top": "위",
+          "bottom": "아래"
+        },
+        "en": {
+          "top": "Top",
+          "bottom": "Bottom"
+        }
+      },
+      "sha256": "a986b7091fc7ffb844c13c534e43cb34fc1087878c287c36200216d3bc66fa38",
+      "states": [
+        "top",
+        "bottom"
+      ],
+      "codePath": "modules/scan.js"
+    },
+    {
+      "id": "printer",
+      "name": {
+        "ko": "프린터",
+        "en": "Printer"
+      },
+      "keywords": [
+        "프린터",
+        "인쇄",
+        "출력",
+        "printer",
+        "print",
+        "output"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 350,
+      "description": {
+        "ko": "출력 용지가 슬롯을 따라 앞으로 나옵니다.",
+        "en": "A printed sheet advances through the output slot."
+      },
+      "order": 27,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "extended": "꺼냄"
+        },
+        "en": {
+          "resting": "Resting",
+          "extended": "Extended"
+        }
+      },
+      "sha256": "e994f7eabdca2d820a2d02e2df78bb4b3aec380391d7e3f94a6bab5ae186887e",
+      "states": [
+        "resting",
+        "extended"
+      ],
+      "codePath": "modules/printer.js"
+    },
+    {
+      "id": "database",
+      "name": {
+        "ko": "데이터베이스",
+        "en": "Database"
+      },
+      "keywords": [
+        "데이터베이스",
+        "저장",
+        "계층",
+        "database",
+        "storage",
+        "layers"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "stacked",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "저장 장치의 층이 벌어져 구조를 보여줍니다.",
+        "en": "Storage layers separate to reveal their structure."
+      },
+      "order": 28,
+      "stateLabels": {
+        "ko": {
+          "stacked": "겹침",
+          "expanded": "펼침"
+        },
+        "en": {
+          "stacked": "Stacked",
+          "expanded": "Expanded"
+        }
+      },
+      "sha256": "6f89766497574bacbc617367a799acb8c80f7884274fb6c8a059e5b7a3def366",
+      "states": [
+        "stacked",
+        "expanded"
+      ],
+      "codePath": "modules/database.js"
+    },
+    {
+      "id": "server",
+      "name": {
+        "ko": "서버",
+        "en": "Server"
+      },
+      "keywords": [
+        "서버",
+        "드라이브",
+        "랙",
+        "server",
+        "drive",
+        "rack"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "seated",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "하단 드라이브 베이가 랙에서 조금 나옵니다.",
+        "en": "The lower drive bay slides forward from its rack."
+      },
+      "order": 29,
+      "stateLabels": {
+        "ko": {
+          "seated": "장착",
+          "extended": "꺼냄"
+        },
+        "en": {
+          "seated": "Seated",
+          "extended": "Extended"
+        }
+      },
+      "sha256": "9658a8a44dfc739b6a05f965dbb75d69f29959d4d98ef170638ec4a1ec1e85ee",
+      "states": [
+        "seated",
+        "extended"
+      ],
+      "codePath": "modules/server.js"
+    },
+    {
+      "id": "cloud",
+      "name": {
+        "ko": "클라우드",
+        "en": "Cloud"
+      },
+      "keywords": [
+        "클라우드",
+        "구름",
+        "저장소",
+        "cloud",
+        "storage",
+        "weather"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "scattered",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 390,
+      "description": {
+        "ko": "작은 구름이 큰 구름 앞으로 모입니다.",
+        "en": "A smaller cloud drifts in front of the larger one."
+      },
+      "order": 30,
+      "stateLabels": {
+        "ko": {
+          "scattered": "흩어짐",
+          "gathered": "모임"
+        },
+        "en": {
+          "scattered": "Scattered",
+          "gathered": "Gathered"
+        }
+      },
+      "sha256": "428d91b59a01f0bcb2d9150acf9416d931f15b18f6b0969f4d5cf843edc2b4e5",
+      "states": [
+        "scattered",
+        "gathered"
+      ],
+      "codePath": "modules/cloud.js"
+    },
+    {
+      "id": "save",
+      "name": {
+        "ko": "저장",
+        "en": "Save"
+      },
+      "keywords": [
+        "저장",
+        "디스켓",
+        "셔터",
+        "save",
+        "floppy",
+        "shutter"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 270,
+      "description": {
+        "ko": "디스켓의 금속 셔터가 옆으로 미끄러집니다.",
+        "en": "The floppy disk’s shutter slides sideways."
+      },
+      "order": 31,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "e5f91ea7e05e30b28b0062388d216a6de9d651a2ba55d2e3b7ee44d75a889731",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/save.js"
+    },
+    {
+      "id": "box",
+      "name": {
+        "ko": "상자",
+        "en": "Box"
+      },
+      "keywords": [
+        "상자",
+        "포장",
+        "덮개",
+        "box",
+        "package",
+        "flap"
+      ],
+      "category": "files",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "상단의 두 덮개가 경첩을 따라 열립니다.",
+        "en": "Two top flaps lift along the sides of the carton."
+      },
+      "order": 32,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "f5db8fc6187305ae4a3e18df5c492dd641d117e7305b4cad3fc57aa23444073b",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/box.js"
+    },
+    {
+      "id": "chat",
+      "name": {
+        "ko": "대화",
+        "en": "Chat"
+      },
+      "keywords": [
+        "대화",
+        "채팅",
+        "답장",
+        "chat",
+        "conversation",
+        "reply"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "말풍선 안의 점이 번갈아 올라옵니다.",
+        "en": "The typing dots rise in a short stagger inside the bubble."
+      },
+      "order": 33,
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "typing": "입력 중"
+        },
+        "en": {
+          "idle": "Idle",
+          "typing": "Typing"
+        }
+      },
+      "sha256": "3b88b2797d506833b3253336cd3b37a903bbf2aeb82222a4353dcbf9a89d54da",
+      "states": [
+        "idle",
+        "typing"
+      ],
+      "codePath": "modules/chat.js"
+    },
+    {
+      "id": "messages",
+      "name": {
+        "ko": "메시지",
+        "en": "Messages"
+      },
+      "keywords": [
+        "메시지",
+        "대화",
+        "답글",
+        "messages",
+        "conversation",
+        "replies"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "stacked",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "두 말풍선이 벌어지며 대화 흐름을 보여 줍니다.",
+        "en": "Two speech bubbles separate to open up the conversation."
+      },
+      "order": 34,
+      "stateLabels": {
+        "ko": {
+          "stacked": "겹침",
+          "conversation": "대화"
+        },
+        "en": {
+          "stacked": "Stacked",
+          "conversation": "Conversation"
+        }
+      },
+      "sha256": "5a85a3d056c56d3e2ac207af0d34a4360af3c5f9a2da1700c36c6e0687b81026",
+      "states": [
+        "stacked",
+        "conversation"
+      ],
+      "codePath": "modules/messages.js"
+    },
+    {
+      "id": "send",
+      "name": {
+        "ko": "보내기",
+        "en": "Send"
+      },
+      "keywords": [
+        "보내기",
+        "전송",
+        "종이비행기",
+        "send",
+        "plane",
+        "message"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "ready",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "종이비행기가 앞으로 움직이며 뒤에 짧은 궤적을 남깁니다.",
+        "en": "The paper plane moves forward and leaves a short trail behind it."
+      },
+      "order": 35,
+      "stateLabels": {
+        "ko": {
+          "ready": "준비",
+          "aimed": "전진"
+        },
+        "en": {
+          "ready": "Ready",
+          "aimed": "Aimed"
+        }
+      },
+      "sha256": "5a6658283d9cab47b21520ac2df8edb59768c02dfaaf553c389883b3f495d94b",
+      "states": [
+        "ready",
+        "aimed"
+      ],
+      "codePath": "modules/send.js"
+    },
+    {
+      "id": "phone",
+      "name": {
+        "ko": "전화",
+        "en": "Phone"
+      },
+      "keywords": [
+        "전화",
+        "통화",
+        "수화기",
+        "phone",
+        "call",
+        "handset"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "수화기가 기울고 바깥으로 통화 파형이 퍼집니다.",
+        "en": "The handset tilts while call waves open beside it."
+      },
+      "order": 36,
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "sha256": "f8117aaceb1fd5f9ffc11e12e7b12377e1039ade063ba5f16a7236b324331851",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/phone.js"
+    },
+    {
+      "id": "videochat",
+      "name": {
+        "ko": "영상 통화",
+        "en": "Video chat"
+      },
+      "keywords": [
+        "영상",
+        "카메라",
+        "통화",
+        "video",
+        "camera",
+        "meeting"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "카메라 렌즈가 열리고 표시등이 켜집니다.",
+        "en": "The camera lens opens and its indicator lights up."
+      },
+      "order": 37,
+      "stateLabels": {
+        "ko": {
+          "off": "꺼짐",
+          "on": "켜짐"
+        },
+        "en": {
+          "off": "Off",
+          "on": "On"
+        }
+      },
+      "sha256": "2f78a03e43efc8a4ce4808559521e59948f4ea3faaed3b5a3c74036629ac3c22",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/videochat.js"
+    },
+    {
+      "id": "microphone",
+      "name": {
+        "ko": "마이크",
+        "en": "Microphone"
+      },
+      "keywords": [
+        "마이크",
+        "음성",
+        "녹음",
+        "microphone",
+        "voice",
+        "recording"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "마이크 캡슐이 밝아지고 양옆에 소리 표시가 나타납니다.",
+        "en": "The microphone capsule lights up and sound marks appear beside it."
+      },
+      "order": 38,
+      "stateLabels": {
+        "ko": {
+          "off": "꺼짐",
+          "on": "켜짐"
+        },
+        "en": {
+          "off": "Off",
+          "on": "On"
+        }
+      },
+      "sha256": "de82c02e74f1743f6410c4add28130bec036c238d995ee620fcf792d38a80d13",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/microphone.js"
+    },
+    {
+      "id": "speaker",
+      "name": {
+        "ko": "스피커",
+        "en": "Speaker"
+      },
+      "keywords": [
+        "스피커",
+        "소리",
+        "볼륨",
+        "speaker",
+        "audio",
+        "volume"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "quiet",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "스피커 옆으로 두 겹의 음파가 펼쳐집니다.",
+        "en": "Two sound waves open outward from the speaker."
+      },
+      "order": 39,
+      "stateLabels": {
+        "ko": {
+          "quiet": "조용함",
+          "loud": "큰 소리"
+        },
+        "en": {
+          "quiet": "Quiet",
+          "loud": "Loud"
+        }
+      },
+      "sha256": "199901086e8f87a60de485ed86c3ea4e9fdebec9cd3948af2cfa890d4d7d8353",
+      "states": [
+        "quiet",
+        "loud"
+      ],
+      "codePath": "modules/speaker.js"
+    },
+    {
+      "id": "megaphone",
+      "name": {
+        "ko": "확성기",
+        "en": "Megaphone"
+      },
+      "keywords": [
+        "확성기",
+        "발표",
+        "방송",
+        "megaphone",
+        "announcement",
+        "broadcast"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "quiet",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "확성기 입구에서 짧은 방송선이 뻗어 나옵니다.",
+        "en": "Short broadcast rays extend from the mouth of the megaphone."
+      },
+      "order": 40,
+      "stateLabels": {
+        "ko": {
+          "quiet": "대기",
+          "announcing": "발표 중"
+        },
+        "en": {
+          "quiet": "Quiet",
+          "announcing": "Announcing"
+        }
+      },
+      "sha256": "5ca32bcf7040e4beeb848ecc910eb3b8b8a5b383854c9fc022a56bbb7b39e3b0",
+      "states": [
+        "quiet",
+        "announcing"
+      ],
+      "codePath": "modules/megaphone.js"
+    },
+    {
+      "id": "globe",
+      "name": {
+        "ko": "지구",
+        "en": "Globe"
+      },
+      "keywords": [
+        "지구",
+        "세계",
+        "언어",
+        "globe",
+        "world",
+        "international"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "wide",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "지구의 중앙 경선이 좁아지며 회전을 표현합니다.",
+        "en": "The central meridian narrows to suggest a turn of the globe."
+      },
+      "order": 41,
+      "stateLabels": {
+        "ko": {
+          "wide": "기본",
+          "turned": "회전"
+        },
+        "en": {
+          "wide": "Wide",
+          "turned": "Turned"
+        }
+      },
+      "sha256": "1717f37dbe871286c3babcf4e0313de0d1a2b7af80092d9a0ba3997b928de923",
+      "states": [
+        "wide",
+        "turned"
+      ],
+      "codePath": "modules/globe.js"
+    },
+    {
+      "id": "translate",
+      "name": {
+        "ko": "번역",
+        "en": "Translate"
+      },
+      "keywords": [
+        "번역",
+        "언어",
+        "문자",
+        "translate",
+        "language",
+        "scripts"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "first",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "방향 화살표가 이동하고 두 글자의 강조가 바뀝니다.",
+        "en": "The directional arrows shift as emphasis moves between scripts."
+      },
+      "order": 42,
+      "stateLabels": {
+        "ko": {
+          "first": "첫 언어",
+          "second": "둘째 언어"
+        },
+        "en": {
+          "first": "First script",
+          "second": "Second script"
+        }
+      },
+      "sha256": "1863ee093766ec95327b6a10396669506d0ceeda44fb61c9456d0c990d6450dd",
+      "states": [
+        "first",
+        "second"
+      ],
+      "codePath": "modules/translate.js"
+    },
+    {
+      "id": "user",
+      "name": {
+        "ko": "사용자",
+        "en": "User"
+      },
+      "keywords": [
+        "사용자",
+        "사람",
+        "프로필",
+        "user",
+        "person",
+        "profile"
+      ],
+      "category": "people",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "neutral",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "고개를 살짝 기울이고 어깨를 들어 인사합니다.",
+        "en": "The portrait gently tilts its head and lifts its shoulders."
+      },
+      "order": 43,
+      "stateLabels": {
+        "ko": {
+          "neutral": "기본",
+          "greeting": "인사"
+        },
+        "en": {
+          "neutral": "Neutral",
+          "greeting": "Greeting"
+        }
+      },
+      "sha256": "769c193a9593503e161d3e2ecd0280b09cbd98abaf0c9f7bd6b65a6a75f72441",
+      "states": [
+        "neutral",
+        "greeting"
+      ],
+      "codePath": "modules/user.js"
+    },
+    {
+      "id": "users",
+      "name": {
+        "ko": "사용자 그룹",
+        "en": "Users"
+      },
+      "keywords": [
+        "그룹",
+        "사람들",
+        "팀",
+        "users",
+        "group",
+        "team"
+      ],
+      "category": "people",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "apart",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "뒤쪽 인물이 앞으로 다가오며 그룹이 모입니다.",
+        "en": "The rear portrait moves closer as the group gathers."
+      },
+      "order": 44,
+      "stateLabels": {
+        "ko": {
+          "apart": "간격",
+          "together": "모임"
+        },
+        "en": {
+          "apart": "Apart",
+          "together": "Together"
+        }
+      },
+      "sha256": "a756594d83874a0781a9dd399bc0b4eeda50fafc2300980e3416229cdf137879",
+      "states": [
+        "apart",
+        "together"
+      ],
+      "codePath": "modules/users.js"
+    },
+    {
+      "id": "contact",
+      "name": {
+        "ko": "연락처",
+        "en": "Contact"
+      },
+      "keywords": [
+        "연락처",
+        "주소록",
+        "프로필",
+        "contact",
+        "addressbook",
+        "profile"
+      ],
+      "category": "people",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "주소록 표지가 옆으로 열려 연락처 줄이 드러납니다.",
+        "en": "The address-book cover opens sideways to reveal contact lines."
+      },
+      "order": 45,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "6bc12002d1a12978132d8b1ab580fd7c37bfc9b6b86b6afa6d48a3f7f8310ba4",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/contact.js"
+    },
+    {
+      "id": "handshake",
+      "name": {
+        "ko": "악수",
+        "en": "Handshake"
+      },
+      "keywords": [
+        "악수",
+        "협력",
+        "파트너",
+        "handshake",
+        "cooperation",
+        "partner"
+      ],
+      "category": "people",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "loose",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "맞잡은 손이 살짝 내려가고 소매가 가까워집니다.",
+        "en": "The joined hands settle and the cuffs draw closer."
+      },
+      "order": 46,
+      "stateLabels": {
+        "ko": {
+          "loose": "가볍게",
+          "held": "맞잡음"
+        },
+        "en": {
+          "loose": "Loose",
+          "held": "Held"
+        }
+      },
+      "sha256": "89d5661e6fe60b9fe4293d14a82d9795856c4332e14401032111658094cc955f",
+      "states": [
+        "loose",
+        "held"
+      ],
+      "codePath": "modules/handshake.js"
+    },
+    {
+      "id": "badge",
+      "name": {
+        "ko": "메달",
+        "en": "Badge"
+      },
+      "keywords": [
+        "메달",
+        "배지",
+        "리본",
+        "badge",
+        "medal",
+        "ribbon"
+      ],
+      "category": "people",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "folded",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 350,
+      "description": {
+        "ko": "메달 아래의 두 리본이 차례로 펼쳐집니다.",
+        "en": "The two ribbons beneath the medal unfold in sequence."
+      },
+      "order": 47,
+      "stateLabels": {
+        "ko": {
+          "folded": "접힘",
+          "unfurled": "펼침"
+        },
+        "en": {
+          "folded": "Folded",
+          "unfurled": "Unfurled"
+        }
+      },
+      "sha256": "fcc06e7203d554069b9c41dc46d128cfe36ec089e08801aa20dc7c7f7551467d",
+      "states": [
+        "folded",
+        "unfurled"
+      ],
+      "codePath": "modules/badge.js"
+    },
+    {
+      "id": "shield",
+      "name": {
+        "ko": "방패",
+        "en": "Shield"
+      },
+      "keywords": [
+        "방패",
+        "보안",
+        "보호",
+        "shield",
+        "security",
+        "protection"
+      ],
+      "category": "security",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "방패의 중심이 채워지고 안쪽 보강선이 나타납니다.",
+        "en": "The shield fills and its inner reinforcement becomes visible."
+      },
+      "order": 48,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "guarding": "보호"
+        },
+        "en": {
+          "resting": "Resting",
+          "guarding": "Guarding"
+        }
+      },
+      "sha256": "feac131cf6efd962b7054b3993c788fb028e1b047a8be0ffd42aacb987c80c08",
+      "states": [
+        "resting",
+        "guarding"
+      ],
+      "codePath": "modules/shield.js"
+    },
+    {
+      "id": "key",
+      "name": {
+        "ko": "열쇠",
+        "en": "Key"
+      },
+      "keywords": [
+        "열쇠",
+        "잠금",
+        "접근",
+        "key",
+        "lock",
+        "access"
+      ],
+      "category": "security",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "ready",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "열쇠 날이 축을 따라 뒤집히며 손잡이는 옆으로 돌아갑니다.",
+        "en": "The key bit turns around its shaft as the bow narrows in profile."
+      },
+      "order": 49,
+      "stateLabels": {
+        "ko": {
+          "ready": "준비",
+          "turned": "회전"
+        },
+        "en": {
+          "ready": "Ready",
+          "turned": "Turned"
+        }
+      },
+      "sha256": "caa1b60f6bb07609775fad706c1a84715cbc8a58e9e264c0bb711f69a836705f",
+      "states": [
+        "ready",
+        "turned"
+      ],
+      "codePath": "modules/key.js"
+    },
+    {
+      "id": "fingerprint",
+      "name": {
+        "ko": "지문",
+        "en": "Fingerprint"
+      },
+      "keywords": [
+        "지문",
+        "인증",
+        "생체인식",
+        "fingerprint",
+        "identity",
+        "biometric"
+      ],
+      "category": "security",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "지문의 가운데 능선을 따라 강조선이 그려집니다.",
+        "en": "An accent traces the central fingerprint ridge."
+      },
+      "order": 50,
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "tracing": "추적 중"
+        },
+        "en": {
+          "idle": "Idle",
+          "tracing": "Tracing"
+        }
+      },
+      "sha256": "43802565bb1f179acd9553593c6f71824fdde2ad368ca0849f51fa902218eae1",
+      "states": [
+        "idle",
+        "tracing"
+      ],
+      "codePath": "modules/fingerprint.js"
+    },
+    {
+      "id": "eye",
+      "name": {
+        "ko": "눈",
+        "en": "Eye"
+      },
+      "keywords": [
+        "눈",
+        "보기",
+        "시선",
+        "eye",
+        "view",
+        "gaze"
+      ],
+      "category": "security",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "forward",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "눈동자가 눈 안에서 오른쪽으로 시선을 옮깁니다.",
+        "en": "The iris shifts its gaze to the right within the eye."
+      },
+      "order": 51,
+      "stateLabels": {
+        "ko": {
+          "forward": "정면",
+          "looking": "오른쪽"
+        },
+        "en": {
+          "forward": "Forward",
+          "looking": "Looking"
+        }
+      },
+      "sha256": "a9a82b0e52d77033b32047cca982c2d1eed0e989bb138050ae60f367a5c5ae33",
+      "states": [
+        "forward",
+        "looking"
+      ],
+      "codePath": "modules/eye.js"
+    },
+    {
+      "id": "help",
+      "name": {
+        "ko": "도움말",
+        "en": "Help"
+      },
+      "keywords": [
+        "도움말",
+        "질문",
+        "지원",
+        "help",
+        "question",
+        "support"
+      ],
+      "category": "communication",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "물음표의 점이 커지고 바깥의 안내선이 펼쳐집니다.",
+        "en": "The question mark dot grows as its small guide rays open."
+      },
+      "order": 52,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "focused": "강조"
+        },
+        "en": {
+          "resting": "Resting",
+          "focused": "Focused"
+        }
+      },
+      "sha256": "a23bad07c6b9efed9157c314b75bf38a5fc3a47e518b8745ddd2c7f40e303e77",
+      "states": [
+        "resting",
+        "focused"
+      ],
+      "codePath": "modules/help.js"
+    },
+    {
+      "id": "home",
+      "name": {
+        "ko": "집",
+        "en": "Home"
+      },
+      "keywords": [
+        "집",
+        "현관",
+        "이동",
+        "house",
+        "door",
+        "navigate"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 340,
+      "description": {
+        "ko": "현관문이 경첩을 따라 열립니다.",
+        "en": "The front door opens on its left hinge."
+      },
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "order": 53,
+      "sha256": "97b098b275e1bb05396a7fb18d22501102a91d075601367f3bd39ec27b296164",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/home.js"
+    },
+    {
+      "id": "menu",
+      "name": {
+        "ko": "메뉴",
+        "en": "Menu"
+      },
+      "keywords": [
+        "메뉴",
+        "탐색",
+        "닫기",
+        "navigation",
+        "hamburger",
+        "close"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "메뉴의 위아래 선이 닫기 표시로 맞물립니다.",
+        "en": "The outer menu bars meet to form a close control."
+      },
+      "stateLabels": {
+        "ko": {
+          "closed": "접힘",
+          "open": "펼침"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "order": 54,
+      "sha256": "7e867b2d4a38ace8849dd0152559f44dffdcdb192f87070bd5a045cc44536f5e",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/menu.js"
+    },
+    {
+      "id": "settings",
+      "name": {
+        "ko": "설정",
+        "en": "Settings"
+      },
+      "keywords": [
+        "설정",
+        "톱니",
+        "조정",
+        "gear",
+        "preferences",
+        "adjust"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "default",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "톱니가 반 칸 돌아가며 중앙 다이얼을 조정합니다.",
+        "en": "The gear advances half a tooth as the center dial adjusts."
+      },
+      "stateLabels": {
+        "ko": {
+          "default": "기본",
+          "adjusted": "조정됨"
+        },
+        "en": {
+          "default": "Default",
+          "adjusted": "Adjusted"
+        }
+      },
+      "order": 55,
+      "sha256": "c2397e8f87677ed0ff18c55959b39311ac3ba117206feb40a0bb8dd5a9cb3327",
+      "states": [
+        "default",
+        "adjusted"
+      ],
+      "codePath": "modules/settings.js"
+    },
+    {
+      "id": "sliders",
+      "name": {
+        "ko": "조절 막대",
+        "en": "Sliders"
+      },
+      "keywords": [
+        "조절",
+        "설정",
+        "손잡이",
+        "controls",
+        "adjust",
+        "handles"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "default",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "세 개의 손잡이가 각자의 설정 위치로 이동합니다.",
+        "en": "Three handles slide to independent setting positions."
+      },
+      "stateLabels": {
+        "ko": {
+          "default": "기본",
+          "adjusted": "조정됨"
+        },
+        "en": {
+          "default": "Default",
+          "adjusted": "Adjusted"
+        }
+      },
+      "order": 56,
+      "sha256": "330abd8c1a27144770aae93e18802d069a2a6c37cc94049c5e55fb85195ae625",
+      "states": [
+        "default",
+        "adjusted"
+      ],
+      "codePath": "modules/sliders.js"
+    },
+    {
+      "id": "filter",
+      "name": {
+        "ko": "필터",
+        "en": "Filter"
+      },
+      "keywords": [
+        "필터",
+        "좁히기",
+        "조건",
+        "funnel",
+        "refine",
+        "criteria"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "all",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "내부 가로막이 내려가며 필터 통로를 좁힙니다.",
+        "en": "The inner gate lowers and narrows the filter passage."
+      },
+      "stateLabels": {
+        "ko": {
+          "all": "전체",
+          "filtered": "필터 켜짐"
+        },
+        "en": {
+          "all": "All",
+          "filtered": "Filtered"
+        }
+      },
+      "order": 57,
+      "sha256": "5e179087c587a072a3bb94f7991363e0fdce6585dd2654589525b2d3751233ed",
+      "states": [
+        "all",
+        "filtered"
+      ],
+      "codePath": "modules/filter.js"
+    },
+    {
+      "id": "sort",
+      "name": {
+        "ko": "정렬",
+        "en": "Sort"
+      },
+      "keywords": [
+        "정렬",
+        "순서",
+        "방향",
+        "order",
+        "ascending",
+        "descending"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "descending",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "행의 길이와 화살촉이 정렬 방향을 바꿉니다.",
+        "en": "Row lengths and the arrowhead switch the sort direction."
+      },
+      "stateLabels": {
+        "ko": {
+          "descending": "내림차순",
+          "ascending": "오름차순"
+        },
+        "en": {
+          "descending": "Descending",
+          "ascending": "Ascending"
+        }
+      },
+      "order": 58,
+      "sha256": "afa9e3326022d9fefddf013db8ef0e27c58c7fcf8df975b5453ee5e6aee6ae0e",
+      "states": [
+        "descending",
+        "ascending"
+      ],
+      "codePath": "modules/sort.js"
+    },
+    {
+      "id": "layout",
+      "name": {
+        "ko": "레이아웃",
+        "en": "Layout"
+      },
+      "keywords": [
+        "레이아웃",
+        "사이드바",
+        "화면",
+        "panels",
+        "sidebar",
+        "workspace"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "split",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "사이드바가 접히며 본문 공간이 넓어집니다.",
+        "en": "The sidebar folds inward to make room for the content."
+      },
+      "stateLabels": {
+        "ko": {
+          "split": "분할",
+          "focus": "집중"
+        },
+        "en": {
+          "split": "Split",
+          "focus": "Focus"
+        }
+      },
+      "order": 59,
+      "sha256": "bb655b83584cc67e0e1a5b14c4322e662d023c86f82270f517f7cc10d16bcb66",
+      "states": [
+        "split",
+        "focus"
+      ],
+      "codePath": "modules/layout.js"
+    },
+    {
+      "id": "grid",
+      "name": {
+        "ko": "그리드",
+        "en": "Grid"
+      },
+      "keywords": [
+        "그리드",
+        "격자",
+        "타일",
+        "tiles",
+        "spacing",
+        "arrange"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "compact",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "네 개의 타일이 간격을 넓혀 펼쳐집니다.",
+        "en": "Four tiles move apart to open the grid spacing."
+      },
+      "stateLabels": {
+        "ko": {
+          "compact": "촘촘함",
+          "spread": "펼침"
+        },
+        "en": {
+          "compact": "Compact",
+          "spread": "Spread"
+        }
+      },
+      "order": 60,
+      "sha256": "8196f6f914b59d8ce8d10c96cf5c76db68598090457e329eb9247d8a55e1e2f4",
+      "states": [
+        "compact",
+        "spread"
+      ],
+      "codePath": "modules/grid.js"
+    },
+    {
+      "id": "list",
+      "name": {
+        "ko": "목록",
+        "en": "List"
+      },
+      "keywords": [
+        "목록",
+        "행",
+        "선택",
+        "rows",
+        "items",
+        "select"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "가운데 행이 강조되고 내용이 살짝 들여쓰기 됩니다.",
+        "en": "The middle row highlights and its content indents slightly."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "selected": "행 선택"
+        },
+        "en": {
+          "idle": "Idle",
+          "selected": "Row selected"
+        }
+      },
+      "order": 61,
+      "sha256": "81b96cd0f4db29b2a135fc6ebfb691aa7ef9bee6cbd9fc300ed722da71979443",
+      "states": [
+        "idle",
+        "selected"
+      ],
+      "codePath": "modules/list.js"
+    },
+    {
+      "id": "expand",
+      "name": {
+        "ko": "확대",
+        "en": "Expand"
+      },
+      "keywords": [
+        "확대",
+        "전체화면",
+        "영역",
+        "fullscreen",
+        "enlarge",
+        "corners"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "compact",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "네 모서리가 벌어지고 중심 영역이 넓어집니다.",
+        "en": "Four corners move outward as the center area grows."
+      },
+      "stateLabels": {
+        "ko": {
+          "compact": "기본",
+          "expanded": "확대됨"
+        },
+        "en": {
+          "compact": "Compact",
+          "expanded": "Expanded"
+        }
+      },
+      "order": 62,
+      "sha256": "5aea5b0fbf4dc19c380dfced5b71267843e14c9fe8bbb15bb233699a8a47c927",
+      "states": [
+        "compact",
+        "expanded"
+      ],
+      "codePath": "modules/expand.js"
+    },
+    {
+      "id": "collapse",
+      "name": {
+        "ko": "축소",
+        "en": "Collapse"
+      },
+      "keywords": [
+        "축소",
+        "모으기",
+        "영역",
+        "minimize",
+        "inward",
+        "reduce"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "expanded",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "화살촉이 중심으로 모이며 영역이 작아집니다.",
+        "en": "The arrowheads move inward as the center area shrinks."
+      },
+      "stateLabels": {
+        "ko": {
+          "expanded": "펼침",
+          "compact": "축소됨"
+        },
+        "en": {
+          "expanded": "Expanded",
+          "compact": "Compact"
+        }
+      },
+      "order": 63,
+      "sha256": "09217252559f2a753da8eb313a35795191676434dfa082944c8c496861bcff9f",
+      "states": [
+        "expanded",
+        "compact"
+      ],
+      "codePath": "modules/collapse.js"
+    },
+    {
+      "id": "refresh",
+      "name": {
+        "ko": "새로 고침",
+        "en": "Refresh"
+      },
+      "keywords": [
+        "새로고침",
+        "순환",
+        "회전",
+        "reload",
+        "cycle",
+        "turn"
+      ],
+      "category": "navigation",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "ready",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 400,
+      "description": {
+        "ko": "두 곡선 화살표가 중심 주위를 일정 각도로 회전합니다.",
+        "en": "Two curved arrows advance around a fixed center."
+      },
+      "stateLabels": {
+        "ko": {
+          "ready": "준비",
+          "turned": "회전됨"
+        },
+        "en": {
+          "ready": "Ready",
+          "turned": "Turned"
+        }
+      },
+      "order": 64,
+      "sha256": "e784f0cfa550962d7549bb0d7af316a1a0d0851f753a03fc0c27a8f6aa7fe9e9",
+      "states": [
+        "ready",
+        "turned"
+      ],
+      "codePath": "modules/refresh.js"
+    },
+    {
+      "id": "undo",
+      "name": {
+        "ko": "실행 취소",
+        "en": "Undo"
+      },
+      "keywords": [
+        "실행취소",
+        "이전",
+        "기록",
+        "previous",
+        "history",
+        "back"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "current",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "기록 표시가 왼쪽의 이전 위치로 이동합니다.",
+        "en": "The history marker steps left to the previous position."
+      },
+      "stateLabels": {
+        "ko": {
+          "current": "현재",
+          "previous": "이전 위치"
+        },
+        "en": {
+          "current": "Current",
+          "previous": "Previous"
+        }
+      },
+      "order": 65,
+      "sha256": "d750dfec54ee8676a64f4f2677295868270c111fe6b3c1ad1dbe19d367e73d5f",
+      "states": [
+        "current",
+        "previous"
+      ],
+      "codePath": "modules/undo.js"
+    },
+    {
+      "id": "redo",
+      "name": {
+        "ko": "다시 실행",
+        "en": "Redo"
+      },
+      "keywords": [
+        "다시실행",
+        "다음",
+        "기록",
+        "next",
+        "history",
+        "forward"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "current",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "기록 표시가 오른쪽의 다음 위치로 이동합니다.",
+        "en": "The history marker steps right to the next position."
+      },
+      "stateLabels": {
+        "ko": {
+          "current": "현재",
+          "next": "다음 위치"
+        },
+        "en": {
+          "current": "Current",
+          "next": "Next"
+        }
+      },
+      "order": 66,
+      "sha256": "5b8e8549884044242c0f6d2b11066f7c33355ffebfe99853380d7f7378479cb4",
+      "states": [
+        "current",
+        "next"
+      ],
+      "codePath": "modules/redo.js"
+    },
+    {
+      "id": "edit",
+      "name": {
+        "ko": "편집",
+        "en": "Edit"
+      },
+      "keywords": [
+        "편집",
+        "연필",
+        "쓰기",
+        "pencil",
+        "write",
+        "draw"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 350,
+      "description": {
+        "ko": "연필 끝이 오른쪽으로 움직이며 짧은 획을 남깁니다.",
+        "en": "The pencil tip moves right to draw a short stroke."
+      },
+      "stateLabels": {
+        "ko": {
+          "resting": "대기",
+          "writing": "쓰기"
+        },
+        "en": {
+          "resting": "Resting",
+          "writing": "Writing"
+        }
+      },
+      "order": 67,
+      "sha256": "3d7c14a50f34843af0e3679945b84938d9b964c984a777db8baf670878ee4657",
+      "states": [
+        "resting",
+        "writing"
+      ],
+      "codePath": "modules/edit.js"
+    },
+    {
+      "id": "brush",
+      "name": {
+        "ko": "붓",
+        "en": "Brush"
+      },
+      "keywords": [
+        "붓",
+        "칠하기",
+        "붓털",
+        "paint",
+        "bristles",
+        "stroke"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "lifted",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 340,
+      "description": {
+        "ko": "붓대가 기울고 붓털이 휘며 색을 펴 바릅니다.",
+        "en": "The handle tilts and the bristles flex to spread paint."
+      },
+      "stateLabels": {
+        "ko": {
+          "lifted": "들림",
+          "pressed": "누름"
+        },
+        "en": {
+          "lifted": "Lifted",
+          "pressed": "Pressed"
+        }
+      },
+      "order": 68,
+      "sha256": "4ffed241d0d55df9c102fe0e887de8e16d9a4a758da1bcbbab34998c4dd1a720",
+      "states": [
+        "lifted",
+        "pressed"
+      ],
+      "codePath": "modules/brush.js"
+    },
+    {
+      "id": "palette",
+      "name": {
+        "ko": "팔레트",
+        "en": "Palette"
+      },
+      "keywords": [
+        "팔레트",
+        "물감",
+        "색상",
+        "paint",
+        "color",
+        "swatch"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "first",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "선택 테두리가 다른 물감 칸으로 이동합니다.",
+        "en": "The selection ring moves to another paint well."
+      },
+      "stateLabels": {
+        "ko": {
+          "first": "첫 색상",
+          "second": "둘째 색상"
+        },
+        "en": {
+          "first": "First color",
+          "second": "Second color"
+        }
+      },
+      "order": 69,
+      "sha256": "d90da8d61c2a99d09895b2d4d9aa3c39e6719bd4bd14354016b82660c2f9f4b1",
+      "states": [
+        "first",
+        "second"
+      ],
+      "codePath": "modules/palette.js"
+    },
+    {
+      "id": "crop",
+      "name": {
+        "ko": "자르기",
+        "en": "Crop"
+      },
+      "keywords": [
+        "자르기",
+        "잘라내기",
+        "모서리",
+        "trim",
+        "frame",
+        "resize"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "full",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "마주 보는 자르기 모서리가 안쪽으로 조여집니다.",
+        "en": "Opposing crop corners tighten inward around the image area."
+      },
+      "stateLabels": {
+        "ko": {
+          "full": "전체",
+          "trimmed": "잘린 영역"
+        },
+        "en": {
+          "full": "Full",
+          "trimmed": "Trimmed"
+        }
+      },
+      "order": 70,
+      "sha256": "333162a495a12f4f5b6a80977dfbfe2c3a68c6d889a1fc4c569c603581509a7d",
+      "states": [
+        "full",
+        "trimmed"
+      ],
+      "codePath": "modules/crop.js"
+    },
+    {
+      "id": "layers",
+      "name": {
+        "ko": "레이어",
+        "en": "Layers"
+      },
+      "keywords": [
+        "레이어",
+        "겹침",
+        "시트",
+        "stack",
+        "sheets",
+        "depth"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "stacked",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "위아래 시트가 벌어져 겹친 구조를 드러냅니다.",
+        "en": "The upper and lower sheets separate to reveal the stack."
+      },
+      "stateLabels": {
+        "ko": {
+          "stacked": "겹침",
+          "separated": "분리됨"
+        },
+        "en": {
+          "stacked": "Stacked",
+          "separated": "Separated"
+        }
+      },
+      "order": 71,
+      "sha256": "7c1b1b8c33b099dbb37e2556d375d85d33d58c8f85ae7f1228c985605ebe3487",
+      "states": [
+        "stacked",
+        "separated"
+      ],
+      "codePath": "modules/layers.js"
+    },
+    {
+      "id": "ruler",
+      "name": {
+        "ko": "자",
+        "en": "Ruler"
+      },
+      "keywords": [
+        "자",
+        "측정",
+        "눈금",
+        "measure",
+        "length",
+        "graduations"
+      ],
+      "category": "editing",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "start",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 340,
+      "description": {
+        "ko": "측정 표시가 눈금을 따라 다음 위치로 미끄러집니다.",
+        "en": "The measuring marker slides along the ruler graduations."
+      },
+      "stateLabels": {
+        "ko": {
+          "start": "시작 위치",
+          "advanced": "이동한 위치"
+        },
+        "en": {
+          "start": "Start",
+          "advanced": "Advanced"
+        }
+      },
+      "order": 72,
+      "sha256": "093b927ba21c4d02cfa1f63d87415279ceabe59e3072b4c9f3a4c05fd87a817a",
+      "states": [
+        "start",
+        "advanced"
+      ],
+      "codePath": "modules/ruler.js"
+    },
+    {
+      "id": "play",
+      "name": {
+        "ko": "재생",
+        "en": "Play"
+      },
+      "keywords": [
+        "재생",
+        "영상",
+        "시작",
+        "play",
+        "video",
+        "start"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "재생 화살표가 앞으로 나아가며 짧은 움직임 선이 나타납니다.",
+        "en": "The play arrow advances and reveals a short motion trail."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "order": 73,
+      "sha256": "7693f02cd22657ca0ca8d7667122d6a483723d13764a90e1c80200f5e983cb4f",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/play.js"
+    },
+    {
+      "id": "pause",
+      "name": {
+        "ko": "일시 정지",
+        "en": "Pause"
+      },
+      "keywords": [
+        "정지",
+        "재생",
+        "대기",
+        "pause",
+        "playback",
+        "hold"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "두 막대가 안쪽으로 모여 일시 정지 상태를 표시합니다.",
+        "en": "Two bars draw together into the paused position."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "paused": "일시 정지"
+        },
+        "en": {
+          "idle": "Idle",
+          "paused": "Paused"
+        }
+      },
+      "order": 74,
+      "sha256": "a322cbd6dffad4a006931223160f0ab54cb0ca8ceca786dc9d5ebf3d78a6eed8",
+      "states": [
+        "idle",
+        "paused"
+      ],
+      "codePath": "modules/pause.js"
+    },
+    {
+      "id": "stop",
+      "name": {
+        "ko": "정지",
+        "en": "Stop"
+      },
+      "keywords": [
+        "중지",
+        "종료",
+        "재생",
+        "stop",
+        "end",
+        "playback"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "정지 사각형이 모서리 표시 안으로 내려앉습니다.",
+        "en": "The stop square settles inside four corner marks."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "stopped": "정지"
+        },
+        "en": {
+          "idle": "Idle",
+          "stopped": "Stopped"
+        }
+      },
+      "order": 75,
+      "sha256": "8e25debae08951382e1dcef2020baa13c35054e25a1f65768cd6f43f0c254362",
+      "states": [
+        "idle",
+        "stopped"
+      ],
+      "codePath": "modules/stop.js"
+    },
+    {
+      "id": "record",
+      "name": {
+        "ko": "녹음",
+        "en": "Record"
+      },
+      "keywords": [
+        "녹음",
+        "녹화",
+        "오디오",
+        "record",
+        "capture",
+        "audio"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "녹음 점이 커지며 바깥쪽 표시가 선명해집니다.",
+        "en": "The recording dot expands as the outer indicator becomes distinct."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "order": 76,
+      "sha256": "51c0c298242f2e15a05f56f4a7f0a5d0dda5a2726d31324b7570d2f56d334693",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/record.js"
+    },
+    {
+      "id": "music",
+      "name": {
+        "ko": "음악",
+        "en": "Music"
+      },
+      "keywords": [
+        "음악",
+        "음표",
+        "노래",
+        "music",
+        "note",
+        "song"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "still",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "연결된 두 음표가 서로 다른 박자로 흔들립니다.",
+        "en": "The two connected notes swing to different beats."
+      },
+      "stateLabels": {
+        "ko": {
+          "still": "정지",
+          "playing": "재생"
+        },
+        "en": {
+          "still": "Still",
+          "playing": "Playing"
+        }
+      },
+      "order": 77,
+      "sha256": "fd2df1187de4db5ca966aacd7f0a104856029a4e3f034fae0cf32600474a7c9f",
+      "states": [
+        "still",
+        "playing"
+      ],
+      "codePath": "modules/music.js"
+    },
+    {
+      "id": "headphones",
+      "name": {
+        "ko": "헤드폰",
+        "en": "Headphones"
+      },
+      "keywords": [
+        "헤드폰",
+        "듣기",
+        "오디오",
+        "headphones",
+        "listen",
+        "audio"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 340,
+      "description": {
+        "ko": "이어컵이 안쪽으로 기울고 작은 소리 선이 나타납니다.",
+        "en": "The ear cups tilt inward and small sound marks appear."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "listening": "청취"
+        },
+        "en": {
+          "idle": "Idle",
+          "listening": "Listening"
+        }
+      },
+      "order": 78,
+      "sha256": "46c0b29df52a163ec6e312d978b1ff0bcc9e66adb468a44fa9eadaa71cb3be93",
+      "states": [
+        "idle",
+        "listening"
+      ],
+      "codePath": "modules/headphones.js"
+    },
+    {
+      "id": "camera",
+      "name": {
+        "ko": "카메라",
+        "en": "Camera"
+      },
+      "keywords": [
+        "카메라",
+        "사진",
+        "촬영",
+        "camera",
+        "photo",
+        "shutter"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "ready",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 240,
+      "description": {
+        "ko": "셔터 버튼이 내려가며 렌즈 조리개가 좁아집니다.",
+        "en": "The shutter button presses down as the aperture contracts."
+      },
+      "stateLabels": {
+        "ko": {
+          "ready": "준비",
+          "pressed": "누름"
+        },
+        "en": {
+          "ready": "Ready",
+          "pressed": "Pressed"
+        }
+      },
+      "order": 79,
+      "sha256": "ecb7e1ff629684193174d22e7c8a6ffc3d0ee2467976016f202937c41d472d5c",
+      "states": [
+        "ready",
+        "pressed"
+      ],
+      "codePath": "modules/camera.js"
+    },
+    {
+      "id": "image",
+      "name": {
+        "ko": "이미지",
+        "en": "Image"
+      },
+      "keywords": [
+        "이미지",
+        "사진",
+        "풍경",
+        "image",
+        "picture",
+        "landscape"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "still",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "산의 윤곽이 조금 커지고 해가 위로 올라갑니다.",
+        "en": "The mountain silhouette grows slightly as the sun rises."
+      },
+      "stateLabels": {
+        "ko": {
+          "still": "정지",
+          "expanded": "확대"
+        },
+        "en": {
+          "still": "Still",
+          "expanded": "Expanded"
+        }
+      },
+      "order": 80,
+      "sha256": "58607d3b8a1a65f8031301bceb688c7f4794c0aeb88a4c535ea5bac4cdde882e",
+      "states": [
+        "still",
+        "expanded"
+      ],
+      "codePath": "modules/image.js"
+    },
+    {
+      "id": "film",
+      "name": {
+        "ko": "영화",
+        "en": "Film"
+      },
+      "keywords": [
+        "영화",
+        "슬레이트",
+        "영상",
+        "film",
+        "clapper",
+        "movie"
+      ],
+      "category": "media",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "슬레이트의 윗부분이 왼쪽 경첩을 중심으로 열립니다.",
+        "en": "The clapper opens around its left hinge."
+      },
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "order": 81,
+      "sha256": "10e829f65ad6d7ea75f6f4c0e13abc10b1b3b77a4b6e6070feb139f86ad6247a",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/film.js"
+    },
+    {
+      "id": "monitor",
+      "name": {
+        "ko": "모니터",
+        "en": "Monitor"
+      },
+      "keywords": [
+        "모니터",
+        "화면",
+        "데스크톱",
+        "monitor",
+        "screen",
+        "desktop"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "화면이 밝아지고 전원 표시가 나타납니다.",
+        "en": "The screen brightens and the power indicator appears."
+      },
+      "stateLabels": {
+        "ko": {
+          "off": "꺼짐",
+          "on": "켜짐"
+        },
+        "en": {
+          "off": "Off",
+          "on": "On"
+        }
+      },
+      "order": 82,
+      "sha256": "552e9ea9e926373219a918e46543581584c018ab3a25fc682870720facc51ffc",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/monitor.js"
+    },
+    {
+      "id": "laptop",
+      "name": {
+        "ko": "노트북",
+        "en": "Laptop"
+      },
+      "keywords": [
+        "노트북",
+        "컴퓨터",
+        "화면",
+        "laptop",
+        "computer",
+        "display"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "open",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 420,
+      "description": {
+        "ko": "화면이 아래쪽 경첩을 중심으로 접힙니다.",
+        "en": "The display folds down around its bottom hinge."
+      },
+      "stateLabels": {
+        "ko": {
+          "open": "열림",
+          "folded": "접힘"
+        },
+        "en": {
+          "open": "Open",
+          "folded": "Folded"
+        }
+      },
+      "order": 83,
+      "sha256": "e3096702ec7bd19bed32e1cad99ad056b5b2bbcb9c54197fbacde85652152493",
+      "states": [
+        "open",
+        "folded"
+      ],
+      "codePath": "modules/laptop.js"
+    },
+    {
+      "id": "tablet",
+      "name": {
+        "ko": "태블릿",
+        "en": "Tablet"
+      },
+      "keywords": [
+        "태블릿",
+        "화면",
+        "회전",
+        "tablet",
+        "screen",
+        "orientation"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "portrait",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 400,
+      "description": {
+        "ko": "태블릿이 세로 화면에서 가로 화면으로 회전합니다.",
+        "en": "The tablet turns from portrait to landscape orientation."
+      },
+      "stateLabels": {
+        "ko": {
+          "portrait": "세로",
+          "landscape": "가로"
+        },
+        "en": {
+          "portrait": "Portrait",
+          "landscape": "Landscape"
+        }
+      },
+      "order": 84,
+      "sha256": "ecf34d9ce44a15e14b5ea712216b50bc1a9b0fb9c55ebc320c475dd7b7a9a1db",
+      "states": [
+        "portrait",
+        "landscape"
+      ],
+      "codePath": "modules/tablet.js"
+    },
+    {
+      "id": "smartphone",
+      "name": {
+        "ko": "스마트폰",
+        "en": "Smartphone"
+      },
+      "keywords": [
+        "스마트폰",
+        "모바일",
+        "알림",
+        "smartphone",
+        "mobile",
+        "notification"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "휴대전화 화면 안으로 알림 카드가 올라옵니다.",
+        "en": "A notification card slides into the phone screen."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "alerted": "알림"
+        },
+        "en": {
+          "idle": "Idle",
+          "alerted": "Alerted"
+        }
+      },
+      "order": 85,
+      "sha256": "cb84fdad53575ce8ad7053d33fe413a1e279c43b11e4617c4a848b51d6edc24a",
+      "states": [
+        "idle",
+        "alerted"
+      ],
+      "codePath": "modules/smartphone.js"
+    },
+    {
+      "id": "keyboard",
+      "name": {
+        "ko": "키보드",
+        "en": "Keyboard"
+      },
+      "keywords": [
+        "키보드",
+        "입력",
+        "키",
+        "keyboard",
+        "typing",
+        "key"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "ready",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 200,
+      "description": {
+        "ko": "강조된 키 하나가 눌려 아래로 내려갑니다.",
+        "en": "One highlighted key presses down into the keyboard."
+      },
+      "stateLabels": {
+        "ko": {
+          "ready": "준비",
+          "pressed": "누름"
+        },
+        "en": {
+          "ready": "Ready",
+          "pressed": "Pressed"
+        }
+      },
+      "order": 86,
+      "sha256": "29f78965bb55acd048d18f2f33f65cc4acd4816e5f4ff9e11a0db3ffdf60133c",
+      "states": [
+        "ready",
+        "pressed"
+      ],
+      "codePath": "modules/keyboard.js"
+    },
+    {
+      "id": "battery",
+      "name": {
+        "ko": "배터리",
+        "en": "Battery"
+      },
+      "keywords": [
+        "배터리",
+        "전력",
+        "잔량",
+        "battery",
+        "power",
+        "level"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "low",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 400,
+      "description": {
+        "ko": "배터리 안의 잔량 표시가 왼쪽에서 오른쪽으로 채워집니다.",
+        "en": "The battery level fills from left to right."
+      },
+      "stateLabels": {
+        "ko": {
+          "low": "낮음",
+          "full": "가득 참"
+        },
+        "en": {
+          "low": "Low",
+          "full": "Full"
+        }
+      },
+      "order": 87,
+      "sha256": "c59569dc707778f18fa9f5deb313fdae25a27d10ddf4ee8d4dc38a43250dc8c3",
+      "states": [
+        "low",
+        "full"
+      ],
+      "codePath": "modules/battery.js"
+    },
+    {
+      "id": "wifi",
+      "name": {
+        "ko": "와이파이",
+        "en": "Wi-Fi"
+      },
+      "keywords": [
+        "와이파이",
+        "무선",
+        "신호",
+        "wifi",
+        "wireless",
+        "signal"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "무선 신호 선이 안쪽에서 바깥쪽으로 선명해집니다.",
+        "en": "The wireless arcs brighten from the inside outward."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "order": 88,
+      "sha256": "008bf4f2247750e2be5a444bbe64830ab5acfff1764b4602d52f8e736509d21b",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/wifi.js"
+    },
+    {
+      "id": "bluetooth",
+      "name": {
+        "ko": "블루투스",
+        "en": "Bluetooth"
+      },
+      "keywords": [
+        "블루투스",
+        "무선",
+        "기기",
+        "bluetooth",
+        "wireless",
+        "device"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "블루투스 기호가 채워지고 양옆에 신호 선이 나타납니다.",
+        "en": "The Bluetooth mark fills and signal curves appear beside it."
+      },
+      "stateLabels": {
+        "ko": {
+          "idle": "대기",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "order": 89,
+      "sha256": "8fd3682a530d0ed3f83423dbea4a278086c40b9de6f97aeced2d2244fb4e1006",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/bluetooth.js"
+    },
+    {
+      "id": "plug",
+      "name": {
+        "ko": "플러그",
+        "en": "Plug"
+      },
+      "keywords": [
+        "플러그",
+        "전원",
+        "케이블",
+        "plug",
+        "power",
+        "cable"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "unplugged",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "플러그가 소켓 쪽으로 올라가고 케이블이 곧게 펴집니다.",
+        "en": "The plug rises into the socket as the cable extends."
+      },
+      "stateLabels": {
+        "ko": {
+          "unplugged": "분리",
+          "inserted": "삽입"
+        },
+        "en": {
+          "unplugged": "Unplugged",
+          "inserted": "Inserted"
+        }
+      },
+      "order": 90,
+      "sha256": "1de5343511d48490ba862307a1b8b77368a04022f6d0dee7c7a7dc07e17c7dc1",
+      "states": [
+        "unplugged",
+        "inserted"
+      ],
+      "codePath": "modules/plug.js"
+    },
+    {
+      "id": "bulb",
+      "name": {
+        "ko": "전구",
+        "en": "Bulb"
+      },
+      "keywords": [
+        "전구",
+        "조명",
+        "빛",
+        "bulb",
+        "light",
+        "lamp"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "off",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "전구가 따뜻한 색으로 채워지고 빛줄기가 펼쳐집니다.",
+        "en": "The bulb fills with warmth and its light rays open."
+      },
+      "stateLabels": {
+        "ko": {
+          "off": "꺼짐",
+          "on": "켜짐"
+        },
+        "en": {
+          "off": "Off",
+          "on": "On"
+        }
+      },
+      "order": 91,
+      "sha256": "f2870067ee04497b3a4c121418cc8d784bd24835bfd1e0d68fd3ee220fd30e72",
+      "states": [
+        "off",
+        "on"
+      ],
+      "codePath": "modules/bulb.js"
+    },
+    {
+      "id": "gamepad",
+      "name": {
+        "ko": "게임패드",
+        "en": "Gamepad"
+      },
+      "keywords": [
+        "게임패드",
+        "게임",
+        "컨트롤러",
+        "gamepad",
+        "game",
+        "controller"
+      ],
+      "category": "devices",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "ready",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 220,
+      "description": {
+        "ko": "방향 패드가 움직이고 오른쪽 버튼이 눌립니다.",
+        "en": "The directional pad shifts and the right button presses down."
+      },
+      "stateLabels": {
+        "ko": {
+          "ready": "준비",
+          "pressed": "누름"
+        },
+        "en": {
+          "ready": "Ready",
+          "pressed": "Pressed"
+        }
+      },
+      "order": 92,
+      "sha256": "90b20faf633d6747afdfbdf4e8fc761deda5a0b2938c51bcd5f88676e18924f2",
+      "states": [
+        "ready",
+        "pressed"
+      ],
+      "codePath": "modules/gamepad.js"
+    },
+    {
+      "id": "cart",
+      "name": {
+        "ko": "장바구니",
+        "en": "Cart"
+      },
+      "keywords": [
+        "장바구니",
+        "쇼핑",
+        "담기",
+        "cart",
+        "shopping",
+        "basket"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "empty",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "작은 상자가 바구니 안으로 내려옵니다.",
+        "en": "A small parcel settles into the basket."
+      },
+      "order": 93,
+      "stateLabels": {
+        "ko": {
+          "empty": "비어 있음",
+          "filled": "담김"
+        },
+        "en": {
+          "empty": "Empty",
+          "filled": "Filled"
+        }
+      },
+      "sha256": "b0eb805602409d39c17a3a10c72e8e0f6d1b986192b28dc94a9af80b11a8ff9e",
+      "states": [
+        "empty",
+        "filled"
+      ],
+      "codePath": "modules/cart.js"
+    },
+    {
+      "id": "bag",
+      "name": {
+        "ko": "쇼핑백",
+        "en": "Shopping bag"
+      },
+      "keywords": [
+        "쇼핑백",
+        "가방",
+        "쇼핑",
+        "bag",
+        "shopping",
+        "carry"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "손잡이 사이로 포장지가 살짝 올라옵니다.",
+        "en": "Tissue paper peeks up between the handles."
+      },
+      "order": 94,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "packed": "포장됨"
+        },
+        "en": {
+          "resting": "Resting",
+          "packed": "Packed"
+        }
+      },
+      "sha256": "511bab76207b66f8dfee538450a1a5fb62569cfaaf8c473861eb844af9064eaf",
+      "states": [
+        "resting",
+        "packed"
+      ],
+      "codePath": "modules/bag.js"
+    },
+    {
+      "id": "wallet",
+      "name": {
+        "ko": "지갑",
+        "en": "Wallet"
+      },
+      "keywords": [
+        "지갑",
+        "카드",
+        "결제",
+        "wallet",
+        "money",
+        "pocket"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "잠금띠가 돌아가고 안쪽 카드가 올라옵니다.",
+        "en": "The snap strap swings aside and a card slides up."
+      },
+      "order": 95,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "3354f52cdb1ee5c99488053fa266a27fff99427496dcafac5319dbc668e16434",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/wallet.js"
+    },
+    {
+      "id": "card",
+      "name": {
+        "ko": "결제 카드",
+        "en": "Payment card"
+      },
+      "keywords": [
+        "결제",
+        "카드",
+        "비접촉",
+        "payment",
+        "card",
+        "contactless"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "칩 옆에 비접촉 신호가 나타납니다.",
+        "en": "Contactless arcs illuminate beside the chip."
+      },
+      "order": 96,
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "sha256": "b6e3aab25a2f40b05f3ec96a013c7a10b05129a10f6226216ebe020f1799e170",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/card.js"
+    },
+    {
+      "id": "gift",
+      "name": {
+        "ko": "선물",
+        "en": "Gift"
+      },
+      "keywords": [
+        "선물",
+        "리본",
+        "상자",
+        "gift",
+        "present",
+        "ribbon"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "closed",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "리본이 달린 뚜껑이 들리며 상자가 열립니다.",
+        "en": "The ribboned lid lifts to open the gift."
+      },
+      "order": 97,
+      "stateLabels": {
+        "ko": {
+          "closed": "닫힘",
+          "open": "열림"
+        },
+        "en": {
+          "closed": "Closed",
+          "open": "Open"
+        }
+      },
+      "sha256": "5bd0e01b3d2cc1f44585c70f2dab5851a964a0201842fc8909c0c9c5874fa026",
+      "states": [
+        "closed",
+        "open"
+      ],
+      "codePath": "modules/gift.js"
+    },
+    {
+      "id": "ticket",
+      "name": {
+        "ko": "티켓",
+        "en": "Ticket"
+      },
+      "keywords": [
+        "티켓",
+        "입장권",
+        "예약",
+        "ticket",
+        "admission",
+        "booking"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "whole",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "작은 티켓 조각이 절취선을 따라 분리됩니다.",
+        "en": "The small stub separates along the perforation."
+      },
+      "order": 98,
+      "stateLabels": {
+        "ko": {
+          "whole": "연결됨",
+          "separated": "분리됨"
+        },
+        "en": {
+          "whole": "Whole",
+          "separated": "Separated"
+        }
+      },
+      "sha256": "197befffc12f7f787c599c76444268b6392ce1bb6bfe72263d736447fecf7368",
+      "states": [
+        "whole",
+        "separated"
+      ],
+      "codePath": "modules/ticket.js"
+    },
+    {
+      "id": "coin",
+      "name": {
+        "ko": "동전",
+        "en": "Coin"
+      },
+      "keywords": [
+        "동전",
+        "화폐",
+        "금액",
+        "coin",
+        "currency",
+        "money"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 280,
+      "description": {
+        "ko": "동전 가장자리의 빛과 가운데 색이 선명해집니다.",
+        "en": "The coin face fills as an edge glint appears."
+      },
+      "order": 99,
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "selected": "선택됨"
+        },
+        "en": {
+          "idle": "Idle",
+          "selected": "Selected"
+        }
+      },
+      "sha256": "0a71f3e147be833a0bc38d9952e84340dc700755cbf94c7a6d02742d77383dd7",
+      "states": [
+        "idle",
+        "selected"
+      ],
+      "codePath": "modules/coin.js"
+    },
+    {
+      "id": "chart",
+      "name": {
+        "ko": "막대 차트",
+        "en": "Bar chart"
+      },
+      "keywords": [
+        "차트",
+        "통계",
+        "데이터",
+        "chart",
+        "bars",
+        "analytics"
+      ],
+      "category": "commerce",
+      "version": "1.2.0",
+      "accent": "#a8c6b4",
+      "defaultState": "compact",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "세 막대가 각각의 기준선에서 펼쳐집니다.",
+        "en": "Three bars extend from their shared baseline."
+      },
+      "order": 100,
+      "stateLabels": {
+        "ko": {
+          "compact": "축소",
+          "expanded": "펼침"
+        },
+        "en": {
+          "compact": "Compact",
+          "expanded": "Expanded"
+        }
+      },
+      "sha256": "575279bb72f8de01f51e2eaf30feae5b881939a1049670583a3791605618426f",
+      "states": [
+        "compact",
+        "expanded"
+      ],
+      "codePath": "modules/chart.js"
+    },
+    {
+      "id": "calendar",
+      "name": {
+        "ko": "달력",
+        "en": "Calendar"
+      },
+      "keywords": [
+        "달력",
+        "날짜",
+        "일정",
+        "calendar",
+        "date",
+        "schedule"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "날짜 하나에 부드러운 원형 표시가 생깁니다.",
+        "en": "A soft circular marker selects one date."
+      },
+      "order": 101,
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "selected": "선택됨"
+        },
+        "en": {
+          "idle": "Idle",
+          "selected": "Selected"
+        }
+      },
+      "sha256": "842b8a404a6f27ccedc5a332a786d1804c1183c9a266c1230d2950746ca57e97",
+      "states": [
+        "idle",
+        "selected"
+      ],
+      "codePath": "modules/calendar.js"
+    },
+    {
+      "id": "clock",
+      "name": {
+        "ko": "시계",
+        "en": "Clock"
+      },
+      "keywords": [
+        "시계",
+        "시간",
+        "시침",
+        "clock",
+        "time",
+        "hands"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "morning",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 400,
+      "description": {
+        "ko": "분침과 시침이 같은 축을 중심으로 이동합니다.",
+        "en": "The hour and minute hands advance around one pivot."
+      },
+      "order": 102,
+      "stateLabels": {
+        "ko": {
+          "morning": "오전",
+          "later": "이후"
+        },
+        "en": {
+          "morning": "Morning",
+          "later": "Later"
+        }
+      },
+      "sha256": "7a4a17e94ff4ad4f0355bc4a13ce4ae0903c4dee94ccfd79fb6f468724def5fe",
+      "states": [
+        "morning",
+        "later"
+      ],
+      "codePath": "modules/clock.js"
+    },
+    {
+      "id": "stopwatch",
+      "name": {
+        "ko": "스톱워치",
+        "en": "Stopwatch"
+      },
+      "keywords": [
+        "스톱워치",
+        "타이머",
+        "측정",
+        "stopwatch",
+        "timer",
+        "timing"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "버튼이 눌리고 바늘이 정해진 위치로 이동합니다.",
+        "en": "The crown presses and the hand moves to a new position."
+      },
+      "order": 103,
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "active": "활성"
+        },
+        "en": {
+          "idle": "Idle",
+          "active": "Active"
+        }
+      },
+      "sha256": "20b28c97cd6c5bc37ebefea920f33cce3716061304423f0f2e722774972aa282",
+      "states": [
+        "idle",
+        "active"
+      ],
+      "codePath": "modules/stopwatch.js"
+    },
+    {
+      "id": "flag",
+      "name": {
+        "ko": "깃발",
+        "en": "Flag"
+      },
+      "keywords": [
+        "깃발",
+        "표시",
+        "목표",
+        "flag",
+        "marker",
+        "goal"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "깃대에 고정된 천이 바람 방향으로 기울어집니다.",
+        "en": "The fabric leans with the breeze around its fixed pole."
+      },
+      "order": 104,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "waving": "바람"
+        },
+        "en": {
+          "resting": "Resting",
+          "waving": "Waving"
+        }
+      },
+      "sha256": "e4845950554e69daee27e6010a9f47509fbb619c2cfb3d3862ed7ff9c156331c",
+      "states": [
+        "resting",
+        "waving"
+      ],
+      "codePath": "modules/flag.js"
+    },
+    {
+      "id": "pin",
+      "name": {
+        "ko": "위치 핀",
+        "en": "Location pin"
+      },
+      "keywords": [
+        "위치",
+        "핀",
+        "장소",
+        "pin",
+        "location",
+        "place"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#d88e98",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 260,
+      "description": {
+        "ko": "핀의 가운데 표시가 채워져 선택한 장소를 나타냅니다.",
+        "en": "The center marker fills to indicate the selected place."
+      },
+      "order": 105,
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "selected": "선택됨"
+        },
+        "en": {
+          "idle": "Idle",
+          "selected": "Selected"
+        }
+      },
+      "sha256": "1671f169ee1ab0d05885df07a832f85cf65e3b93f80604dfa24443af758bee90",
+      "states": [
+        "idle",
+        "selected"
+      ],
+      "codePath": "modules/pin.js"
+    },
+    {
+      "id": "compass",
+      "name": {
+        "ko": "나침반",
+        "en": "Compass"
+      },
+      "keywords": [
+        "나침반",
+        "방향",
+        "탐색",
+        "compass",
+        "direction",
+        "bearing"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 400,
+      "description": {
+        "ko": "나침반 바늘이 중심축에서 새로운 방향으로 돌아갑니다.",
+        "en": "The needle turns on its center pivot to a new bearing."
+      },
+      "order": 106,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "aligned": "방향 전환"
+        },
+        "en": {
+          "resting": "Resting",
+          "aligned": "Aligned"
+        }
+      },
+      "sha256": "756418f7374c94168e1b9cf35bff2adc3253c43b2ea05dfc7f24e26da96522bd",
+      "states": [
+        "resting",
+        "aligned"
+      ],
+      "codePath": "modules/compass.js"
+    },
+    {
+      "id": "sun",
+      "name": {
+        "ko": "해",
+        "en": "Sun"
+      },
+      "keywords": [
+        "해",
+        "햇빛",
+        "날씨",
+        "sun",
+        "sunlight",
+        "weather"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "soft",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "햇살이 중심에서 바깥으로 퍼집니다.",
+        "en": "The rays spread outward as the sun brightens."
+      },
+      "order": 107,
+      "stateLabels": {
+        "ko": {
+          "soft": "은은함",
+          "bright": "밝음"
+        },
+        "en": {
+          "soft": "Soft",
+          "bright": "Bright"
+        }
+      },
+      "sha256": "78ff5fe3dacd89e046ace7e83f4bec04f2e6348139e2acf403b6a4e1424e2d4c",
+      "states": [
+        "soft",
+        "bright"
+      ],
+      "codePath": "modules/sun.js"
+    },
+    {
+      "id": "moon",
+      "name": {
+        "ko": "달",
+        "en": "Moon"
+      },
+      "keywords": [
+        "달",
+        "밤",
+        "별",
+        "moon",
+        "night",
+        "stars"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "quiet",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 320,
+      "description": {
+        "ko": "초승달 옆에 두 개의 작은 별이 나타납니다.",
+        "en": "Two small stars appear beside the crescent."
+      },
+      "order": 108,
+      "stateLabels": {
+        "ko": {
+          "quiet": "고요함",
+          "starry": "별빛"
+        },
+        "en": {
+          "quiet": "Quiet",
+          "starry": "Starry"
+        }
+      },
+      "sha256": "1f92b35199f25f7610acb43e0b599da65069ad88faabcfb5185c503b67d7b172",
+      "states": [
+        "quiet",
+        "starry"
+      ],
+      "codePath": "modules/moon.js"
+    },
+    {
+      "id": "umbrella",
+      "name": {
+        "ko": "우산",
+        "en": "Umbrella"
+      },
+      "keywords": [
+        "우산",
+        "비",
+        "날씨",
+        "umbrella",
+        "rain",
+        "weather"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#9fb9d4",
+      "defaultState": "open",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 380,
+      "description": {
+        "ko": "살대와 천이 손잡이 축을 따라 접힙니다.",
+        "en": "The ribs and canopy fold toward the central shaft."
+      },
+      "order": 109,
+      "stateLabels": {
+        "ko": {
+          "open": "열림",
+          "folded": "접힘"
+        },
+        "en": {
+          "open": "Open",
+          "folded": "Folded"
+        }
+      },
+      "sha256": "49fe10aa6951013b5df4468ed99cfe37b6ff751553faccdd3030337b762c987d",
+      "states": [
+        "open",
+        "folded"
+      ],
+      "codePath": "modules/umbrella.js"
+    },
+    {
+      "id": "coffee",
+      "name": {
+        "ko": "커피",
+        "en": "Coffee"
+      },
+      "keywords": [
+        "커피",
+        "컵",
+        "휴식",
+        "coffee",
+        "cup",
+        "break"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 360,
+      "description": {
+        "ko": "컵 위로 두 줄기의 따뜻한 김이 올라옵니다.",
+        "en": "Two wisps of steam rise above the cup."
+      },
+      "order": 110,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "hot": "따뜻함"
+        },
+        "en": {
+          "resting": "Resting",
+          "hot": "Hot"
+        }
+      },
+      "sha256": "f2a2939cef51bfbda9e6ce7bcbd6a9f76cc70382b131c4658de3ab92ddd4629a",
+      "states": [
+        "resting",
+        "hot"
+      ],
+      "codePath": "modules/coffee.js"
+    },
+    {
+      "id": "rocket",
+      "name": {
+        "ko": "로켓",
+        "en": "Rocket"
+      },
+      "keywords": [
+        "로켓",
+        "발사",
+        "추진",
+        "rocket",
+        "launch",
+        "thrust"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#b7a4ff",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 340,
+      "description": {
+        "ko": "기체는 그대로 두고 노즐 아래 불꽃이 펼쳐집니다.",
+        "en": "A plume opens beneath the nozzle while the rocket stays in place."
+      },
+      "order": 111,
+      "stateLabels": {
+        "ko": {
+          "idle": "기본",
+          "ignited": "점화"
+        },
+        "en": {
+          "idle": "Idle",
+          "ignited": "Ignited"
+        }
+      },
+      "sha256": "dda3d57e936f1b6c1691aad0a110b614e210259207ef4ee867a624f4650f8581",
+      "states": [
+        "idle",
+        "ignited"
+      ],
+      "codePath": "modules/rocket.js"
+    },
+    {
+      "id": "trophy",
+      "name": {
+        "ko": "트로피",
+        "en": "Trophy"
+      },
+      "keywords": [
+        "트로피",
+        "상",
+        "우승",
+        "trophy",
+        "award",
+        "prize"
+      ],
+      "category": "lifestyle",
+      "version": "1.2.0",
+      "accent": "#e5b86f",
+      "defaultState": "resting",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 300,
+      "description": {
+        "ko": "컵의 별이 선명해지고 작은 반짝임이 나타납니다.",
+        "en": "The cup emblem brightens and small glints appear."
+      },
+      "order": 112,
+      "stateLabels": {
+        "ko": {
+          "resting": "기본",
+          "celebrated": "반짝임"
+        },
+        "en": {
+          "resting": "Resting",
+          "celebrated": "Celebrated"
+        }
+      },
+      "sha256": "679b0033ded15988eb1f3f3c3298349764f24e1373111e9f3d3b35dbd9cdac04",
+      "states": [
+        "resting",
+        "celebrated"
+      ],
+      "codePath": "modules/trophy.js"
     }
   ]
 }

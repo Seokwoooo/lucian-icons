@@ -5,7 +5,7 @@ description: Use when the user requests Lucian Icons, lucian-icons, original int
 
 # Lucian Icons
 
-Original SVG icons, version 1.1.0, MIT. Gallery: https://lucianlabs.dev/icons/.
+Original SVG icons, version 1.2.0, MIT. Gallery: https://lucianlabs.dev/icons/.
 This installed package works offline. `<skill-dir>` is the folder containing this file. Node.js 18 or later runs the CLI; no package installation is needed.
 
 1. Inspect the target project, its framework, theme, icon locations, existing labels and event handlers. Identify the real source of state and confirm the intended insertion point from the task.

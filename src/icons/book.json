@@ -1,0 +1,54 @@
+{
+  "id": "book",
+  "name": {
+    "ko": "책",
+    "en": "Book"
+  },
+  "keywords": [
+    "책",
+    "읽기",
+    "페이지",
+    "book",
+    "reading",
+    "page"
+  ],
+  "category": "files",
+  "version": "1.2.0",
+  "accent": "#e5b86f",
+  "defaultState": "right",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 410,
+  "description": {
+    "ko": "책등을 축으로 한 페이지가 넘어갑니다.",
+    "en": "A page turns across the spine of an open book."
+  },
+  "parts": {
+    "page": {
+      "transformOrigin": "24px 24px",
+      "transform": "scaleX(1)"
+    }
+  },
+  "states": {
+    "right": {},
+    "left": {
+      "page": {
+        "transform": "scaleX(-1)"
+      }
+    }
+  },
+  "svg": "<path d=\"M6 11q9-4 18 1 9-5 18-1v27q-9-4-18 2-9-6-18-2z\" fill=\"var(--li-paper)\"/><path d=\"M24 12q9-5 18-1v27q-9-4-18 2z\" fill=\"var(--li-accent)\"/><path d=\"M11 18q4-1 8 1m-8 5q4-1 8 1\" opacity=\".4\"/><g data-part=\"page\"><path d=\"M24 12q8-4 15-3v25q-8 0-15 6z\" fill=\"var(--li-paper)\"/><path d=\"m29 17 5-1m-5 7 5-1\" opacity=\".45\"/></g><path d=\"M24 12v28\"/>",
+  "order": 21,
+  "stateLabels": {
+    "ko": {
+      "right": "오른쪽",
+      "left": "왼쪽"
+    },
+    "en": {
+      "right": "Right",
+      "left": "Left"
+    }
+  }
+}

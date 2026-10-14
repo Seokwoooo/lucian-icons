@@ -1,0 +1,53 @@
+{
+  "id": "cloud",
+  "name": {
+    "ko": "클라우드",
+    "en": "Cloud"
+  },
+  "keywords": [
+    "클라우드",
+    "구름",
+    "저장소",
+    "cloud",
+    "storage",
+    "weather"
+  ],
+  "category": "files",
+  "version": "1.2.0",
+  "accent": "#9fb9d4",
+  "defaultState": "scattered",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 390,
+  "description": {
+    "ko": "작은 구름이 큰 구름 앞으로 모입니다.",
+    "en": "A smaller cloud drifts in front of the larger one."
+  },
+  "parts": {
+    "small": {
+      "transform": "translate(0px,0px)"
+    }
+  },
+  "states": {
+    "scattered": {},
+    "gathered": {
+      "small": {
+        "transform": "translate(-5px,-2px)"
+      }
+    }
+  },
+  "svg": "<path d=\"M13 34a9 9 0 0 1-1-18 12 12 0 0 1 23 2 8 8 0 0 1-1 16z\" fill=\"var(--li-accent)\"/><g data-part=\"small\"><path d=\"M24 40a6 6 0 0 1-1-12 8 8 0 0 1 15 1 5.5 5.5 0 0 1-1 11z\" fill=\"var(--li-paper)\"/></g>",
+  "order": 30,
+  "stateLabels": {
+    "ko": {
+      "scattered": "흩어짐",
+      "gathered": "모임"
+    },
+    "en": {
+      "scattered": "Scattered",
+      "gathered": "Gathered"
+    }
+  }
+}

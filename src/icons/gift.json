@@ -1,0 +1,54 @@
+{
+  "id": "gift",
+  "name": {
+    "ko": "선물",
+    "en": "Gift"
+  },
+  "keywords": [
+    "선물",
+    "리본",
+    "상자",
+    "gift",
+    "present",
+    "ribbon"
+  ],
+  "category": "commerce",
+  "version": "1.2.0",
+  "accent": "#d88e98",
+  "defaultState": "closed",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 360,
+  "description": {
+    "ko": "리본이 달린 뚜껑이 들리며 상자가 열립니다.",
+    "en": "The ribboned lid lifts to open the gift."
+  },
+  "parts": {
+    "lid": {
+      "transformOrigin": "24px 18px",
+      "transform": "translateY(0px) rotate(0deg)"
+    }
+  },
+  "states": {
+    "closed": {},
+    "open": {
+      "lid": {
+        "transform": "translateY(-4px) rotate(-5deg)"
+      }
+    }
+  },
+  "svg": "<rect x=\"10\" y=\"21\" width=\"28\" height=\"20\" rx=\"2\" fill=\"var(--li-paper)\"/><path d=\"M21 22h6v19h-6z\" fill=\"var(--li-accent)\"/><g data-part=\"lid\"><path d=\"M24 16c-11 0-13-4-10-7 4-4 10 7 10 7Zm0 0c11 0 13-4 10-7-4-4-10 7-10 7Z\" fill=\"var(--li-accent)\"/><rect x=\"7\" y=\"16\" width=\"34\" height=\"7\" rx=\"2\" fill=\"var(--li-accent)\"/><path d=\"M21 16h6v7h-6z\" fill=\"var(--li-paper)\"/></g>",
+  "order": 97,
+  "stateLabels": {
+    "ko": {
+      "closed": "닫힘",
+      "open": "열림"
+    },
+    "en": {
+      "closed": "Closed",
+      "open": "Open"
+    }
+  }
+}

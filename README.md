@@ -1,6 +1,6 @@
 # Lucian Icons
 
-Twelve original interactive SVG icons. Small motions, thoughtful details. Dependency-free, MIT licensed, with a portable Claude Code and Codex skill.
+112 original interactive SVG icons. Small motions, thoughtful details. Dependency-free, MIT licensed, with a portable Claude Code and Codex skill.
 
 Gallery: https://lucianlabs.dev/icons/
 
@@ -19,8 +19,8 @@ Source: https://github.com/Seokwoooo/lucian-icons (currently private). Public so
 | Bookmark | off / on, fill and saved mark |
 | Download | idle / progress / success / error, real progress API |
 | Search | idle / searching, a short lens sweep |
-| Power | off / on, ring and indicator |
-| Mouse click | idle / pressed, left button, wheel and click rays |
+| Power | off / on, split ring and stem fill |
+| Mouse click | idle / pressed, left button press and click rays |
 | Cursor | idle / pressed, pointer fill and click rays |
 
 ## Build and preview
@@ -39,7 +39,9 @@ Browser QA uses Python Playwright and an installed Chromium (`/usr/bin/chromium`
 
 ## Gallery autoplay
 
-Visible previews demonstrate one icon at a time, with an approaching cursor and a click indicator. Pause or resume from the header or collection controls. The choice is saved locally. Direct interaction takes priority; touched previews are excluded until autoplay is re-enabled. Hidden tabs, offscreen previews and an open inspector stop the demo. Reduced motion disables autoplay while keeping manual state controls. These gallery timers are never included in exported icons or the skill.
+All previews that are at least 90 percent in view play concurrently, each with an approaching cursor and click indicator. Pause or resume from the header or collection controls. The choice is saved locally. Direct interaction stops only the touched preview until autoplay is re-enabled. Hidden tabs, offscreen previews and an open inspector stop their demos. Reduced motion disables autoplay while keeping manual state controls. These gallery timers are never included in exported icons or the skill. Search English/Korean keywords and filter by category.
+
+The catalog contains 112 icons across files, communication, people, security, navigation, editing, media, devices, commerce and everyday objects. Use the [live catalog](https://lucianlabs.dev/icons/catalog.json) or the offline skill search to find every ID and its supported states. The table above lists the original 12.
 
 Motion QA: `python tests/autoplay.py`, `python tests/motion-regression.py`, and `FRAME_OUT=.artifacts/motion-after python tests/motion-frames.py`. The frame script captures forward and reverse transitions at 60fps and readable contact sheets.
 
