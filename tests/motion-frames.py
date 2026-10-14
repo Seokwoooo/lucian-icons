@@ -14,7 +14,7 @@ with sync_playwright() as p:
   page.evaluate('''direction=>{for(const{e,d}of items){for(const a of e.shadowRoot.querySelector('svg').getAnimations({subtree:true}))a.finish();e.setState(direction==='forward'?d.to:d.from);getComputedStyle(e.shadowRoot.querySelector('[data-part]')).transform}window.animations=items.flatMap(({e})=>e.shadowRoot.querySelector('svg').getAnimations({subtree:true}));for(const a of animations){a.pause();a.currentTime=0}}''',direction)
   for frame in range(49):
    page.evaluate('ms=>{for(const a of animations)a.currentTime=ms}',frame*1000/60)
-   page.screenshot(path=str(out/f'{direction}-{frame:02}.png'))
+   page.screenshot(path=str(out/f'{direction}-{frame:02}.png'),full_page=True)
  # Contact sheets render independent copies at the same exact sample times.
  for direction in ['forward','reverse']:
   for offset in range(0,len(plans),3):
@@ -23,5 +23,5 @@ with sync_playwright() as p:
    page.set_viewport_size({'width':1400,'height':660})
    page.evaluate('''plans=>{const times=[0,50,100,150,220,320,450,800];const main=document.querySelector('#audit');main.style.gridTemplateColumns='repeat(8,1fr)';main.innerHTML=plans.flatMap(d=>times.map(ms=>`<article style="min-height:194px"><label>${d.id} / ${ms}ms</label><lucian-${d.id} size="96" state="${d.from}" progress="64" data-to="${d.to}" data-ms="${ms}"></lucian-${d.id}></article>`)).join('');for(const e of main.querySelectorAll('[data-to]')){for(const a of e.shadowRoot.querySelector('svg').getAnimations({subtree:true}))a.finish();getComputedStyle(e.shadowRoot.querySelector('[data-part]')).transform;e.setState(e.dataset.to);getComputedStyle(e.shadowRoot.querySelector('[data-part]')).transform;for(const a of e.shadowRoot.querySelector('svg').getAnimations({subtree:true})){a.pause();a.currentTime=Number(e.dataset.ms)}}}''',group)
    page.screenshot(path=str(out/f'sheet-{direction}-{offset//3}.png'))
- (out/'frames.json').write_text(json.dumps({'fps':60,'frames_per_direction':49,'directions':['forward','reverse'],'plans':plans},indent=2))
+ (out/'frames.json').write_text(json.dumps({'source':base,'fps':60,'frames_per_direction':49,'directions':['forward','reverse'],'plans':plans},indent=2))
  b.close();print(json.dumps({'frames':98,'sheets':2*((len(plans)+2)//3),'output':str(out)}))

@@ -2,7 +2,7 @@
 
 Date: 2026-10-14 UTC. Product path `/icons/`.
 
-## Release 1.1.0 local checks
+## Release 1.1.0 checks
 
 - Added mouse click and cursor icons, now 12 definitions from the same catalog. New source and skill archives use version 1.1.0; original 1.0.0 archive URLs are preserved.
 - Gallery autoplay uses one visible preview at a time, a decorative cursor and click ripple, two synchronized pause controls and a saved preference. Direct input wins. Inspector, hidden-tab, offscreen and reduced-motion checks passed. No autoplay code is included in the runtime or exported icons.
@@ -11,7 +11,9 @@ Date: 2026-10-14 UTC. Product path `/icons/`.
 - Captured 98 animation frames before and 98 after the fixes, with forward and reverse contact sheets. Inspected keyframes and all 12 icons at 24/32/48px in both themes. Evidence: `.artifacts/motion-before/`, `.artifacts/motion-after/`, `.artifacts/small-resting.png`, `.artifacts/small-active.png`.
 - Node tests: 5 passed. Browser acceptance: 12 icons, all states/sizes, rapid inputs, duplicate instances, remove/reinsert, 14 independent HTML executions, 72 asset URLs, both languages/themes and widths 320/390/768/1440 passed. Zero page errors or HTTP errors.
 - WCAG 2 A/AA and 2.1 AA automated scans: zero violations in light gallery, dark gallery and inspector.
-- Production deployment verification is recorded separately in `.artifacts/production-verification.json` after the Git-triggered release is READY.
+- Git-triggered production deployment `dpl_3xt39sXbRfX6Z4GFGqPsr6ThWAG7` reached READY for commit `07cb63b`. Canonical and origin URLs returned version 1.1.0 and all 12 entries. The following documentation and capture-framing commit does not change the application.
+- Repeated acceptance, autoplay, interrupted-motion tests and the three automated accessibility scans on the canonical public URL: passed. Captured public desktop/mobile screenshots and frame sheets. Public catalog, all 72 manifest hashes and the downloaded skill search/retrieval flow passed. Original 28 asset hashes, homepage and both UX/UI page titles/statuses remained unchanged; no page errors.
+- Existing route version `fc25bc36-185c-4f45-8e7f-8e75cecacd10` is unchanged. Latest deployment metadata and production verification are also recorded in `.artifacts/release.json` and `.artifacts/production-verification.json`.
 
 ## Release 1.0.0 baseline
 
