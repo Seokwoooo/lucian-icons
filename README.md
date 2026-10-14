@@ -1,6 +1,6 @@
 # Lucian Icons
 
-Ten original interactive SVG icons. Small motions, thoughtful details. Dependency-free, MIT licensed, with a portable Claude Code and Codex skill.
+Twelve original interactive SVG icons. Small motions, thoughtful details. Dependency-free, MIT licensed, with a portable Claude Code and Codex skill.
 
 Gallery: https://lucianlabs.dev/icons/
 
@@ -20,6 +20,8 @@ Source: https://github.com/Seokwoooo/lucian-icons (currently private). Public so
 | Download | idle / progress / success / error, real progress API |
 | Search | idle / searching, a short lens sweep |
 | Power | off / on, ring and indicator |
+| Mouse click | idle / pressed, left button, wheel and click rays |
+| Cursor | idle / pressed, pointer fill and click rays |
 
 ## Build and preview
 
@@ -34,6 +36,12 @@ python -m http.server 4173 -d dist
 Open http://localhost:4173/icons/. The output is `dist/icons/`; it is intended to be added to an existing site's `/icons/` directory. It does not replace root routes, install a service worker, or change DNS. Do not publish it over an occupied path.
 
 Browser QA uses Python Playwright and an installed Chromium (`/usr/bin/chromium` by default). Run `python tests/gallery.py`, `python tests/runtime.py`, and `python tests/acceptance.py` with the preview server running. `TEST_URL` can select a deployed base URL.
+
+## Gallery autoplay
+
+Visible previews demonstrate one icon at a time, with an approaching cursor and a click indicator. Pause or resume from the header or collection controls. The choice is saved locally. Direct interaction takes priority; touched previews are excluded until autoplay is re-enabled. Hidden tabs, offscreen previews and an open inspector stop the demo. Reduced motion disables autoplay while keeping manual state controls. These gallery timers are never included in exported icons or the skill.
+
+Motion QA: `python tests/autoplay.py`, `python tests/motion-regression.py`, and `FRAME_OUT=.artifacts/motion-after python tests/motion-frames.py`. The frame script captures forward and reverse transitions at 60fps and readable contact sheets.
 
 ## Use one icon
 

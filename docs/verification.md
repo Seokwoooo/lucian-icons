@@ -1,6 +1,21 @@
 # Verification record
 
-Date: 2026-10-14 UTC. Published release 1.0.0. Product path `/icons/`.
+Date: 2026-10-14 UTC. Product path `/icons/`.
+
+## Release 1.1.0 local checks
+
+- Added mouse click and cursor icons, now 12 definitions from the same catalog. New source and skill archives use version 1.1.0; original 1.0.0 archive URLs are preserved.
+- Gallery autoplay uses one visible preview at a time, a decorative cursor and click ripple, two synchronized pause controls and a saved preference. Direct input wins. Inspector, hidden-tab, offscreen and reduced-motion checks passed. No autoplay code is included in the runtime or exported icons.
+- Download symbols fade out before the next symbol appears. Every pair of its four states, including 48 mid-transition reversals, was sampled at 60fps without overlapping glyphs. Progress contrast was increased for small light-theme previews.
+- Envelope opening stages the flap before the letter; the nested viewport clips the letter inside the envelope. Folder skew and protruding lower paper edge were removed. Lock keyhole stays fixed while its shackle opens.
+- Captured 98 animation frames before and 98 after the fixes, with forward and reverse contact sheets. Inspected keyframes and all 12 icons at 24/32/48px in both themes. Evidence: `.artifacts/motion-before/`, `.artifacts/motion-after/`, `.artifacts/small-resting.png`, `.artifacts/small-active.png`.
+- Node tests: 5 passed. Browser acceptance: 12 icons, all states/sizes, rapid inputs, duplicate instances, remove/reinsert, 14 independent HTML executions, 72 asset URLs, both languages/themes and widths 320/390/768/1440 passed. Zero page errors or HTTP errors.
+- WCAG 2 A/AA and 2.1 AA automated scans: zero violations in light gallery, dark gallery and inspector.
+- Production deployment verification is recorded separately in `.artifacts/production-verification.json` after the Git-triggered release is READY.
+
+## Release 1.0.0 baseline
+
+The following production observations were completed for the original release.
 
 ## Passed locally
 

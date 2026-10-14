@@ -9,7 +9,7 @@ with sync_playwright() as p:
  errors=[];failures=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('requestfailed',lambda r:failures.append(r.url))
- page.goto(base,wait_until='networkidle');expect(page.locator('.icon-card')).to_have_count(10)
+ page.goto(base,wait_until='networkidle');expect(page.locator('.icon-card')).to_have_count(12)
  page.screenshot(path=str(out/'desktop.png'))
  page.screenshot(path=str(out/'desktop-full.png'),full_page=True)
  page.locator('#search').fill('삭제');expect(page.locator('.icon-card:visible')).to_have_count(1)

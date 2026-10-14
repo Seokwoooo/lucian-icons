@@ -1,0 +1,59 @@
+{
+  "id": "mouse",
+  "name": {
+    "ko": "마우스 클릭",
+    "en": "Mouse click"
+  },
+  "keywords": [
+    "마우스",
+    "클릭",
+    "누르기",
+    "mouse",
+    "click",
+    "press",
+    "input"
+  ],
+  "category": "input",
+  "version": "1.1.0",
+  "accent": "#b7a4ff",
+  "defaultState": "idle",
+  "triggers": [
+    "click",
+    "controlled"
+  ],
+  "duration": 140,
+  "description": {
+    "ko": "왼쪽 버튼과 휠이 눌리고 짧은 선이 클릭을 알립니다.",
+    "en": "The left button and wheel respond with a short click signal."
+  },
+  "parts": {
+    "button": {
+      "fill": "var(--li-accent)",
+      "opacity": ".25"
+    },
+    "wheel": {
+      "transform": "translateY(0px)"
+    },
+    "rays": {
+      "opacity": "0",
+      "transform": "translate(1px,1px)"
+    }
+  },
+  "states": {
+    "idle": {},
+    "pressed": {
+      "button": {
+        "opacity": "1"
+      },
+      "wheel": {
+        "transform": "translateY(1px)"
+      },
+      "rays": {
+        "opacity": "1",
+        "transform": "translate(0px,0px)"
+      }
+    }
+  },
+  "svg": "<rect x=\"12\" y=\"8\" width=\"24\" height=\"34\" rx=\"12\" fill=\"var(--li-paper)\"/><path data-part=\"button\" d=\"M13 21v-1c0-6 4-11 11-11v12z\" stroke=\"none\"/><path d=\"M12 22h24M24 9v13\"/><rect data-part=\"wheel\" x=\"22\" y=\"13\" width=\"4\" height=\"7\" rx=\"2\" fill=\"var(--li-ink)\" stroke=\"var(--li-paper)\" stroke-width=\"1.4\"/><g data-part=\"rays\"><path d=\"m6 12-3-2m7-3-1-3M6 19H2\"/></g>",
+  "order": 11
+}

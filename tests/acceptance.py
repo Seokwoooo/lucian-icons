@@ -48,7 +48,7 @@ with sync_playwright() as p:
  code=page.locator('#copy-text').input_value();assert 'size="32"' in code and '#cc5500' in code and 'state="open"' in code and 'pointerenter' in code
  assert page.locator('#toast').inner_text()!='Copied.'
  (out/'copied-trash.html').write_text(code);page.locator('#close-fallback').click()
- page.locator('#copy-prompt').click();expect(page.locator('#copy-fallback')).to_be_visible();prompt=page.locator('#copy-text').input_value();assert 'setState' in prompt and 'v1.0.0' in prompt and 'lucian-folder' not in prompt;page.locator('#close-fallback').click()
+ page.locator('#copy-prompt').click();expect(page.locator('#copy-fallback')).to_be_visible();prompt=page.locator('#copy-text').input_value();assert 'setState' in prompt and 'v1.1.0' in prompt and 'lucian-folder' not in prompt;page.locator('#close-fallback').click()
  with page.expect_download() as dl:page.locator('#download-svg').click()
  dl.value.save_as(out/'selected-trash.svg');svg=(out/'selected-trash.svg').read_text();assert '#cc5500' in svg and 'width="32"' in svg and 'rotate(32deg)' in svg and 'var(--' not in svg
  with page.expect_download() as dl:page.locator('#download-html').click()
@@ -85,9 +85,9 @@ with sync_playwright() as p:
  for filename,meta in manifest['files'].items():
   r=api.get(base+filename);assert r.status==200,(filename,r.status);assert len(r.body())==meta['bytes'],filename;total+=len(r.body())
  for kind in ['skill','source']:
-  file=out/f'{kind}.zip';file.write_bytes(api.get(base+f'downloads/lucian-icons-{kind}-1.0.0.zip').body())
+  file=out/f'{kind}.zip';file.write_bytes(api.get(base+f'downloads/lucian-icons-{kind}-1.1.0.zip').body())
   with zipfile.ZipFile(file) as z:assert z.testzip() is None;assert any(n.endswith('SKILL.md') for n in z.namelist())
  page.goto(base+'guide.html');expect(page.locator('h1:visible')).to_have_count(1);page.reload();page.locator('#lang').click();expect(page.locator('h1:visible')).to_have_count(1)
- print(json.dumps({'icons':len(catalog),'states_sizes_reversal_duplicates':'passed','offline_html':12,'asset_urls':len(manifest['files']),'total_asset_bytes':total,'console_errors':errors,'http_errors':bad},ensure_ascii=False))
+ print(json.dumps({'icons':len(catalog),'states_sizes_reversal_duplicates':'passed','offline_html':len(catalog)+2,'asset_urls':len(manifest['files']),'total_asset_bytes':total,'console_errors':errors,'http_errors':bad},ensure_ascii=False))
  assert not errors and not bad
  api.dispose();b.close()

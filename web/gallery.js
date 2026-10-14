@@ -1,17 +1,19 @@
 import {copy,stateNames,triggerNames} from './i18n.js';
+import {createAutoplay} from './autoplay.js';
 const $=s=>document.querySelector(s);
 let lang='ko';try{lang=localStorage.getItem('lucian-icons-lang')||((navigator.language||'ko').startsWith('ko')?'ko':'en')}catch{}
 if(!copy[lang])lang='ko';
 let catalog=[],selected=null,selectedDef=null,agent='claude',toastTimer,downloadTimer,downloadProgress=0;
 const modules=new Map(),urls=new Set();
-const t=k=>copy[lang][k]||k;
+const t=k=>(copy[lang][k]||k).replaceAll('{count}',String(catalog.length||document.documentElement.dataset.iconCount));
 const stateText=(id,s)=>id==='power'?(lang==='ko'?(s==='on'?'켜짐':'꺼짐'):(s==='on'?'On':'Off')):stateNames[lang][s]||s;
 const load=async id=>{if(!modules.has(id))modules.set(id,import(`./modules/${id}.js`));return (await modules.get(id)).definition};
+const autoplay=createAutoplay({load,t});
 const palette=dark=>dark?{ink:'#ede9df',paper:'#222628'}:{ink:'#252b2a',paper:'#fffdf8'};
 function iconMarkup(id,size=48,state,extra=''){return `<lucian-${id} size="${size}"${state?` state="${state}"`:''} ${extra}></lucian-${id}>`}
 function syncTheme(){
  const dark=document.documentElement.dataset.theme==='dark';const colors=palette(dark);
- document.querySelectorAll('main lucian-trash,main lucian-folder,main lucian-envelope,main lucian-lock,main lucian-bell,main lucian-heart,main lucian-bookmark,main lucian-download,main lucian-search,main lucian-power').forEach(e=>{e.setAttribute('ink',colors.ink);e.setAttribute('paper',colors.paper)});
+ document.querySelectorAll('main [size]').forEach(e=>{e.setAttribute('ink',colors.ink);e.setAttribute('paper',colors.paper)});
  $('#theme').setAttribute('aria-label',t(dark?'themeLight':'themeDark'));$('#theme').setAttribute('aria-pressed',String(dark));
 }
 function toast(message){clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').classList.add('visible');toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),2600)}
@@ -25,19 +27,19 @@ function localize(){
  document.title=lang==='ko'?'Lucian Icons | 작은 움직임, 분명한 차이':'Lucian Icons | Small motions. Thoughtful details.';
  for(const d of catalog){const card=$(`[data-card="${d.id}"]`);if(card){card.querySelector('.icon-name').textContent=d.name[lang];card.querySelector('.icon-en').textContent=lang==='ko'?d.name.en:d.name.ko;card.querySelector('.detail-link').setAttribute('aria-label',`${d.name[lang]} ${t('settings')}`);updateCardState(card,d)}}
  document.querySelectorAll('.hero-object').forEach(e=>{const d=catalog.find(x=>x.id===e.dataset.icon);e.setAttribute('aria-label',d.name[lang]+' '+t('try'));e.querySelector('.object-action').textContent=d.name[lang]+' ↗'});
- updateInstall();syncTheme();if(selected)updateDetailLabels();if(downloadTimer)$('#demo-download span').textContent=t('cancel');
+ updateInstall();syncTheme();autoplay.localize();if(selected)updateDetailLabels();if(downloadTimer)$('#demo-download span').textContent=t('cancel');
 }
-function search(){const q=$('#search').value.trim().toLocaleLowerCase().normalize('NFKC');let count=0;for(const d of catalog){const hit=[d.id,d.name.ko,d.name.en,...d.keywords].join(' ').toLocaleLowerCase().normalize('NFKC').includes(q);$(`[data-card="${d.id}"]`).hidden=!hit;if(hit)count++}$('#result-count').textContent=`${String(count).padStart(2,'0')} / 10`;$('#empty').hidden=!!count}
+function search(){const q=$('#search').value.trim().toLocaleLowerCase().normalize('NFKC');let count=0;for(const d of catalog){const hit=[d.id,d.name.ko,d.name.en,...d.keywords].join(' ').toLocaleLowerCase().normalize('NFKC').includes(q);$(`[data-card="${d.id}"]`).hidden=!hit;if(hit)count++}$('#result-count').textContent=`${String(count).padStart(2,'0')} / ${catalog.length}`;$('#empty').hidden=!!count;autoplay.refresh()}
 async function cycle(icon,d){await load(d.id);const next=d.states[(d.states.indexOf(icon.state)+1)%d.states.length];if(d.id==='download'&&next==='progress')icon.setProgress(45);icon.setState(next)}
 async function render(){
  const r=await fetch('./catalog.json');if(!r.ok)throw new Error('Catalog fetch failed');catalog=(await r.json()).icons;
  await Promise.all(['trash','folder','lock'].map(load));
  $('#hero-icons').innerHTML=['trash','folder','lock'].map((id,i)=>`<button type="button" class="hero-object" data-icon="${id}"><span class="object-label">0${i+1} / ${id.toUpperCase()}</span>${iconMarkup(id,104,undefined,'ink="#ede9df" paper="#1d2024"')}<span class="object-rule"></span><span class="object-action"></span></button>`).join('');
- for(const b of document.querySelectorAll('.hero-object'))b.addEventListener('click',()=>cycle(b.querySelector(`lucian-${b.dataset.icon}`),catalog.find(d=>d.id===b.dataset.icon)));
+ for(const b of document.querySelectorAll('.hero-object')){const d=catalog.find(d=>d.id===b.dataset.icon);autoplay.register(b,d);b.addEventListener('click',()=>cycle(b.querySelector(`lucian-${b.dataset.icon}`),d))}
  $('#icon-grid').innerHTML=catalog.map((d,i)=>`<article class="icon-card" data-card="${d.id}"><button class="icon-play" type="button">${iconMarkup(d.id,56)}</button><div class="icon-card-head"><div><span class="icon-id">${String(i+1).padStart(2,'0')}</span><span class="icon-name"></span></div><button class="detail-link" type="button">↗</button></div><div class="icon-caption"><span class="icon-en"></span><span class="state-indicator"></span></div></article>`).join('');
  const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){load(e.target.dataset.card).then(()=>updateCardState(e.target,catalog.find(d=>d.id===e.target.dataset.card))).catch(()=>toast(t('errorLoad')));observer.unobserve(e.target)}},{rootMargin:'200px'});
- for(const d of catalog){const card=$(`[data-card="${d.id}"]`);observer.observe(card);card.querySelector('.icon-play').addEventListener('click',async()=>{try{await cycle(card.querySelector(`lucian-${d.id}`),d);updateCardState(card,d)}catch{toast(t('failed'))}});card.querySelector('.detail-link').addEventListener('click',()=>openDetail(d.id))}
- // Load UI examples only near the viewport. No autonomous icon animation.
+ for(const d of catalog){const card=$(`[data-card="${d.id}"]`);observer.observe(card);autoplay.register(card.querySelector('.icon-play'),d,()=>updateCardState(card,d));card.querySelector('.icon-play').addEventListener('click',async()=>{try{await cycle(card.querySelector(`lucian-${d.id}`),d);updateCardState(card,d)}catch{toast(t('failed'))}});card.querySelector('.detail-link').addEventListener('click',()=>openDetail(d.id))}
+ // UI examples remain manually controlled. Autoplay only drives gallery previews.
  const examples=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){Promise.all(['heart','bookmark','bell','download'].map(load)).catch(()=>toast(t('errorLoad')));examples.disconnect()}},{rootMargin:'400px'});examples.observe($('#in-context'));
  localize();search();followHash();
 }
@@ -49,14 +51,14 @@ function updateDetailLabels(){
 }
 let detailRequest=0;
 async function openDetail(id){
- const d=catalog.find(x=>x.id===id);if(!d)return;const request=++detailRequest;
+ const d=catalog.find(x=>x.id===id);if(!d)return;autoplay.suspend(true);const request=++detailRequest;
  try{const def=await load(id);if(request!==detailRequest)return;selected=d;selectedDef=def;
  $('#state').innerHTML=d.states.map(s=>`<option value="${s}">${s}</option>`).join('');$('#state').value=d.defaultState;$('#size').value='48';$('#color').value=d.accent;$('#progress').value='0';$('#trigger').innerHTML=d.triggers.map(s=>`<option value="${s}">${s}</option>`).join('');$('#trigger').value=d.triggers[0];
  const bg=document.documentElement.dataset.theme==='dark'?'dark':'light';$(`input[name=background][value=${bg}]`).checked=true;
  $('#preview-button').innerHTML=iconMarkup(id);$('#small-previews').innerHTML=[24,32,48].map(s=>`<div>${iconMarkup(id,s)}<span>${s}</span></div>`).join('');
  $('#progress-setting').hidden=id!=='download';updateDetailLabels();
  if(!$('#detail').open)$('#detail').showModal();history.replaceState(null,'',`#${id}`);
- }catch{toast(t('errorLoad'))}
+ }catch{autoplay.suspend(false);toast(t('errorLoad'))}
 }
 function updatePreview(){if(!selected)return;const o=options();$('#preview-stage').dataset.background=o.background;$('#small-previews').dataset.background=o.background;$('#color-value').textContent=o.accent.toUpperCase();$('#preview-size').textContent=`${o.size} × ${o.size}`;$('#progress-value').textContent=o.progress+'%';$('#trigger-note').textContent=t(o.trigger==='controlled'?'controlledNote':o.trigger==='hover'?'hoverNote':'clickNote');
  for(const icon of document.querySelectorAll(`#preview-button lucian-${selected.id},#small-previews lucian-${selected.id}`)){for(const k of ['state','accent','ink','paper','progress'])icon.setAttribute(k,String(o[k]));if(icon.closest('#preview-button'))icon.setAttribute('size',String(o.size))}
@@ -75,7 +77,7 @@ function resetDemo(message=false){clearInterval(downloadTimer);downloadTimer=nul
 $('#language').addEventListener('click',()=>{lang=lang==='ko'?'en':'ko';try{localStorage.setItem('lucian-icons-lang',lang)}catch{}localize()});
 $('#theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';try{localStorage.setItem('lucian-icons-theme',dark?'dark':'light')}catch{}syncTheme()});
 $('#search').addEventListener('input',search);
-$('#close-detail').addEventListener('click',()=>$('#detail').close());$('#detail').addEventListener('close',()=>{selected=null;selectedDef=null;detailRequest++;if(catalog.some(d=>`#${d.id}`===location.hash))history.replaceState(null,'','#gallery')});
+$('#close-detail').addEventListener('click',()=>$('#detail').close());$('#detail').addEventListener('close',()=>{selected=null;selectedDef=null;detailRequest++;autoplay.suspend(false);if(catalog.some(d=>`#${d.id}`===location.hash))history.replaceState(null,'','#gallery')});
 $('#close-fallback').addEventListener('click',()=>$('#copy-fallback').close());
 $('#preview-button').addEventListener('click',previewCycle);$('#preview-button').addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')previewSet(true)});$('#preview-button').addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')previewSet(false)});$('#preview-button').addEventListener('focus',()=>previewSet(true));$('#preview-button').addEventListener('blur',()=>previewSet(false));
 for(const id of ['state','trigger','size','color','progress'])$('#'+id).addEventListener('input',updatePreview);document.querySelectorAll('input[name=background]').forEach(e=>e.addEventListener('change',updatePreview));$('#reset-color').addEventListener('click',()=>{$('#color').value=selected.accent;updatePreview()});

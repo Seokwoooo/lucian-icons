@@ -1,5 +1,5 @@
-/* Lucian Icons v1.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '1.0.0';
+/* Lucian Icons v1.1.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '1.1.0';
 export const tokens = { accent: '#b7a4ff', ink: '#252b2a', paper: '#fffdf8' };
 export function normalize(def, options = {}) {
   const color = (value, fallback) => /^#[\da-f]{6}$/i.test(value || '') ? value : fallback;
@@ -38,7 +38,7 @@ export function defineIcon(def) {
     constructor() {
       super();
       this.attachShadow({mode:'open'});
-      this.shadowRoot.innerHTML = `<style>:host{display:inline-flex;vertical-align:middle;line-height:0;flex-shrink:0;contain:layout style}svg{display:block;width:100%;height:100%;overflow:visible} [data-part]{transform-box:view-box;transition:transform ${def.duration || 320}ms ${def.easing || 'cubic-bezier(.2,.8,.2,1)'},fill 220ms ease,opacity 180ms ease,stroke-dashoffset 250ms ease;transform-origin:24px 24px}${def.css || ''}@media(prefers-reduced-motion:reduce){[data-part]{transition:none!important;animation:none!important}}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="var(--li-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${def.svg}</svg>`;
+      this.shadowRoot.innerHTML = `<style>:host{display:inline-flex;vertical-align:middle;line-height:0;flex-shrink:0;contain:layout style}:host>svg{display:block;width:100%;height:100%;overflow:visible} [data-part]{transform-box:view-box;transition:transform ${def.duration || 320}ms ${def.easing || 'cubic-bezier(.2,.8,.2,1)'},fill 220ms ease,opacity 180ms ease,stroke-dashoffset 250ms ease;transform-origin:24px 24px}${def.css || ''}@media(prefers-reduced-motion:reduce){[data-part]{transition:none!important;animation:none!important}}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="var(--li-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${def.svg}</svg>`;
     }
     connectedCallback() { this._render(); }
     attributeChangedCallback() { this._render(); }

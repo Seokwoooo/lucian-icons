@@ -1,0 +1,4 @@
+/* Lucian Icons 1.1.0 | MIT (c) 2026 Lucian */
+import {defineIcon} from './runtime.js';
+export const definition={"id":"cursor","name":{"ko":"커서","en":"Cursor"},"keywords":["커서","포인터","화살표","cursor","pointer","click","select"],"category":"input","version":"1.1.0","accent":"#9fb9d4","defaultState":"idle","triggers":["click","controlled"],"duration":140,"description":{"ko":"포인터가 짧게 눌리며 선택을 표시합니다.","en":"A small press and a clear click signal mark the selection."},"parts":{"pointer":{"fill":"var(--li-paper)","transform":"translate(0px,0px)"},"rays":{"opacity":"0","transform":"translate(1px,1px)"}},"states":{"idle":{},"pressed":{"pointer":{"fill":"var(--li-accent)","transform":"translate(1px,1px)"},"rays":{"opacity":"1","transform":"translate(0px,0px)"}}},"svg":"<g data-part=\"rays\"><path d=\"M8 10H4m7-4-2-3m9 3V2\"/></g><path data-part=\"pointer\" d=\"m13 10 24 17-12 3 6 11-6 3-6-11-6 7z\"/>","order":12};
+defineIcon(definition);

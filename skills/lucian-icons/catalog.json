@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "base": "https://lucianlabs.dev/icons/",
-  "runtimeSha256": "e35f5253ec4fd2d0908309da37cec00f657ff085a14454aff013e08cb78956a9",
+  "runtimeSha256": "94c042a81722bc29701a7ad710bf217e5bda02b48665c296ff6ef2e2f24a87d2",
   "icons": [
     {
       "id": "trash",
@@ -18,7 +18,7 @@
         "bin"
       ],
       "category": "files",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#b7a4ff",
       "defaultState": "closed",
       "triggers": [
@@ -31,7 +31,8 @@
         "ko": "오른쪽 경첩을 축으로 뚜껑이 열립니다.",
         "en": "A hinged lid lifts from its right-hand pivot."
       },
-      "sha256": "5eebcafad4fec207503f290797f8a088a8ae913f3decdb630c8dcd5c3867ff12",
+      "order": 1,
+      "sha256": "7aa69e85649bf2db185287a6f2f2c72e91c2e3e93bd8433f7426aa6a8fd1c903",
       "states": [
         "closed",
         "open"
@@ -53,7 +54,7 @@
         "open"
       ],
       "category": "files",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#e5b86f",
       "defaultState": "closed",
       "triggers": [
@@ -66,7 +67,8 @@
         "ko": "앞면이 내려가며 안쪽 문서가 드러납니다.",
         "en": "The front folds down to reveal a document."
       },
-      "sha256": "eaa65f57750f12de4d2676a70092292c4deddd7c0b32f60ae05dd8bcc11849ba",
+      "order": 2,
+      "sha256": "83b411c5e888583dcbeca48bb8f057b037974c3eb1523a22b7f97c6bb7a5f57c",
       "states": [
         "closed",
         "open"
@@ -88,7 +90,7 @@
         "message"
       ],
       "category": "communication",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#9fb9d4",
       "defaultState": "closed",
       "triggers": [
@@ -101,7 +103,8 @@
         "ko": "덮개가 펼쳐지고 편지가 살짝 올라옵니다.",
         "en": "The flap unfolds and a letter peeks out."
       },
-      "sha256": "c2e1388f14223790cbed2dee69dee9a4299523fe389fbc3c41a31fb2379244f8",
+      "order": 3,
+      "sha256": "b1e0d1d3b3ebde1e7fd469be5e8fd9aeae0964074b4881046adf71285027cf82",
       "states": [
         "closed",
         "open"
@@ -123,7 +126,7 @@
         "password"
       ],
       "category": "controls",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#a8c6b4",
       "defaultState": "locked",
       "triggers": [
@@ -135,7 +138,8 @@
         "ko": "고리의 한쪽이 풀리고 반대쪽 축에서 돌아갑니다.",
         "en": "One end releases while the shackle turns on its anchor."
       },
-      "sha256": "4ba227285c7ecd7ee90835c05cafead00ed76532b84e7087cdef598995e89117",
+      "order": 4,
+      "sha256": "73f4ca63c6b4fd45952c76161564a723b5e7365ad1dbecc51c950e7d4fe1307c",
       "states": [
         "locked",
         "unlocked"
@@ -157,7 +161,7 @@
         "alert"
       ],
       "category": "communication",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#e5b86f",
       "defaultState": "idle",
       "triggers": [
@@ -169,7 +173,8 @@
         "ko": "상단 축에서 울린 뒤 점차 잦아듭니다.",
         "en": "A short ring settles around the top pivot."
       },
-      "sha256": "2c93da8772d85c6ab4578c9759a9e0c07905d10685a2c60f53895a899a309bbe",
+      "order": 5,
+      "sha256": "7035415f21e9cd33d0393823b06005ef650bf9a626811d7d4c6be771b74e845b",
       "states": [
         "idle",
         "ringing"
@@ -191,7 +196,7 @@
         "love"
       ],
       "category": "controls",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#dc8d92",
       "defaultState": "off",
       "triggers": [
@@ -203,7 +208,8 @@
         "ko": "선택하면 안쪽이 채워지고 짧게 반응합니다.",
         "en": "A filled heart answers with a single soft beat."
       },
-      "sha256": "b054475a262224dedea62ca7eda31f58a7e69c9aa37e2cf0314fcd8514f9fd5c",
+      "order": 6,
+      "sha256": "dde2eac574185316b4e97a3d6a40ffd58a39f9298b2b90498134b02cb162ca3f",
       "states": [
         "off",
         "on"
@@ -225,7 +231,7 @@
         "read"
       ],
       "category": "controls",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#b7a4ff",
       "defaultState": "off",
       "triggers": [
@@ -237,7 +243,8 @@
         "ko": "저장 상태는 채움과 작은 표시로 구분됩니다.",
         "en": "A filled ribbon and a mark make saved state clear."
       },
-      "sha256": "446a3ec5141badf72a9b5e4959ff17294da68484be1e11949e0c2f32a35544cb",
+      "order": 7,
+      "sha256": "9a6f49d8a5fb935e43eb4bb30e54278e2dfef0d12a5f7e91204721cd08e7ea67",
       "states": [
         "off",
         "on"
@@ -261,7 +268,7 @@
         "file"
       ],
       "category": "files",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#a8c6b4",
       "defaultState": "idle",
       "triggers": [
@@ -272,7 +279,8 @@
         "ko": "대기, 실제 진행률, 성공, 실패를 각각 표시합니다.",
         "en": "Idle, measured progress, success and failure stay distinct."
       },
-      "sha256": "4fe23ba121d77f2205d3e3140c774dd85c14eab1014060e38416d66f261f2a6a",
+      "order": 8,
+      "sha256": "c3684c95b1d3a9ddd938aabd60d512c069e4e3c9d7fb588dea961e4ff49a653e",
       "states": [
         "idle",
         "progress",
@@ -296,7 +304,7 @@
         "lookup"
       ],
       "category": "controls",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#9fb9d4",
       "defaultState": "idle",
       "triggers": [
@@ -308,7 +316,8 @@
         "ko": "렌즈 안의 작은 빛이 검색 시작을 알립니다.",
         "en": "A quiet sweep inside the lens signals a new search."
       },
-      "sha256": "98042e9fe08eb57b80dd68a1dc3b0a96209b30d3b09936c693d583fcb3b67ee0",
+      "order": 9,
+      "sha256": "0ffb61b739e9f89072408a85dd0347c0905c64925998ae1db9f7eebad70d5538",
       "states": [
         "idle",
         "searching"
@@ -331,7 +340,7 @@
         "switch"
       ],
       "category": "controls",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "accent": "#a8c6b4",
       "defaultState": "off",
       "triggers": [
@@ -343,12 +352,85 @@
         "ko": "전원 링과 표시등이 켜짐 상태를 전달합니다.",
         "en": "The ring and indicator illuminate when power is on."
       },
-      "sha256": "6ac64fae7b94a666b8b7edd67056659672e4b9ec514328727d982274831636d5",
+      "order": 10,
+      "sha256": "52339f33105cf8a57c14af508f9a09a1bbddb8479f09552e5c3771be225a8a29",
       "states": [
         "off",
         "on"
       ],
       "codePath": "modules/power.js"
+    },
+    {
+      "id": "mouse",
+      "name": {
+        "ko": "마우스 클릭",
+        "en": "Mouse click"
+      },
+      "keywords": [
+        "마우스",
+        "클릭",
+        "누르기",
+        "mouse",
+        "click",
+        "press",
+        "input"
+      ],
+      "category": "input",
+      "version": "1.1.0",
+      "accent": "#b7a4ff",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 140,
+      "description": {
+        "ko": "왼쪽 버튼과 휠이 눌리고 짧은 선이 클릭을 알립니다.",
+        "en": "The left button and wheel respond with a short click signal."
+      },
+      "order": 11,
+      "sha256": "af6feea065a5afb88fbd37bbdd9143d5da74f5456e69776d4977c7f313ff5e50",
+      "states": [
+        "idle",
+        "pressed"
+      ],
+      "codePath": "modules/mouse.js"
+    },
+    {
+      "id": "cursor",
+      "name": {
+        "ko": "커서",
+        "en": "Cursor"
+      },
+      "keywords": [
+        "커서",
+        "포인터",
+        "화살표",
+        "cursor",
+        "pointer",
+        "click",
+        "select"
+      ],
+      "category": "input",
+      "version": "1.1.0",
+      "accent": "#9fb9d4",
+      "defaultState": "idle",
+      "triggers": [
+        "click",
+        "controlled"
+      ],
+      "duration": 140,
+      "description": {
+        "ko": "포인터가 짧게 눌리며 선택을 표시합니다.",
+        "en": "A small press and a clear click signal mark the selection."
+      },
+      "order": 12,
+      "sha256": "f6d6af041a5503d58ae6b545e042aa8ff6a83aebbe62c42c9116cf6e84391df9",
+      "states": [
+        "idle",
+        "pressed"
+      ],
+      "codePath": "modules/cursor.js"
     }
   ]
 }

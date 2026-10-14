@@ -1,4 +1,4 @@
-/* Lucian Icons v1.0.0 | MIT (c) 2026 Lucian */
+/* Lucian Icons v1.1.0 | MIT (c) 2026 Lucian */
 import {normalize,staticSVG} from './runtime/icon.js';
 export {staticSVG};
 let runtimePromise;

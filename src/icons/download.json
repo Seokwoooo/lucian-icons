@@ -15,7 +15,7 @@
     "file"
   ],
   "category": "files",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "accent": "#a8c6b4",
   "defaultState": "idle",
   "triggers": [
@@ -28,42 +28,54 @@
   },
   "parts": {
     "arrow": {
-      "opacity": "1",
-      "transform": "translateY(0px)"
+      "opacity": "0",
+      "transform": "translateY(0px)",
+      "transition": "opacity 65ms linear, transform 160ms ease, stroke-dashoffset 250ms ease"
     },
     "track": {
-      "opacity": "0"
+      "opacity": "0",
+      "transition": "opacity 65ms linear, transform 160ms ease, stroke-dashoffset 250ms ease"
     },
     "progress": {
       "opacity": "0",
       "strokeDashoffset": "100",
       "transformOrigin": "24px 19px",
-      "transform": "rotate(-90deg)"
+      "transform": "rotate(-90deg)",
+      "transition": "opacity 65ms linear, transform 160ms ease, stroke-dashoffset 250ms ease"
     },
     "check": {
       "opacity": "0",
-      "transform": "translateY(3px)"
+      "transform": "translateY(3px)",
+      "transition": "opacity 65ms linear, transform 160ms ease, stroke-dashoffset 250ms ease"
     },
     "error": {
       "opacity": "0",
-      "transform": "translateY(3px)"
+      "transform": "translateY(3px)",
+      "transition": "opacity 65ms linear, transform 160ms ease, stroke-dashoffset 250ms ease"
     },
     "tray": {
       "fill": "var(--li-accent)"
     }
   },
   "states": {
-    "idle": {},
+    "idle": {
+      "arrow": {
+        "opacity": "1",
+        "transition": "opacity 100ms linear 75ms, transform 180ms cubic-bezier(.2,.8,.2,1) 65ms, stroke-dashoffset 250ms ease"
+      }
+    },
     "progress": {
       "arrow": {
         "opacity": "0",
         "transform": "translateY(4px)"
       },
       "track": {
-        "opacity": ".2"
+        "opacity": ".2",
+        "transition": "opacity 100ms linear 75ms, transform 180ms cubic-bezier(.2,.8,.2,1) 65ms, stroke-dashoffset 250ms ease"
       },
       "progress": {
-        "opacity": "1"
+        "opacity": "1",
+        "transition": "opacity 100ms linear 75ms, transform 180ms cubic-bezier(.2,.8,.2,1) 65ms, stroke-dashoffset 250ms ease"
       }
     },
     "success": {
@@ -72,7 +84,8 @@
       },
       "check": {
         "opacity": "1",
-        "transform": "translateY(0px)"
+        "transform": "translateY(0px)",
+        "transition": "opacity 100ms linear 75ms, transform 180ms cubic-bezier(.2,.8,.2,1) 65ms, stroke-dashoffset 250ms ease"
       }
     },
     "error": {
@@ -81,9 +94,11 @@
       },
       "error": {
         "opacity": "1",
-        "transform": "translateY(0px)"
+        "transform": "translateY(0px)",
+        "transition": "opacity 100ms linear 75ms, transform 180ms cubic-bezier(.2,.8,.2,1) 65ms, stroke-dashoffset 250ms ease"
       }
     }
   },
-  "svg": "<path data-part=\"tray\" d=\"M7 32h8l3 5h12l3-5h8v8a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3z\"/><g data-part=\"arrow\"><path d=\"M24 5v23m-8-8 8 8 8-8\" stroke-width=\"2.5\"/></g><circle data-part=\"track\" cx=\"24\" cy=\"19\" r=\"10\"/><circle data-part=\"progress\" cx=\"24\" cy=\"19\" r=\"10\" pathLength=\"100\" stroke-dasharray=\"100\" stroke-width=\"3\" stroke=\"var(--li-accent)\"/><path data-part=\"check\" d=\"m15 19 6 6 12-13\" stroke-width=\"3\"/><g data-part=\"error\"><path d=\"m17 12 14 14m0-14L17 26\" stroke-width=\"3\"/></g>"
+  "svg": "<path data-part=\"tray\" d=\"M7 32h8l3 5h12l3-5h8v8a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3z\"/><g data-part=\"arrow\"><path d=\"M24 5v23m-8-8 8 8 8-8\" stroke-width=\"2.5\"/></g><circle data-part=\"track\" cx=\"24\" cy=\"19\" r=\"10\"/><circle data-part=\"progress\" cx=\"24\" cy=\"19\" r=\"10\" pathLength=\"100\" stroke-dasharray=\"100\" stroke-width=\"3\" stroke=\"var(--li-ink)\"/><path data-part=\"check\" d=\"m15 19 6 6 12-13\" stroke-width=\"3\"/><g data-part=\"error\"><path d=\"m17 12 14 14m0-14L17 26\" stroke-width=\"3\"/></g>",
+  "order": 8
 }

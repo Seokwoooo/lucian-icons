@@ -7,7 +7,7 @@ import path from 'node:path';
 const cli='skills/lucian-icons/scripts/lucian-icons.mjs';
 test('skill searches Korean and retrieves only the selected icon with version',()=>{
  const results=JSON.parse(execFileSync('node',[cli,'search','삭제'],{encoding:'utf8'}));assert.equal(results[0].id,'trash');
- const selected=JSON.parse(execFileSync('node',[cli,'get','download'],{encoding:'utf8'}));assert.equal(selected.version,'1.0.0');assert.equal(selected.icons.length,1);assert.equal(selected.icons[0].id,'download');assert.ok(selected.runtime.includes('defineIcon'));assert.ok(selected.icons[0].code.includes('download'));assert.ok(!selected.icons[0].code.includes('lucian-folder'));
+ const selected=JSON.parse(execFileSync('node',[cli,'get','download'],{encoding:'utf8'}));assert.equal(selected.version,'1.1.0');assert.equal(selected.icons.length,1);assert.equal(selected.icons[0].id,'download');assert.ok(selected.runtime.includes('defineIcon'));assert.ok(selected.icons[0].code.includes('download'));assert.ok(!selected.icons[0].code.includes('lucian-folder'));
 });
 test('skill copies just the needed modules and will not overwrite user files',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'lucian-skill-'));
