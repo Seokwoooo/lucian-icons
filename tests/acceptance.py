@@ -1,16 +1,26 @@
 from playwright.sync_api import sync_playwright, expect
 from pathlib import Path
 import json, os, zipfile
+from urllib.parse import urlsplit, unquote
 base=os.getenv('TEST_URL','http://127.0.0.1:4173/icons/')
 root=Path(__file__).resolve().parents[1];out=root/'.artifacts';out.mkdir(exist_ok=True)
 with sync_playwright() as p:
+ # APIRequestContext does not inherit Chromium or system proxy configuration.
+ request_options={}
+ proxy=os.getenv('HTTPS_PROXY') or os.getenv('HTTP_PROXY')
+ if base.startswith('https://') and proxy:
+  endpoint=urlsplit(proxy)
+  request_options['proxy']={'server':endpoint.scheme+'://'+endpoint.hostname+(':'+str(endpoint.port) if endpoint.port else '')}
+  if endpoint.username:request_options['proxy']['username']=unquote(endpoint.username)
+  if endpoint.password:request_options['proxy']['password']=unquote(endpoint.password)
+ api=p.request.new_context(**request_options)
  b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
  context=b.new_context(viewport={'width':1280,'height':900},locale='en-US',accept_downloads=True)
  page=context.new_page();errors=[];bad=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('response',lambda r:bad.append((r.status,r.url)) if r.status>=400 else None)
  page.goto(base,wait_until='networkidle')
- catalog=page.request.get(base+'catalog.json').json()['icons']
+ catalog=api.get(base+'catalog.json').json()['icons']
  # Every state at every small size, immediate reversal, duplicate instances and reinsertion.
  for d in catalog:
   page.evaluate('async(id)=>await import("./modules/"+id+".js")',d['id'])
@@ -50,7 +60,7 @@ with sync_playwright() as p:
   assert not [u for u in requests if u.startswith('http')];standalone.close()
  # All generated standalone files: no network imports, each state operates offline.
  for d in catalog:
-  url=base+'downloads/html/'+d['id']+'.html';resp=page.request.get(url);assert resp.status==200
+  url=base+'downloads/html/'+d['id']+'.html';resp=api.get(url);assert resp.status==200
   file=out/(d['id']+'-standalone.html');file.write_text(resp.text());off=context.new_page();off.on('pageerror',lambda e:errors.append(str(e)));off.goto('about:blank');off.set_content(file.read_text())
   for state in d['states']:off.locator('select').select_option(state);expect(off.locator('lucian-'+d['id'])).to_have_attribute('state',state)
   off.close()
@@ -71,13 +81,13 @@ with sync_playwright() as p:
  # Actual sample Promise remains pending, then reject, then resolve.
  page.goto(base+'examples/download.html');page.locator('#export-report').click();page.wait_for_timeout(1100);expect(page.locator('lucian-download')).to_have_attribute('state','progress');expect(page.locator('#export-report')).to_be_disabled();page.locator('#reject').click();expect(page.locator('lucian-download')).to_have_attribute('state','error');page.locator('#export-report').click();page.locator('#resolve').click();expect(page.locator('lucian-download')).to_have_attribute('state','success');page.locator('#export-report').click();page.locator('#cancel').click();expect(page.locator('lucian-download')).to_have_attribute('state','idle')
  # Every manifest asset, catalog, downloads and direct subpage request.
- manifest=page.request.get(base+'manifest.json').json();total=0
+ manifest=api.get(base+'manifest.json').json();total=0
  for filename,meta in manifest['files'].items():
-  r=page.request.get(base+filename);assert r.status==200,(filename,r.status);assert len(r.body())==meta['bytes'],filename;total+=len(r.body())
+  r=api.get(base+filename);assert r.status==200,(filename,r.status);assert len(r.body())==meta['bytes'],filename;total+=len(r.body())
  for kind in ['skill','source']:
-  file=out/f'{kind}.zip';file.write_bytes(page.request.get(base+f'downloads/lucian-icons-{kind}-1.0.0.zip').body())
+  file=out/f'{kind}.zip';file.write_bytes(api.get(base+f'downloads/lucian-icons-{kind}-1.0.0.zip').body())
   with zipfile.ZipFile(file) as z:assert z.testzip() is None;assert any(n.endswith('SKILL.md') for n in z.namelist())
  page.goto(base+'guide.html');expect(page.locator('h1:visible')).to_have_count(1);page.reload();page.locator('#lang').click();expect(page.locator('h1:visible')).to_have_count(1)
  print(json.dumps({'icons':len(catalog),'states_sizes_reversal_duplicates':'passed','offline_html':12,'asset_urls':len(manifest['files']),'total_asset_bytes':total,'console_errors':errors,'http_errors':bad},ensure_ascii=False))
  assert not errors and not bad
- b.close()
+ api.dispose();b.close()
