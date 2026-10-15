@@ -22,13 +22,17 @@ export default group('nature', [
   icon({
     id: 'umbrella', name: ['우산', 'Umbrella'], color: C.purple,
     keywords: '우산 비 날씨 보호 보험 umbrella rain weather cover insurance',
-    desc: ['접으면 우산살이 모이며 가늘어지고, 펴면 스프링처럼 활짝 펼쳐집니다.', 'Closing gathers the canopy thin; opening springs it wide.'],
+    desc: ['접으면 우산살이 오므라들며 가늘게 말린 우산이 되고, 펴면 활짝 펼쳐집니다.', 'Closing draws the canopy in to a slim furled umbrella; opening springs it wide.'],
     states: { open: ['펼침', 'Open'], closed: ['접힘', 'Closed'] },
-    svg: '<path data-part="canopy" class="s" d="M3 12a9 9 0 0 1 18 0 3 2 0 0 0-6 0 3 2 0 0 0-6 0 3 2 0 0 0-6 0z"/><path d="M12 3V2M12 12v7.5a2 2 0 0 1-4 0"/><path data-part="drops" class="a" d="M5 16v1.5M18.5 15v1.5"/>',
-    origins: { canopy: [12, 3] },
-    poses: { closed: { canopy: { scale: [0.22, 1.12] }, drops: { opacity: 0 } } },
+    svg: '<path data-part="canopy" class="s" d="M3 12a9 9 0 0 1 18 0 3 2 0 0 0-6 0 3 2 0 0 0-6 0 3 2 0 0 0-6 0z"/><g data-part="folded"><path class="s" d="M12 3c1.6 2.6 2.4 6 2.4 9.75 0 1.1-.25 2.1-.65 3.25h-3.5c-.4-1.15-.65-2.15-.65-3.25C9.6 9 10.4 5.6 12 3z"/><path d="M10.6 9.5h2.8"/></g><path d="M12 3V2M12 12v7.5a2 2 0 0 1-4 0"/><path data-part="drops" class="a" d="M5 16v1.5M18.5 15v1.5"/>',
+    origins: { canopy: [12, 3], folded: [12, 3] },
+    poses: { '*': { folded: { opacity: 0, scale: [0.6, 0.92] } }, closed: { canopy: { opacity: 0, scale: [0.25, 1.08] }, folded: { opacity: 1, scale: 1 }, drops: { opacity: 0 } } },
     motion: { e: 'bouncy' },
-    effect: { canopy: fx.keys([{ scale: 1 }, { scale: [0.8, 1.04], offset: 0.35 }, { scale: [1.05, 0.97], offset: 0.7 }, { scale: 1 }], 620), drops: fall(0) }
+    transitions: {
+      'open>closed': { canopy: fx.keys([{ opacity: 1, scale: 1 }, { opacity: 1, scale: [0.45, 1.05], offset: 0.6 }, { opacity: 0, scale: [0.25, 1.08] }], 420), folded: { e: 'out', d: 260, delay: 220 }, drops: { e: 'out', d: 160 } },
+      'closed>open': { folded: { e: 'in', d: 140 }, canopy: { e: 'bouncy', delay: 80 }, drops: { e: 'out', d: 240, delay: 320 } }
+    },
+    effect: { canopy: fx.keys([{ scale: 1 }, { scale: [0.8, 1.04], offset: 0.35 }, { scale: [1.05, 0.97], offset: 0.7 }, { scale: 1 }], 620), folded: fx.wiggle(5, 620), drops: fall(0) }
   }),
   icon({
     id: 'rain', name: ['비', 'Rain'], color: C.indigo,
@@ -40,10 +44,10 @@ export default group('nature', [
   icon({
     id: 'snow', name: ['눈', 'Snow'], color: C.cyan,
     keywords: '눈 겨울 추위 눈송이 냉동 snow winter cold snowflake freeze',
-    desc: ['눈송이가 60도 돌며 반짝 커집니다.', 'The snowflake turns sixty degrees and sparkles.'],
-    svg: '<circle class="t" cx="12" cy="12" r="3.5"/><g data-part="flake"><path d="M12 12V2.75M12 12l8.01-4.63M12 12l8.01 4.62M12 12v9.25M12 12l-8.01 4.63M12 12 3.99 7.37"/><path class="a" d="M9.75 4.5 12 6.75l2.25-2.25M17.37 6.3l-.82 3.08 3.07.82M19.62 13.8l-3.07.82.82 3.08M14.25 19.5 12 17.25 9.75 19.5M6.63 17.7l.82-3.07-3.07-.83M4.38 10.2l3.07-.82-.82-3.08"/></g>',
+    desc: ['눈송이가 한 칸 돌며 살짝 커졌다가 제자리에 멈춥니다.', 'The snowflake turns one notch, swells a little, and settles.'],
+    svg: '<g data-part="flake"><path d="M12 3L12 21M19.79 7.5L4.21 16.5M19.79 16.5L4.21 7.5"/><path class="a" d="M10.02 5.02L12 7L13.98 5.02M17.05 6.8L16.33 9.5L19.03 10.22M19.03 13.78L16.33 14.5L17.05 17.2M13.98 18.98L12 17L10.02 18.98M6.95 17.2L7.67 14.5L4.97 13.78M4.97 10.22L7.67 9.5L6.95 6.8"/></g>',
     origins: { flake: [12, 12] },
-    effect: { flake: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 70, scale: 1.12, offset: 0.65 }, { rotate: 60, scale: 1 }], 820) }
+    effect: { flake: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 60, scale: 1.1, offset: 0.62 }, { rotate: 60, scale: 1 }], 900) }
   }),
   icon({
     id: 'wind', name: ['바람', 'Wind'], color: C.teal,
@@ -71,10 +75,13 @@ export default group('nature', [
   icon({
     id: 'flame', name: ['불꽃', 'Flame'], color: C.orange,
     keywords: '불 불꽃 인기 핫 트렌드 fire flame hot trending popular',
-    desc: ['불꽃이 일렁이며 위로 솟고 안쪽 불씨가 커집니다.', 'The flame flickers upward and the inner ember grows.'],
-    svg: '<path data-part="outer" class="s" d="M12 21.5c3.6 0 6.5-2.7 6.5-6.3 0-3.2-2-5.6-3.7-7.4-.4 1.7-1.4 3-2.8 3.6.3-3.4-1-6.4-3.8-8.4.3 2.6-.8 4.6-2.2 6.4-1.3 1.6-.5 3.2-.5 5.8 0 3.6 2.9 6.3 6.5 6.3z"/><path data-part="inner" class="f" d="M12 21.5c-1.6 0-3-1.3-3-3 0-1.9 1.6-3.1 2.5-4.5.6 1 1.4 1.7 2.4 2 .7.6 1.1 1.5 1.1 2.5 0 1.7-1.4 3-3 3z"/>',
-    origins: { outer: [12, 21.5], inner: [12, 21.5] },
-    effect: { outer: fx.keys([{ scale: 1, skewX: 0 }, { scale: [0.96, 1.08], skewX: 4 }, { scale: [1.03, 0.95], skewX: -3 }, { scale: [0.97, 1.06], skewX: 2 }, { scale: 1, skewX: 0 }], 820), inner: fx.keys([{ scale: 1 }, { scale: 1.25 }, { scale: 0.9 }, { scale: 1.15 }, { scale: 1 }], 820) }
+    desc: ['불꽃이 아래를 축으로 일렁이고 속불이 숨 쉬듯 커졌다 작아집니다.', 'The flame flickers from its base while the inner flame swells and shrinks.'],
+    svg: '<path data-part="outer" class="s" d="M12 2.5c.4 2.9 2.3 4.6 3.9 6.6 1.5 1.9 2.35 3.8 2.35 6.1a6.25 6.25 0 0 1-12.5 0c0-2 .7-3.6 1.85-5 .45 1.3 1.3 2.1 2.4 2.4-.7-3.4.4-7.3 2-10.1z"/><path data-part="inner" class="f" d="M12 12.25c1.5 1.6 3 3.2 3 5.25a3 3 0 0 1-6 0c0-2.05 1.5-3.65 3-5.25z"/>',
+    origins: { outer: [12, 21.45], inner: [12, 20.5] },
+    effect: {
+      outer: fx.keys([{ scale: 1, skewX: 0 }, { scale: [0.96, 1.07], skewX: 3, offset: 0.25 }, { scale: [1.03, 0.96], skewX: -3, offset: 0.5 }, { scale: [0.97, 1.05], skewX: 2, offset: 0.75 }, { scale: 1, skewX: 0 }], 900),
+      inner: fx.keys([1, 1.18, 0.9, 1.12, 1].map(s => ({ scale: s })), 900)
+    }
   }),
   icon({
     id: 'droplet', name: ['물방울', 'Droplet'], color: C.blue,
@@ -87,25 +94,25 @@ export default group('nature', [
   icon({
     id: 'leaf', name: ['나뭇잎', 'Leaf'], color: C.lime,
     keywords: '잎 친환경 자연 성장 식물 leaf eco nature green plant',
-    desc: ['잎이 줄기를 축으로 바람에 흔들립니다.', 'The leaf sways on its stem in the breeze.'],
-    svg: '<path class="s" d="M6 18C6 10 11 5 20 4c-.5 9-5.5 14-14 14z"/><path d="M3.5 20.5 6 18"/><path class="a" d="m6 18 7.5-7.5"/>',
-    origins: { '*': [4, 20] },
-    effect: { '*': fx.wiggle(10, 900) }
+    desc: ['잎이 줄기 끝을 축으로 바람에 흔들리다 멈춥니다.', 'The leaf sways from the end of its stem and comes to rest.'],
+    svg: '<path class="s" d="M5.5 18.5C4.75 11 9.5 4.5 19.5 4c.5 10-6 15.25-14 14.5z"/><path class="a" d="M3.5 20.5c3.5-3.5 7.5-7.75 12-12"/><path class="a" d="M9.25 14.75 9 11.25M12.5 11.75l3.25.25"/>',
+    origins: { '*': [3.5, 20.5] },
+    effect: { '*': fx.wiggle(10, 1000) }
   }),
   icon({
     id: 'flower', name: ['꽃', 'Flower'], color: C.pink,
     keywords: '꽃 봄 정원 선물 아름다움 flower spring garden bloom',
-    desc: ['꽃잎이 한 칸 돌며 피어나고 가운데 꽃술이 튑니다.', 'The petals turn and bloom while the center pops.'],
-    svg: '<path d="M12 14.5v7M12 18.5c-1.2-1.6-2.8-2.2-4.5-2 .2 1.7 1.6 2.9 4.5 2z"/><g data-part="petals"><circle class="s" cx="12" cy="5.25" r="2.75"/><circle class="s" cx="16.3" cy="8.4" r="2.75"/><circle class="s" cx="14.65" cy="13.45" r="2.75"/><circle class="s" cx="9.35" cy="13.45" r="2.75"/><circle class="s" cx="7.7" cy="8.4" r="2.75"/></g><circle data-part="center" class="f" cx="12" cy="9.75" r="2"/>',
-    origins: { petals: [12, 9.75], center: [12, 9.75] },
-    effect: { petals: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 36, scale: 0.85, offset: 0.4 }, { rotate: 72, scale: 1.06, offset: 0.8 }, { rotate: 72, scale: 1 }], 820), center: fx.pop(1.35, 520, 200) }
+    desc: ['줄기가 살랑이는 동안 꽃송이가 한 칸 돌며 피어납니다.', 'The stem sways while the bloom turns a notch as it opens.'],
+    svg: '<path d="M12 12.75v8.75"/><path class="s" d="M12 19.25c.2-2.3 1.9-3.75 4.6-3.75-.1 2.35-1.9 3.8-4.6 3.75z"/><g data-part="head"><path class="s" d="M9.37 4.63A2.65 2.65 0 1 1 14.63 4.63A2.65 2.65 0 1 1 16.26 9.63A2.65 2.65 0 1 1 12 12.73A2.65 2.65 0 1 1 7.74 9.63A2.65 2.65 0 1 1 9.37 4.63Z"/><circle class="f" cx="12" cy="8.25" r="1.7"/></g>',
+    origins: { '*': [12, 21.5], head: [12, 8.25] },
+    effect: { '*': fx.wiggle(5, 900), head: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 36, scale: 0.9, offset: 0.45 }, { rotate: 72, scale: 1.05, offset: 0.8 }, { rotate: 72, scale: 1 }], 900) }
   }),
   icon({
     id: 'tree', name: ['나무', 'Tree'], color: C.green,
     keywords: '나무 숲 자연 환경 성장 tree forest nature environment growth',
-    desc: ['나뭇가지가 바람에 휘었다가 돌아옵니다.', 'The canopy bends in the wind and springs back.'],
-    svg: '<path d="M12 21.5v-6"/><g data-part="canopy"><path class="s" d="M12 2.75a5 5 0 0 0-4.9 6A4.5 4.5 0 0 0 8 17.5h8a4.5 4.5 0 0 0 .9-8.75A5 5 0 0 0 12 2.75z"/><path class="a" d="m12 15 2.25-2.25M12 12.75l-2-2"/></g>',
-    origins: { canopy: [12, 21.5] },
-    effect: { canopy: fx.keys([0, 7, -5, 3, 0].map(r => ({ rotate: r })), 900, 'inOut') }
+    desc: ['전나무가 밑동을 축으로 바람에 흔들리다 멈춥니다.', 'The fir sways from its trunk in the wind and settles.'],
+    svg: '<g data-part="canopy"><path class="s" d="M11.2 3.3a1 1 0 0 1 1.6 0l3.45 4.6a.75.75 0 0 1-.6 1.2H14.5l3.3 4.2a.75.75 0 0 1-.6 1.2h-1l2.85 3.6a.75.75 0 0 1-.6 1.2H5.55a.75.75 0 0 1-.6-1.2L7.8 14.5h-1a.75.75 0 0 1-.6-1.2l3.3-4.2H8.35a.75.75 0 0 1-.6-1.2z"/></g><path d="M12 19.3v2.2"/>',
+    origins: { canopy: [12, 19.3] },
+    effect: { canopy: fx.wiggle(6, 1000) }
   })
 ]);

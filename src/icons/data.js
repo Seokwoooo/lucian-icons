@@ -42,10 +42,10 @@ export default group('data', [
   icon({
     id: 'bug', name: ['버그', 'Bug'], color: C.red,
     keywords: '버그 오류 디버그 문제 bug error debug issue',
-    desc: ['다리를 버둥거리며 몸을 좌우로 흔듭니다.', 'It wiggles its legs and sways side to side.'],
-    svg: '<path data-part="legs" d="M7 12H3.5M17 12h3.5M7.4 16.25l-3 2M16.6 16.25l3 2M7.6 8.6 5 7M16.4 8.6 19 7"/><path d="M9.5 4.75 8 3.25M14.5 4.75 16 3.25"/><path d="M9 7.5V7a3 3 0 0 1 6 0v.5"/><path class="s" d="M7 11.5a5 5 0 0 1 10 0v4a5 5 0 0 1-10 0z"/><path class="a" d="M12 9.5v11"/>',
-    origins: { legs: [12, 12.5], '*': [12, 20] },
-    effect: { legs: fx.keys([1, 0.82, 1.05, 0.82, 1].map(x => ({ scale: [x, 1] })), 600, 'inOut'), '*': fx.keys([0, -5, 5, -3, 0].map(r => ({ rotate: r })), 600) }
+    desc: ['무당벌레가 다리를 바쁘게 움직이며 좌우로 꿈틀거립니다.', 'The ladybug scurries its legs and wriggles side to side.'],
+    svg: '<path class="s" d="M12 8.5c3 0 5 2.6 5 6s-2 6-5 6-5-2.6-5-6 2-6 5-6z"/><path d="M9.25 8.9a2.75 2.75 0 0 1 5.5 0M12 8.5v12M10.25 6.5 9 4.5M13.75 6.5 15 4.5"/><path data-part="legs" d="M7 12.5H4.5M7.2 16H4.5M7.9 19l-2.2 1.5M17 12.5h2.5M16.8 16h2.7M16.1 19l2.2 1.5"/><circle class="f" cx="9.75" cy="13.25" r="1"/><circle class="f" cx="14.25" cy="13.25" r="1"/><circle class="f" cx="9.9" cy="17" r=".9"/><circle class="f" cx="14.1" cy="17" r=".9"/>',
+    origins: { legs: [12, 15], '*': [12, 15] },
+    effect: { legs: fx.keys([1, 0.8, 1.06, 0.8, 1].map(x => ({ scale: [x, 1] })), 640, 'inOut'), '*': fx.keys([0, -6, 6, -3, 0].map(r => ({ rotate: r })), 640) }
   }),
   icon({
     id: 'branch', name: ['브랜치', 'Branch'], color: C.orange,
@@ -84,10 +84,13 @@ export default group('data', [
   icon({
     id: 'calculator', name: ['계산기', 'Calculator'], color: C.coral,
     keywords: '계산기 계산 숫자 합계 calculator math numbers sum',
-    desc: ['버튼이 차례로 눌리고 화면이 깜빡입니다.', 'The keys press in turn and the display blinks.'],
-    svg: '<rect class="s" x="4.5" y="2.5" width="15" height="19" rx="2.5"/><g data-part="screen"><rect class="f" x="7.5" y="5.5" width="9" height="3.5" rx=".75"/><rect x="7.5" y="5.5" width="9" height="3.5" rx=".75"/></g><path data-part="k1" d="M8.5 13h.01M12 13h.01"/><path data-part="k2" d="M15.5 13h.01M8.5 17h.01"/><path data-part="k3" class="a" d="M12 17h.01M15.5 16.5v1"/>',
-    origins: { k1: [10.25, 13], k2: [12, 15], k3: [13.75, 17] },
-    effect: { k1: fx.pop(0.6, 260), k2: fx.pop(0.6, 260, 140), k3: fx.pop(0.6, 260, 280), screen: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.7 }, { opacity: -0.6, offset: 0.8 }, { opacity: 0 }], 700, 'linear') }
+    desc: ['자판이 줄마다 눌리고, 마지막 등호 키가 눌리면 화면이 반짝입니다.', 'The keys press row by row, and the equals key flashes the display.'],
+    svg: '<rect class="s" x="5" y="2.5" width="14" height="19" rx="2.5"/><rect data-part="screen" class="f" x="7.75" y="5.25" width="8.5" height="3.75" rx="1"/><path data-part="k1" d="M8.75 12.5h.01M12 12.5h.01M15.25 12.5h.01"/><path data-part="k2" d="M8.75 15.5h.01M12 15.5h.01M15.25 15.5h.01"/><path data-part="k3" d="M8.75 18.5h.01M12 18.5h.01"/><path data-part="eq" class="a" d="M15.25 18.5h.01"/>',
+    origins: { k1: [12, 12.5], k2: [12, 15.5], k3: [10.4, 18.5], eq: [15.25, 18.5], screen: [12, 7.1] },
+    effect: {
+      k1: fx.pop(0.55, 260, 0), k2: fx.pop(0.55, 260, 130), k3: fx.pop(0.55, 260, 260), eq: fx.pop(1.7, 320, 400),
+      screen: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 0, scale: 1, offset: 0.62 }, { opacity: -0.6, scale: [1.06, 1.1], offset: 0.74 }, { opacity: 0, scale: 1 }], 820, 'linear')
+    }
   }),
   icon({
     id: 'percent', name: ['퍼센트', 'Percent'], color: C.purple,

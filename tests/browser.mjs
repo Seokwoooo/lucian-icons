@@ -42,6 +42,16 @@ await check('gallery renders 212 tiles, 4 per row, with live demos', async page 
   await shot(page, 'qa-gallery');
 });
 
+await check('hovering a tile changes nothing: its demo keeps running', async page => {
+  await open(page);
+  await page.evaluate(() => scrollTo(0, document.querySelector('#grid').offsetTop - 80));
+  await page.waitForSelector('.g-tile[data-id="folder"].is-live');
+  await page.hover('.g-tile[data-id="folder"] .g-stage');
+  await page.waitForTimeout(1800);
+  assert.equal(await page.locator('.g-tile[data-id="folder"].is-live').count(), 1, 'demo still running under the pointer');
+  assert.equal(await page.getAttribute('.g-tile[data-id="folder"] lucian-folder', 'animate'), 'none');
+});
+
 await check('category, search, slash shortcut and empty state', async page => {
   await open(page);
   await page.click('.g-cat[data-cat="security"]');

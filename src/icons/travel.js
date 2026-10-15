@@ -3,11 +3,17 @@ import { C, icon, group, fx } from './_kit.js';
 export default group('travel', [
   icon({
     id: 'globe', name: ['지구', 'Globe'], color: C.blue,
-    keywords: '지구 세계 글로벌 언어 웹 globe world global language web',
-    desc: ['경선이 좁아졌다 넓어지며 지구가 도는 것처럼 보입니다.', 'The meridian narrows and widens as if the globe were turning.'],
-    svg: '<circle class="s" cx="12" cy="12" r="8.75"/><path d="M3.5 12h17"/><path data-part="mer" class="a" d="M12 3.25c-2.4 2.4-3.6 5.3-3.6 8.75s1.2 6.35 3.6 8.75c2.4-2.4 3.6-5.3 3.6-8.75S14.4 5.65 12 3.25z"/>',
-    origins: { mer: [12, 12] },
-    effect: { mer: fx.keys([{ scale: 1 }, { scale: [0.08, 1], offset: 0.25 }, { scale: [1.45, 1], offset: 0.5 }, { scale: [0.08, 1], offset: 0.75 }, { scale: 1 }], 1000, 'linear') }
+    keywords: '지구 세계 글로벌 언어 웹 인터넷 globe world global language web internet',
+    desc: ['경선이 바깥으로 돌아 나가고 새 경선이 가운데서 피어나며 지구가 돕니다. 점 하나가 적도를 따라 지나갑니다.', 'Meridians roll outward as a new one opens from the middle, and a dot travels along the equator as the globe turns.'],
+    svg: '<circle class="s" cx="12" cy="12" r="9"/><path d="M3 12h18"/><path data-part="lens" class="a" d="M12 3c-2.6 2.5-3.9 5.5-3.9 9s1.3 6.5 3.9 9c2.6-2.5 3.9-5.5 3.9-9S14.6 5.5 12 3z"/><path data-part="wide" class="a" d="M12 3c-4.7 2.5-7 5.5-7 9s2.3 6.5 7 9c4.7-2.5 7-5.5 7-9S16.7 5.5 12 3z"/><path data-part="axis" class="a" d="M12 3v18"/><circle data-part="dot" class="f" cx="12" cy="12" r="1.4"/>',
+    origins: { dot: [12, 12] },
+    poses: { '*': { wide: { opacity: 0 }, axis: { opacity: 0 }, dot: { opacity: 0 } } },
+    effect: {
+      lens: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.05 }, { opacity: -1, offset: 0.25 }, { opacity: -1, offset: 0.7 }, { opacity: 0, offset: 0.92 }, { opacity: 0 }], 1100, 'linear'),
+      wide: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.05 }, { opacity: 1, offset: 0.22 }, { opacity: 1, offset: 0.3 }, { opacity: 0, offset: 0.45 }, { opacity: 0 }], 1100, 'linear'),
+      axis: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.4 }, { opacity: 1, offset: 0.52 }, { opacity: 1, offset: 0.62 }, { opacity: 0, offset: 0.86 }, { opacity: 0 }], 1100, 'linear'),
+      dot: fx.keys([{ translate: [-7.5, 0], scale: 0.4, opacity: 0 }, { translate: [-5.3, 0], scale: 0.7, opacity: 1, offset: 0.2 }, { translate: [0, 0], scale: 1, opacity: 1, offset: 0.5 }, { translate: [5.3, 0], scale: 0.7, opacity: 1, offset: 0.8 }, { translate: [7.5, 0], scale: 0.4, opacity: 0 }], 1100, 'linear')
+    }
   }),
   icon({
     id: 'compass', name: ['나침반', 'Compass'], color: C.coral,
@@ -28,29 +34,33 @@ export default group('travel', [
   icon({
     id: 'flag', name: ['깃발', 'Flag'], color: C.coral,
     keywords: '깃발 목표 신고 표시 flag goal report mark',
-    desc: ['깃대에 매달린 천이 바람을 받아 위아래로 펄럭이다 잦아듭니다.', 'The cloth catches the wind and flaps up and down before it settles.'],
-    svg: '<path d="M5 21.5V3.5"/><g data-part="cloth"><path class="f" d="M5 4h12.5L15 8.25l2.5 4.25H5"/><path d="M5 4h12.5L15 8.25l2.5 4.25H5"/></g>',
+    desc: ['물결 모양 천이 깃대를 따라 부드럽게 나부낍니다.', 'The wavy cloth flutters gently along the pole.'],
+    svg: '<path d="M5 21.5V3"/><g data-part="cloth"><path class="f" d="M5 4c1.6-.9 3.3-1 5-.4 1.9.7 3.4 1.6 5.4 1.4 1.1-.1 2.2-.5 3.1-1v8.5c-.9.5-2 .9-3.1 1-2 .2-3.5-.7-5.4-1.4-1.7-.6-3.4-.5-5 .4z"/><path d="M5 4c1.6-.9 3.3-1 5-.4 1.9.7 3.4 1.6 5.4 1.4 1.1-.1 2.2-.5 3.1-1v8.5c-.9.5-2 .9-3.1 1-2 .2-3.5-.7-5.4-1.4-1.7-.6-3.4-.5-5 .4"/></g>',
     origins: { cloth: [5, 8.25] },
-    effect: { cloth: fx.keys([{ skewY: 0, scale: 1 }, { skewY: -10, scale: [0.93, 1], offset: 0.2 }, { skewY: 8, scale: [1.02, 1], offset: 0.45 }, { skewY: -5, scale: [0.97, 1], offset: 0.68 }, { skewY: 2, scale: 1, offset: 0.86 }, { skewY: 0, scale: 1 }], 1150) }
+    effect: { cloth: fx.keys([{ skewY: 0, scale: 1 }, { skewY: -4, scale: [0.95, 1], offset: 0.25 }, { skewY: 3, scale: [1.02, 1], offset: 0.5 }, { skewY: -2, scale: [0.98, 1], offset: 0.75 }, { skewY: 0, scale: 1 }], 1100) }
   }),
   icon({
     id: 'map', name: ['지도', 'Map'], color: C.green,
     keywords: '지도 길찾기 여행 경로 map route travel directions',
-    desc: ['지도가 살짝 펼쳐지고, 위치 점이 위로 떠올랐다가 톡 떨어져 박힙니다.', 'The map spreads a little and the location dot lifts, then drops into place.'],
-    svg: '<g data-part="map"><path class="s" d="M9 4.5 3.5 6.5v13l5.5-2 6 2 5.5-2v-13l-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></g><circle data-part="dot" class="f" cx="12" cy="11" r="1.5"/>',
-    origins: { map: [12, 12], dot: [12, 12.5] },
+    desc: ['지도가 살짝 펼쳐지고, 위치 핀이 위로 떠올랐다가 톡 떨어져 꽂힙니다.', 'The map spreads a little and the location pin lifts, then drops into place.'],
+    svg: '<g data-part="map"><path class="s" d="M9 5.5 3.5 7.5v12l5.5-2 6 2 5.5-2v-12l-5.5 2z"/><path d="M9 5.5v12M15 7.5v12"/></g><path data-part="pin" class="f" fill-rule="evenodd" d="M12 8.25a2.6 2.6 0 0 1 2.6 2.6c0 2-2.6 4.4-2.6 4.4s-2.6-2.4-2.6-4.4A2.6 2.6 0 0 1 12 8.25zm0 1.75a.85.85 0 1 0 0 1.7.85.85 0 0 0 0-1.7z"/>',
+    origins: { map: [12, 12.5], pin: [12, 15.25] },
     effect: {
-      map: fx.keys([{ scale: 1 }, { scale: [0.9, 1], offset: 0.3 }, { scale: [1.04, 1], offset: 0.62 }, { scale: 1 }], 680),
-      dot: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -4.5], scale: 1, offset: 0.34, easing: 'in' }, { translate: [0, 0.3], scale: [1.4, 0.7], offset: 0.58, easing: 'out' }, { translate: [0, 0], scale: 1.2, offset: 0.76 }, { translate: [0, 0], scale: 1 }], 820)
+      map: fx.keys([{ scale: 1 }, { scale: [0.94, 1], offset: 0.3 }, { scale: [1.02, 1], offset: 0.62 }, { scale: 1 }], 680),
+      pin: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -4], scale: 1, offset: 0.34, easing: 'in' }, { translate: [0, 0.3], scale: [1.25, 0.8], offset: 0.58, easing: 'out' }, { translate: [0, 0], scale: 1.08, offset: 0.76 }, { translate: [0, 0], scale: 1 }], 820)
     }
   }),
   icon({
     id: 'car', name: ['자동차', 'Car'], color: C.red,
     keywords: '자동차 차량 운전 이동 car vehicle drive ride',
-    desc: ['차체가 서스펜션처럼 출렁이고 전조등이 깜빡입니다.', 'The body bounces on its suspension and the headlights flash.'],
-    svg: '<g data-part="body"><path class="s" d="M5 11 6.6 6.2A1.75 1.75 0 0 1 8.25 5h7.5a1.75 1.75 0 0 1 1.65 1.2L19 11"/><rect class="s" x="3" y="11" width="18" height="6.5" rx="2"/><path data-part="lights" class="a" d="M6.5 14.25h1.5M16 14.25h1.5"/></g><path d="M5.5 17.5v2M18.5 17.5v2"/>',
-    origins: { body: [12, 17.5] },
-    effect: { body: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.8], scale: [1.03, 0.96], offset: 0.25 }, { translate: [0, -0.5], scale: 1, offset: 0.55 }, { translate: [0, 0.2], offset: 0.8 }, { translate: [0, 0], scale: 1 }], 680), lights: fx.blink(380, 120) }
+    desc: ['자동차가 살짝 뒤로 몸을 젖혔다가 앞으로 튀어 나가고, 뒤에 속도선이 스칩니다.', 'The car rocks back, lunges forward, and speed lines streak behind it.'],
+    svg: '<g data-part="car"><path class="s" d="M5 16.5H4a1 1 0 0 1-1-1v-2.6a1.5 1.5 0 0 1 1.1-1.45l2.4-.65 2.3-3.4A1.5 1.5 0 0 1 10 6.75h5a1.5 1.5 0 0 1 1.15.55l2.9 3.5 1.9.4A1.5 1.5 0 0 1 22 12.65v2.85a1 1 0 0 1-1 1h-2M9 16.5h6"/><path class="a" d="M8.4 10.6 10.1 8.25h4.6l1.95 2.35z"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/></g><path data-part="speed" class="a" d="M.75 10.5h2M.25 13.5h1.75"/>',
+    origins: { car: [12, 18.5] },
+    poses: { '*': { speed: { opacity: 0 } } },
+    effect: {
+      car: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [-0.6, 0], scale: [0.98, 1.02], offset: 0.18 }, { translate: [1.4, 0], scale: [1.02, 0.98], offset: 0.45 }, { translate: [-0.3, 0], scale: 1, offset: 0.75 }, { translate: [0, 0], scale: 1 }], 780),
+      speed: fx.keys([{ opacity: 0, translate: [0, 0] }, { opacity: 0, translate: [0, 0], offset: 0.25 }, { opacity: 1, translate: [-0.4, 0], offset: 0.4 }, { opacity: 0, translate: [-1.5, 0], offset: 0.7 }, { opacity: 0, translate: [0, 0] }], 780, 'linear')
+    }
   }),
   icon({
     id: 'bike', name: ['자전거', 'Bicycle'], color: C.lime,
@@ -71,21 +81,24 @@ export default group('travel', [
   icon({
     id: 'train', name: ['기차', 'Train'], color: C.indigo,
     keywords: '기차 지하철 열차 교통 train subway rail transit',
-    desc: ['기차가 덜컹거리며 다가오고, 전조등이 깜빡입니다.', 'The train rattles toward you and its headlights blink.'],
-    svg: '<g data-part="body"><rect class="s" x="5" y="3" width="14" height="14.5" rx="3"/><rect x="7.5" y="5.5" width="9" height="4.5" rx="1"/><path data-part="lights" class="a" d="M8.5 14h.01M15.5 14h.01"/></g><path d="m8 17.5-2 3.5M16 17.5l2 3.5"/>',
-    origins: { body: [12, 17.5], lights: [12, 14] },
+    desc: ['기차가 선로 위에서 덜컹거리며 다가오고, 전조등이 깜빡입니다.', 'The train rattles toward you on its track and the headlights blink.'],
+    svg: '<g data-part="body"><path class="s" d="M6 15.5V7.5a4.5 4.5 0 0 1 4.5-4.5h3A4.5 4.5 0 0 1 18 7.5v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M8.5 6.5h7a1 1 0 0 1 1 1V10a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V7.5a1 1 0 0 1 1-1z"/><path data-part="lights" class="a" d="M9 14.25h.01M15 14.25h.01"/></g><path d="M8.5 17.5 6.5 21.5M15.5 17.5l2 4M7.6 19.5h8.8"/>',
+    origins: { body: [12, 17.5], lights: [12, 14.25] },
     effect: {
-      body: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -1.2], scale: 1.03, offset: 0.25 }, { translate: [0, 0], scale: 1.05, offset: 0.5 }, { translate: [0, -1.2], scale: 1.03, offset: 0.75 }, { translate: [0, 0], scale: 1 }], 760),
-      lights: fx.keys([{ opacity: 0, scale: 1 }, { opacity: -1, scale: 1, offset: 0.2 }, { opacity: 0, scale: 1.8, offset: 0.4 }, { opacity: -1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1.8, offset: 0.8 }, { opacity: 0, scale: 1 }], 760, 'linear')
+      body: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -1], scale: 1.03, offset: 0.25 }, { translate: [0, 0], scale: 1.05, offset: 0.5 }, { translate: [0, -1], scale: 1.03, offset: 0.75 }, { translate: [0, 0], scale: 1 }], 800),
+      lights: fx.keys([{ opacity: 0, scale: 1 }, { opacity: -1, scale: 1, offset: 0.2 }, { opacity: 0, scale: 1.8, offset: 0.4 }, { opacity: -1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1.8, offset: 0.8 }, { opacity: 0, scale: 1 }], 800, 'linear')
     }
   }),
   icon({
     id: 'bus', name: ['버스', 'Bus'], color: C.yellow,
     keywords: '버스 대중교통 정류장 통학 bus transit public transport',
-    desc: ['버스가 정류장에 서듯 앞으로 쏠렸다가 돌아옵니다.', 'The bus pitches forward as if stopping, then settles.'],
-    svg: '<g data-part="body"><rect class="s" x="4.5" y="3" width="15" height="15" rx="2.5"/><rect x="6.75" y="5.5" width="10.5" height="5.5" rx="1"/><path class="a" d="M7.75 14.5h.01M16.25 14.5h.01"/></g><path d="M4.5 7.5H3M19.5 7.5H21M7.5 18v2.5M16.5 18v2.5"/>',
-    origins: { body: [12, 18] },
-    effect: { body: fx.keys([{ rotate: 0, translate: [0, 0] }, { rotate: 0, translate: [1.2, 0], offset: 0.3 }, { rotate: 4, translate: [0.6, 0], offset: 0.55 }, { rotate: -1, translate: [0, 0], offset: 0.8 }, { rotate: 0, translate: [0, 0] }], 700) }
+    desc: ['버스가 출발하며 앞으로 나가고, 차체가 뒤로 살짝 기울었다가 바로 섭니다.', 'The bus pulls away; the body tilts back a little and then rights itself.'],
+    svg: '<g data-part="bus"><path class="t" d="M4 5h14.5a3 3 0 0 1 3 3v3h-19V6.5A1.5 1.5 0 0 1 4 5z"/><path class="s" d="M4.5 17H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 5h14.5a3 3 0 0 1 3 3v7.5A1.5 1.5 0 0 1 20 17h-1M8.5 17H15"/><path d="M2.5 11h19M7.5 5v6M12.5 5v6M17 5v6"/></g><circle cx="6.5" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
+    origins: { bus: [6.5, 17] },
+    effect: {
+      '*': fx.keys([{ translate: [0, 0] }, { translate: [1.3, 0], offset: 0.35 }, { translate: [-0.3, 0], offset: 0.7 }, { translate: [0, 0] }], 760),
+      bus: fx.keys([{ rotate: 0 }, { rotate: -2.5, offset: 0.3 }, { rotate: 1.2, offset: 0.6 }, { rotate: 0 }], 760)
+    }
   }),
   icon({
     id: 'ship', name: ['배', 'Ship'], color: C.blue,
@@ -121,12 +134,12 @@ export default group('travel', [
   icon({
     id: 'rocket', name: ['로켓', 'Rocket'], color: C.violet,
     keywords: '로켓 출시 시작 성장 부스트 rocket launch start growth boost',
-    desc: ['불꽃이 커지며 로켓이 떨리다가 앞으로 치고 나갑니다.', 'The flame flares, the rocket shudders, then surges forward.'],
-    svg: '<path data-part="flame" class="a" d="M6.5 17.5c-1.3 1-2 2.6-2 4 1.4 0 3-.7 4-2"/><g data-part="rocket"><path d="M8 12 4.5 12.5 3 15l4.5.5M12 16l-.5 3.5L9 21l-.5-4.5"/><path class="s" d="M14.5 4.5c2.2-1.4 4.4-1.9 6.1-1.6.3 1.7-.2 3.9-1.6 6.1L12 16l-4-4z"/><circle class="f" cx="15.5" cy="8.5" r="1.5"/></g>',
-    origins: { flame: [6.5, 17.5], rocket: [12, 12] },
+    desc: ['로켓이 살짝 웅크렸다가 꼬리 불꽃이 커지며 비스듬히 솟구치고 돌아옵니다.', 'The rocket crouches, its tail flame flares, and it shoots up diagonally before settling.'],
+    svg: '<g data-part="ship"><path data-part="flame" class="f" d="M7.8 13.37L10.63 16.2C9.15 17.68 7.45 18.25 5.51 18.49C5.75 16.55 6.32 14.85 7.8 13.37Z"/><path class="s" d="M19.29 4.71C19.65 8.45 18.27 11.74 15.58 14.43L12.22 17.79L6.21 11.78L9.57 8.42C12.26 5.73 15.55 4.35 19.29 4.71Z"/><path d="M9.04 8.95L5.51 8.95L3.21 11.25L6.21 11.78M15.05 14.96L15.05 18.49L12.75 20.79L12.22 17.79"/><path class="f" d="M15.94 8.06A1.75 1.75 45 1 1 13.46 10.54A1.75 1.75 45 0 1 15.94 8.06Z"/><path d="M15.94 8.06A1.75 1.75 45 1 1 13.46 10.54A1.75 1.75 45 0 1 15.94 8.06Z"/></g>',
+    origins: { flame: [9.22, 14.78], ship: [12, 12] },
     effect: {
-      flame: fx.keys([{ scale: 1 }, { scale: 1.5, offset: 0.2 }, { scale: 1.1, offset: 0.35 }, { scale: 1.6, offset: 0.5 }, { scale: 1 }], 820, 'linear'),
-      rocket: fx.keys([{ translate: [0, 0] }, { translate: [-0.3, 0.3] }, { translate: [0.3, -0.3] }, { translate: [-0.3, 0.3] }, { translate: [1.8, -1.8], offset: 0.65 }, { translate: [0, 0] }], 820)
+      ship: fx.keys([{ translate: [0, 0] }, { translate: [-0.5, 0.5], offset: 0.16 }, { translate: [2, -2], offset: 0.5 }, { translate: [-0.3, 0.3], offset: 0.8 }, { translate: [0, 0] }], 900),
+      flame: fx.keys([{ scale: 1 }, { scale: 0.7, offset: 0.16 }, { scale: 1.5, offset: 0.45 }, { scale: 1 }], 900)
     }
   })
 ]);

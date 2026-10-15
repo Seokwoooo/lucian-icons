@@ -30,10 +30,10 @@ export default group('navigation', [
   icon({
     id: 'home', name: ['홈', 'Home'], color: C.orange,
     keywords: '홈 집 처음 메인 home house start main',
-    desc: ['문이 경첩을 따라 열렸다 닫히고 지붕이 살짝 들썩입니다.', 'The door swings on its hinge and the roof gives a small hop.'],
-    svg: '<path class="s" d="M4 10.25 12 3.75l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path data-part="door" class="a" d="M10 20.5V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5.5"/>',
-    origins: { door: [10, 17], '*': [12, 20.5] },
-    effect: { door: fx.keys([{ scale: 1 }, { scale: [0.25, 1], offset: 0.4 }, { scale: [0.25, 1], offset: 0.55 }, { scale: [1.06, 1], offset: 0.85 }, { scale: 1 }], 820), '*': fx.hop(1, 560) }
+    desc: ['집이 살짝 들썩이고, 현관문이 경첩 쪽으로 열렸다가 닫힙니다.', 'The house gives a little hop and the front door swings open on its hinge, then closes.'],
+    svg: '<path class="s" d="M4 10.25 12 3.75l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path data-part="door" class="f" d="M10 20.5v-4.25a2 2 0 0 1 4 0v4.25z"/>',
+    origins: { door: [10, 18.5], '*': [12, 20.5] },
+    effect: { door: fx.keys([{ scale: 1 }, { scale: [0.2, 1], offset: 0.35 }, { scale: [0.2, 1], offset: 0.6 }, { scale: [1.05, 1], offset: 0.85 }, { scale: 1 }], 900), '*': fx.hop(1, 560) }
   }),
   icon({
     id: 'menu', name: ['메뉴', 'Menu'], color: C.violet,
@@ -209,10 +209,15 @@ export default group('navigation', [
   icon({
     id: 'info', name: ['정보', 'Info'], color: C.blue,
     keywords: '정보 안내 도움 설명 info information about details',
-    desc: ['i의 점이 통 튀어 오르고 몸통이 받아냅니다.', 'The dot of the i hops and the stem catches it.'],
-    svg: '<circle class="s" cx="12" cy="12" r="8.75"/><path data-part="stem" class="a" d="M12 11v5.5"/><path data-part="dot" class="a" d="M12 7.75h.01"/>',
-    origins: { stem: [12, 16.5] },
-    effect: { dot: fx.keys([{ translate: [0, 0] }, { translate: [0, -2.2], offset: 0.4 }, { translate: [0, 0.3], offset: 0.75 }, { translate: [0, 0] }], 560), stem: fx.keys([{ scale: 1 }, { scale: 1, offset: 0.68 }, { scale: [1, 0.86], offset: 0.8 }, { scale: 1 }], 560) }
+    desc: ['테두리에서 알림 고리가 퍼져 나가고, 점이 튀어 올랐다가 글자 위에 내려앉습니다.', 'A ring ripples out from the edge and the dot hops up, then lands back on the letter.'],
+    svg: '<circle class="s" cx="12" cy="12" r="9"/><circle data-part="ring" class="a" cx="12" cy="12" r="9"/><circle data-part="dot" class="f" cx="12" cy="7.75" r="1.25"/><path data-part="stem" class="a" d="M10.75 11H12v5.75M10.5 16.75h3"/>',
+    origins: { ring: [12, 12], stem: [12, 16.75], dot: [12, 7.75] },
+    poses: { '*': { ring: { opacity: 0 } } },
+    effect: {
+      ring: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1, offset: 0.05 }, { opacity: 0, scale: 1.28 }], 800, 'out'),
+      dot: fx.keys([{ translate: [0, 0] }, { translate: [0, -2.2], offset: 0.35 }, { translate: [0, 0.4], offset: 0.6 }, { translate: [0, 0] }], 700),
+      stem: fx.keys([{ scale: 1 }, { scale: 1, offset: 0.55 }, { scale: [1, 0.88], offset: 0.66 }, { scale: 1 }], 700)
+    }
   }),
   icon({
     id: 'alert', name: ['경고', 'Alert'], color: C.amber,

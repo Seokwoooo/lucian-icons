@@ -49,26 +49,27 @@ export default group('files', [
   icon({
     id: 'folder', name: ['폴더', 'Folder'], color: C.amber,
     keywords: '파일 디렉터리 열기 프로젝트 directory files project open',
-    desc: ['열면 앞판이 앞으로 젖혀지고, 안에 쌓여 있던 문서 두 장이 차례로 올라옵니다.', 'Opening tips the front panel forward and the two stacked documents inside rise into view.'],
+    desc: ['열면 앞판이 앞으로 젖혀지고, 안에 겹쳐 꽂힌 문서 두 장이 폴더 위로 살짝 올라옵니다.', 'Opening tips the front panel forward and two stacked documents rise just above the folder.'],
     states: { closed: ['닫힘', 'Closed'], open: ['열림', 'Open'] },
-    svg: '<path class="s" d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><g data-part="p1"><path class="t" d="M5.75 14.5v-5a1 1 0 0 1 1-1h8.5a1 1 0 0 1 1 1v5z"/><path d="M5.75 14.5v-5a1 1 0 0 1 1-1h8.5a1 1 0 0 1 1 1v1.25"/></g><g data-part="p2"><path class="t" d="M8 14.5v-2.75a1 1 0 0 1 1-1h9.5a1 1 0 0 1 1 1v2.75z"/><path class="a" d="M8 14.5v-2.75a1 1 0 0 1 1-1h9.5a1 1 0 0 1 1 1v2.75"/></g><path data-part="front" class="s" d="M3 10.5h18V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
-    origins: { front: [3, 20], p1: [11, 14.5], p2: [13.75, 14.5] },
+    svg: '<path class="t" d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 18V6.5a2 2 0 0 1 2-2h1"/><path data-part="rim" d="M6 4.5h2.17a2 2 0 0 1 1.42.59L11 6.5h7.5"/><path d="M18.5 6.5h.5a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2"/><g data-part="p1"><path class="t" d="M6 12.4V5.75a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v6.65z"/><path d="M6 12.4V5.75a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v.5"/></g><g data-part="p2"><path class="t" d="M7.5 12.4V7.25a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v5.15z"/><path d="M7.5 12.4V7.25a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v5.15"/><path class="a" d="M9.75 8.75h6M9.75 11h3.5"/></g><path data-part="front" class="s" d="M3 10.5h18V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+    origins: { front: [3, 20], p1: [11.5, 12.4], p2: [13, 12.4] },
     poses: {
-      '*': { p1: { opacity: 0, translate: [0, 3.5] }, p2: { opacity: 0, translate: [0, 3.5] } },
-      open: { front: { skewX: -18, scale: [0.86, 0.62] }, p1: { opacity: 1, translate: [0, 0] }, p2: { opacity: 1, translate: [0, 0] } }
+      '*': { p1: { opacity: 0, translate: [0, 4] }, p2: { opacity: 0, translate: [0, 4] } },
+      open: { front: { skewX: -14, scale: [0.86, 0.75] }, p1: { opacity: 1, translate: [0, 0] }, p2: { opacity: 1, translate: [0, 0] }, rim: { opacity: 0 } }
     },
     motion: { e: 'bouncy' },
     transitions: {
       'closed>open': {
-        p1: fx.keys([{ translate: [0, 3.5], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 90),
-        p2: fx.keys([{ translate: [0, 3.5], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 190)
+        rim: { e: 'out', d: 160, delay: 60 },
+        p1: fx.keys([{ translate: [0, 4], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 80),
+        p2: fx.keys([{ translate: [0, 4], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 170)
       },
-      'open>closed': { p1: { e: 'in', d: 170 }, p2: { e: 'in', d: 150 }, front: { e: 'snappy', delay: 70 } }
+      'open>closed': { p1: { e: 'in', d: 180 }, p2: { e: 'in', d: 160 }, rim: { e: 'out', d: 180, delay: 120 }, front: { e: 'snappy', delay: 70 } }
     },
     effect: {
-      front: fx.keys([{ skewX: 0, scale: 1 }, { skewX: -9, scale: [0.97, 0.84], offset: 0.4 }, { skewX: 1.5, scale: [1, 1.02], offset: 0.74 }, { skewX: 0, scale: 1 }], 640),
-      p1: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.3], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 40),
-      p2: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.3], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 110)
+      front: fx.keys([{ skewX: 0, scale: 1 }, { skewX: -8, scale: [0.97, 0.86], offset: 0.4 }, { skewX: 1.5, scale: [1, 1.02], offset: 0.74 }, { skewX: 0, scale: 1 }], 640),
+      p1: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.1], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 40),
+      p2: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.1], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 110)
     }
   }),
   icon({
@@ -173,15 +174,16 @@ export default group('files', [
   icon({
     id: 'link', name: ['링크', 'Link'], color: C.blue,
     keywords: '링크 연결 주소 고리 체인 link url chain connect',
-    desc: ['두 고리가 벌어졌다가 딸깍 다시 맞물립니다. 끊김 상태도 있습니다.', 'Two links pull apart and snap back together; a broken state is included.'],
+    desc: ['두 고리가 살짝 벌어졌다가 딸깍 다시 맞물립니다. 끊김 상태에서는 고리가 조금 떨어지고 끊긴 자리에 표시가 생깁니다.', 'Two links pull apart a little and snap back; the broken state separates them slightly with break marks.'],
     states: { linked: ['연결됨', 'Linked'], broken: ['끊김', 'Broken'] },
-    svg: '<path data-part="a1" d="M10.5 13.5a3.5 3.5 0 0 0 5 0l3-3a3.54 3.54 0 0 0-5-5l-1 1"/><path data-part="a2" class="a" d="M13.5 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.54 3.54 0 0 0 5 5l1-1"/>',
-    poses: { broken: { a1: { translate: [1.6, -1.6], rotate: 8 }, a2: { translate: [-1.6, 1.6], rotate: 8 } } },
-    origins: { a1: [15, 9], a2: [9, 15] },
+    svg: '<path data-part="a1" d="M10.5 13.5a3.5 3.5 0 0 0 5 0l3-3a3.54 3.54 0 0 0-5-5l-1 1"/><path data-part="a2" class="a" d="M13.5 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.54 3.54 0 0 0 5 5l1-1"/><path data-part="sparks" class="a" d="M8.5 5.5v-2M5.5 8.5h-2M15.5 18.5v2M18.5 15.5h2"/>',
+    origins: { a1: [15, 9], a2: [9, 15], sparks: [12, 12] },
+    poses: { '*': { sparks: { opacity: 0, scale: 0.5 } }, broken: { a1: { translate: [1, -1] }, a2: { translate: [-1, 1] }, sparks: { opacity: 1, scale: 1 } } },
     motion: { e: 'bouncy' },
+    transitions: { 'linked>broken': { sparks: { e: 'bouncy', delay: 120 } }, 'broken>linked': { sparks: { e: 'out', d: 160 } } },
     effect: {
-      a1: fx.keys([{ translate: [0, 0] }, { translate: [1.9, -1.9], offset: 0.36 }, { translate: [-0.5, 0.5], offset: 0.62 }, { translate: [0, 0] }], 620),
-      a2: fx.keys([{ translate: [0, 0] }, { translate: [-1.9, 1.9], offset: 0.36 }, { translate: [0.5, -0.5], offset: 0.62 }, { translate: [0, 0] }], 620)
+      a1: fx.keys([{ translate: [0, 0] }, { translate: [1.1, -1.1], offset: 0.36 }, { translate: [-0.35, 0.35], offset: 0.62 }, { translate: [0, 0] }], 620),
+      a2: fx.keys([{ translate: [0, 0] }, { translate: [-1.1, 1.1], offset: 0.36 }, { translate: [0.35, -0.35], offset: 0.62 }, { translate: [0, 0] }], 620)
     }
   }),
   icon({
@@ -211,13 +213,13 @@ export default group('files', [
   icon({
     id: 'notebook', name: ['노트', 'Notebook'], color: C.lime,
     keywords: '노트 공책 메모 기록 일지 notebook journal notes diary',
-    desc: ['표지가 스프링 쪽으로 젖혀지며 줄 쳐진 속지가 보였다가 다시 덮입니다.', 'The cover swings open toward the spiral to show the ruled page, then closes.'],
+    desc: ['표지가 스프링을 넘어 왼쪽으로 완전히 젖혀져 줄 쳐진 속지가 보이고, 잠시 뒤 다시 덮입니다.', 'The cover swings all the way over the spiral to show the ruled page, then closes again.'],
     svg: '<rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><path data-part="lines" class="a" d="M9.5 8.5h6.5M9.5 12h6.5M9.5 15.5h4"/><g data-part="cover"><rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><rect x="9.5" y="7" width="6" height="3.25" rx=".75"/></g><path class="a" d="M3.5 7.5h3.5M3.5 12h3.5M3.5 16.5h3.5"/>',
     origins: { cover: [5.5, 12] },
     poses: { '*': { lines: { opacity: 0 } } },
     effect: {
-      cover: fx.keys([{ scale: 1, skewY: 0 }, { scale: [0.1, 1], skewY: -8, offset: 0.36 }, { scale: [0.1, 1], skewY: -8, offset: 0.62 }, { scale: [1.04, 1], skewY: 0, offset: 0.86 }, { scale: 1, skewY: 0 }], 1000),
-      lines: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.12 }, { opacity: 1, offset: 0.3 }, { opacity: 1, offset: 0.66 }, { opacity: 0, offset: 0.8 }, { opacity: 0 }], 1000, 'linear')
+      cover: fx.keys([{ scale: 1, skewY: 0 }, { scale: [0.06, 1], skewY: -12, offset: 0.22, easing: 'out' }, { scale: [-0.32, 1], skewY: -4, offset: 0.4 }, { scale: [-0.32, 1], skewY: -4, offset: 0.64, easing: 'in' }, { scale: [0.06, 1], skewY: -12, offset: 0.8, easing: 'out' }, { scale: 1, skewY: 0 }], 1250, 'linear'),
+      lines: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.12 }, { opacity: 1, offset: 0.3 }, { opacity: 1, offset: 0.7 }, { opacity: 0, offset: 0.86 }, { opacity: 0 }], 1250, 'linear')
     }
   }),
   icon({

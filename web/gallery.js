@@ -27,7 +27,7 @@ const catText = c => categories[c]?.[lang] || c;
 /* ---------- Tiles ---------- */
 const grid = $('#grid');
 grid.innerHTML = defs.map((d, i) => `<article class="g-tile is-new" data-id="${d.id}" style="--h:${d.color};--d:${Math.min(i, 11) * 45}ms">
-<button class="g-stage" type="button"><lucian-${d.id} class="g-icon" data-icon${tone === 'line' ? ' tone="line"' : ''}${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}></button>
+<button class="g-stage" type="button"><lucian-${d.id} class="g-icon" data-icon animate="none"${tone === 'line' ? ' tone="line"' : ''}${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}></button>
 <span class="g-ghost" aria-hidden="true"></span>
 <div class="g-cap"><b>${num(i)}</b><span class="g-name"></span>${statesOf(d).length ? '<span class="g-state"></span>' : ''}</div>
 <button class="g-exp" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
@@ -117,9 +117,8 @@ for (const d of defs) {
   const P = makePlayer(tile, d, icon, s => { if (stateEl) { stateEl.textContent = stateText(d, s); stateEl.classList.toggle('is-changed', s !== d.defaultState); } updateTileLabel(d); });
   tilePlayers.set(d.id, P);
   const stage = $('.g-stage', tile);
-  tile.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') takeOver(P, true); });
-  tile.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') takeOver(P, false); });
-  tile.addEventListener('focusin', () => takeOver(P, true));
+  // Hovering changes nothing: the demo keeps running. Keyboard focus takes over the tile.
+  tile.addEventListener('focusin', e => { if (!e.target.matches(':focus-visible')) return; takeOver(P, true); if (e.target === stage) icon.play(); });
   tile.addEventListener('focusout', () => takeOver(P, false));
   stage.addEventListener('click', () => {
     takeOver(P, true); takeOver(P, false);
@@ -311,8 +310,8 @@ function openDetail(d) {
   detail.opts = { tone, accent: null, weight: 1.75, size: 24, state: tilePlayers.get(d.id).icon.state || d.defaultState };
   dlg.style.setProperty('--h', d.color);
   dStage.style.setProperty('--h', d.color);
-  dHit.innerHTML = `<lucian-${d.id} data-icon${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}>`;
-  $('#d-sizes').innerHTML = [16, 20, 24, 32, 48].map(z => `<figure><lucian-${d.id} data-icon size="${z}"></lucian-${d.id}><figcaption>${z}</figcaption></figure>`).join('');
+  dHit.innerHTML = `<lucian-${d.id} data-icon animate="none"${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}>`;
+  $('#d-sizes').innerHTML = [16, 20, 24, 32, 48].map(z => `<figure><lucian-${d.id} data-icon animate="none" size="${z}"></lucian-${d.id}><figcaption>${z}</figcaption></figure>`).join('');
   $('#d-swatches').innerHTML = `<button class="d-sw is-own" type="button" data-c="" style="--c:${d.color}" aria-pressed="true"><i></i><span data-i18n="resetColor">${t('resetColor')}</span></button>` +
     PALETTE.filter(c => c.toLowerCase() !== d.color.toLowerCase()).map(c => `<button class="d-sw" type="button" data-c="${c}" style="--c:${c}" aria-label="${c}" aria-pressed="false"></button>`).join('') +
     `<label class="d-pick" aria-label="${t('customColor')}"><input id="d-color" type="color" value="${d.color}"></label>`;
@@ -368,8 +367,6 @@ dHit.addEventListener('click', () => {
   const P = detail.player; takeOver(P, true); takeOver(P, false);
   const s = $('[data-icon]', dHit).next(); if (s) { detail.opts.state = s; renderStates(); renderCode(); }
 });
-dStage.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') takeOver(detail.player, true); });
-dStage.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') takeOver(detail.player, false); });
 $('#d-states').addEventListener('click', e => {
   const b = e.target.closest('.d-chip'); if (!b) return;
   const icon = $('[data-icon]', dHit);

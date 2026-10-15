@@ -43,12 +43,12 @@ export default group('lifestyle', [
   icon({
     id: 'stopwatch', name: ['스톱워치', 'Stopwatch'], color: C.orange,
     keywords: '스톱워치 타이머 측정 경과 stopwatch timer measure elapsed',
-    desc: ['버튼을 누르면 바늘이 돌기 시작하고, 측정 중에는 계속 돕니다.', 'Pressing the button starts the hand; while running it keeps sweeping.'],
+    desc: ['위쪽 버튼이 눌리면 바늘이 한 바퀴 돌고, 측정 중에는 계속 돕니다.', 'The top button clicks and the hand sweeps a full turn; while running it keeps going.'],
     states: { idle: ['대기', 'Idle'], running: ['측정 중', 'Running'] },
-    svg: '<circle class="s" cx="12" cy="13.5" r="7.5"/><path data-part="btn" d="M10 2.5h4M12 2.5V6"/><path d="m18.5 7 1.5-1.5"/><path data-part="hand" class="a" d="M12 13.5V9.5"/>',
-    origins: { hand: [12, 13.5], btn: [12, 4] },
+    svg: '<circle class="s" cx="12" cy="13.5" r="7.75"/><path data-part="btn" d="M12 5.75V3.5M9.75 2.75h4.5"/><path d="m18.25 7.25 1.5-1.5"/><path data-part="hand" class="a" d="M12 13.5V9"/><circle class="k" cx="12" cy="13.5" r="1.1"/>',
+    origins: { hand: [12, 13.5], btn: [12, 4.5] },
     loops: { running: { hand: fx.keys([{ rotate: 0 }, { rotate: 360 }], 2000, 'linear') } },
-    effect: { btn: fx.nudge([0, 1], 300), hand: fx.keys([{ rotate: 0 }, { rotate: 0, offset: 0.2 }, { rotate: 360 }], 900, 'inOut') }
+    effect: { btn: fx.nudge([0, 1], 300), hand: fx.keys([{ rotate: 0 }, { rotate: 0, offset: 0.2 }, { rotate: 360 }], 1000, 'inOut') }
   }),
   icon({
     id: 'coffee', name: ['커피', 'Coffee'], color: C.amber,
@@ -68,10 +68,10 @@ export default group('lifestyle', [
   icon({
     id: 'utensils', name: ['식사', 'Dining'], color: C.coral,
     keywords: '식사 식당 맛집 음식 포크 나이프 dining restaurant food fork knife',
-    desc: ['포크와 나이프가 맞부딪히듯 기울었다 돌아옵니다.', 'The fork and knife tilt in to clink and return.'],
-    svg: '<g data-part="fork"><path d="M6.5 3v5a2.5 2.5 0 0 0 5 0V3M9 3v4.5M9 10.5V21"/></g><g data-part="knife"><path class="s" d="M17.5 21V3c-2 .5-3.5 3-3.5 6.5V13h3.5"/></g>',
-    origins: { fork: [9, 21], knife: [17.5, 21] },
-    effect: { fork: fx.keys([{ rotate: 0 }, { rotate: 12, offset: 0.4 }, { rotate: -3, offset: 0.75 }, { rotate: 0 }], 560), knife: fx.keys([{ rotate: 0 }, { rotate: -12, offset: 0.4 }, { rotate: 3, offset: 0.75 }, { rotate: 0 }], 560) }
+    desc: ['포크와 나이프가 서로를 향해 기울어 건배하듯 부딪혔다가 돌아옵니다.', 'The fork and knife lean in and clink together, then straighten.'],
+    svg: '<path data-part="fork" d="M4.5 3v4.75a3 3 0 0 0 6 0V3M7.5 3v18"/><g data-part="knife"><path class="s" d="M19 14.5V3c-2.5.75-4 3.5-4 7.25v4.25z"/><path d="M19 14.5V21"/></g>',
+    origins: { fork: [7.5, 21], knife: [19, 21] },
+    effect: { fork: fx.keys([0, 9, -2, 0].map(r => ({ rotate: r })), 640), knife: fx.keys([0, -9, 2, 0].map(r => ({ rotate: r })), 640) }
   }),
   icon({
     id: 'cake', name: ['케이크', 'Cake'], color: C.pink,
@@ -101,13 +101,16 @@ export default group('lifestyle', [
   icon({
     id: 'lamp', name: ['스탠드', 'Lamp'], color: C.yellow,
     keywords: '스탠드 조명 램프 인테리어 lamp light interior desk',
-    desc: ['줄을 당기면 불빛이 갓 아래로 퍼집니다.', 'Pulling the cord spreads light beneath the shade.'],
+    desc: ['줄을 당기면 갓이 깜빡이며 환해지고 양옆으로 빛줄기가 퍼집니다.', 'Pulling the cord flickers the shade bright and light spreads to both sides.'],
     states: { off: ['꺼짐', 'Off'], on: ['켜짐', 'On'] },
-    svg: '<path data-part="glow" class="f" d="M5.5 11h13l3 7.5h-19z"/><path class="s" d="M8 3.5h8l3 7.5H5z"/><path d="M12 11v8M8.5 21h7"/><path data-part="cord" class="a" d="M15.75 11v3"/>',
-    origins: { glow: [12, 11], cord: [15.75, 11] },
-    poses: { '*': { glow: { opacity: 0, scale: [1, 0.3] } }, on: { glow: { opacity: 0.35, scale: 1 } } },
+    svg: '<path data-part="glow" class="f" d="M8.6 3.5h6.8a1 1 0 0 1 .95.68l2.15 6.5a1 1 0 0 1-.95 1.32H6.45a1 1 0 0 1-.95-1.32l2.15-6.5a1 1 0 0 1 .95-.68z"/><path class="s" d="M8.6 3.5h6.8a1 1 0 0 1 .95.68l2.15 6.5a1 1 0 0 1-.95 1.32H6.45a1 1 0 0 1-.95-1.32l2.15-6.5a1 1 0 0 1 .95-.68z"/><path d="M12 12v8.5M8 20.5h8"/><path data-part="cord" class="a" d="M15 12v3"/><path data-part="rays" class="a" d="M6.25 13.75 4.75 15.5M17.75 13.75l1.5 1.75"/>',
+    origins: { rays: [12, 12], cord: [15, 12] },
+    poses: { '*': { glow: { opacity: 0 }, rays: { opacity: 0, scale: 0.6 } }, on: { glow: { opacity: 1 }, rays: { opacity: 1, scale: 1 } } },
     motion: { e: 'smooth' },
-    transitions: { 'off>on': { cord: fx.nudge([0, 1.2], 320), glow: fx.keys([{ opacity: 0, scale: [1, 0.3] }, { opacity: 0.45, scale: [1, 1.05], offset: 0.6 }, { opacity: 0.35, scale: 1 }], 420, 'out', 140) } },
+    transitions: {
+      'off>on': { cord: fx.nudge([0, 1.2], 320), glow: fx.keys([{ opacity: 0 }, { opacity: 1, offset: 0.2 }, { opacity: 0.3, offset: 0.35 }, { opacity: 1, offset: 0.55 }, { opacity: 1 }], 560, 'linear', 120), rays: { e: 'bouncy', delay: 300 } },
+      'on>off': { cord: fx.nudge([0, 1.2], 320), glow: { e: 'out', d: 200, delay: 120 }, rays: { e: 'out', d: 160, delay: 120 } }
+    },
     effect: { cord: fx.nudge([0, 1.2], 380) }
   }),
   icon({
@@ -120,17 +123,17 @@ export default group('lifestyle', [
   icon({
     id: 'pill', name: ['약', 'Pill'], color: C.teal,
     keywords: '약 캡슐 건강 병원 처방 pill capsule health medicine pharmacy',
-    desc: ['캡슐 두 쪽이 벌어졌다가 딸깍 맞물립니다.', 'The two halves of the capsule part and click back together.'],
-    svg: '<path data-part="h1" class="s" d="M14.55 14.55 11.54 17.55A3.6 3.6 0 0 1 6.45 12.46L9.45 9.45z"/><g data-part="h2"><path class="f" d="M14.55 14.55 17.55 11.54A3.6 3.6 0 0 0 12.46 6.45L9.45 9.45z"/><path d="M14.55 14.55 17.55 11.54A3.6 3.6 0 0 0 12.46 6.45L9.45 9.45z"/></g>',
-    effect: { h1: fx.nudge([-1.2, 1.2], 560), h2: fx.nudge([1.2, -1.2], 560) }
+    desc: ['캡슐 두 반쪽이 축을 따라 벌어졌다가 딸깍 다시 끼워집니다.', 'The two halves of the capsule pull apart along its axis and click back together.'],
+    svg: '<path data-part="h1" class="s" d="M9.7 9.7L14.3 14.3L10.76 17.83A3.25 3.25 45 0 1 6.17 13.24Z"/><g data-part="h2"><path class="f" d="M9.7 9.7L13.24 6.17A3.25 3.25 45 0 1 17.83 10.76L14.3 14.3Z"/><path d="M9.7 9.7L13.24 6.17A3.25 3.25 45 0 1 17.83 10.76L14.3 14.3Z"/></g>',
+    effect: { h1: fx.nudge([-1.1, 1.1], 600), h2: fx.nudge([1.1, -1.1], 600) }
   }),
   icon({
-    id: 'paw', name: ['발자국', 'Paw'], color: C.amber,
-    keywords: '발자국 반려동물 강아지 고양이 펫 paw pet dog cat animal',
-    desc: ['발바닥이 꾹 찍히고 발가락이 차례로 튑니다.', 'The paw stamps down and the toes pop in turn.'],
-    svg: '<path data-part="pad" class="s" d="M8 17.5c0-2.5 1.8-4.5 4-4.5s4 2 4 4.5c0 1.6-1.4 2.5-2.8 2.2-.4-.1-.8-.2-1.2-.2s-.8.1-1.2.2C9.4 20 8 19.1 8 17.5z"/><circle data-part="t1" class="f" cx="5.5" cy="11.25" r="1.9"/><circle data-part="t2" class="f" cx="9.25" cy="6.75" r="1.9"/><circle data-part="t3" class="f" cx="14.75" cy="6.75" r="1.9"/><circle data-part="t4" class="f" cx="18.5" cy="11.25" r="1.9"/>',
-    origins: { pad: [12, 16.5], t1: [5.5, 11.25], t2: [9.25, 6.75], t3: [14.75, 6.75], t4: [18.5, 11.25] },
-    effect: { pad: fx.keys([{ scale: 1 }, { scale: 1.15, offset: 0.2 }, { scale: 0.92, offset: 0.4 }, { scale: 1 }], 560), t1: fx.pop(1.35, 320, 160), t2: fx.pop(1.35, 320, 240), t3: fx.pop(1.35, 320, 320), t4: fx.pop(1.35, 320, 400) }
+    id: 'paw', name: ['반려동물', 'Pet paw'], color: C.amber,
+    keywords: '반려동물 반려견 강아지 고양이 발자국 펫 pet dog puppy cat paw animal',
+    desc: ['하트 발바닥이 꾹 눌렸다가 콩닥 튀어 오르고, 발가락이 차례로 톡톡 튑니다.', 'The heart-shaped pad presses down and bounces back, then the toes pop one by one.'],
+    svg: '<path data-part="t1" class="f" d="M3.21 10.88A1.7 2.15 -35 1 0 5.99 8.92A1.7 2.15 -35 1 0 3.21 10.88Z"/><path data-part="t2" class="f" d="M6.84 5.97A1.8 2.3 -12 1 0 10.36 5.23A1.8 2.3 -12 1 0 6.84 5.97Z"/><path data-part="t3" class="f" d="M13.64 5.23A1.8 2.3 12 1 0 17.16 5.97A1.8 2.3 12 1 0 13.64 5.23Z"/><path data-part="t4" class="f" d="M18.01 8.92A1.7 2.15 35 1 0 20.79 10.88A1.7 2.15 35 1 0 18.01 8.92Z"/><path data-part="pad" class="f" d="M12 20.5c-.5-.45-6-4.3-6-7.9a3.1 3.1 0 0 1 6-1.15 3.1 3.1 0 0 1 6 1.15c0 3.6-5.5 7.45-6 7.9z"/>',
+    origins: { pad: [12, 16], t1: [4.6, 9.9], t2: [8.6, 5.6], t3: [15.4, 5.6], t4: [19.4, 9.9] },
+    effect: { pad: fx.keys([{ scale: 1 }, { scale: 0.86, offset: 0.25 }, { scale: 1.12, offset: 0.5 }, { scale: 1 }], 640), t1: fx.pop(1.35, 320, 200), t2: fx.pop(1.35, 320, 280), t3: fx.pop(1.35, 320, 360), t4: fx.pop(1.35, 320, 440) }
   }),
   icon({
     id: 'dice', name: ['주사위', 'Dice'], color: C.violet,

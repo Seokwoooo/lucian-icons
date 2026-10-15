@@ -6,16 +6,22 @@ export default group('communication', [
   icon({
     id: 'envelope', name: ['봉투', 'Envelope'], color: C.blue,
     keywords: '메일 편지 이메일 메시지 받은편지 mail email letter message',
-    desc: ['덮개가 뒤로 뒤집히며 열리고, 안쪽 접힌 선이 드러납니다.', 'The flap flips back and the inner folds appear.'],
+    desc: ['열면 봉인이 톡 떨어지고 덮개가 위로 젖혀집니다. 닫으면 덮개가 내려와 다시 봉인됩니다.', 'Opening pops the seal and folds the flap up; closing brings the flap down and seals it again.'],
     states: { closed: ['닫힘', 'Closed'], open: ['열림', 'Open'] },
-    svg: '<rect class="s" x="3" y="5.5" width="18" height="13.5" rx="2"/><path data-part="folds" d="m3.9 18.2 6.35-5.35M20.1 18.2l-6.35-5.35"/><path data-part="flap" class="a" d="m3.75 7 8.25 6 8.25-6"/>',
-    origins: { flap: [12, 6.2] },
-    poses: { '*': { folds: { opacity: 0 } }, open: { flap: { scale: [1, -0.72] }, folds: { opacity: 1 } } },
-    motion: { e: 'bouncy' },
-    transitions: { 'closed>open': { folds: { e: 'out', d: 260, delay: 120 } }, 'open>closed': { folds: { e: 'out', d: 140 } } },
+    svg: '<path data-part="top" class="s" d="M3.6 6.6 12 2.9l8.4 3.7"/><rect class="s" x="3" y="5.5" width="18" height="13" rx="2"/><path data-part="folds" d="M3.6 17.9 9.75 12.75M20.4 17.9l-6.15-5.15"/><path data-part="flap" d="M3.6 6.6 12 12.5l8.4-5.9"/><circle data-part="seal" class="f" cx="12" cy="12.5" r="1.6"/>',
+    origins: { flap: [12, 6.6], top: [12, 6.6], seal: [12, 12.5] },
+    poses: {
+      '*': { top: { opacity: 0, scale: [1, 0.1] }, folds: { opacity: 0 } },
+      open: { flap: { opacity: 0, scale: [1, 0.1] }, seal: { opacity: 0, scale: 1.8 }, top: { opacity: 1, scale: 1 }, folds: { opacity: 1 } }
+    },
+    transitions: {
+      'closed>open': { seal: { e: 'out', d: 220 }, flap: { e: 'in', d: 200, delay: 120 }, top: { e: 'bouncy', delay: 300 }, folds: { e: 'out', d: 240, delay: 320 } },
+      'open>closed': { top: { e: 'in', d: 180 }, folds: { e: 'out', d: 140 }, flap: { e: 'out', d: 260, delay: 160 }, seal: { e: 'bouncy', delay: 380 } }
+    },
     effect: {
-      '*': fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0, -1], rotate: -4, offset: 0.3 }, { translate: [0, -0.6], rotate: 3, offset: 0.6 }, { translate: [0, 0], rotate: 0 }], 640),
-      flap: fx.keys([{ scale: 1 }, { scale: [1, 0.55], offset: 0.35 }, { scale: 1 }], 640)
+      flap: fx.keys([{ scale: 1 }, { scale: [1, 0.55], offset: 0.35 }, { scale: [1, 1.05], offset: 0.7 }, { scale: 1 }], 640),
+      seal: fx.pop(1.3, 420, 160),
+      top: fx.keys([{ scale: 1 }, { scale: [1, 1.15], offset: 0.4 }, { scale: 1 }], 560)
     }
   }),
   icon({
@@ -95,12 +101,13 @@ export default group('communication', [
   icon({
     id: 'megaphone', name: ['확성기', 'Megaphone'], color: C.pink,
     keywords: '확성기 공지 발표 홍보 megaphone announce broadcast promote',
-    desc: ['확성기가 소리를 내지르듯 앞으로 튕기고 음파가 퍼져 나갑니다.', 'The horn kicks forward as sound waves burst out.'],
-    svg: '<g data-part="horn"><path class="s" d="M3.5 10a1 1 0 0 1 1-1H8l8.5-5v16L8 15H4.5a1 1 0 0 1-1-1z"/><path d="m8 15 1.3 4.4a1.25 1.25 0 0 0 2.4-.7L10.6 16"/></g><path data-part="waves" class="a" d="M19.25 9.5a3.5 3.5 0 0 1 0 5"/>',
-    origins: { horn: [8, 12], waves: [19, 12] },
+    desc: ['확성기가 한 번 들썩이고, 소리 물결 두 줄이 차례로 퍼져 나갑니다.', 'The megaphone jolts and two sound waves travel out one after the other.'],
+    svg: '<g data-part="horn"><path class="s" d="M4 9.25h3.25L15.5 4.5v15l-8.25-4.75H4a1 1 0 0 1-1-1v-3.5a1 1 0 0 1 1-1z"/><ellipse class="s" cx="15.5" cy="12" rx="1.6" ry="7.5"/><path d="M7.25 14.75 8.4 19.2a1.2 1.2 0 0 0 2.3-.6l-.7-2.65"/></g><path data-part="w1" class="a" d="M19.25 9.75a3 3 0 0 1 0 4.5"/><path data-part="w2" class="a" d="M21 7.75a6.5 6.5 0 0 1 0 8.5"/>',
+    origins: { horn: [5, 12], w1: [19.25, 12], w2: [21, 12] },
     effect: {
-      horn: fx.keys([{ rotate: 0, scale: 1 }, { rotate: -6, scale: 0.94, offset: 0.25 }, { rotate: 2, scale: 1.06, offset: 0.5 }, { rotate: 0, scale: 1 }], 620),
-      waves: fx.keys([{ translate: [0, 0], scale: 1, opacity: 0 }, { translate: [-1, 0], opacity: -1, offset: 0.25 }, { translate: [1.5, 0], scale: 1.3, opacity: 0, offset: 0.6 }, { translate: [0, 0], scale: 1, opacity: 0 }], 620, 'out')
+      horn: fx.keys([{ rotate: 0, scale: 1 }, { rotate: -5, scale: [0.97, 1.02], offset: 0.22 }, { rotate: 2, scale: 1, offset: 0.5 }, { rotate: 0, scale: 1 }], 760),
+      w1: fx.keys([{ opacity: 0, translate: [0, 0], scale: 1 }, { opacity: -1, translate: [0, 0], scale: 1, offset: 0.15 }, { opacity: 0, translate: [0, 0], scale: 1, offset: 0.3 }, { opacity: 0, translate: [1.2, 0], scale: 1.15, offset: 0.6 }, { opacity: -1, translate: [1.8, 0], scale: 1.2, offset: 0.8 }, { opacity: 0, translate: [0, 0], scale: 1 }], 900, 'linear'),
+      w2: fx.keys([{ opacity: 0, translate: [0, 0], scale: 1 }, { opacity: -1, translate: [0, 0], scale: 1, offset: 0.15 }, { opacity: 0, translate: [0, 0], scale: 1, offset: 0.3 }, { opacity: 0, translate: [1.2, 0], scale: 1.15, offset: 0.6 }, { opacity: -1, translate: [1.8, 0], scale: 1.2, offset: 0.8 }, { opacity: 0, translate: [0, 0], scale: 1 }], 900, 'linear', 120)
     }
   }),
   icon({
@@ -135,10 +142,10 @@ export default group('communication', [
   icon({
     id: 'translate', name: ['번역', 'Translate'], color: C.blue,
     keywords: '번역 언어 다국어 한영 translate language locale i18n',
-    desc: ['화살표가 다시 그어지고 두 글자가 차례로 튀어 오릅니다.', 'The arrow redraws and the two letters pop in turn.'],
+    desc: ['A가 먼저 살짝 튀고, 화살표가 천천히 다시 그려진 뒤 가가 이어서 튀어 오릅니다.', 'The A bobs first, the arrow redraws slowly, then the 가 bobs in reply.'],
     svg: '<path data-part="latin" d="M3.5 12.5 7 3.75l3.5 8.75M4.9 9.25h4.2"/><path data-part="hangul" class="a" d="M12.75 13.25h4c0 3.4-1.4 5.9-4 7.25M20.25 12.25v8.5M20.25 16.25h1.5"/><path data-part="arrow" d="M14 4.25h3.5a2 2 0 0 1 2 2v2.5m-1.75-1.5 1.75 1.75 1.75-1.75"/>',
     origins: { latin: [7, 8], hangul: [17, 16.5] },
-    effect: { arrow: fx.redraw(420), latin: fx.pop(1.15, 420, 60), hangul: fx.pop(1.15, 420, 240) }
+    effect: { latin: fx.pop(1.12, 560, 0), arrow: fx.retype([0.12, 0.28], [0.34, 0.72], 1300), hangul: fx.pop(1.15, 560, 860) }
   }),
   icon({
     id: 'smile', name: ['미소', 'Smile'], color: C.yellow,

@@ -38,10 +38,10 @@ export default group('security', [
   icon({
     id: 'key', name: ['열쇠', 'Key'], color: C.yellow,
     keywords: '열쇠 키 접근 권한 비밀번호 key access permission password',
-    desc: ['열쇠가 자물쇠에 꽂힌 듯 손잡이 쪽으로 돌았다가 돌아옵니다.', 'The key turns as if in a lock, then returns.'],
+    desc: ['열쇠가 천천히 꽂히듯 들어간 뒤 한 번 돌아가고, 잠시 머물렀다가 빠져나옵니다.', 'The key slides in slowly, turns once, holds a moment, and backs out.'],
     svg: '<circle class="s" cx="7.75" cy="16.25" r="4.25"/><circle class="f" cx="7.25" cy="16.75" r="1.2"/><path d="m10.75 13.25 9-9M16.75 7.25l2.5 2.5M14.25 9.75l2 2"/>',
     origins: { '*': [12, 12] },
-    effect: { '*': fx.keys([{ rotate: 0, scale: 1 }, { rotate: 0, scale: [0.94, 1.04], offset: 0.15 }, { rotate: 28, scale: 1, offset: 0.5 }, { rotate: -4, offset: 0.78 }, { rotate: 0, scale: 1 }], 720) }
+    effect: { '*': fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0.9, -0.9], rotate: 0, offset: 0.25 }, { translate: [0.9, -0.9], rotate: 22, offset: 0.52 }, { translate: [0.9, -0.9], rotate: 22, offset: 0.7 }, { translate: [0, 0], rotate: 0 }], 1300) }
   }),
   icon({
     id: 'fingerprint', name: ['지문', 'Fingerprint'], color: C.purple,

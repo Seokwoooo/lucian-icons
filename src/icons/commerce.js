@@ -54,33 +54,43 @@ export default group('commerce', [
   icon({
     id: 'ticket', name: ['티켓', 'Ticket'], color: C.violet,
     keywords: '티켓 입장권 쿠폰 예매 ticket coupon pass admission',
-    desc: ['절취선을 따라 끝 조각이 살짝 찢겼다가 붙습니다.', 'The stub tears slightly along the perforation and snaps back.'],
-    svg: '<path class="s" d="M15 5.5H4.5a2 2 0 0 0-2 2v2a2.5 2.5 0 0 1 0 5v2a2 2 0 0 0 2 2H15"/><path data-part="stub" class="s" d="M15 5.5h4.5a2 2 0 0 1 2 2v2a2.5 2.5 0 0 0 0 5v2a2 2 0 0 1-2 2H15"/><path class="a" d="M15 8v1.5M15 11.25v1.5M15 14.5V16"/>',
-    origins: { stub: [15, 18.5] },
-    effect: { stub: fx.keys([{ rotate: 0, translate: [0, 0] }, { rotate: 12, translate: [0.8, 0], offset: 0.4 }, { rotate: -2, translate: [0, 0], offset: 0.75 }, { rotate: 0, translate: [0, 0] }], 640) }
+    desc: ['절취선을 따라 오른쪽 조각이 찢어질 듯 젖혀지고, 별이 한 바퀴 돕니다.', 'The stub bends away along the perforation and the star spins.'],
+    svg: '<path class="s" d="M15.5 6.5h-12a1 1 0 0 0-1 1v2.25a2.25 2.25 0 0 1 0 4.5v2.25a1 1 0 0 0 1 1h12"/><path data-part="stub" class="s" d="M15.5 6.5h5a1 1 0 0 1 1 1v2.25a2.25 2.25 0 0 0 0 4.5v2.25a1 1 0 0 1-1 1h-5"/><path d="M15.5 6.5v.01M15.5 9.25v.01M15.5 12v.01M15.5 14.75v.01M15.5 17.5v.01"/><path data-part="star" class="f" d="m9 8.9 1.02 2.07 2.28.33-1.65 1.61.39 2.27L9 14.1l-2.04 1.08.39-2.27L5.7 11.3l2.28-.33z"/>',
+    origins: { stub: [15.5, 17.5], star: [9, 11.75] },
+    effect: {
+      stub: fx.keys([{ rotate: 0, translate: [0, 0] }, { rotate: 12, translate: [0.8, 0], offset: 0.4 }, { rotate: -2, translate: [0, 0], offset: 0.75 }, { rotate: 0, translate: [0, 0] }], 680),
+      star: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 72, scale: 1.3, offset: 0.55 }, { rotate: 72, scale: 1 }], 680)
+    }
   }),
   icon({
     id: 'coin', name: ['동전', 'Coin'], color: C.yellow,
     keywords: '동전 돈 포인트 화폐 coin money points currency',
-    desc: ['동전이 공중으로 튀어 오르며 두 번 뒤집힙니다.', 'The coin flips twice as it jumps.'],
-    svg: '<g data-part="coin"><circle class="s" cx="12" cy="12" r="8.75"/><path class="a" d="M14 9.25c-.4-.75-1.2-1.25-2.25-1.25-1.4 0-2.25.75-2.25 1.75 0 2.4 4.75 1.4 4.75 4 0 1.1-1 1.75-2.5 1.75-1.1 0-2-.5-2.4-1.25M12 6.5V8m0 8v1.5"/></g>',
-    origins: { coin: [12, 12] },
-    effect: { coin: fx.keys([{ scale: 1, translate: [0, 0] }, { scale: [0.05, 1], translate: [0, -2], offset: 0.25 }, { scale: [1, 1], translate: [0, -3], offset: 0.5 }, { scale: [0.05, 1], translate: [0, -2], offset: 0.75 }, { scale: 1, translate: [0, 0] }], 820, 'linear') }
+    desc: ['동전이 톡 튀어 올랐다가 짤랑 내려앉고, 모서리에 반짝임이 일어납니다.', 'The coin hops up, lands with a clink, and a sparkle flashes at its edge.'],
+    svg: '<g data-part="coin"><circle class="s" cx="12" cy="12" r="8.75"/><circle cx="12" cy="12" r="6.25" stroke-opacity=".35"/><path class="a" d="M14 9.4c-.4-.7-1.15-1.15-2.15-1.15-1.35 0-2.2.7-2.2 1.65 0 2.3 4.6 1.35 4.6 3.85 0 1.05-.95 1.7-2.4 1.7-1.05 0-1.95-.5-2.35-1.2M12 6.75V8.2m0 7.6v1.45"/></g><path data-part="glint" class="a" d="M19.5 2.5V5M18.25 3.75h2.5"/>',
+    origins: { coin: [12, 20.75], glint: [19.5, 3.75] },
+    poses: { '*': { glint: { opacity: 0, scale: 0.4 } } },
+    effect: {
+      coin: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.4], scale: [1.04, 0.95], offset: 0.12 }, { translate: [0, -3], scale: 1, offset: 0.42, easing: 'in' }, { translate: [0, 0.3], scale: [1.05, 0.94], offset: 0.66, easing: 'out' }, { translate: [0, 0], scale: 1, offset: 0.82 }, { translate: [0, 0], scale: 1 }], 820, 'linear'),
+      glint: fx.keys([{ opacity: 0, scale: 0.4, rotate: 0 }, { opacity: 0, scale: 0.4, rotate: 0, offset: 0.6 }, { opacity: 1, scale: 1.2, rotate: 45, offset: 0.76 }, { opacity: 0, scale: 0.6, rotate: 90 }], 820, 'linear')
+    }
   }),
   icon({
     id: 'store', name: ['상점', 'Store'], color: C.teal,
     keywords: '상점 가게 매장 쇼핑몰 store shop market retail',
-    desc: ['차양이 바람에 펄럭이고 문이 열렸다 닫힙니다.', 'The awning flutters and the door opens and shuts.'],
-    svg: '<path d="M5 11.5v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path data-part="door" class="a" d="M10 20.5V16a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5"/><path data-part="awning" class="s" d="M3.5 9V7.75L5 3.5h14l1.5 4.25V9a2.83 2.83 0 0 1-4.25 2.45A2.9 2.9 0 0 1 12 11.5a2.9 2.9 0 0 1-4.25-.05A2.83 2.83 0 0 1 3.5 9z"/>',
-    origins: { awning: [12, 3.5], door: [10, 17.75] },
-    effect: { awning: fx.keys([{ scale: 1 }, { scale: [1, 1.12], offset: 0.3 }, { scale: [1, 0.94], offset: 0.6 }, { scale: 1 }], 620), door: fx.keys([{ scale: 1 }, { scale: [0.3, 1], offset: 0.45 }, { scale: 1 }], 620, 'inOut', 100) }
+    desc: ['차양이 한 번 출렁이고, 문이 경첩 쪽으로 열렸다가 닫힙니다.', 'The awning bounces and the door swings open on its hinge, then closes.'],
+    svg: '<path d="M5 11.5v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path data-part="door" class="f" d="M10 20.5v-4.25a2 2 0 0 1 4 0v4.25z"/><path data-part="awning" class="s" d="M3.5 9V7.75L5 3.5h14l1.5 4.25V9a2.83 2.83 0 0 1-4.25 2.45A2.9 2.9 0 0 1 12 11.5a2.9 2.9 0 0 1-4.25-.05A2.83 2.83 0 0 1 3.5 9z"/>',
+    origins: { awning: [12, 3.5], door: [10, 18.5] },
+    effect: {
+      awning: fx.keys([{ scale: 1 }, { scale: [1, 1.12], offset: 0.3 }, { scale: [1, 0.94], offset: 0.6 }, { scale: 1 }], 640),
+      door: fx.keys([{ scale: 1 }, { scale: [0.2, 1], offset: 0.35 }, { scale: [0.2, 1], offset: 0.6 }, { scale: [1.05, 1], offset: 0.85 }, { scale: 1 }], 900)
+    }
   }),
   icon({
     id: 'bank', name: ['은행', 'Bank'], color: C.violet,
     keywords: '은행 금융 계좌 송금 bank finance account transfer',
     desc: ['지붕이 들렸다 내려앉고, 기둥이 왼쪽부터 차례로 솟아 받쳐 줍니다.', 'The roof lifts and settles as the columns rise one by one to hold it up.'],
-    svg: '<g data-part="roof"><path class="s" d="M3 9.5 12 4l9 5.5z"/><path class="a" d="M12 7.25h.01"/></g><path data-part="c1" d="M5.5 9.5v8"/><path data-part="c2" d="M10 9.5v8"/><path data-part="c3" d="M14 9.5v8"/><path data-part="c4" d="M18.5 9.5v8"/><path d="M3.5 20.25h17"/>',
-    origins: { roof: [12, 9.5], c1: [5.5, 17.5], c2: [10, 17.5], c3: [14, 17.5], c4: [18.5, 17.5] },
+    svg: '<g data-part="roof"><path class="s" d="M3.5 9 12 4l8.5 5z"/><circle class="f" cx="12" cy="7" r="1.1"/></g><path data-part="c1" d="M6 11.5v5.5"/><path data-part="c2" d="M10 11.5v5.5"/><path data-part="c3" d="M14 11.5v5.5"/><path data-part="c4" d="M18 11.5v5.5"/><path d="M4.5 17.5h15M3 20.5h18"/>',
+    origins: { roof: [12, 9], c1: [6, 17], c2: [10, 17], c3: [14, 17], c4: [18, 17] },
     effect: {
       roof: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.8], offset: 0.3 }, { translate: [0, 0.4], offset: 0.62 }, { translate: [0, 0] }], 760),
       c1: fx.keys([{ scale: 1 }, { scale: [1, 0.7], offset: 0.25 }, { scale: [1, 1.12], offset: 0.55 }, { scale: 1 }], 600, 'inOut', 0),
@@ -126,10 +136,10 @@ export default group('commerce', [
   icon({
     id: 'barcode', name: ['바코드', 'Barcode'], color: C.red,
     keywords: '바코드 상품 스캔 재고 barcode product scan inventory sku',
-    desc: ['빨간 레이저처럼 빛줄기가 바코드를 가로질러 훑습니다.', 'A laser line sweeps across the bars.'],
-    svg: '<path d="M4 5v14M6.75 5v10M9.5 5v14M12.25 5v10M15 5v14M17.75 5v10M20.5 5v14"/><path data-part="laser" class="a" d="M2 12h20"/>',
+    desc: ['높이가 같은 막대 위로 빨간 스캔선이 위에서 아래로 훑고 지나갑니다.', 'A red scan line sweeps down across bars of equal height.'],
+    svg: '<path class="k" d="M3.5 5h1.2v14H3.5zM5.6 5h2.2v14H5.6zM8.8 5H10v14H8.8zM10.9 5h1.2v14h-1.2zM13 5h2.6v14H13zM16.6 5h1.2v14h-1.2zM18.7 5h1.8v14h-1.8zM21 5h.8v14H21z"/><path data-part="laser" class="a" d="M1.5 12h21"/>',
     poses: { '*': { laser: { opacity: 0 } } },
-    effect: { laser: fx.keys([{ translate: [0, -7], opacity: 0 }, { translate: [0, -6], opacity: 1, offset: 0.1 }, { translate: [0, 6], opacity: 1, offset: 0.88 }, { translate: [0, 7], opacity: 0 }], 860, 'inOut') }
+    effect: { laser: fx.keys([{ translate: [0, -7], opacity: 0 }, { translate: [0, -6], opacity: 1, offset: 0.1 }, { translate: [0, 6], opacity: 1, offset: 0.88 }, { translate: [0, 7], opacity: 0 }], 900, 'inOut') }
   }),
   icon({
     id: 'box', name: ['택배 상자', 'Package'], color: C.orange,

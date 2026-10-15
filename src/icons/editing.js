@@ -28,10 +28,14 @@ export default group('editing', [
   icon({
     id: 'brush', name: ['붓', 'Brush'], color: C.pink,
     keywords: '붓 칠하기 페인트 그리기 brush paint draw art',
-    desc: ['붓이 손목을 털듯 한 번 휘두릅니다.', 'The brush makes one flick of the wrist.'],
-    svg: '<path d="m11 13 7.6-7.6a1.9 1.9 0 0 1 2.7 2.7L13.7 15.7"/><path class="f" d="M8.25 14.25c-1.9 0-3.4 1.5-3.4 3.4 0 1.3-1.1 2.3-2.35 2.3 1 .95 2.6 1.55 4.05 1.55 2.4 0 4.4-2 4.4-4.4 0-1.6-1.2-2.85-2.7-2.85z"/><path d="M8.25 14.25c-1.9 0-3.4 1.5-3.4 3.4 0 1.3-1.1 2.3-2.35 2.3 1 .95 2.6 1.55 4.05 1.55 2.4 0 4.4-2 4.4-4.4 0-1.6-1.2-2.85-2.7-2.85z"/>',
-    origins: { '*': [20, 6] },
-    effect: { '*': fx.keys([{ rotate: 0 }, { rotate: -10, offset: 0.3 }, { rotate: 14, offset: 0.6 }, { rotate: -3, offset: 0.85 }, { rotate: 0 }], 700) }
+    desc: ['붓이 좌우로 쓸리며 붓끝 아래에 물감 한 획이 칠해집니다.', 'The brush sweeps side to side and paints a stroke under its tip.'],
+    svg: '<g data-part="brush"><path class="s" d="M17.75 3.52A1.25 1.25 40 0 1 19.66 5.13L15.16 10.49L13.25 8.88Z"/><path d="M12.29 8.08L16.12 11.29L13.87 13.97L10.04 10.76Z"/><path class="f" d="M9.85 10.6L14.06 14.13L11.17 17.58C10.01 18.96 8.16 19.3 6.81 18.49C5.79 17.31 5.8 15.42 6.96 14.05Z"/><path d="M9.85 10.6L14.06 14.13L11.17 17.58C10.01 18.96 8.16 19.3 6.81 18.49C5.79 17.31 5.8 15.42 6.96 14.05Z"/></g><path data-part="paint" class="a" d="M2.75 21.5c1.5-.1 2.9-.55 4.2-1.35"/>',
+    origins: { brush: [18.71, 4.32] },
+    poses: { '*': { paint: { opacity: 0 } } },
+    effect: {
+      brush: fx.keys([{ rotate: 0 }, { rotate: -8, offset: 0.3 }, { rotate: 7, offset: 0.62 }, { rotate: 0 }], 900),
+      paint: fx.keys([{ draw: 0, opacity: 0 }, { draw: 0, opacity: 1, offset: 0.28 }, { draw: 1, opacity: 1, offset: 0.62 }, { draw: 1, opacity: 1, offset: 0.82 }, { draw: 1, opacity: 0 }], 900, 'linear')
+    }
   }),
   icon({
     id: 'palette', name: ['팔레트', 'Palette'], color: C.orange,
@@ -44,9 +48,10 @@ export default group('editing', [
   icon({
     id: 'crop', name: ['자르기', 'Crop'], color: C.lime,
     keywords: '자르기 크롭 이미지 영역 crop trim image frame',
-    desc: ['두 모서리 틀이 안쪽으로 조여들었다가 벌어집니다.', 'The two corner brackets tighten inward, then relax.'],
-    svg: '<rect class="t" x="6" y="6" width="12" height="12"/><path data-part="c1" d="M6 2.5V16a2 2 0 0 0 2 2h13.5"/><path data-part="c2" class="a" d="M2.5 6H16a2 2 0 0 1 2 2v13.5"/>',
-    effect: { c1: fx.nudge([1.4, -1.4], 560), c2: fx.nudge([-1.4, 1.4], 560) }
+    desc: ['두 모서리가 안쪽으로 조여 들며 영역이 작아졌다가 돌아옵니다.', 'The two corners close in and the crop area shrinks, then springs back.'],
+    svg: '<path data-part="area" class="t" d="M6.5 6.5h11v11h-11z"/><path data-part="c1" d="M6.5 2.5v13a2 2 0 0 0 2 2h13"/><path data-part="c2" class="a" d="M17.5 21.5v-13a2 2 0 0 0-2-2h-13"/>',
+    origins: { area: [12, 12] },
+    effect: { c1: fx.nudge([1.3, -1.3], 600), c2: fx.nudge([-1.3, 1.3], 600), area: fx.keys([{ scale: 1 }, { scale: 0.78, offset: 0.38 }, { scale: 1.04, offset: 0.72 }, { scale: 1 }], 600) }
   }),
   icon({
     id: 'layers', name: ['레이어', 'Layers'], color: C.indigo,
@@ -58,17 +63,17 @@ export default group('editing', [
   icon({
     id: 'ruler', name: ['자', 'Ruler'], color: C.amber,
     keywords: '자 측정 길이 치수 ruler measure length size',
-    desc: ['자가 대각선 방향으로 미끄러지며 눈금을 맞춥니다.', 'The ruler slides along its axis to line up a tick.'],
-    svg: '<path class="s" d="M3.6 16.4 16.4 3.6a1.5 1.5 0 0 1 2.1 0l1.9 1.9a1.5 1.5 0 0 1 0 2.1L7.6 20.4a1.5 1.5 0 0 1-2.1 0l-1.9-1.9a1.5 1.5 0 0 1 0-2.1z"/><path data-part="ticks" class="a" d="m7.5 12.5 2 2m1-5 1.5 1.5m1.5-4.5 2 2"/>',
-    effect: { '*': fx.nudge([1.5, -1.5], 600), ticks: fx.redraw(420, 120) }
+    desc: ['자가 길이를 재듯 비스듬히 미끄러졌다가 제자리로 돌아옵니다.', 'The ruler slides along its length as if measuring, then returns.'],
+    svg: '<g data-part="ruler"><path class="s" d="M3.16 15.18L15.18 3.16A1.5 1.5 -45 0 1 17.3 3.16L20.84 6.7A1.5 1.5 -45 0 1 20.84 8.82L8.82 20.84A1.5 1.5 -45 0 1 6.7 20.84L3.16 17.3A1.5 1.5 -45 0 1 3.16 15.18Z"/><path d="M4.58 13.77L6.87 16.07M6.7 11.65L7.93 12.88M8.82 9.53L11.12 11.82M10.94 7.4L12.18 8.64M13.06 5.28L15.36 7.58"/></g>',
+    effect: { ruler: fx.keys([{ translate: [0, 0] }, { translate: [1.4, -1.4], offset: 0.36 }, { translate: [-0.4, 0.4], offset: 0.7 }, { translate: [0, 0] }], 700) }
   }),
   icon({
     id: 'scissors', name: ['가위', 'Scissors'], color: C.cyan,
     keywords: '가위 자르기 오리기 잘라내기 scissors cut snip clip',
-    desc: ['가위 날이 두 번 싹둑 벌어졌다 닫힙니다.', 'The blades snip open and shut twice.'],
-    svg: '<g data-part="b1"><circle class="s" cx="6" cy="6" r="2.75"/><path d="M8.2 7.7 20 16.5"/></g><g data-part="b2"><circle class="s" cx="6" cy="18" r="2.75"/><path d="M8.2 16.3 20 7.5"/></g><circle class="f" cx="13.97" cy="12" r="1.05"/>',
-    origins: { b1: [13.97, 12], b2: [13.97, 12] },
-    effect: { b1: fx.keys([0, -13, 0, -13, 0].map(r => ({ rotate: r })), 680, 'inOut'), b2: fx.keys([0, 13, 0, 13, 0].map(r => ({ rotate: r })), 680, 'inOut') }
+    desc: ['두 날이 가운데 나사를 축으로 두 번 싹둑 오므렸다 벌어집니다.', 'The blades snip shut twice around the pivot screw.'],
+    svg: '<g data-part="b1"><circle class="s" cx="6" cy="6.5" r="2.75"/><path d="M8.3 8 20.5 17.5"/></g><g data-part="b2"><circle class="s" cx="6" cy="17.5" r="2.75"/><path d="M8.3 16 20.5 6.5"/></g><circle class="f" cx="13.44" cy="12" r="1.1"/>',
+    origins: { b1: [13.44, 12], b2: [13.44, 12] },
+    effect: { b1: fx.keys([0, -14, 0, -14, 0].map(r => ({ rotate: r })), 680), b2: fx.keys([0, 14, 0, 14, 0].map(r => ({ rotate: r })), 680) }
   }),
   icon({
     id: 'pen', name: ['펜', 'Pen'], color: C.indigo,
@@ -81,10 +86,13 @@ export default group('editing', [
   icon({
     id: 'eraser', name: ['지우개', 'Eraser'], color: C.pink,
     keywords: '지우개 지우기 삭제 정리 eraser erase clear remove',
-    desc: ['지우개가 좌우로 문질러 지웁니다.', 'The eraser rubs back and forth.'],
-    svg: '<g data-part="eraser"><path class="s" d="M7.5 20.5 3.6 16.6a1.5 1.5 0 0 1 0-2.1L14 4.1a1.5 1.5 0 0 1 2.1 0l4.3 4.3a1.5 1.5 0 0 1 0 2.1L10.4 20.5z"/><path class="a" d="m8.75 9.25 6 6"/></g><path data-part="floor" d="M12.5 20.5h8"/>',
-    origins: { floor: [20.5, 20.5] },
-    effect: { eraser: fx.keys([0, -1.5, 1.4, -1.2, 1, 0].map(x => ({ translate: [x, 0] })), 760, 'inOut'), floor: fx.keys([{ scale: 1 }, { scale: [0.3, 1], offset: 0.5 }, { scale: [0.3, 1], offset: 0.7 }, { scale: 1 }], 760) }
+    desc: ['지우개가 좌우로 문지르며 아래 선을 지웠다가 선이 다시 나타납니다.', 'The eraser rubs back and forth and wipes out the line, which then returns.'],
+    svg: '<g data-part="eraser"><path class="s" d="M15.68 3.38A1.5 1.5 45 0 1 17.8 3.38L19.92 5.5A1.5 1.5 45 0 1 19.92 7.62L14.62 12.92L10.38 8.68Z"/><path class="f" d="M10.38 8.68L14.62 12.92L10.73 16.81A1.5 1.5 45 0 1 8.61 16.81L6.49 14.69A1.5 1.5 45 0 1 6.49 12.57Z"/><path d="M10.38 8.68L14.62 12.92L10.73 16.81A1.5 1.5 45 0 1 8.61 16.81L6.49 14.69A1.5 1.5 45 0 1 6.49 12.57Z"/></g><path data-part="trail" d="M13.5 21h7"/>',
+    origins: { eraser: [12, 18] },
+    effect: {
+      eraser: fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [-1.3, 0], rotate: -4, offset: 0.2 }, { translate: [1.3, 0], rotate: 4, offset: 0.45 }, { translate: [-0.8, 0], rotate: -2, offset: 0.68 }, { translate: [0, 0], rotate: 0 }], 900),
+      trail: fx.retype([0.1, 0.6], [0.72, 0.95], 900)
+    }
   }),
   icon({
     id: 'text', name: ['텍스트', 'Text'], color: C.violet,
@@ -122,9 +130,9 @@ export default group('editing', [
   icon({
     id: 'hammer', name: ['망치', 'Hammer'], color: C.orange,
     keywords: '망치 도구 만들기 빌드 hammer tool build make',
-    desc: ['망치를 뒤로 들었다가 내려치고 반동으로 튕깁니다.', 'The hammer winds up, strikes, and recoils.'],
-    svg: '<path class="a" d="m14 10-9.25 9.25a1.5 1.5 0 0 1-2.12-2.12L11.9 7.9"/><path class="s" d="M10.6 6.4 13.4 3.6l7 7-2.8 2.8z"/>',
-    origins: { '*': [4, 20] },
-    effect: { '*': fx.keys([{ rotate: 0 }, { rotate: -22, offset: 0.35, easing: 'in' }, { rotate: 10, offset: 0.55, easing: 'out' }, { rotate: -3, offset: 0.78 }, { rotate: 0 }], 720, 'linear') }
+    desc: ['손잡이를 축으로 뒤로 젖혔다가 빠르게 내리쳐 땅 박고 멈춥니다.', 'It winds back on the grip, strikes down fast, and settles.'],
+    svg: '<g data-part="hammer"><path class="f" d="M12.55 8.16L14.6 9.59L8.15 18.81A1.25 1.25 35 0 1 6.1 17.37Z"/><path d="M12.55 8.16L14.6 9.59L8.15 18.81A1.25 1.25 35 0 1 6.1 17.37Z"/><path class="s" d="M10.55 1.87A1.5 1.5 35 0 1 12.64 1.5L18.78 5.8C20.58 7.06 21.54 8.83 21.85 11C20.77 9.76 19.49 8.98 17.88 8.83L16.45 10.88L9.48 6A1.5 1.5 35 0 1 9.11 3.92Z"/></g>',
+    origins: { hammer: [7.27, 17.88] },
+    effect: { hammer: fx.keys([{ rotate: 0 }, { rotate: -22, offset: 0.42, easing: 'in' }, { rotate: 9, offset: 0.56, easing: 'out' }, { rotate: -2, offset: 0.78 }, { rotate: 0 }], 860, 'linear') }
   })
 ]);

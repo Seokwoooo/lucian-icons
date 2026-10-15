@@ -36,10 +36,10 @@ export default group('people', [
   icon({
     id: 'badge', name: ['메달', 'Medal'], color: C.orange,
     keywords: '메달 배지 수상 업적 badge medal award achievement',
-    desc: ['메달이 동전처럼 한 바퀴 뒤집히며 반짝입니다.', 'The medal flips over once like a coin.'],
-    svg: '<path class="a" d="m8.75 13.75-2 7.25 5.25-2.5 5.25 2.5-2-7.25"/><g data-part="medal"><circle class="s" cx="12" cy="9.25" r="6"/><path class="f" d="M12 6.5 12.71 8.23 14.57 8.37 13.14 9.57 13.59 11.38 12 10.4 10.41 11.38 10.86 9.57 9.43 8.37 11.29 8.23z"/></g>',
-    origins: { medal: [12, 9.25] },
-    effect: { medal: fx.keys([{ scale: 1 }, { scale: [0.05, 1], offset: 0.35 }, { scale: [1.08, 1], offset: 0.7 }, { scale: 1 }], 680) }
+    desc: ['리본에 매달린 메달이 시계추처럼 흔들리고, 가운데 별이 반짝 돕니다.', 'The medal swings from its ribbon like a pendulum and the star spins once.'],
+    svg: '<path class="s" d="M7 2.5h3.5l2 4.5h-3.5zM17 2.5h-3.5l-2 4.5h3.5z"/><g data-part="medal"><circle class="s" cx="12" cy="14.5" r="6"/><path data-part="star" class="f" d="m12 11.1 1.05 2.13 2.35.34-1.7 1.66.4 2.34L12 16.46l-2.1 1.1.4-2.33-1.7-1.66 2.35-.34z"/></g>',
+    origins: { medal: [12, 7], star: [12, 14.3] },
+    effect: { medal: fx.wiggle(10, 950), star: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 72, scale: 1.25, offset: 0.55 }, { rotate: 72, scale: 1 }], 700, 'inOut', 150) }
   }),
   icon({
     id: 'userplus', name: ['사용자 추가', 'Add user'], color: C.green,
@@ -84,9 +84,9 @@ export default group('people', [
   icon({
     id: 'accessibility', name: ['접근성', 'Accessibility'], color: C.blue,
     keywords: '접근성 장애 포용 보조 accessibility a11y inclusive assist',
-    desc: ['사람이 두 팔을 번쩍 들며 뛰어오릅니다.', 'The figure jumps with both arms raised.'],
-    svg: '<circle class="t" cx="12" cy="12" r="9"/><circle data-part="head" class="f" cx="12" cy="5.5" r="1.6"/><path data-part="armL" d="M12 10.25 6.5 9.25"/><path data-part="armR" d="m12 10.25 5.5-1"/><path d="M12 10.25V14m-3 5 3-5 3 5"/>',
-    origins: { armL: [12, 10.25], armR: [12, 10.25], '*': [12, 19] },
-    effect: { armL: fx.keys([{ rotate: 0 }, { rotate: 35, offset: 0.4 }, { rotate: 0 }], 640), armR: fx.keys([{ rotate: 0 }, { rotate: -35, offset: 0.4 }, { rotate: 0 }], 640), '*': fx.hop(1.6, 640) }
+    desc: ['사람이 두 팔을 번쩍 들며 가볍게 뛰어오릅니다.', 'The figure raises both arms and gives a little jump.'],
+    svg: '<circle class="s" cx="12" cy="12" r="9.25"/><circle class="f" cx="12" cy="7" r="1.5"/><path data-part="armL" d="M12 10.4c-1.6 0-3.15-.22-4.75-.65"/><path data-part="armR" d="M12 10.4c1.6 0 3.15-.22 4.75-.65"/><path d="M12 10.4v4.1M12 14.5l-2.6 4.25M12 14.5l2.6 4.25"/>',
+    origins: { armL: [12, 10.4], armR: [12, 10.4], '*': [12, 21.25] },
+    effect: { armL: fx.keys([{ rotate: 0 }, { rotate: 24, offset: 0.4 }, { rotate: 0 }], 660), armR: fx.keys([{ rotate: 0 }, { rotate: -24, offset: 0.4 }, { rotate: 0 }], 660), '*': fx.hop(1.4, 660) }
   })
 ]);

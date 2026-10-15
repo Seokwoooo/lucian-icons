@@ -33,6 +33,11 @@ The existing root deployment, domain alias, `/uxui-prompt/`, its introducing pag
 - 1.x archives stay downloadable: `web/downloads/` keeps the 1.0.0, 1.1.0 and 1.2.0 skill and source ZIPs (1.2.0 copies match the production hashes).
 - After pushing `main`, verify on https://lucianlabs.dev/icons/: catalog version 2.0.0 with 212 icons, manifest hashes, `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS header, gallery and guide load without page errors, and the root site and `/uxui-prompt/` are unchanged.
 
+## Release 2.0.2 notes
+
+- Same routing and headers. The 2.0.1 skill and source ZIPs were archived in `web/downloads/` (bytes and SHA-256 match the 2.0.1 manifest).
+- After pushing `main`, verify catalog 2.0.2, every manifest file, CORS, archive URLs (2.0.1, 2.0.0, 1.x), `tests/browser.mjs` against production (13 checks including hover inertness), and that the root site and `/uxui-prompt/` are unchanged.
+
 ## Release 2.0.1 notes
 
 - Same routing, headers and project as 2.0.0. The 2.0.0 skill and source ZIPs were downloaded from production into `web/downloads/` (bytes and SHA-256 match the 2.0.0 manifest), so their URLs keep working next to the new 2.0.1 packages.

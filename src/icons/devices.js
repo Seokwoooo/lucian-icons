@@ -37,10 +37,14 @@ export default group('devices', [
   icon({
     id: 'laptop', name: ['노트북', 'Laptop'], color: C.blue,
     keywords: '노트북 랩톱 컴퓨터 화면 laptop computer notebook screen',
-    desc: ['화면이 경첩 쪽으로 접혔다가 다시 펼쳐집니다.', 'The lid folds toward the hinge and opens again.'],
-    svg: '<g data-part="lid"><rect class="s" x="4.5" y="4.5" width="15" height="10.5" rx="1.5"/><path class="a" d="M8.5 9.75h7"/></g><path d="M2 18h20l-1 1.6a1 1 0 0 1-.85.4H3.85a1 1 0 0 1-.85-.4z"/>',
-    origins: { lid: [12, 15.5] },
-    effect: { lid: fx.keys([{ scale: 1 }, { scale: [1, 0.12], offset: 0.42 }, { scale: [1, 1.05], offset: 0.78 }, { scale: 1 }], 760) }
+    desc: ['화면이 살짝 젖혀지며 깨어나고, 화면 속 글줄이 지워졌다가 다시 쓰입니다.', 'The screen tilts awake and its lines clear and type back in.'],
+    svg: '<g data-part="lid"><path class="s" d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4h11A1.5 1.5 0 0 1 19 5.5V15"/><path data-part="l1" class="a" d="M8 8h8"/><path data-part="l2" class="a" d="M8 11h5"/></g><path d="M3.25 15h17.5l1.15 2.85A1.2 1.2 0 0 1 20.8 19.5H3.2a1.2 1.2 0 0 1-1.1-1.65z"/>',
+    origins: { lid: [12, 15] },
+    effect: {
+      lid: fx.keys([{ scale: 1 }, { scale: [1, 0.9], offset: 0.2 }, { scale: [1, 1.03], offset: 0.45 }, { scale: 1 }], 640),
+      l1: fx.retype([0.1, 0.25], [0.3, 0.6], 1000),
+      l2: fx.retype([0.05, 0.2], [0.55, 0.85], 1000)
+    }
   }),
   icon({
     id: 'tablet', name: ['태블릿', 'Tablet'], color: C.teal,
@@ -66,11 +70,11 @@ export default group('devices', [
     effect: { phone: fx.shake(0.9, 420) }
   }),
   icon({
-    id: 'keyboard', name: ['키보드', 'Keyboard'], color: C.slate,
+    id: 'keyboard', name: ['키보드', 'Keyboard'], color: C.indigo,
     keywords: '키보드 입력 타자 단축키 keyboard typing input shortcut',
     desc: ['자판이 하나씩 눌리며 불이 들어오고, 마지막에 스페이스바가 눌립니다.', 'Keys light up one by one as they are typed, then the space bar goes down.'],
-    svg: '<rect class="s" x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 9.5h.01M9.33 9.5h.01M12.66 9.5h.01M16 9.5h.01M7.5 12.25h.01M10.75 12.25h.01M14 12.25h.01M17.25 12.25h.01"/><path data-part="space" class="a" d="M8.5 15h7"/><path data-part="k1" class="a" d="M6 9.5h.01"/><path data-part="k2" class="a" d="M14 12.25h.01"/><path data-part="k3" class="a" d="M12.66 9.5h.01"/><path data-part="k4" class="a" d="M7.5 12.25h.01"/>',
-    origins: { space: [12, 15], k1: [6, 9.5], k2: [14, 12.25], k3: [12.66, 9.5], k4: [7.5, 12.25] },
+    svg: '<rect class="s" x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 9.75h.01M9 9.75h.01M12 9.75h.01M15 9.75h.01M18 9.75h.01M7.5 12.5h.01M10.5 12.5h.01M13.5 12.5h.01M16.5 12.5h.01"/><path data-part="space" class="a" d="M8.5 15.25h7"/><path data-part="k1" class="a" d="M6 9.75h.01"/><path data-part="k2" class="a" d="M13.5 12.5h.01"/><path data-part="k3" class="a" d="M12 9.75h.01"/><path data-part="k4" class="a" d="M7.5 12.5h.01"/>',
+    origins: { space: [12, 15.25], k1: [6, 9.75], k2: [13.5, 12.5], k3: [12, 9.75], k4: [7.5, 12.5] },
     poses: { '*': { k1: { opacity: 0 }, k2: { opacity: 0 }, k3: { opacity: 0 }, k4: { opacity: 0 } } },
     effect: {
       k1: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 0),
@@ -96,11 +100,12 @@ export default group('devices', [
   icon({
     id: 'wifi', name: ['와이파이', 'Wi-Fi'], color: C.blue,
     keywords: '와이파이 무선 인터넷 연결 신호 wifi wireless internet signal',
-    desc: ['안쪽부터 물결이 차례로 켜지고, 연결 중에는 이 흐름이 반복됩니다.', 'The arcs light up from the inside out; connecting repeats the sweep.'],
+    desc: ['점에서 시작해 물결 두 개가 차례로 켜지고, 연결 중에는 이 흐름이 반복됩니다.', 'The dot and then the two arcs light up in turn; connecting repeats the sweep.'],
     states: { connected: ['연결됨', 'Connected'], connecting: ['연결 중', 'Connecting'] },
-    svg: '<circle class="f" cx="12" cy="18.5" r="1.4"/><path data-part="w1" class="a" d="M8.75 15.25a4.6 4.6 0 0 1 6.5 0"/><path data-part="w2" d="M5.75 12.25a8.8 8.8 0 0 1 12.5 0"/><path data-part="w3" d="M2.75 9.25a13 13 0 0 1 18.5 0"/>',
-    loops: { connecting: Object.fromEntries(['w1', 'w2', 'w3'].map((p, i) => [p, fx.keys([{ opacity: -0.8 }, { opacity: 0, offset: 0.25 }, { opacity: -0.8, offset: 0.6 }, { opacity: -0.8 }], 1200, 'inOut', i * 180)])) },
-    effect: Object.fromEntries(['w1', 'w2', 'w3'].map((p, i) => [p, fx.keys([{ opacity: 0 }, { opacity: -0.85, offset: 0.01 }, { opacity: -0.85, offset: 0.2 + i * 0.15 }, { opacity: 0, offset: 0.4 + i * 0.15 }, { opacity: 0 }], 820, 'linear')]))
+    svg: '<circle data-part="w1" class="f" cx="12" cy="19.5" r="1.6"/><path data-part="w2" class="a" d="M6.96 14.64A7 7 0 0 1 17.04 14.64"/><path data-part="w3" d="M3.01 10.82A12.5 12.5 0 0 1 20.99 10.82"/>',
+    origins: { w1: [12, 19.5] },
+    loops: { connecting: Object.fromEntries(['w1', 'w2', 'w3'].map((p, i) => [p, fx.keys([{ opacity: -0.8 }, { opacity: 0, offset: 0.25 }, { opacity: -0.8, offset: 0.6 }, { opacity: -0.8 }], 1200, 'inOut', i * 200)])) },
+    effect: Object.fromEntries(['w1', 'w2', 'w3'].map((p, i) => [p, fx.keys([{ opacity: 0 }, { opacity: -0.85, offset: 0.01 }, { opacity: -0.85, offset: 0.2 + i * 0.18 }, { opacity: 0, offset: 0.4 + i * 0.18 }, { opacity: 0 }], 900, 'linear')]))
   }),
   icon({
     id: 'bluetooth', name: ['블루투스', 'Bluetooth'], color: C.indigo,
@@ -120,13 +125,13 @@ export default group('devices', [
   icon({
     id: 'bulb', name: ['전구', 'Light bulb'], color: C.yellow,
     keywords: '전구 아이디어 빛 조명 bulb idea light lamp',
-    desc: ['켜질 때 전구가 깜빡이며 차오르고 빛살이 퍼집니다.', 'Switching on flickers the bulb full and spreads its rays.'],
+    desc: ['켜질 때 전구가 깜빡이며 차오르고, 고른 간격의 빛줄기 다섯 개가 퍼집니다.', 'Switching on flickers the bulb full and five evenly spaced rays spread out.'],
     states: { off: ['꺼짐', 'Off'], on: ['켜짐', 'On'] },
-    svg: '<path data-part="glow" class="f" d="M9 17.5v-1.3c0-1-.45-1.9-1.15-2.6A6 6 0 1 1 16.15 13.6c-.7.7-1.15 1.6-1.15 2.6v1.3z"/><path class="s" d="M9 17.5v-1.3c0-1-.45-1.9-1.15-2.6A6 6 0 1 1 16.15 13.6c-.7.7-1.15 1.6-1.15 2.6v1.3z"/><path d="M9.5 20.75h5"/><path data-part="rays" class="a" d="M12 .75v1.5M4.2 3.95l1.05 1.05M19.8 3.95l-1.05 1.05M1.75 10.75h1.5M20.75 10.75h1.5"/>',
-    origins: { rays: [12, 10] },
-    poses: { '*': { glow: { opacity: 0 }, rays: { opacity: 0, scale: 0.7 } }, on: { glow: { opacity: 1 }, rays: { opacity: 1, scale: 1 } } },
+    svg: '<path data-part="glow" class="f" d="M9 17.5v-1.3c0-1-.45-1.9-1.15-2.6A6 6 0 1 1 16.15 13.6c-.7.7-1.15 1.6-1.15 2.6v1.3z"/><path class="s" d="M9 17.5v-1.3c0-1-.45-1.9-1.15-2.6A6 6 0 1 1 16.15 13.6c-.7.7-1.15 1.6-1.15 2.6v1.3z"/><path d="M9.5 20.75h5"/><path data-part="rays" class="a" d="M4.4 9.6L2.8 9.6M6.63 4.23L5.49 3.09M12 2L12 0.4M17.37 4.23L18.51 3.09M19.6 9.6L21.2 9.6"/>',
+    origins: { rays: [12, 9.6] },
+    poses: { '*': { glow: { opacity: 0 }, rays: { opacity: 0, scale: 0.8 } }, on: { glow: { opacity: 1 }, rays: { opacity: 1, scale: 1 } } },
     transitions: { 'off>on': { glow: fx.keys([{ opacity: 0 }, { opacity: 1, offset: 0.15 }, { opacity: 0.2, offset: 0.3 }, { opacity: 1, offset: 0.5 }, { opacity: 1 }], 560, 'linear'), rays: { e: 'bouncy', delay: 200 } } },
-    effect: { rays: fx.flash(620, 0, 0.7), glow: fx.keys([{ opacity: 0 }, { opacity: 0.7, offset: 0.3 }, { opacity: 0 }], 620, 'inOut') }
+    effect: { rays: fx.flash(640, 0, 0.8), glow: fx.keys([{ opacity: 0 }, { opacity: 0.7, offset: 0.3 }, { opacity: 0 }], 640, 'inOut') }
   }),
   icon({
     id: 'gamepad', name: ['게임패드', 'Gamepad'], color: C.purple,

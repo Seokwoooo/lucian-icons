@@ -2,6 +2,15 @@
 
 Product path `/icons/`.
 
+## Release 2.0.2 local checks
+
+Date: 2026-10-15. Folder redrawn again after user feedback; gallery hover made inert.
+
+- Folder: compared four open-state candidates at 150/48/32/24px (two inner sheets, one sheet rising above the folder, two sheets rising, no sheet). Chose one sheet rising above the folder; the back's top edge under the sheet fades out so no outlines cross. Motion strips for hover, open and close reviewed at 120px.
+- Gallery: hovering a live tile keeps its demo running and the icon does not play its own hover effect. Keyboard focus still takes over and plays the effect; click still advances state.
+- User review of 47 icons: each redrawn or re-timed. Candidates were compared side by side at 112/32/24px before choosing (hammer, brush, pill, scissors, flower, tree, snowflake, paw, wifi, globe, folder). Rotated drawings are generated from upright designs by a path transformer so stroke geometry stays exact. Final sheets: static color and line tone for all 47, and motion strips for every hover effect and state transition (63 rows).
+- `npm test`: 14 passed. `tests/browser.mjs`: 13 passed (new: hover leaves the demo running).
+
 ## Release 2.0.1 local checks
 
 Date: 2026-10-15. Full motion and drawing audit after user feedback on 2.0.0.
