@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Lucian Icons v2.0.2 | MIT (c) 2026 Lucian
+// Lucian Icons v2.0.3 | MIT (c) 2026 Lucian
 import {readFile,writeFile,mkdir,access} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';

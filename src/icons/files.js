@@ -49,27 +49,22 @@ export default group('files', [
   icon({
     id: 'folder', name: ['폴더', 'Folder'], color: C.amber,
     keywords: '파일 디렉터리 열기 프로젝트 directory files project open',
-    desc: ['열면 앞판이 앞으로 젖혀지고, 안에 겹쳐 꽂힌 문서 두 장이 폴더 위로 살짝 올라옵니다.', 'Opening tips the front panel forward and two stacked documents rise just above the folder.'],
+    desc: ['열면 앞판이 앞으로 젖혀지고, 안에 든 문서 한 장이 살짝 올라옵니다.', 'Opening tips the front panel forward and the document inside rises a little.'],
     states: { closed: ['닫힘', 'Closed'], open: ['열림', 'Open'] },
-    svg: '<path class="t" d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 18V6.5a2 2 0 0 1 2-2h1"/><path data-part="rim" d="M6 4.5h2.17a2 2 0 0 1 1.42.59L11 6.5h7.5"/><path d="M18.5 6.5h.5a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2"/><g data-part="p1"><path class="t" d="M6 12.4V5.75a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v6.65z"/><path d="M6 12.4V5.75a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v.5"/></g><g data-part="p2"><path class="t" d="M7.5 12.4V7.25a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v5.15z"/><path d="M7.5 12.4V7.25a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v5.15"/><path class="a" d="M9.75 8.75h6M9.75 11h3.5"/></g><path data-part="front" class="s" d="M3 10.5h18V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
-    origins: { front: [3, 20], p1: [11.5, 12.4], p2: [13, 12.4] },
+    svg: '<path class="s" d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><g data-part="doc"><path class="t" d="M7 13.5V9.75a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3.75z"/><path d="M7 13.5V9.75a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3.75"/><path class="a" d="M9.5 11.25h5"/></g><path data-part="front" class="s" d="M3 10.5h18V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+    origins: { front: [3, 20], doc: [12, 13.5] },
     poses: {
-      '*': { p1: { opacity: 0, translate: [0, 4] }, p2: { opacity: 0, translate: [0, 4] } },
-      open: { front: { skewX: -14, scale: [0.86, 0.75] }, p1: { opacity: 1, translate: [0, 0] }, p2: { opacity: 1, translate: [0, 0] }, rim: { opacity: 0 } }
+      '*': { doc: { opacity: 0, translate: [0, 3] } },
+      open: { front: { skewX: -14, scale: [0.86, 0.68] }, doc: { opacity: 1, translate: [0, 0] } }
     },
     motion: { e: 'bouncy' },
     transitions: {
-      'closed>open': {
-        rim: { e: 'out', d: 160, delay: 60 },
-        p1: fx.keys([{ translate: [0, 4], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 80),
-        p2: fx.keys([{ translate: [0, 4], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 170)
-      },
-      'open>closed': { p1: { e: 'in', d: 180 }, p2: { e: 'in', d: 160 }, rim: { e: 'out', d: 180, delay: 120 }, front: { e: 'snappy', delay: 70 } }
+      'closed>open': { doc: fx.keys([{ translate: [0, 3], opacity: 0 }, { translate: [0, 1], opacity: 1, offset: 0.35 }, { translate: [0, -0.5], opacity: 1, offset: 0.72 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 90) },
+      'open>closed': { doc: { e: 'in', d: 170 }, front: { e: 'snappy', delay: 60 } }
     },
     effect: {
       front: fx.keys([{ skewX: 0, scale: 1 }, { skewX: -8, scale: [0.97, 0.86], offset: 0.4 }, { skewX: 1.5, scale: [1, 1.02], offset: 0.74 }, { skewX: 0, scale: 1 }], 640),
-      p1: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.1], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 40),
-      p2: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.1], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 110)
+      doc: fx.keys([{ translate: [0, 0] }, { translate: [0, -1], offset: 0.42 }, { translate: [0, 0.25], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 60)
     }
   }),
   icon({

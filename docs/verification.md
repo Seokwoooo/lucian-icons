@@ -2,6 +2,15 @@
 
 Product path `/icons/`.
 
+## Release 2.0.3 local checks
+
+Date: 2026-10-15. Follow-up on folder, megaphone and doors after the user reviewed 2.0.2.
+
+- Folder: one document sits inside the folder below the back edge, so no outline crosses another; open state reviewed at 140/48/32/24px.
+- Megaphone: redrawn so the grip's two ends sit exactly on the body's straight bottom edge; previously the grip's right leg ran 0.4 past the slanted edge and overlapped it.
+- Doors: home, store and building share one door: a doorway outline, a filled panel with a knob, and a dim interior. Opening narrows the panel toward its hinge with a slight skew so the dark interior shows, then it shuts with a small bounce.
+- `npm test` and `tests/browser.mjs` rerun (see release commit).
+
 ## Release 2.0.2 local checks
 
 Date: 2026-10-15. Folder redrawn again after user feedback; gallery hover made inert.

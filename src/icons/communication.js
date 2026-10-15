@@ -102,8 +102,8 @@ export default group('communication', [
     id: 'megaphone', name: ['확성기', 'Megaphone'], color: C.pink,
     keywords: '확성기 공지 발표 홍보 megaphone announce broadcast promote',
     desc: ['확성기가 한 번 들썩이고, 소리 물결 두 줄이 차례로 퍼져 나갑니다.', 'The megaphone jolts and two sound waves travel out one after the other.'],
-    svg: '<g data-part="horn"><path class="s" d="M4 9.25h3.25L15.5 4.5v15l-8.25-4.75H4a1 1 0 0 1-1-1v-3.5a1 1 0 0 1 1-1z"/><ellipse class="s" cx="15.5" cy="12" rx="1.6" ry="7.5"/><path d="M7.25 14.75 8.4 19.2a1.2 1.2 0 0 0 2.3-.6l-.7-2.65"/></g><path data-part="w1" class="a" d="M19.25 9.75a3 3 0 0 1 0 4.5"/><path data-part="w2" class="a" d="M21 7.75a6.5 6.5 0 0 1 0 8.5"/>',
-    origins: { horn: [5, 12], w1: [19.25, 12], w2: [21, 12] },
+    svg: '<g data-part="horn"><path class="s" d="M4.5 8.5H9l7.5-4v15L9 15.5H4.5A1.5 1.5 0 0 1 3 14v-4a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M9 8.5v7M5.25 15.5l.9 3.6a1.25 1.25 0 0 0 2.4-.65l-.65-2.95"/></g><path data-part="w1" class="a" d="M19 9.5a3.25 3.25 0 0 1 0 5"/><path data-part="w2" class="a" d="M21 7.5a6.25 6.25 0 0 1 0 9"/>',
+    origins: { horn: [3, 12], w1: [19, 12], w2: [21, 12] },
     effect: {
       horn: fx.keys([{ rotate: 0, scale: 1 }, { rotate: -5, scale: [0.97, 1.02], offset: 0.22 }, { rotate: 2, scale: 1, offset: 0.5 }, { rotate: 0, scale: 1 }], 760),
       w1: fx.keys([{ opacity: 0, translate: [0, 0], scale: 1 }, { opacity: -1, translate: [0, 0], scale: 1, offset: 0.15 }, { opacity: 0, translate: [0, 0], scale: 1, offset: 0.3 }, { opacity: 0, translate: [1.2, 0], scale: 1.15, offset: 0.6 }, { opacity: -1, translate: [1.8, 0], scale: 1.2, offset: 0.8 }, { opacity: 0, translate: [0, 0], scale: 1 }], 900, 'linear'),

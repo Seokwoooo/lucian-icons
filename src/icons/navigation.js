@@ -30,10 +30,10 @@ export default group('navigation', [
   icon({
     id: 'home', name: ['홈', 'Home'], color: C.orange,
     keywords: '홈 집 처음 메인 home house start main',
-    desc: ['집이 살짝 들썩이고, 현관문이 경첩 쪽으로 열렸다가 닫힙니다.', 'The house gives a little hop and the front door swings open on its hinge, then closes.'],
-    svg: '<path class="s" d="M4 10.25 12 3.75l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path data-part="door" class="f" d="M10 20.5v-4.25a2 2 0 0 1 4 0v4.25z"/>',
-    origins: { door: [10, 18.5], '*': [12, 20.5] },
-    effect: { door: fx.keys([{ scale: 1 }, { scale: [0.2, 1], offset: 0.35 }, { scale: [0.2, 1], offset: 0.6 }, { scale: [1.05, 1], offset: 0.85 }, { scale: 1 }], 900), '*': fx.hop(1, 560) }
+    desc: ['현관문이 경첩을 축으로 안쪽으로 열려 어두운 실내가 보였다가, 탁 닫힙니다.', 'The front door swings in on its hinge to show the dark inside, then shuts.'],
+    svg: '<path class="s" d="M4 10.25 12 3.75l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path class="k" fill-opacity=".22" d="M9.5 20.5V14a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6.5z"/><g data-part="door"><path class="f" d="M9.5 20.5V14a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6.5z"/><path d="M9.5 20.5V14a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6.5"/><circle class="k" cx="13.1" cy="17.1" r=".75"/></g><path d="M9.5 20.5V14a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6.5"/>',
+    origins: { door: [9.5, 16.75] },
+    effect: { door: fx.keys([{ scale: 1, skewY: 0 }, { scale: [0.32, 1], skewY: -10, offset: 0.32, easing: 'out' }, { scale: [0.32, 1], skewY: -10, offset: 0.62, easing: 'in' }, { scale: [1.04, 1], skewY: 1, offset: 0.8 }, { scale: 1, skewY: 0 }], 1000, 'linear') }
   }),
   icon({
     id: 'menu', name: ['메뉴', 'Menu'], color: C.violet,

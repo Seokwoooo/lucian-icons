@@ -120,7 +120,7 @@ export default group('travel', [
     id: 'building', name: ['건물', 'Building'], color: C.violet,
     keywords: '건물 회사 빌딩 사무실 building company office city',
     desc: ['창문 불이 아래층부터 차례로 켜집니다.', 'The windows light up floor by floor.'],
-    svg: '<rect class="s" x="5" y="2.5" width="14" height="19" rx="1.5"/><path data-part="w1" class="a" d="M9 15h.01M15 15h.01"/><path data-part="w2" class="a" d="M9 11h.01M12 11h.01M15 11h.01"/><path data-part="w3" class="a" d="M9 7h.01M12 7h.01M15 7h.01"/><path d="M10 21.5V18h4v3.5"/>',
+    svg: '<rect class="s" x="5" y="2.5" width="14" height="19" rx="1.5"/><path data-part="w1" class="a" d="M9 15h.01M15 15h.01"/><path data-part="w2" class="a" d="M9 11h.01M12 11h.01M15 11h.01"/><path data-part="w3" class="a" d="M9 7h.01M12 7h.01M15 7h.01"/><path class="f" d="M10 21.5V18a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3.5z"/><path d="M10 21.5V18a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3.5"/><circle class="k" cx="12.9" cy="19.4" r=".6"/>',
     effect: { w1: fx.blink(300, 0), w2: fx.blink(300, 120), w3: fx.blink(300, 240) }
   }),
   icon({
