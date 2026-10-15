@@ -48,9 +48,9 @@ export default group('nature', [
   icon({
     id: 'wind', name: ['바람', 'Wind'], color: C.teal,
     keywords: '바람 공기 환기 날씨 wind air breeze weather',
-    desc: ['바람결이 차례로 오른쪽으로 흘러갑니다.', 'The gusts flow to the right one after another.'],
+    desc: ['바람 줄기가 왼쪽부터 한 줄씩 불어와 끝에서 말립니다.', 'Gusts sweep in from the left one line at a time and curl at the ends.'],
     svg: '<path data-part="w1" d="M3 8.5h9A2.5 2.5 0 1 0 9.5 6"/><path data-part="w2" class="a" d="M3 12.5h14.5a2.75 2.75 0 1 1-2.75 2.75"/><path data-part="w3" d="M3 16.5h6"/>',
-    effect: { w1: fx.nudge([1.6, 0], 600), w2: fx.nudge([1.6, 0], 600, 100), w3: fx.nudge([1.6, 0], 600, 200) }
+    effect: { w1: fx.redraw(560, 0), w2: fx.redraw(620, 140), w3: fx.redraw(420, 280) }
   }),
   icon({
     id: 'thermometer', name: ['온도계', 'Thermometer'], color: C.red,

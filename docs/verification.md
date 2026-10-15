@@ -2,6 +2,16 @@
 
 Product path `/icons/`.
 
+## Release 2.0.1 local checks
+
+Date: 2026-10-15. Full motion and drawing audit after user feedback on 2.0.0.
+
+- Audit method: a filmstrip of nine sampled frames for every hover effect and every state transition (323 rows across 212 icons) plus static sheets in color tone at 64px, then 150px close-ups of anything doubtful. Each icon was judged on whether its motion acts out what the object does and whether the motion is large enough to read at small sizes.
+- Changed (32): folder opens to show two stacked documents; inbox receives a document that drops in and tucks into the tray; book turns two curling pages; notebook cover swings open over a ruled page; tag now hangs from a peg and swings on its string; ZIP file redrawn with block zipper teeth and a pull that tugs and dangles; receipt clears and prints line by line; document and newspaper backspace and retype instead of blanking; aperture redrawn as a hexagonal iris that closes and opens; handshake redrawn with fewer, wider knuckles; graduation tassel hangs from a cord; flag flaps; processor pins pulse around the chip instead of the core spinning; keyboard keys light up in sequence; next, shuffle, radio, USB, bank, map, train, wind, calendar, bag, video call, log in, save and battery got motion specific to the object; attachment, link and bookmark got readable amplitudes.
+- Runtime: `skewY` pose property (combined with `skewX` in one transform, also in static exports). All icons using skew (book, cake, card, flag, flame, folder, hashtag, notebook) re-checked.
+- Logo: header and footer on the gallery and guide use the Loop L mark; favicon is the root site's favicon. Checked in light and dark.
+- `npm test`: 14 passed. `tests/browser.mjs`: 12 passed.
+
 ## Release 2.0.0 local checks
 
 Date: 2026-10-15. Full redesign: 212 icons (112 kept IDs, 100 new), new runtime, gallery and guide.

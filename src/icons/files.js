@@ -49,14 +49,27 @@ export default group('files', [
   icon({
     id: 'folder', name: ['폴더', 'Folder'], color: C.amber,
     keywords: '파일 디렉터리 열기 프로젝트 directory files project open',
-    desc: ['앞판이 앞으로 기울며 열리고, 스프링처럼 살짝 튕긴 뒤 멈춥니다.', 'The front panel tips forward with a small spring as the folder opens.'],
+    desc: ['열면 앞판이 앞으로 젖혀지고, 안에 쌓여 있던 문서 두 장이 차례로 올라옵니다.', 'Opening tips the front panel forward and the two stacked documents inside rise into view.'],
     states: { closed: ['닫힘', 'Closed'], open: ['열림', 'Open'] },
-    svg: '<path class="t" d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2v2"/><path data-part="front" class="s" d="M3 10.5h18V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
-    origins: { front: [3, 20] },
-    poses: { open: { front: { skewX: -16, scale: [0.88, 0.84] } } },
+    svg: '<path class="s" d="M3 18V6.5a2 2 0 0 1 2-2h3.17a2 2 0 0 1 1.42.59L11 6.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><g data-part="p1"><path class="t" d="M5.75 14.5v-5a1 1 0 0 1 1-1h8.5a1 1 0 0 1 1 1v5z"/><path d="M5.75 14.5v-5a1 1 0 0 1 1-1h8.5a1 1 0 0 1 1 1v1.25"/></g><g data-part="p2"><path class="t" d="M8 14.5v-2.75a1 1 0 0 1 1-1h9.5a1 1 0 0 1 1 1v2.75z"/><path class="a" d="M8 14.5v-2.75a1 1 0 0 1 1-1h9.5a1 1 0 0 1 1 1v2.75"/></g><path data-part="front" class="s" d="M3 10.5h18V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+    origins: { front: [3, 20], p1: [11, 14.5], p2: [13.75, 14.5] },
+    poses: {
+      '*': { p1: { opacity: 0, translate: [0, 3.5] }, p2: { opacity: 0, translate: [0, 3.5] } },
+      open: { front: { skewX: -18, scale: [0.86, 0.62] }, p1: { opacity: 1, translate: [0, 0] }, p2: { opacity: 1, translate: [0, 0] } }
+    },
     motion: { e: 'bouncy' },
-    transitions: { 'open>closed': { front: { e: 'snappy' } } },
-    effect: { front: fx.keys([{ skewX: 0, scale: 1 }, { skewX: -7, scale: [0.96, 0.93], offset: 0.4 }, { skewX: 0, scale: 1 }], 560) }
+    transitions: {
+      'closed>open': {
+        p1: fx.keys([{ translate: [0, 3.5], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 90),
+        p2: fx.keys([{ translate: [0, 3.5], opacity: 0 }, { translate: [0, 1.6], opacity: 1, offset: 0.3 }, { translate: [0, -0.7], opacity: 1, offset: 0.7 }, { translate: [0, 0], opacity: 1 }], 520, 'out', 190)
+      },
+      'open>closed': { p1: { e: 'in', d: 170 }, p2: { e: 'in', d: 150 }, front: { e: 'snappy', delay: 70 } }
+    },
+    effect: {
+      front: fx.keys([{ skewX: 0, scale: 1 }, { skewX: -9, scale: [0.97, 0.84], offset: 0.4 }, { skewX: 1.5, scale: [1, 1.02], offset: 0.74 }, { skewX: 0, scale: 1 }], 640),
+      p1: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.3], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 40),
+      p2: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.3], offset: 0.42 }, { translate: [0, 0.3], offset: 0.74 }, { translate: [0, 0] }], 640, 'inOut', 110)
+    }
   }),
   icon({
     id: 'download', name: ['다운로드', 'Download'], color: C.green,
@@ -77,9 +90,14 @@ export default group('files', [
   icon({
     id: 'document', name: ['문서', 'Document'], color: C.blue,
     keywords: '문서 파일 페이지 글 document file page text',
-    desc: ['종이가 살짝 들리고 본문 줄이 차례로 다시 쓰입니다.', 'The page lifts slightly and its lines write themselves in again.'],
+    desc: ['종이가 살짝 들리고, 아래 줄부터 지워졌다가 위에서부터 다시 타이핑됩니다.', 'The page lifts; the lines backspace from the bottom and type back in from the top.'],
     svg: `<path class="s" d="${DOC}"/><path d="${FOLD}"/><path data-part="l1" class="a" d="M8.5 12.5h7"/><path data-part="l2" class="a" d="M8.5 16h4.5"/>`,
-    effect: { '*': fx.nudge([0, -1], 560), l1: fx.redraw(420, 80), l2: fx.redraw(380, 220) }
+    origins: { '*': [12, 21] },
+    effect: {
+      '*': fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0, -1.2], rotate: -3, offset: 0.25 }, { translate: [0, -0.7], rotate: 1.5, offset: 0.7 }, { translate: [0, 0], rotate: 0 }], 1000),
+      l2: fx.retype([0, 0.2], [0.52, 0.8]),
+      l1: fx.retype([0.14, 0.34], [0.38, 0.62])
+    }
   }),
   icon({
     id: 'clipboard', name: ['클립보드', 'Clipboard'], color: C.teal,
@@ -110,16 +128,25 @@ export default group('files', [
   icon({
     id: 'inbox', name: ['받은편지함', 'Inbox'], color: C.cyan,
     keywords: '수신함 트레이 받은편지 새메일 inbox tray received mail',
-    desc: ['새 항목이 위에서 떨어져 트레이에 담깁니다.', 'A new item drops in and lands in the tray.'],
+    desc: ['새 문서가 위에서 떨어져 트레이에 꽂히고, 트레이가 무게를 받아 살짝 내려앉습니다.', 'A new document drops in and tucks into the tray, which dips under its weight.'],
     states: { empty: ['비어 있음', 'Empty'], received: ['새 항목', 'New item'] },
-    svg: '<path class="s" d="M3 13 5.6 5.9A1.5 1.5 0 0 1 7 5h10a1.5 1.5 0 0 1 1.4.9L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><rect data-part="item" class="f" x="8.5" y="7.5" width="7" height="4" rx="1"/><path data-part="tray" d="M3 13h4.75l1.5 2.5h5.5l1.5-2.5H21"/>',
-    origins: { item: [12, 11.5], tray: [12, 15] },
-    poses: { '*': { item: { opacity: 0, translate: [0, -6], scale: 0.7 } }, received: { item: { opacity: 1, translate: [0, 0], scale: 1 } } },
+    svg: '<path data-part="box" class="s" d="M3 13 5.6 5.9A1.5 1.5 0 0 1 7 5h10a1.5 1.5 0 0 1 1.4.9L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><g data-part="item"><path class="s" d="M7 13V8.25a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1V13"/><path class="a" d="M9.5 10.25h5"/></g><g data-part="drop"><path class="s" d="M7 13V8.25a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1V13"/><path class="a" d="M9.5 10.25h5"/></g><path data-part="tray" d="M3 13h4.75l1.5 2.5h5.5l1.5-2.5H21"/>',
+    origins: { item: [12, 13], drop: [12, 13], box: [12, 20], tray: [12, 13] },
+    poses: { '*': { item: { opacity: 0, translate: [0, -9] }, drop: { opacity: 0 } }, received: { item: { opacity: 1, translate: [0, 0] } } },
     transitions: {
-      'empty>received': { item: { e: 'bouncy' }, tray: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.35 }, { translate: [0, 0.9], offset: 0.55 }, { translate: [0, 0] }], 480, 'out') },
-      'received>empty': { item: { e: 'in', d: 220 } }
+      'empty>received': {
+        item: fx.keys([{ translate: [0, -9], opacity: 0, scale: 1 }, { translate: [0, -7.5], opacity: 1, scale: 1, offset: 0.14, easing: 'in' }, { translate: [0, 0.7], scale: [1.08, 0.86], offset: 0.56, easing: 'out' }, { translate: [0, -0.9], scale: [0.97, 1.04], offset: 0.76 }, { translate: [0, 0], opacity: 1, scale: 1 }], 700, 'linear'),
+        box: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.5 }, { translate: [0, 0.9], offset: 0.62 }, { translate: [0, 0] }], 700, 'out'),
+        tray: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.5 }, { translate: [0, 1.1], offset: 0.62 }, { translate: [0, 0] }], 700, 'out')
+      },
+      'received>empty': { item: fx.keys([{ translate: [0, 0], opacity: 1 }, { translate: [0, -6], opacity: 0 }], 260, 'in') }
     },
-    effect: { tray: fx.nudge([0, 1], 480), item: fx.nudge([0, -1.2], 480) }
+    effect: {
+      drop: fx.keys([{ translate: [0, -9], opacity: 0, scale: 1 }, { translate: [0, -7.5], opacity: 1, scale: 1, offset: 0.12, easing: 'in' }, { translate: [0, 0.6], scale: [1.08, 0.88], offset: 0.48, easing: 'out' }, { translate: [0, -0.5], scale: 1, offset: 0.64, easing: 'inOut' }, { translate: [0, 2.2], opacity: 0, offset: 0.8, easing: 'in' }, { translate: [0, 2.2], opacity: 0, scale: 1 }], 950, 'linear'),
+      item: fx.keys([{ scale: 1 }, { scale: 1, offset: 0.44 }, { scale: [1.05, 0.9], offset: 0.54 }, { scale: 1, offset: 0.72 }, { scale: 1 }], 950, 'inOut'),
+      box: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.44 }, { translate: [0, 0.8], offset: 0.55 }, { translate: [0, 0], offset: 0.74 }, { translate: [0, 0] }], 950, 'inOut'),
+      tray: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.44 }, { translate: [0, 1], offset: 0.55 }, { translate: [0, 0], offset: 0.74 }, { translate: [0, 0] }], 950, 'inOut')
+    }
   }),
   icon({
     id: 'copy', name: ['복사', 'Copy'], color: C.indigo,
@@ -138,10 +165,10 @@ export default group('files', [
   icon({
     id: 'attachment', name: ['첨부', 'Attachment'], color: C.violet,
     keywords: '첨부 클립 파일 붙이기 attachment paperclip attach file',
-    desc: ['클립이 꽂힌 자리를 축으로 살짝 흔들립니다.', 'The paperclip rocks around the point where it grips.'],
+    desc: ['클립이 위쪽 고리를 축으로 크게 흔들렸다가 제자리에 멈춥니다.', 'The paperclip swings from its top loop and settles back in place.'],
     svg: '<path d="M20 11.25 12.6 18.6a4.6 4.6 0 0 1-6.5-6.5l7.3-7.3a3.05 3.05 0 0 1 4.3 4.3"/><path class="a" d="m17.7 9.1-7.05 7.05a1.5 1.5 0 0 1-2.12-2.12l6.6-6.6"/>',
-    origins: { '*': [16, 6] },
-    effect: { '*': fx.wiggle(9, 720) }
+    origins: { '*': [17, 5.5] },
+    effect: { '*': fx.wiggle(16, 900) }
   }),
   icon({
     id: 'link', name: ['링크', 'Link'], color: C.blue,
@@ -149,10 +176,13 @@ export default group('files', [
     desc: ['두 고리가 벌어졌다가 딸깍 다시 맞물립니다. 끊김 상태도 있습니다.', 'Two links pull apart and snap back together; a broken state is included.'],
     states: { linked: ['연결됨', 'Linked'], broken: ['끊김', 'Broken'] },
     svg: '<path data-part="a1" d="M10.5 13.5a3.5 3.5 0 0 0 5 0l3-3a3.54 3.54 0 0 0-5-5l-1 1"/><path data-part="a2" class="a" d="M13.5 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.54 3.54 0 0 0 5 5l1-1"/>',
-    poses: { broken: { a1: { translate: [1.4, -1.4], rotate: 8 }, a2: { translate: [-1.4, 1.4], rotate: 8 } } },
+    poses: { broken: { a1: { translate: [1.6, -1.6], rotate: 8 }, a2: { translate: [-1.6, 1.6], rotate: 8 } } },
     origins: { a1: [15, 9], a2: [9, 15] },
     motion: { e: 'bouncy' },
-    effect: { a1: fx.nudge([0.9, -0.9], 520), a2: fx.nudge([-0.9, 0.9], 520) }
+    effect: {
+      a1: fx.keys([{ translate: [0, 0] }, { translate: [1.9, -1.9], offset: 0.36 }, { translate: [-0.5, 0.5], offset: 0.62 }, { translate: [0, 0] }], 620),
+      a2: fx.keys([{ translate: [0, 0] }, { translate: [-1.9, 1.9], offset: 0.36 }, { translate: [0.5, -0.5], offset: 0.62 }, { translate: [0, 0] }], 620)
+    }
   }),
   icon({
     id: 'bookmark', name: ['북마크', 'Bookmark'], color: C.violet,
@@ -163,48 +193,61 @@ export default group('files', [
     origins: { fill: [12, 3], mark: [12, 3] },
     poses: { '*': { fill: { scale: [1, 0], opacity: 0 } }, on: { fill: { scale: 1, opacity: 1 } } },
     motion: { e: 'bouncy' },
-    transitions: { 'off>on': { mark: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -1.2], scale: [1, 1.04], offset: 0.4 }, { translate: [0, 0], scale: 1 }], 520, 'out') }, 'on>off': { fill: { e: 'smooth', d: 240 } } },
-    effect: { mark: fx.keys([{ scale: 1 }, { scale: [1, 1.07], offset: 0.35 }, { scale: [1, 0.97], offset: 0.7 }, { scale: 1 }], 560) }
+    transitions: { 'off>on': { mark: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -1.6], scale: [1, 1.05], offset: 0.4 }, { translate: [0, 0], scale: 1 }], 520, 'out') }, 'on>off': { fill: { e: 'smooth', d: 240 } } },
+    effect: { mark: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -2.2], scale: [0.95, 1.06], offset: 0.36 }, { translate: [0, 0.6], scale: [1.04, 0.96], offset: 0.64 }, { translate: [0, 0], scale: 1 }], 640) }
   }),
   icon({
     id: 'book', name: ['책', 'Book'], color: C.coral,
     keywords: '책 읽기 독서 페이지 가이드 book read reading pages guide',
-    desc: ['오른쪽 페이지 한 장이 등을 넘어 왼쪽으로 넘어갑니다.', 'A page lifts from the right and turns over the spine.'],
-    svg: '<path class="s" d="M12 6.5C10.5 5.3 8.3 4.75 5.5 4.75H3.75v13h1.75c2.8 0 5 .55 6.5 1.75"/><path class="s" d="M12 6.5c1.5-1.2 3.7-1.75 6.5-1.75h1.75v13H18.5c-2.8 0-5 .55-6.5 1.75z"/><path d="M12 6.5v13"/><path data-part="page" class="a" d="M12 6.5c1.5-1.2 3.7-1.75 6.5-1.75h1.75v13H18.5c-2.8 0-5 .55-6.5 1.75"/>',
-    origins: { page: [12, 12] },
-    poses: { '*': { page: { opacity: 0 } } },
-    effect: { page: fx.keys([{ scale: 1, opacity: 0 }, { scale: [0.98, 1], opacity: 1, offset: 0.08 }, { scale: [0.1, 1], opacity: 1, offset: 0.5, easing: 'in' }, { scale: [-1, 1], opacity: 1, offset: 0.9, easing: 'out' }, { scale: [-1, 1], opacity: 0 }], 820, 'linear') }
+    desc: ['오른쪽 페이지 두 장이 들리며 휘어지고, 등을 넘어 왼쪽으로 차례로 넘어갑니다.', 'Two pages lift and curl from the right, then turn over the spine one after another.'],
+    svg: '<path class="s" d="M12 6.5C10.5 5.3 8.3 4.75 5.5 4.75H3.75v13h1.75c2.8 0 5 .55 6.5 1.75"/><path class="s" d="M12 6.5c1.5-1.2 3.7-1.75 6.5-1.75h1.75v13H18.5c-2.8 0-5 .55-6.5 1.75z"/><path d="M12 6.5v13"/><path data-part="p1" class="s" d="M12 6.5c1.5-1.2 3.7-1.75 6.5-1.75h1.75v13H18.5c-2.8 0-5 .55-6.5 1.75z"/><path data-part="p2" class="s" d="M12 6.5c1.5-1.2 3.7-1.75 6.5-1.75h1.75v13H18.5c-2.8 0-5 .55-6.5 1.75z"/>',
+    origins: { p1: [12, 13], p2: [12, 13] },
+    poses: { '*': { p1: { opacity: 0 }, p2: { opacity: 0 } } },
+    effect: {
+      p1: fx.keys([{ scale: 1, skewY: 0, translate: [0, 0], opacity: 0 }, { scale: [0.97, 1], skewY: -3, translate: [0, -0.2], opacity: 1, offset: 0.08, easing: 'in' }, { scale: [0.04, 1], skewY: -16, translate: [0, -0.8], opacity: 1, offset: 0.48, easing: 'out' }, { scale: [-1, 1], skewY: 0, translate: [0, 0], opacity: 1, offset: 0.84 }, { scale: [-1, 1], skewY: 0, translate: [0, 0], opacity: 0 }], 780, 'linear'),
+      p2: fx.keys([{ scale: 1, skewY: 0, translate: [0, 0], opacity: 0 }, { scale: [0.97, 1], skewY: -3, translate: [0, -0.2], opacity: 1, offset: 0.08, easing: 'in' }, { scale: [0.04, 1], skewY: -16, translate: [0, -0.8], opacity: 1, offset: 0.48, easing: 'out' }, { scale: [-1, 1], skewY: 0, translate: [0, 0], opacity: 1, offset: 0.84 }, { scale: [-1, 1], skewY: 0, translate: [0, 0], opacity: 0 }], 780, 'linear', 170)
+    }
   }),
   icon({
     id: 'notebook', name: ['노트', 'Notebook'], color: C.lime,
     keywords: '노트 공책 메모 기록 일지 notebook journal notes diary',
-    desc: ['표지가 스프링 쪽으로 살짝 접혔다 돌아옵니다.', 'The cover flexes toward the spiral and settles back.'],
-    svg: '<g data-part="cover"><rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><rect x="9.5" y="7" width="6" height="3.25" rx=".75"/></g><path class="a" d="M3.5 7.5h3.5M3.5 12h3.5M3.5 16.5h3.5"/>',
+    desc: ['표지가 스프링 쪽으로 젖혀지며 줄 쳐진 속지가 보였다가 다시 덮입니다.', 'The cover swings open toward the spiral to show the ruled page, then closes.'],
+    svg: '<rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><path data-part="lines" class="a" d="M9.5 8.5h6.5M9.5 12h6.5M9.5 15.5h4"/><g data-part="cover"><rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><rect x="9.5" y="7" width="6" height="3.25" rx=".75"/></g><path class="a" d="M3.5 7.5h3.5M3.5 12h3.5M3.5 16.5h3.5"/>',
     origins: { cover: [5.5, 12] },
-    effect: { cover: fx.keys([{ scale: 1 }, { scale: [0.62, 1], offset: 0.42 }, { scale: [1.04, 1], offset: 0.78 }, { scale: 1 }], 640) }
+    poses: { '*': { lines: { opacity: 0 } } },
+    effect: {
+      cover: fx.keys([{ scale: 1, skewY: 0 }, { scale: [0.1, 1], skewY: -8, offset: 0.36 }, { scale: [0.1, 1], skewY: -8, offset: 0.62 }, { scale: [1.04, 1], skewY: 0, offset: 0.86 }, { scale: 1, skewY: 0 }], 1000),
+      lines: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.12 }, { opacity: 1, offset: 0.3 }, { opacity: 1, offset: 0.66 }, { opacity: 0, offset: 0.8 }, { opacity: 0 }], 1000, 'linear')
+    }
   }),
   icon({
     id: 'tag', name: ['태그', 'Tag'], color: C.orange,
     keywords: '태그 라벨 가격 분류 tag label price category',
-    desc: ['구멍을 축으로 꼬리표가 시계추처럼 흔들립니다.', 'The tag swings like a pendulum from its hole.'],
-    svg: '<path class="s" d="M3.5 11.6V5A1.5 1.5 0 0 1 5 3.5h6.6a1.5 1.5 0 0 1 1.06.44l7.9 7.9a1.5 1.5 0 0 1 0 2.12l-6.6 6.6a1.5 1.5 0 0 1-2.12 0l-7.9-7.9a1.5 1.5 0 0 1-.44-1.06z"/><circle class="f" cx="8" cy="8" r="1.6"/>',
-    origins: { '*': [8, 8] },
-    effect: { '*': fx.wiggle(14, 820) }
+    desc: ['못에 걸린 꼬리표가 줄을 축으로 시계추처럼 흔들리다 멈춥니다.', 'The tag hangs from its string and swings like a pendulum before settling.'],
+    svg: '<circle class="k" cx="12" cy="2.5" r="1.2"/><g data-part="tag"><path d="M12 2.5v7.5"/><path class="s" d="M12 6.25 18 10.5v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-9z"/><circle class="f" cx="12" cy="10.25" r="1.35"/><path d="M9 15.25h6M9 18.25h3.5"/></g>',
+    origins: { tag: [12, 2.5] },
+    effect: { tag: fx.wiggle(14, 1100) }
   }),
   icon({
     id: 'filezip', name: ['압축 파일', 'ZIP file'], color: C.purple,
     keywords: '압축 지퍼 묶음 파일 zip archive compressed bundle',
-    desc: ['지퍼 손잡이가 내려갔다가 다시 올라와 잠깁니다.', 'The zipper pull slides down and back up.'],
-    svg: `<path class="s" d="${DOC}"/><path d="${FOLD}"/><path class="a" d="M10.5 4.5H12M12 7h1.5M10.5 9.5H12M12 12h1.5"/><rect data-part="pull" x="10" y="14" width="4" height="4.5" rx="1"/>`,
-    origins: { pull: [12, 14] },
-    effect: { pull: fx.keys([{ translate: [0, 0] }, { translate: [0, 1.6], offset: 0.4 }, { translate: [0, -0.3], offset: 0.75 }, { translate: [0, 0] }], 640) }
+    desc: ['지퍼 손잡이를 당기면 아래로 내려갔다가 대롱대롱 흔들리며 멈춥니다.', 'A tug pulls the zipper tab down, then it dangles and settles.'],
+    svg: `<path class="s" d="${DOC}"/><path d="${FOLD}"/><path class="f" d="M9.6 3.9h1.5v1.2H9.6zM10.9 5.4h1.5v1.2h-1.5zM9.6 6.9h1.5v1.2H9.6zM10.9 8.4h1.5v1.2h-1.5zM9.6 9.9h1.5v1.2H9.6z"/><g data-part="pull"><path class="s" d="M9.5 11.75h3a.75.75 0 0 1 .75.75v4.25a2.25 2.25 0 0 1-4.5 0V12.5a.75.75 0 0 1 .75-.75z"/><path d="M11 14.25v2"/></g>`,
+    origins: { pull: [11, 11.75] },
+    effect: { pull: fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0, 1.5], rotate: 0, offset: 0.2 }, { translate: [0, 0], rotate: 16, offset: 0.4 }, { rotate: -11, offset: 0.58 }, { rotate: 6, offset: 0.74 }, { rotate: -2, offset: 0.88 }, { translate: [0, 0], rotate: 0 }], 1050) }
   }),
   icon({
     id: 'receipt', name: ['영수증', 'Receipt'], color: C.teal,
     keywords: '영수증 결제 주문 내역 청구 receipt payment order bill',
-    desc: ['영수증이 한 번 출력되듯 튀어 오르고 항목이 다시 찍힙니다.', 'The receipt hops as if printed and its lines print again.'],
-    svg: '<path class="s" d="M5.5 3h13v18l-2.17-1.5L14.17 21 12 19.5 9.83 21l-2.16-1.5L5.5 21z"/><path data-part="l1" class="a" d="M8.75 8h6.5"/><path data-part="l2" d="M8.75 11.5h6.5"/><path data-part="l3" d="M8.75 15h3.5"/>',
-    effect: { '*': fx.hop(1.4, 560), l1: fx.redraw(320, 120), l2: fx.redraw(320, 200), l3: fx.redraw(280, 280) }
+    desc: ['영수증이 아래 줄부터 지워지며 내려갔다가, 다시 밀려 나오며 줄이 위에서부터 차례로 찍힙니다.', 'The lines clear from the bottom as the receipt dips, then it feeds out again and prints each line from the top.'],
+    svg: '<g data-part="paper"><path class="s" d="M5.5 3h13v18l-2.17-1.5L14.17 21 12 19.5 9.83 21l-2.16-1.5L5.5 21z"/><path data-part="l1" class="a" d="M8.75 8h6.5"/><path data-part="l2" d="M8.75 11.5h6.5"/><path data-part="l3" d="M8.75 15h3.5"/></g>',
+    origins: { paper: [12, 3] },
+    effect: {
+      paper: fx.keys([{ translate: [0, 0] }, { translate: [0, 1.4], offset: 0.24 }, { translate: [0, 1.4], offset: 0.32 }, { translate: [0, -0.8], offset: 0.8 }, { translate: [0, 0] }], 1100),
+      l3: fx.retype([0, 0.12], [0.66, 0.82], 1100),
+      l2: fx.retype([0.06, 0.18], [0.5, 0.66], 1100),
+      l1: fx.retype([0.12, 0.24], [0.34, 0.5], 1100)
+    }
   }),
   icon({
     id: 'cloud', name: ['클라우드', 'Cloud'], color: C.cyan,
@@ -221,21 +264,29 @@ export default group('files', [
   icon({
     id: 'save', name: ['저장', 'Save'], color: C.indigo,
     keywords: '저장 디스크 플로피 보관 save disk floppy store',
-    desc: ['셔터가 옆으로 밀렸다 돌아오고, 저장됨 상태에서는 라벨에 체크가 그려집니다.', 'The shutter slides and returns; the saved state draws a check on the label.'],
+    desc: ['셔터가 옆으로 열렸다 닫히며 디스크가 한 번 눌리고, 저장됨 상태에서는 라벨에 체크가 그려집니다.', 'The shutter slides open and shut as the disk clicks in; the saved state draws a check on the label.'],
     states: { idle: ['대기', 'Idle'], saved: ['저장됨', 'Saved'] },
     svg: '<path class="s" d="M5 3.5h11.5l4 4V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V5A1.5 1.5 0 0 1 5 3.5z"/><g data-part="shutter"><path d="M7.5 3.5v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4"/><path class="a" d="M13 5.25v1.5"/></g><path d="M7 20.5V14a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v6.5"/><path data-part="check" class="a" d="m9.75 16.75 1.5 1.5 3-3"/>',
     origins: { check: [12, 16.75] },
     poses: { '*': { check: { draw: 0, opacity: 0 } }, saved: { check: { draw: 1, opacity: 1 } } },
     transitions: { 'idle>saved': { check: fx.keys([{ draw: 0, opacity: 0 }, { draw: 0.05, opacity: 1, offset: 0.1 }, { draw: 1, opacity: 1 }], 380, 'out', 160), shutter: fx.nudge([2, 0], 420) }, 'saved>idle': { check: { e: 'out', d: 160 } } },
-    effect: { shutter: fx.nudge([2, 0], 560) }
+    effect: {
+      shutter: fx.keys([{ translate: [0, 0] }, { translate: [2.6, 0], offset: 0.35 }, { translate: [2.6, 0], offset: 0.55 }, { translate: [-0.4, 0], offset: 0.82 }, { translate: [0, 0] }], 760),
+      '*': fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.55 }, { translate: [0, 0.6], scale: [1.03, 0.97], offset: 0.7 }, { translate: [0, 0], scale: 1 }], 760)
+    }
   }),
   icon({
     id: 'newspaper', name: ['뉴스', 'Newspaper'], color: C.coral,
     keywords: '뉴스 신문 기사 소식 news newspaper article press',
-    desc: ['신문이 살짝 펄럭이고 기사 줄이 다시 채워집니다.', 'The paper flutters and the article lines fill back in.'],
-    svg: '<path class="s" d="M7 5a1.5 1.5 0 0 1 1.5-1.5H19A1.5 1.5 0 0 1 20.5 5v13.5a2 2 0 0 1-2 2H5.5a2 2 0 0 1-2-2V10A1.5 1.5 0 0 1 5 8.5h2z"/><path d="M7 8.5v10a2 2 0 0 1-2 2"/><rect class="f" x="10" y="6.5" width="7.5" height="4" rx=".75"/><path data-part="l1" d="M10 14h7.5"/><path data-part="l2" d="M10 17h5"/>',
-    origins: { '*': [12, 20.5] },
-    effect: { '*': fx.turn(-4, 520), l1: fx.redraw(320, 140), l2: fx.redraw(300, 230) }
+    desc: ['신문이 펄럭이며 들리고, 사진이 바뀌듯 튀고 기사 줄이 다시 쓰입니다.', 'The paper lifts with a flutter, the photo pops, and the article lines are rewritten.'],
+    svg: '<path class="s" d="M7 5a1.5 1.5 0 0 1 1.5-1.5H19A1.5 1.5 0 0 1 20.5 5v13.5a2 2 0 0 1-2 2H5.5a2 2 0 0 1-2-2V10A1.5 1.5 0 0 1 5 8.5h2z"/><path d="M7 8.5v10a2 2 0 0 1-2 2"/><rect data-part="photo" class="f" x="10" y="6.5" width="7.5" height="4" rx=".75"/><path data-part="l1" d="M10 14h7.5"/><path data-part="l2" d="M10 17h5"/>',
+    origins: { '*': [12, 20.5], photo: [13.75, 8.5] },
+    effect: {
+      '*': fx.keys([{ rotate: 0, translate: [0, 0] }, { rotate: -5, translate: [0, -1], offset: 0.3 }, { rotate: 2, translate: [0, -0.4], offset: 0.62 }, { rotate: 0, translate: [0, 0] }], 1000),
+      photo: fx.keys([{ scale: 1 }, { scale: 1, offset: 0.12 }, { scale: 0.6, offset: 0.3 }, { scale: 1.12, offset: 0.5 }, { scale: 1 }], 1000),
+      l2: fx.retype([0.05, 0.22], [0.5, 0.78]),
+      l1: fx.retype([0.15, 0.34], [0.36, 0.6])
+    }
   }),
   icon({
     id: 'stickynote', name: ['메모지', 'Sticky note'], color: C.yellow,

@@ -60,9 +60,7 @@ a{color:inherit}
   filter:blur(10px)}
 .g-head-line{display:flex;align-items:center;justify-content:space-between;height:68px}
 .g-brand{display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none;font-size:15px;font-weight:720;letter-spacing:-.02em;border-radius:10px}
-.g-orb{position:relative;width:22px;height:22px;border-radius:50%;background:conic-gradient(from 200deg,#7B61FF,#3D8BFF,#22C3A6,#FFB26B,#FF7D8C,#7B61FF);box-shadow:0 6px 16px -6px rgba(123,97,255,.7);animation:g-spin 14s linear infinite}
-.g-orb::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--page)}
-@keyframes g-spin{to{transform:rotate(360deg)}}
+.g-logo{display:block;flex:none;width:24px;height:24px}
 .g-brand-s{font-weight:600;color:var(--ink-3);padding-left:10px;border-left:1px solid var(--line-2)}
 .g-head-r{display:flex;align-items:center;gap:18px}
 .g-link{font-size:14px;font-weight:620;color:var(--ink-2);padding:8px 2px;border-bottom:1px solid var(--line-2);transition:color .3s var(--ease),border-color .3s var(--ease)}
@@ -276,7 +274,6 @@ a{color:inherit}
 .g-note a:hover{text-decoration:underline;text-underline-offset:4px}
 .g-toast{position:fixed;left:50%;bottom:28px;z-index:90;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);padding:12px 18px;border-radius:999px;background:var(--ink);color:var(--page);font-size:14px;font-weight:650;box-shadow:0 18px 40px -16px var(--shadow-strong);pointer-events:none;opacity:0;transform:translate(-50%,20px) scale(.96);transition:opacity .35s var(--ease),transform .6s var(--spring)}
 .g-toast.is-on{opacity:1;transform:translate(-50%,0)}
-body.has-dlg .g-orb{animation-play-state:paused}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1100px){.g-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -320,7 +317,6 @@ body.has-dlg .g-orb{animation-play-state:paused}
 }
 @media (max-width:420px){.g-head-r .g-link:first-child{display:none}}
 @media (prefers-reduced-motion:reduce){
-  .g-orb{animation:none}
   .js .g-w{transition:none;opacity:1;transform:none;filter:none}
   .js .g-tile.is-new{animation:none}
   .g-ghost{display:none}

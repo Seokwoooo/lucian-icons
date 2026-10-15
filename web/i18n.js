@@ -2,7 +2,7 @@
 export const copy = {
   ko: {
     skip: '아이콘 목록으로 건너뛰기',
-    brand: 'Lucian Icons, 맨 위로',
+    brand: 'lucianLabs 홈페이지',
     skillBtn: '에이전트 스킬',
     guideBtn: '사용 방법',
     langGroup: '언어',
@@ -87,7 +87,7 @@ export const copy = {
   },
   en: {
     skip: 'Skip to icons',
-    brand: 'Lucian Icons, back to top',
+    brand: 'lucianLabs home',
     skillBtn: 'Agent skill',
     guideBtn: 'How to use',
     langGroup: 'Language',

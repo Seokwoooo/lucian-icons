@@ -108,17 +108,23 @@ export default group('media', [
   icon({
     id: 'next', name: ['다음 곡', 'Next'], color: C.green,
     keywords: '다음 건너뛰기 다음곡 앞으로 next skip forward track',
-    desc: ['삼각형이 막대 쪽으로 밀려가 부딪혔다 돌아옵니다.', 'The triangle pushes into the bar and bounces back.'],
+    desc: ['삼각형이 뒤로 살짝 물러났다가 막대로 튀어 나가 부딪히고, 막대가 밀려납니다.', 'The triangle draws back, dashes into the bar, and the bar gets knocked forward.'],
     svg: '<path data-part="tri" class="s" d="M5 5.4v13.2a.9.9 0 0 0 1.4.75l9.6-6.6a.9.9 0 0 0 0-1.5L6.4 4.65A.9.9 0 0 0 5 5.4z"/><path data-part="bar" class="a" d="M19.5 5v14"/>',
-    origins: { bar: [19.5, 12] },
-    effect: { tri: fx.nudge([2.2, 0], 480), bar: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.3 }, { translate: [0.8, 0], offset: 0.45 }, { translate: [0, 0] }], 480, 'out') }
+    origins: { tri: [16.25, 12], bar: [19.5, 12] },
+    effect: {
+      tri: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [-1, 0], scale: 1, offset: 0.2 }, { translate: [2.4, 0], scale: [0.88, 1.05], offset: 0.42 }, { translate: [-0.4, 0], scale: 1, offset: 0.72 }, { translate: [0, 0], scale: 1 }], 680),
+      bar: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.38 }, { translate: [1.4, 0], scale: [1, 1.12], offset: 0.5 }, { translate: [0, 0], scale: 1 }], 680, 'out')
+    }
   }),
   icon({
     id: 'shuffle', name: ['섞기', 'Shuffle'], color: C.purple,
     keywords: '섞기 랜덤 무작위 셔플 shuffle random mix',
-    desc: ['교차한 두 화살표가 차례로 앞으로 뻗습니다.', 'The two crossing arrows reach forward one after the other.'],
+    desc: ['교차한 두 화살표가 카드를 섞듯 서로 반대 방향으로 벌어졌다 모입니다.', 'The crossed arrows fan apart in opposite directions like shuffled cards, then rejoin.'],
     svg: '<g data-part="a1"><path d="M3.5 7.5H6c2.5 0 3.75 1.25 5 3.5l2 3.5c1.25 2.25 2.5 3.5 5 3.5h2.5"/><path d="M18 15.5l2.5 2.5-2.5 2.5"/></g><g data-part="a2" class="a"><path d="M3.5 18H6c2.5 0 3.75-1.25 5-3.5l2-3.5c1.25-2.25 2.5-3.5 5-3.5h2.5"/><path d="M18 5l2.5 2.5L18 10"/></g>',
-    effect: { a1: fx.nudge([1.6, 0], 480), a2: fx.nudge([1.6, 0], 480, 120) }
+    effect: {
+      a1: fx.keys([{ translate: [0, 0] }, { translate: [1.3, 1.4], offset: 0.36 }, { translate: [-0.4, -0.4], offset: 0.7 }, { translate: [0, 0] }], 660),
+      a2: fx.keys([{ translate: [0, 0] }, { translate: [1.3, -1.4], offset: 0.36 }, { translate: [-0.4, 0.4], offset: 0.7 }, { translate: [0, 0] }], 660, 'inOut', 70)
+    }
   }),
   icon({
     id: 'repeat', name: ['반복', 'Repeat'], color: C.cyan,
@@ -131,10 +137,14 @@ export default group('media', [
   icon({
     id: 'radio', name: ['라디오', 'Radio'], color: C.orange,
     keywords: '라디오 방송 팟캐스트 소리 radio broadcast podcast fm',
-    desc: ['안테나가 흔들리고 스피커가 소리에 맞춰 울립니다.', 'The antenna sways and the speaker pulses with sound.'],
-    svg: '<path data-part="ant" d="M7 8 17 3.5"/><rect class="s" x="2.5" y="8" width="19" height="12.5" rx="2.5"/><circle data-part="spk" class="f" cx="8" cy="14.25" r="2.5"/><circle cx="8" cy="14.25" r="2.5"/><path class="a" d="M14 12.5h4M14 16h4"/>',
-    origins: { ant: [7, 8], spk: [8, 14.25] },
-    effect: { ant: fx.wiggle(10, 720), spk: fx.keys([1, 1.2, 0.95, 1.15, 1].map(s => ({ scale: s })), 720) }
+    desc: ['안테나가 흔들리고 스피커가 소리에 맞춰 두 번 울립니다.', 'The antenna sways and the speaker thumps twice with the sound.'],
+    svg: '<path data-part="ant" d="M7 8 17 3.5"/><rect class="s" x="2.5" y="8" width="19" height="12.5" rx="2.5"/><circle data-part="spk" class="f" cx="8" cy="14.25" r="2.5"/><circle cx="8" cy="14.25" r="2.5"/><path data-part="dial" class="a" d="M14 12.5h4M14 16h4"/>',
+    origins: { ant: [7, 8], spk: [8, 14.25], dial: [16, 14.25] },
+    effect: {
+      ant: fx.wiggle(16, 860),
+      spk: fx.keys([1, 1.35, 0.92, 1.28, 0.96, 1].map(s => ({ scale: s })), 760),
+      dial: fx.keys([{ translate: [0, 0] }, { translate: [0.9, 0], offset: 0.3 }, { translate: [-0.6, 0], offset: 0.65 }, { translate: [0, 0] }], 760)
+    }
   }),
   icon({
     id: 'tv', name: ['TV', 'TV'], color: C.indigo,
@@ -153,10 +163,13 @@ export default group('media', [
   icon({
     id: 'aperture', name: ['조리개', 'Aperture'], color: C.amber,
     keywords: '조리개 렌즈 사진 셔터 aperture lens photo shutter',
-    desc: ['조리개 날이 회전하며 조였다가 다시 열립니다.', 'The blades rotate closed and open again.'],
-    svg: '<circle class="s" cx="12" cy="12" r="8.75"/><path data-part="blades" class="a" d="M12 7.8 20.71 12.83M15.64 9.9v10.06M15.64 14.1 6.93 19.13M12 16.2 3.29 11.17M8.36 14.1V4.04M8.36 9.9l8.71-5.03"/>',
-    origins: { blades: [12, 12] },
-    effect: { blades: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 30, scale: 0.9, offset: 0.45 }, { rotate: 60, scale: 1 }], 720, 'inOut') }
+    desc: ['조리개 날이 비틀리며 가운데 구멍이 좁아졌다가 다시 활짝 열립니다.', 'The blades twist to narrow the opening, then open wide again.'],
+    svg: '<circle class="s" cx="12" cy="12" r="8.75"/><path data-part="hole" class="f" d="M14.02 8.5 16.04 12l-2.02 3.5H9.98L7.96 12l2.02-3.5z"/><path data-part="blades" d="M14.02 8.5 19.04 17.2M9.98 8.5h10.04M7.96 12l5.02-8.7M9.98 15.5 4.96 6.8M14.02 15.5H3.98M16.04 12l-5.02 8.7"/>',
+    origins: { blades: [12, 12], hole: [12, 12] },
+    effect: {
+      blades: fx.keys([{ rotate: 0 }, { rotate: 40, offset: 0.45 }, { rotate: -6, offset: 0.78 }, { rotate: 0 }], 880),
+      hole: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 40, scale: 0.28, offset: 0.45 }, { rotate: -6, scale: 1.1, offset: 0.78 }, { rotate: 0, scale: 1 }], 880)
+    }
   }),
   icon({
     id: 'disc', name: ['음반', 'Disc'], color: C.pink,

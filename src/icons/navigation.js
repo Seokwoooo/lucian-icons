@@ -274,8 +274,12 @@ export default group('navigation', [
   icon({
     id: 'login', name: ['로그인', 'Log in'], color: C.blue,
     keywords: '로그인 들어가기 입장 계정 login sign in enter account',
-    desc: ['화살표가 문 안으로 쑥 들어갔다가 돌아옵니다.', 'The arrow slides into the doorway and back.'],
-    svg: '<path class="s" d="M14 3.5h4a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-4"/><g data-part="arrow" class="a"><path d="M3.5 12h11"/><path d="m10.5 8 4 4-4 4"/></g>',
-    effect: { arrow: fx.nudge([3, 0], 560) }
+    desc: ['화살표가 문 안으로 쑥 들어가 사라지고, 왼쪽에서 다시 나타나 제자리로 옵니다.', 'The arrow slides through the door and disappears, then comes back in from the left.'],
+    svg: '<path data-part="door" class="s" d="M14 3.5h4a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-4"/><g data-part="arrow" class="a"><path d="M3.5 12h11"/><path d="m10.5 8 4 4-4 4"/></g>',
+    origins: { door: [17, 12] },
+    effect: {
+      arrow: fx.keys([{ translate: [0, 0], opacity: 0 }, { translate: [-1, 0], opacity: 0, offset: 0.16, easing: 'in' }, { translate: [3.6, 0], opacity: -1, offset: 0.44 }, { translate: [-4, 0], opacity: -1, offset: 0.46, easing: 'out' }, { translate: [0, 0], opacity: 0, offset: 0.82 }, { translate: [0, 0], opacity: 0 }], 960, 'linear'),
+      door: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.34 }, { translate: [0.7, 0], scale: [1.05, 1], offset: 0.44 }, { translate: [0, 0], scale: 1, offset: 0.6 }, { translate: [0, 0], scale: 1 }], 960)
+    }
   })
 ]);

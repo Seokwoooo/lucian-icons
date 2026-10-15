@@ -80,14 +80,17 @@ export default group('communication', [
   icon({
     id: 'videochat', name: ['영상 통화', 'Video call'], color: C.coral,
     keywords: '영상 통화 카메라 회의 화상 video call camera meeting',
-    desc: ['카메라를 끄면 사선이 그어지고, 켜져 있으면 녹화 불빛이 숨 쉬듯 깜빡입니다.', 'Turning off draws a slash; when on, the recording light breathes.'],
+    desc: ['렌즈가 줌인하듯 앞으로 늘어났다 돌아오고, 녹화 점이 깜빡입니다.', 'The lens zooms out and back and the recording dot blinks.'],
     states: { on: ['켜짐', 'On'], off: ['꺼짐', 'Off'] },
-    svg: '<g data-part="cam"><rect class="s" x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10 20.2 7.3a.5.5 0 0 1 .8.4v8.6a.5.5 0 0 1-.8.4L15.5 14"/></g><circle data-part="rec" class="f" cx="6.25" cy="9.75" r="1.15"/><path data-part="slash" class="a" d="M3 3 21 21"/>',
-    origins: { rec: [6.25, 9.75], cam: [9, 12] },
+    svg: '<g data-part="cam"><rect class="s" x="2.5" y="6" width="13" height="12" rx="2.5"/><path data-part="lens" d="M15.5 10 20.2 7.3a.5.5 0 0 1 .8.4v8.6a.5.5 0 0 1-.8.4L15.5 14"/></g><circle data-part="rec" class="f" cx="6.25" cy="9.75" r="1.15"/><path data-part="slash" class="a" d="M3 3 21 21"/>',
+    origins: { rec: [6.25, 9.75], cam: [9, 12], lens: [15.5, 12] },
     poses: { '*': { slash: { draw: 0, opacity: 0 } }, off: { slash: { draw: 1, opacity: 1 }, rec: { opacity: 0, scale: 0.4 } } },
     transitions: { 'on>off': { slash: fx.keys([{ draw: 0, opacity: 0 }, { draw: 0.04, opacity: 1, offset: 0.1 }, { draw: 1, opacity: 1 }], 420, 'out') } },
     loops: { on: { rec: fx.keys([{ opacity: 0 }, { opacity: -0.7, offset: 0.5 }, { opacity: 0 }], 1800, 'inOut') } },
-    effect: { cam: fx.hop(1.2, 520) }
+    effect: {
+      lens: fx.keys([{ scale: 1, translate: [0, 0] }, { scale: [1.15, 1.22], translate: [0.6, 0], offset: 0.36 }, { scale: [0.96, 0.96], translate: [0, 0], offset: 0.66 }, { scale: 1, translate: [0, 0] }], 640),
+      rec: fx.pop(1.5, 480, 120)
+    }
   }),
   icon({
     id: 'megaphone', name: ['확성기', 'Megaphone'], color: C.pink,

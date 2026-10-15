@@ -28,18 +28,21 @@ export default group('travel', [
   icon({
     id: 'flag', name: ['깃발', 'Flag'], color: C.coral,
     keywords: '깃발 목표 신고 표시 flag goal report mark',
-    desc: ['깃발이 깃대에서 바람에 펄럭입니다.', 'The flag ripples in the wind from its pole.'],
+    desc: ['깃대에 매달린 천이 바람을 받아 위아래로 펄럭이다 잦아듭니다.', 'The cloth catches the wind and flaps up and down before it settles.'],
     svg: '<path d="M5 21.5V3.5"/><g data-part="cloth"><path class="f" d="M5 4h12.5L15 8.25l2.5 4.25H5"/><path d="M5 4h12.5L15 8.25l2.5 4.25H5"/></g>',
     origins: { cloth: [5, 8.25] },
-    effect: { cloth: fx.keys([{ scale: 1, skewX: 0 }, { scale: [0.9, 1.04], skewX: 6, offset: 0.25 }, { scale: [1.04, 0.97], skewX: -5, offset: 0.5 }, { scale: [0.96, 1.02], skewX: 3, offset: 0.75 }, { scale: 1, skewX: 0 }], 900, 'inOut') }
+    effect: { cloth: fx.keys([{ skewY: 0, scale: 1 }, { skewY: -10, scale: [0.93, 1], offset: 0.2 }, { skewY: 8, scale: [1.02, 1], offset: 0.45 }, { skewY: -5, scale: [0.97, 1], offset: 0.68 }, { skewY: 2, scale: 1, offset: 0.86 }, { skewY: 0, scale: 1 }], 1150) }
   }),
   icon({
     id: 'map', name: ['지도', 'Map'], color: C.green,
     keywords: '지도 길찾기 여행 경로 map route travel directions',
-    desc: ['접힌 지도가 좁아졌다가 탁 펼쳐지고 위치 점이 튑니다.', 'The folded map squeezes and snaps open while its dot pops.'],
+    desc: ['지도가 살짝 펼쳐지고, 위치 점이 위로 떠올랐다가 톡 떨어져 박힙니다.', 'The map spreads a little and the location dot lifts, then drops into place.'],
     svg: '<g data-part="map"><path class="s" d="M9 4.5 3.5 6.5v13l5.5-2 6 2 5.5-2v-13l-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></g><circle data-part="dot" class="f" cx="12" cy="11" r="1.5"/>',
-    origins: { map: [12, 12], dot: [12, 11] },
-    effect: { map: fx.keys([{ scale: 1 }, { scale: [0.72, 1], offset: 0.35 }, { scale: [1.05, 1], offset: 0.7 }, { scale: 1 }], 640), dot: fx.pop(1.6, 420, 260) }
+    origins: { map: [12, 12], dot: [12, 12.5] },
+    effect: {
+      map: fx.keys([{ scale: 1 }, { scale: [0.9, 1], offset: 0.3 }, { scale: [1.04, 1], offset: 0.62 }, { scale: 1 }], 680),
+      dot: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -4.5], scale: 1, offset: 0.34, easing: 'in' }, { translate: [0, 0.3], scale: [1.4, 0.7], offset: 0.58, easing: 'out' }, { translate: [0, 0], scale: 1.2, offset: 0.76 }, { translate: [0, 0], scale: 1 }], 820)
+    }
   }),
   icon({
     id: 'car', name: ['자동차', 'Car'], color: C.red,
@@ -68,10 +71,13 @@ export default group('travel', [
   icon({
     id: 'train', name: ['기차', 'Train'], color: C.indigo,
     keywords: '기차 지하철 열차 교통 train subway rail transit',
-    desc: ['기차가 덜컹덜컹 두 번 흔들리고 전조등이 켜집니다.', 'The train clatters twice and its lights come on.'],
+    desc: ['기차가 덜컹거리며 다가오고, 전조등이 깜빡입니다.', 'The train rattles toward you and its headlights blink.'],
     svg: '<g data-part="body"><rect class="s" x="5" y="3" width="14" height="14.5" rx="3"/><rect x="7.5" y="5.5" width="9" height="4.5" rx="1"/><path data-part="lights" class="a" d="M8.5 14h.01M15.5 14h.01"/></g><path d="m8 17.5-2 3.5M16 17.5l2 3.5"/>',
-    origins: { body: [12, 17.5] },
-    effect: { body: fx.keys([[0, 0], [0, -0.8], [0, 0], [0, -0.8], [0, 0]].map(t => ({ translate: t })), 560, 'inOut'), lights: fx.blink(420, 200) }
+    origins: { body: [12, 17.5], lights: [12, 14] },
+    effect: {
+      body: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, -1.2], scale: 1.03, offset: 0.25 }, { translate: [0, 0], scale: 1.05, offset: 0.5 }, { translate: [0, -1.2], scale: 1.03, offset: 0.75 }, { translate: [0, 0], scale: 1 }], 760),
+      lights: fx.keys([{ opacity: 0, scale: 1 }, { opacity: -1, scale: 1, offset: 0.2 }, { opacity: 0, scale: 1.8, offset: 0.4 }, { opacity: -1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1.8, offset: 0.8 }, { opacity: 0, scale: 1 }], 760, 'linear')
+    }
   }),
   icon({
     id: 'bus', name: ['버스', 'Bus'], color: C.yellow,

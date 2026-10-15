@@ -68,10 +68,17 @@ export default group('devices', [
   icon({
     id: 'keyboard', name: ['키보드', 'Keyboard'], color: C.slate,
     keywords: '키보드 입력 타자 단축키 keyboard typing input shortcut',
-    desc: ['키가 줄마다 차례로 눌리고 스페이스바가 꾹 눌립니다.', 'Rows of keys press in turn, then the space bar.'],
-    svg: '<rect class="s" x="2.5" y="6" width="19" height="12" rx="2"/><path data-part="r1" d="M6 9.5h.01M9.33 9.5h.01M12.66 9.5h.01M16 9.5h.01"/><path data-part="r2" d="M7.5 12.25h.01M10.75 12.25h.01M14 12.25h.01M17.25 12.25h.01"/><path data-part="space" class="a" d="M8.5 15h7"/>',
-    origins: { r1: [12, 9.5], r2: [12, 12.25], space: [12, 15] },
-    effect: { r1: fx.keys([{ scale: 1 }, { scale: 0.7, offset: 0.4 }, { scale: 1 }], 300), r2: fx.keys([{ scale: 1 }, { scale: 0.7, offset: 0.4 }, { scale: 1 }], 300, 'inOut', 140), space: fx.keys([{ scale: 1, translate: [0, 0] }, { scale: [0.8, 1], translate: [0, 0.6], offset: 0.4 }, { scale: 1, translate: [0, 0] }], 360, 'inOut', 300) }
+    desc: ['자판이 하나씩 눌리며 불이 들어오고, 마지막에 스페이스바가 눌립니다.', 'Keys light up one by one as they are typed, then the space bar goes down.'],
+    svg: '<rect class="s" x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 9.5h.01M9.33 9.5h.01M12.66 9.5h.01M16 9.5h.01M7.5 12.25h.01M10.75 12.25h.01M14 12.25h.01M17.25 12.25h.01"/><path data-part="space" class="a" d="M8.5 15h7"/><path data-part="k1" class="a" d="M6 9.5h.01"/><path data-part="k2" class="a" d="M14 12.25h.01"/><path data-part="k3" class="a" d="M12.66 9.5h.01"/><path data-part="k4" class="a" d="M7.5 12.25h.01"/>',
+    origins: { space: [12, 15], k1: [6, 9.5], k2: [14, 12.25], k3: [12.66, 9.5], k4: [7.5, 12.25] },
+    poses: { '*': { k1: { opacity: 0 }, k2: { opacity: 0 }, k3: { opacity: 0 }, k4: { opacity: 0 } } },
+    effect: {
+      k1: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 0),
+      k2: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 150),
+      k3: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 300),
+      k4: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 450),
+      space: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.8], scale: [0.86, 1], offset: 0.4 }, { translate: [0, 0], scale: 1 }], 340, 'inOut', 640)
+    }
   }),
   icon({
     id: 'battery', name: ['배터리', 'Battery'], color: C.green,
@@ -84,7 +91,7 @@ export default group('devices', [
     poses: { '*': { bolt: { opacity: 0, scale: 0.4 } }, charging: { bolt: { opacity: 1, scale: 1 }, fill: { opacity: 0.45 } } },
     motion: { e: 'snappy' },
     loops: { charging: { fill: fx.keys([{ scale: [0.15, 1] }, { scale: [1, 1], offset: 0.8 }, { scale: [1, 1] }], 1600, 'inOut') } },
-    effect: { fill: fx.keys([{ opacity: 0 }, { opacity: -0.6, offset: 0.3 }, { opacity: 0, offset: 0.6 }], 600, 'linear'), '*': fx.nudge([0.8, 0], 420) }
+    effect: { fill: fx.keys([{ scale: 1 }, { scale: [0.2, 1], offset: 0.3 }, { scale: [1.05, 1], offset: 0.78 }, { scale: 1 }], 900) }
   }),
   icon({
     id: 'wifi', name: ['와이파이', 'Wi-Fi'], color: C.blue,
@@ -173,9 +180,14 @@ export default group('devices', [
   icon({
     id: 'usb', name: ['USB', 'USB drive'], color: C.indigo,
     keywords: 'USB 메모리 저장 연결 usb drive storage stick',
-    desc: ['USB가 꽂히듯 위로 밀려 올라갔다가 돌아옵니다.', 'The drive pushes up as if plugging in.'],
-    svg: '<rect x="8.5" y="2.5" width="7" height="5" rx=".75"/><path class="a" d="M10.75 5h.01M13.25 5h.01"/><path class="s" d="M7 7.5h10v11a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z"/><path d="M10 12h4"/>',
-    effect: { '*': fx.keys([{ translate: [0, 0] }, { translate: [0, -1.8], offset: 0.4 }, { translate: [0, 0.3], offset: 0.7 }, { translate: [0, 0] }], 600) }
+    desc: ['드라이브가 위쪽 포트로 꽂히듯 밀려 올라갔다 내려오고, 표시등이 두 번 깜빡입니다.', 'The drive pushes up as if into a port, comes back, and its light blinks twice.'],
+    svg: '<g data-part="drive"><rect x="8.5" y="2.5" width="7" height="5" rx=".75"/><path class="a" d="M10.75 5h.01M13.25 5h.01"/><path class="s" d="M7 7.5h10v11a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3z"/><path d="M10 12h4"/><path data-part="led" class="a" d="M12 16.5h.01"/></g>',
+    origins: { drive: [12, 21.5], led: [12, 16.5] },
+    poses: { '*': { led: { opacity: 0 } } },
+    effect: {
+      drive: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.8], scale: [1.03, 0.97], offset: 0.18 }, { translate: [0, -2.4], scale: [0.98, 1.03], offset: 0.42, easing: 'out' }, { translate: [0, -2.4], scale: 1, offset: 0.55 }, { translate: [0, 0], scale: 1, offset: 0.85 }, { translate: [0, 0], scale: 1 }], 900),
+      led: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 0, offset: 0.42 }, { opacity: 1, scale: 1.6, offset: 0.5 }, { opacity: 0, scale: 1, offset: 0.62 }, { opacity: 1, scale: 1.6, offset: 0.72 }, { opacity: 0, scale: 1 }], 900, 'linear')
+    }
   }),
   icon({
     id: 'cast', name: ['화면 전송', 'Cast'], color: C.cyan,

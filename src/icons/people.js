@@ -28,10 +28,10 @@ export default group('people', [
   icon({
     id: 'handshake', name: ['악수', 'Handshake'], color: C.amber,
     keywords: '악수 협력 계약 파트너 동의 handshake deal partner agreement',
-    desc: ['맞잡은 손이 위아래로 두 번 흔들립니다.', 'The clasped hands shake up and down twice.'],
-    svg: '<path class="a" d="M2.5 5.5v9.25h2M21.5 5.5v9.25h-2"/><path class="s" d="M4.5 14.75 9.6 19.6a1.4 1.4 0 0 0 1.98-1.98l.55.55a1.4 1.4 0 0 0 1.98-1.98l.55.55a1.4 1.4 0 0 0 1.98-1.98l.4.4a1.4 1.4 0 0 0 1.98-1.98l-4.2-4.2"/><path d="M19.5 7h-3.25a3.5 3.5 0 0 0-2.47 1.02L9.75 12.05a1.45 1.45 0 0 0 2.05 2.05l2.95-2.6"/><path d="M4.5 7h3.75l1.5.75"/>',
+    desc: ['맞잡은 두 손이 위아래로 두 번 흔들립니다.', 'The clasped hands shake up and down twice.'],
+    svg: '<path class="a" d="M2.5 6v8.5h2M21.5 6v8.5h-2"/><path d="M4.5 14.5l5 5a1.6 1.6 0 0 0 2.25-2.25M11.75 17.25l.75.75a1.6 1.6 0 0 0 2.25-2.25M14.75 15.75l.25.25a1.6 1.6 0 0 0 2.25-2.25L13 9.5"/><path d="M19.5 7.5h-3.25a3.5 3.5 0 0 0-2.47 1.02L9.9 12.4a1.6 1.6 0 0 0 2.26 2.26L15 12"/><path d="M4.5 7.5h3.75L10 8.25"/>',
     origins: { '*': [12, 12] },
-    effect: { '*': fx.keys([[0, 0], [0, -1.2, -3], [0, 1, 3], [0, -0.8, -2], [0, 0]].map(([x, y, r = 0]) => ({ translate: [x, y], rotate: r })), 720) }
+    effect: { '*': fx.keys([[0, 0, 0], [0, -1.5, -3], [0, 1.3, 2.5], [0, -1, -2], [0, 0.5, 1], [0, 0, 0]].map(([x, y, r]) => ({ translate: [x, y], rotate: r })), 820) }
   }),
   icon({
     id: 'badge', name: ['메달', 'Medal'], color: C.orange,
@@ -60,10 +60,10 @@ export default group('people', [
   icon({
     id: 'graduation', name: ['졸업', 'Graduation'], color: C.indigo,
     keywords: '졸업 학사모 교육 학습 강의 graduation education learn course',
-    desc: ['학사모를 던지듯 튀어 오르며 술이 흔들립니다.', 'The cap tosses up and its tassel swings.'],
-    svg: '<path class="s" d="M12 4.5 22 9l-10 4.5L2 9z"/><path d="M6 11v4.25c0 1.5 2.7 2.75 6 2.75s6-1.25 6-2.75V11"/><g data-part="tassel" class="a"><path d="M22 9v5.5"/><path d="M22 16.5h.01"/></g>',
-    origins: { '*': [12, 18], tassel: [22, 9] },
-    effect: { '*': fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0, 0.5], rotate: 0, offset: 0.15 }, { translate: [0, -3], rotate: -10, offset: 0.5 }, { translate: [0, 0.3], rotate: 2, offset: 0.82 }, { translate: [0, 0], rotate: 0 }], 760), tassel: fx.wiggle(18, 760, 120) }
+    desc: ['학사모가 위로 던져졌다 내려오고, 끈에 달린 술이 흔들립니다.', 'The cap is tossed up and lands while its tassel swings on the cord.'],
+    svg: '<path class="s" d="M12 4.5 22 9l-10 4.5L2 9z"/><path d="M6.5 11v4.25c0 1.5 2.5 2.75 5.5 2.75s5.5-1.25 5.5-2.75V11"/><path class="a" d="M12 9h8"/><g data-part="tassel"><path class="a" d="M20 9v5"/><path class="f" d="M19.15 14h1.7v2.5a.85.85 0 0 1-1.7 0z"/></g>',
+    origins: { '*': [12, 18], tassel: [20, 9] },
+    effect: { '*': fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0, 0.5], rotate: 0, offset: 0.15 }, { translate: [0, -3], rotate: -10, offset: 0.5 }, { translate: [0, 0.3], rotate: 2, offset: 0.82 }, { translate: [0, 0], rotate: 0 }], 780), tassel: fx.wiggle(22, 900, 140) }
   }),
   icon({
     id: 'briefcase', name: ['서류 가방', 'Briefcase'], color: C.amber,

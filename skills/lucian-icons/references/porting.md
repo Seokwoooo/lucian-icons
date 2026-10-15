@@ -1,4 +1,4 @@
-# Integration API (v2.0.0)
+# Integration API (v2.0.1)
 
 Import just the chosen module, for example `code/download.js`, with its sibling `runtime.js`. Every module registers `<lucian-ID>` idempotently and exports its `definition`. Registration installs no document listeners or timers.
 

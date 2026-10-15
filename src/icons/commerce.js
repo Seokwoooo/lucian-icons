@@ -18,10 +18,10 @@ export default group('commerce', [
   icon({
     id: 'bag', name: ['쇼핑백', 'Shopping bag'], color: C.coral,
     keywords: '쇼핑백 가방 구매 주문 bag shopping purchase order',
-    desc: ['쇼핑백이 들리며 손잡이가 늘어났다 줄어듭니다.', 'The bag lifts and its handle stretches and springs back.'],
-    svg: '<path class="s" d="M5.5 8h13l-.9 11.2a1.5 1.5 0 0 1-1.5 1.3H7.9a1.5 1.5 0 0 1-1.5-1.3z"/><path data-part="handle" class="a" d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/>',
-    origins: { handle: [12, 10.5], '*': [12, 20.5] },
-    effect: { '*': fx.hop(1.8, 580), handle: fx.keys([{ scale: 1 }, { scale: [1, 1.18], offset: 0.45 }, { scale: [1, 0.94], offset: 0.75 }, { scale: 1 }], 580) }
+    desc: ['손잡이를 들어 올린 듯 가방이 손잡이를 축으로 흔들립니다.', 'The bag swings from its handle as if just picked up.'],
+    svg: '<path class="s" d="M5.5 8h13l-.9 11.2a1.5 1.5 0 0 1-1.5 1.3H7.9a1.5 1.5 0 0 1-1.5-1.3z"/><path class="a" d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/>',
+    origins: { '*': [12, 4] },
+    effect: { '*': fx.keys([{ rotate: 0, translate: [0, 0] }, { rotate: 0, translate: [0, -1.2], offset: 0.16 }, { rotate: 9, translate: [0, -1], offset: 0.36 }, { rotate: -6, translate: [0, -0.6], offset: 0.56 }, { rotate: 3, translate: [0, -0.2], offset: 0.76 }, { rotate: 0, translate: [0, 0] }], 960) }
   }),
   icon({
     id: 'wallet', name: ['지갑', 'Wallet'], color: C.amber,
@@ -78,10 +78,16 @@ export default group('commerce', [
   icon({
     id: 'bank', name: ['은행', 'Bank'], color: C.violet,
     keywords: '은행 금융 계좌 송금 bank finance account transfer',
-    desc: ['기둥이 바닥에서 솟아오르고 박공의 동전이 반짝입니다.', 'The columns rise from the base and the coin in the gable pops.'],
-    svg: '<path class="s" d="M3 9.5 12 4l9 5.5z"/><path class="a" d="M12 7.25h.01"/><path data-part="cols" d="M5.5 9.5v8M10 9.5v8M14 9.5v8M18.5 9.5v8"/><path d="M3.5 20.25h17"/>',
-    origins: { cols: [12, 17.5] },
-    effect: { cols: fx.keys([{ scale: 1 }, { scale: [1, 0.3], offset: 0.3 }, { scale: [1, 1.08], offset: 0.65 }, { scale: 1 }], 600), '*': fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.6 }, { translate: [0, -0.6], offset: 0.75 }, { translate: [0, 0] }], 600) }
+    desc: ['지붕이 들렸다 내려앉고, 기둥이 왼쪽부터 차례로 솟아 받쳐 줍니다.', 'The roof lifts and settles as the columns rise one by one to hold it up.'],
+    svg: '<g data-part="roof"><path class="s" d="M3 9.5 12 4l9 5.5z"/><path class="a" d="M12 7.25h.01"/></g><path data-part="c1" d="M5.5 9.5v8"/><path data-part="c2" d="M10 9.5v8"/><path data-part="c3" d="M14 9.5v8"/><path data-part="c4" d="M18.5 9.5v8"/><path d="M3.5 20.25h17"/>',
+    origins: { roof: [12, 9.5], c1: [5.5, 17.5], c2: [10, 17.5], c3: [14, 17.5], c4: [18.5, 17.5] },
+    effect: {
+      roof: fx.keys([{ translate: [0, 0] }, { translate: [0, -1.8], offset: 0.3 }, { translate: [0, 0.4], offset: 0.62 }, { translate: [0, 0] }], 760),
+      c1: fx.keys([{ scale: 1 }, { scale: [1, 0.7], offset: 0.25 }, { scale: [1, 1.12], offset: 0.55 }, { scale: 1 }], 600, 'inOut', 0),
+      c2: fx.keys([{ scale: 1 }, { scale: [1, 0.7], offset: 0.25 }, { scale: [1, 1.12], offset: 0.55 }, { scale: 1 }], 600, 'inOut', 60),
+      c3: fx.keys([{ scale: 1 }, { scale: [1, 0.7], offset: 0.25 }, { scale: [1, 1.12], offset: 0.55 }, { scale: 1 }], 600, 'inOut', 120),
+      c4: fx.keys([{ scale: 1 }, { scale: [1, 0.7], offset: 0.25 }, { scale: [1, 1.12], offset: 0.55 }, { scale: 1 }], 600, 'inOut', 180)
+    }
   }),
   icon({
     id: 'piggybank', name: ['저금통', 'Piggy bank'], color: C.pink,

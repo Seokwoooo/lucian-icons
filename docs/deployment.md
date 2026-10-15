@@ -33,6 +33,11 @@ The existing root deployment, domain alias, `/uxui-prompt/`, its introducing pag
 - 1.x archives stay downloadable: `web/downloads/` keeps the 1.0.0, 1.1.0 and 1.2.0 skill and source ZIPs (1.2.0 copies match the production hashes).
 - After pushing `main`, verify on https://lucianlabs.dev/icons/: catalog version 2.0.0 with 212 icons, manifest hashes, `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS header, gallery and guide load without page errors, and the root site and `/uxui-prompt/` are unchanged.
 
+## Release 2.0.1 notes
+
+- Same routing, headers and project as 2.0.0. The 2.0.0 skill and source ZIPs were downloaded from production into `web/downloads/` (bytes and SHA-256 match the 2.0.0 manifest), so their URLs keep working next to the new 2.0.1 packages.
+- After pushing `main`, verify: catalog version 2.0.1 with 212 icons, every manifest file served with matching bytes and SHA-256, CORS header on modules, the 2.0.0 and 1.x archive URLs, gallery and guide without page errors, the Loop L logo in the header, and the root site and `/uxui-prompt/` unchanged.
+
 ## Verification and rollback
 
 Origin acceptance passed before publishing the scoped rules. Public acceptance then passed at the canonical URL. All 61 public manifest files matched SHA-256 and byte size. Existing root and both UX/UI pages returned the same titles with no page errors; 28 loaded existing assets retained exactly the same SHA-256 hashes. Evidence is stored locally in `.artifacts/production-baseline.json` and `.artifacts/production-verification.json`.

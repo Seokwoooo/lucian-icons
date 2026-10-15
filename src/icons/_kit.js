@@ -60,6 +60,8 @@ export const fx = {
   squish: (sy = 0.15, d = 380, delay = 0) => ({ k: at([{ scale: 1 }, { scale: [1, sy] }, { scale: 1 }], [0, 0.45, 1]), d, delay, e: 'inOut' }),
   // appear from nothing (for parts hidden at rest: base opacity 0)
   flash: (d = 600, delay = 0, s = 0.6) => ({ k: at([{ opacity: 0, scale: s }, { opacity: 1, scale: 1.08 }, { opacity: 1, scale: 1 }, { opacity: 0, scale: 1 }], [0, 0.3, 0.7, 1]), d, delay, e: 'out' }),
+  // backspace a stroke from its end, then type it back in: [erase start, erase end], [type start, type end] as 0..1 offsets
+  retype: ([a, b], [c, e], d = 1000) => ({ k: [{ draw: 1 }, { draw: 1, offset: a }, { draw: 0, offset: b, easing: 'out' }, { draw: 0, offset: c, easing: 'inOut' }, { draw: 1, offset: e }, { draw: 1 }], d, delay: 0, e: 'linear' }),
   // custom keyframes
   keys: (k, d = 600, e = 'inOut', delay = 0) => ({ k, d, e, delay })
 };

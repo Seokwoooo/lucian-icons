@@ -58,10 +58,13 @@ export default group('data', [
   icon({
     id: 'cpu', name: ['프로세서', 'Processor'], color: C.teal,
     keywords: '프로세서 칩 CPU 반도체 연산 cpu chip processor compute',
-    desc: ['핀에 전기가 흐르듯 깜빡이고 코어가 돌아갑니다.', 'The pins flicker as if powered and the core turns.'],
-    svg: '<path data-part="pins" d="M9.5 2.5V6M14.5 2.5V6M9.5 18v3.5M14.5 18v3.5M2.5 9.5H6M2.5 14.5H6M18 9.5h3.5M18 14.5h3.5"/><rect class="s" x="6" y="6" width="12" height="12" rx="2"/><g data-part="core"><rect class="f" x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></g>',
+    desc: ['코어가 한 번 맥동하고, 신호가 네 변의 핀을 따라 한 바퀴 돕니다.', 'The core pulses once and a signal runs around the pins on all four sides.'],
+    svg: '<path data-part="pt" d="M9.5 2.5V6M14.5 2.5V6"/><path data-part="pr" d="M18 9.5h3.5M18 14.5h3.5"/><path data-part="pb" d="M9.5 18v3.5M14.5 18v3.5"/><path data-part="pl" d="M2.5 9.5H6M2.5 14.5H6"/><rect class="s" x="6" y="6" width="12" height="12" rx="2"/><g data-part="core"><rect class="f" x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></g>',
     origins: { core: [12, 12] },
-    effect: { pins: fx.keys([{ opacity: 0 }, { opacity: -0.7, offset: 0.2 }, { opacity: 0, offset: 0.4 }, { opacity: -0.7, offset: 0.6 }, { opacity: 0 }], 760, 'linear'), core: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 90, scale: 0.8, offset: 0.6 }, { rotate: 90, scale: 1 }], 760) }
+    effect: {
+      core: fx.keys([{ scale: 1 }, { scale: 0.78, offset: 0.2 }, { scale: 1.14, offset: 0.42 }, { scale: 1 }], 720),
+      pt: fx.nudge([0, -1.2], 360, 200), pr: fx.nudge([1.2, 0], 360, 300), pb: fx.nudge([0, 1.2], 360, 400), pl: fx.nudge([-1.2, 0], 360, 500)
+    }
   }),
   icon({
     id: 'linechart', name: ['선 그래프', 'Line chart'], color: C.pink,

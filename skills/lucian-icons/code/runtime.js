@@ -1,5 +1,5 @@
-/* Lucian Icons v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '2.0.0';
+/* Lucian Icons v2.0.1 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '2.0.1';
 
 // Motion vocabulary ---------------------------------------------------------
 // Springs follow Apple's (duration, bounce) model. The runtime samples each
@@ -34,7 +34,7 @@ function timing(spec = {}, fallback = {}) {
 // Poses -----------------------------------------------------------------------
 // A pose is a small object: rotate (deg), translate [x, y], scale (n or [x, y]),
 // opacity, draw (0..1 of a stroked path). Values are in 24-unit icon space.
-const REST = { rotate: 0, translate: [0, 0], scale: 1, skewX: 0, opacity: 1, draw: 1 };
+const REST = { rotate: 0, translate: [0, 0], scale: 1, skewX: 0, skewY: 0, opacity: 1, draw: 1 };
 const PROPS = Object.keys(REST);
 const pair = v => Array.isArray(v) ? v : [v, v];
 function cssValue(prop, v) {
@@ -42,14 +42,15 @@ function cssValue(prop, v) {
   if (prop === 'translate') { const [x, y] = pair(v); return `${x}px ${y}px`; }
   if (prop === 'scale') { const [x, y] = pair(v); return x === y ? `${x}` : `${x} ${y}`; }
   if (prop === 'draw') return `${+(1 - v).toFixed(4)}`;
-  if (prop === 'skewX') return `skewX(${v}deg)`;
   return `${v}`;
 }
-const cssProp = prop => prop === 'draw' ? 'strokeDashoffset' : prop === 'skewX' ? 'transform' : prop;
+// Both skews share the transform property, so they are written together.
+const cssProp = prop => prop === 'draw' ? 'strokeDashoffset' : prop === 'skewX' || prop === 'skewY' ? 'transform' : prop;
 function frame(pose) {
   const out = {};
   for (const [k, v] of Object.entries(pose)) {
     if (k === 'offset' || k === 'easing') out[k] = k === 'easing' ? (CURVES[v] || v) : v;
+    else if (k === 'skewX' || k === 'skewY') out.transform = `skewX(${pose.skewX ?? 0}deg) skewY(${pose.skewY ?? 0}deg)`;
     else if (PROPS.includes(k)) out[cssProp(k)] = cssValue(k, v);
   }
   return out;
@@ -101,9 +102,9 @@ export function statesOf(def) { return Array.isArray(def.states) ? def.states : 
 const origin = (def, part) => def.origins?.[part] || [12, 12];
 function transformAttr(def, part, p) {
   const [ox, oy] = origin(def, part), [tx, ty] = pair(p.translate), [sx, sy] = pair(p.scale);
-  if (!p.rotate && !tx && !ty && sx === 1 && sy === 1 && !p.skewX) return '';
+  if (!p.rotate && !tx && !ty && sx === 1 && sy === 1 && !p.skewX && !p.skewY) return '';
   const n = v => +(+v).toFixed(3);
-  return `translate(${n(ox + tx)} ${n(oy + ty)})${p.rotate ? ` rotate(${n(p.rotate)})` : ''}${sx !== 1 || sy !== 1 ? ` scale(${n(sx)}${sx === sy ? '' : ' ' + n(sy)})` : ''}${p.skewX ? ` skewX(${n(p.skewX)})` : ''} translate(${n(-ox)} ${n(-oy)})`;
+  return `translate(${n(ox + tx)} ${n(oy + ty)})${p.rotate ? ` rotate(${n(p.rotate)})` : ''}${sx !== 1 || sy !== 1 ? ` scale(${n(sx)}${sx === sy ? '' : ' ' + n(sy)})` : ''}${p.skewX ? ` skewX(${n(p.skewX)})` : ''}${p.skewY ? ` skewY(${n(p.skewY)})` : ''} translate(${n(-ox)} ${n(-oy)})`;
 }
 export function staticSVG(def, options = {}) {
   const o = normalize(def, options), line = o.tone === 'line';
