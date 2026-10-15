@@ -1,0 +1,5 @@
+/* Lucian Icons bank v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"bank","version":"2.0.0","order":152,"name":{"ko":"은행","en":"Bank"},"keywords":["은행","금융","계좌","송금","bank","finance","account","transfer"],"category":"commerce","description":{"ko":"기둥이 바닥에서 솟아오르고 박공의 동전이 반짝입니다.","en":"The columns rise from the base and the coin in the gable pops."},"color":"#8968F4","svg":"<path class=\"s\" d=\"M3 9.5 12 4l9 5.5z\"/><path class=\"a\" d=\"M12 7.25h.01\"/><path data-part=\"cols\" d=\"M5.5 9.5v8M10 9.5v8M14 9.5v8M18.5 9.5v8\"/><path d=\"M3.5 20.25h17\"/>","origins":{"cols":[12,17.5]},"effect":{"cols":{"k":[{"scale":1},{"scale":[1,0.3],"offset":0.3},{"scale":[1,1.08],"offset":0.65},{"scale":1}],"d":600,"e":"inOut","delay":0},"*":{"k":[{"translate":[0,0]},{"translate":[0,0],"offset":0.6},{"translate":[0,-0.6],"offset":0.75},{"translate":[0,0]}],"d":600,"e":"inOut","delay":0}}};
+defineIcon(definition);
+export default definition;

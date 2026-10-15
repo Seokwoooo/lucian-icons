@@ -1,0 +1,5 @@
+/* Lucian Icons bug v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"bug","version":"2.0.0","order":137,"name":{"ko":"버그","en":"Bug"},"keywords":["버그","오류","디버그","문제","bug","error","debug","issue"],"category":"data","description":{"ko":"다리를 버둥거리며 몸을 좌우로 흔듭니다.","en":"It wiggles its legs and sways side to side."},"color":"#F05465","svg":"<path data-part=\"legs\" d=\"M7 12H3.5M17 12h3.5M7.4 16.25l-3 2M16.6 16.25l3 2M7.6 8.6 5 7M16.4 8.6 19 7\"/><path d=\"M9.5 4.75 8 3.25M14.5 4.75 16 3.25\"/><path d=\"M9 7.5V7a3 3 0 0 1 6 0v.5\"/><path class=\"s\" d=\"M7 11.5a5 5 0 0 1 10 0v4a5 5 0 0 1-10 0z\"/><path class=\"a\" d=\"M12 9.5v11\"/>","origins":{"legs":[12,12.5],"*":[12,20]},"effect":{"legs":{"k":[{"scale":[1,1]},{"scale":[0.82,1]},{"scale":[1.05,1]},{"scale":[0.82,1]},{"scale":[1,1]}],"d":600,"e":"inOut","delay":0},"*":{"k":[{"rotate":0},{"rotate":-5},{"rotate":5},{"rotate":-3},{"rotate":0}],"d":600,"e":"inOut","delay":0}}};
+defineIcon(definition);
+export default definition;

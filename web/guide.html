@@ -1,39 +1,322 @@
-<!doctype html><html lang="ko" data-theme="light"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Install and API | Lucian Icons</title><meta name="description" content="Install lucian-icons in Claude Code and Codex. Integrate individual SVG icons with real application state."><link rel="canonical" href="https://lucianlabs.dev/icons/guide.html"><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./gallery.css"><style>.guide{max-width:850px;padding-block:45px 80px}.guide h1{font-size:48px;letter-spacing:-.05em;line-height:1.15;margin:35px 0}.guide h2{font-size:26px;margin:40px 0 18px}.guide h3{font-size:18px;margin:25px 0 10px}.guide p,.guide li{font-size:15px;line-height:1.9;margin-block:10px;color:var(--muted)}.guide a{text-decoration:underline;text-underline-offset:4px}.guide pre{padding:20px;background:var(--panel);border-radius:10px;overflow:auto;font-size:12px;line-height:1.8}.guide code{font-size:.88em;overflow-wrap:anywhere}.guide table{border-collapse:collapse;width:100%;font-size:13px}.guide th,.guide td{text-align:left;border-bottom:1px solid var(--line);padding:12px 8px}.guide-bar{display:flex;justify-content:space-between;align-items:center}.guide-bar button{border:1px solid var(--line);border-radius:30px;padding:5px 14px}.guide section{scroll-margin-top:30px}@media(max-width:600px){.guide h1{font-size:36px}.guide pre{font-size:10px}.guide table{font-size:11px}}</style>
-<main class="guide wrap"><div class="guide-bar"><a href="./">← Lucian Icons</a><button id="lang" type="button">English</button></div>
-<div data-lang="ko">
-<h1>작은 아이콘을<br>내 프로젝트에.</h1><p>Lucian Icons v{{VERSION}}. 무료 MIT 라이선스. SVG와 CSS, 최소한의 JavaScript로 동작합니다.</p>
-<h2>1. 에이전트 스킬 설치</h2><p><a href="./downloads/lucian-icons-skill-{{VERSION}}.zip" download>스킬 ZIP 다운로드</a> 후 압축을 풀어 <code>lucian-icons</code> 폴더를 아래 위치 중 하나에 넣으세요. 폴더 안에 <code>SKILL.md</code>가 바로 있어야 합니다. CLI는 Node.js 18 이상에서 작동하며 별도 패키지를 설치하지 않습니다.</p>
-<table><thead><tr><th>에이전트</th><th>프로젝트 전용</th><th>사용자 전체</th></tr></thead><tbody><tr><td>Claude Code</td><td><code>.claude/skills/lucian-icons/</code></td><td><code>~/.claude/skills/lucian-icons/</code></td></tr><tr><td>Codex</td><td><code>.agents/skills/lucian-icons/</code></td><td><code>~/.agents/skills/lucian-icons/</code></td></tr></tbody></table>
-<h3>Claude Code</h3><pre>/lucian-icons 삭제 버튼에 뚜껑이 열리는 쓰레기통 아이콘을 적용해줘.</pre><h3>Codex</h3><pre>$lucian-icons 다운로드의 진행과 완료 상태에 맞춰 아이콘을 바꿔줘.</pre><p>Codex에서는 <code>/skills</code>로 선택할 수도 있습니다. 새 스킬이 보이지 않으면 에이전트를 다시 시작하세요.</p><p>스킬은 프로젝트를 확인하고, 가벼운 카탈로그에서 검색한 뒤 선택한 코드만 읽습니다. 기존 버튼 기능과 라벨을 보존하고 실제 앱 상태에 연결합니다.</p>
-<h2>2. 필요한 아이콘만 가져오기</h2><p>설치한 스킬 폴더에서 검색하고 코드를 확인할 수 있습니다. 아래 <code>&lt;skill-dir&gt;</code>를 실제 설치 경로로 바꾸세요.</p><pre>node &lt;skill-dir&gt;/scripts/lucian-icons.mjs search 다운로드
-node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download
-node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download --out ./vendor/lucian-icons</pre><p><code>--out</code>은 선택한 모듈, 공유 runtime.js와 LICENSE만 복사합니다. 기존 파일을 덮어쓰지 않습니다. 패키지 안의 카탈로그와 코드를 사용하므로 오프라인에서도 동작합니다. 공개 카탈로그는 <a href="./api/v1/catalog.json">api/v1/catalog.json</a>에서 볼 수 있습니다.</p>
-<h2>3. 기존 버튼에 연결하기</h2><p>아이콘은 장식용으로 시작합니다. 기존 텍스트나 접근 가능한 이름을 남겨 두세요. 아이콘 자체가 의미를 전달한다면 <code>label</code>을 지정하세요.</p><pre>&lt;script type="module" src="./vendor/lucian-icons/download.js"&gt;&lt;/script&gt;
-&lt;button type="button" id="export-report"&gt;
-  &lt;lucian-download size="24" state="idle"&gt;&lt;/lucian-download&gt;
-  &lt;span&gt;보고서 내보내기&lt;/span&gt;
-&lt;/button&gt;</pre><p>기존 작업 핸들러에서 실제 요청 상태를 연결하세요. 클릭은 성공이 아닙니다. 진행률을 알 수 없다면 숫자를 만들어내지 마세요.</p><pre>icon.setState('progress'); // 실제 요청이 시작될 때
-icon.setProgress(42);     // 서버나 작업의 실제 진행률
-icon.setState('success'); // 실제 요청이 성공했을 때
-icon.setState('error');   // 실제 요청이 실패했을 때</pre><p><a href="./examples/download.html">Promise 연동 예제 열기</a>. 요청 완료와 실패를 직접 제어해 대기 상태를 검증하는 예제이며 자동 성공 타이머가 없습니다.</p>
-<h2>4. 크기, 색과 상태</h2><p><code>size</code>: 16~256px. <code>accent</code>, <code>ink</code>, <code>paper</code>: 6자리 HEX 색상. <code>state</code>: 해당 아이콘의 지원 상태. <code>progress</code>: 다운로드의 0~100 진행률. 진행률 100은 성공 상태와 별개입니다.</p><p>React에서는 클라이언트에서 모듈을 불러오고 ref 또는 속성으로 상태를 연결하세요. Vue에서는 선택한 lucian-* 태그를 custom element로 설정할 수 있습니다. 기존 프레임워크의 이벤트와 정리 과정을 유지하세요. 컴포넌트는 문서 전역 이벤트나 타이머를 등록하지 않습니다.</p>
-<h2>5. 다운로드 형식</h2><p><strong>SVG:</strong> 선택 상태의 정적 이미지. 클릭 애니메이션이 포함되지 않습니다.<br><strong>HTML 및 코드 복사:</strong> 선택한 아이콘과 스타일, 동작이 모두 포함된 독립 시연. 파일을 직접 열어도 동작합니다.<br><strong>적용 프롬프트:</strong> 선택한 코드와 실제 앱에 연결할 지침. 전체 카탈로그를 포함하지 않습니다.</p><p>시연 컨트롤은 앱 코드에 복사하지 마세요. 실제 요청, 취소, 오류, 접근성을 보존해야 합니다. 같은 아이콘 여러 개를 사용할 수 있으며 서로 SVG ID나 CSS가 충돌하지 않습니다.</p>
-<h2>라이선스와 출처</h2><p>코드와 아이콘: <a href="./LICENSE">MIT © 2026 Lucian</a>. 상업적 사용과 수정이 가능하며 배포 시 고지를 유지하세요. Pretendard는 SIL Open Font License로 사용합니다. <a href="./THIRD_PARTY_NOTICES.txt">외부 자산 고지</a>.</p><p>설치 위치와 호출 방식은 2026-10-14에 <a href="https://code.claude.com/docs/en/skills">Claude Code 공식 문서</a>와 <a href="https://developers.openai.com/codex/skills">Codex 공식 문서</a>에서 확인했습니다.</p>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lucian Icons API</title>
+<meta name="description" content="Lucian Icons v{{VERSION}} 설치, 속성, 메서드, 상태 연결, 색, 프레임워크, 에이전트 스킬 안내.">
+<link rel="canonical" href="https://lucianlabs.dev/icons/guide.html">
+<meta property="og:title" content="Lucian Icons API">
+<meta property="og:description" content="Install Lucian Icons v{{VERSION}} and wire {{ICON_COUNT}} animated icons to real application state.">
+<meta property="og:image" content="https://lucianlabs.dev/icons/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="./gallery.css">
+<link rel="stylesheet" href="./guide.css">
+<script>
+(function(){var r=document.documentElement;r.classList.add('js');
+try{var s=localStorage.getItem('lucian-icons-theme');if(s==='dark'||s==='light')r.setAttribute('data-theme',s)}catch(e){}
+var l=null;try{l=localStorage.getItem('lucian-icons-lang')}catch(e){}
+if(l!=='ko'&&l!=='en'){var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+var first=(navigator.languages&&navigator.languages[0])||navigator.language||'';
+l=(tz==='Asia/Seoul'||/^ko\b/i.test(first))?'ko':'en'}
+r.setAttribute('lang',l)})();
+</script>
+<script type="module" src="./guide.js"></script>
+</head>
+<body>
+<a class="g-skip" href="#doc"><span class="ko">본문으로 건너뛰기</span><span class="en">Skip to content</span></a>
+
+<header class="g-head">
+  <div class="g-head-line">
+    <a class="g-brand" href="./">
+      <span class="g-orb" aria-hidden="true"></span>
+      <span class="g-brand-t">lucianLabs</span>
+      <span class="g-brand-s">Icons</span>
+    </a>
+    <div class="g-head-r">
+      <a class="g-link" href="./"><span class="ko">← 아이콘 목록</span><span class="en">← All icons</span></a>
+      <button class="g-tool g-theme" type="button" id="theme"><lucian-sun class="g-theme-sun" tone="line" size="20"></lucian-sun><lucian-moon class="g-theme-moon" tone="line" size="20"></lucian-moon></button>
+      <div class="g-lang" role="group" aria-label="Language">
+        <span class="g-lang-pill" aria-hidden="true"></span>
+        <lucian-globe class="g-lang-ic" tone="line" animate="none" aria-hidden="true"></lucian-globe>
+        <button class="g-lang-b" type="button" data-lang="ko" lang="ko" aria-label="한국어">KO</button>
+        <button class="g-lang-b" type="button" data-lang="en" lang="en" aria-label="English">EN</button>
+      </div>
+    </div>
+  </div>
+  <div class="d-hero">
+    <p class="d-kicker">API · v{{VERSION}}</p>
+    <h1 class="d-title"><span class="ko">아이콘을 앱의 실제 상태에 연결하기</span><span class="en">Wire icons to your app’s real state</span></h1>
+    <p class="d-lead ko">아이콘 {{ICON_COUNT}}개는 모두 같은 커스텀 요소 API를 씁니다. 스크립트 한 줄로 불러오고, 속성으로 꾸미고, 앱의 상태가 바뀔 때 <code>setState()</code>를 부르면 됩니다. 의존성은 없고 MIT 라이선스예요.</p>
+    <p class="d-lead en">All {{ICON_COUNT}} icons share one custom element API. Load them with one script, style them with attributes, and call <code>setState()</code> when your app’s state changes. No dependencies, MIT licensed.</p>
+  </div>
+</header>
+
+<div class="d-layout">
+  <nav class="d-toc" aria-label="On this page">
+    <a href="#install"><span class="ko">설치</span><span class="en">Install</span></a>
+    <a href="#usage"><span class="ko">기본 사용</span><span class="en">Basics</span></a>
+    <a href="#attributes"><span class="ko">속성</span><span class="en">Attributes</span></a>
+    <a href="#methods"><span class="ko">메서드</span><span class="en">Methods</span></a>
+    <a href="#state"><span class="ko">상태 연결</span><span class="en">Real state</span></a>
+    <a href="#color"><span class="ko">색과 톤</span><span class="en">Color and tone</span></a>
+    <a href="#motion"><span class="ko">모션과 접근성</span><span class="en">Motion and a11y</span></a>
+    <a href="#frameworks"><span class="ko">프레임워크</span><span class="en">Frameworks</span></a>
+    <a href="#formats"><span class="ko">내려받기 형식</span><span class="en">Formats</span></a>
+    <a href="#skill"><span class="ko">에이전트 스킬</span><span class="en">Agent skill</span></a>
+    <a href="#states"><span class="ko">상태 목록</span><span class="en">State list</span></a>
+    <a href="#migrate"><span class="ko">1.x에서 옮기기</span><span class="en">From 1.x</span></a>
+    <a href="#license"><span class="ko">라이선스</span><span class="en">License</span></a>
+  </nav>
+
+  <main class="d-doc" id="doc">
+    <section id="install">
+      <h2><span class="d-n">01</span><span class="ko">설치</span><span class="en">Install</span></h2>
+      <p class="ko">빠르게 써 보려면 전체 묶음을 불러오세요. {{ICON_COUNT}}개가 모두 <code>&lt;lucian-이름&gt;</code> 요소로 등록됩니다.</p>
+      <p class="en">To try things quickly, load the full bundle. All {{ICON_COUNT}} icons register as <code>&lt;lucian-name&gt;</code> elements.</p>
+      <div class="d-code"><pre tabindex="0"><code>&lt;script type="module" src="https://lucianlabs.dev/icons/all.js"&gt;&lt;/script&gt;</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+      <p class="ko">필요한 아이콘만 쓰려면 개별 모듈을 불러옵니다. 모듈은 같은 폴더의 <code>runtime.js</code>를 함께 가져옵니다.</p>
+      <p class="en">To ship only what you use, load individual modules. Each one imports the shared <code>runtime.js</code> next to it.</p>
+      <div class="d-code"><pre tabindex="0"><code>&lt;script type="module" src="https://lucianlabs.dev/icons/modules/heart.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="https://lucianlabs.dev/icons/modules/download.js"&gt;&lt;/script&gt;</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+      <p class="d-note ko">공개 주소는 항상 최신 버전을 가리킵니다. 실제 서비스에서는 <code>modules/아이콘.js</code>와 <code>modules/runtime.js</code>를 프로젝트에 복사해 버전을 고정하세요. <a href="./downloads/lucian-icons-source-{{VERSION}}.zip" download>소스 ZIP</a>이나 에이전트 스킬의 <code>get --out</code> 명령으로 받을 수 있어요.</p>
+      <p class="d-note en">Public URLs always point at the latest release. In production, copy <code>modules/icon.js</code> and <code>modules/runtime.js</code> into your project to pin the version. Get them from the <a href="./downloads/lucian-icons-source-{{VERSION}}.zip" download>source ZIP</a> or the agent skill’s <code>get --out</code> command.</p>
+    </section>
+
+    <section id="usage">
+      <h2><span class="d-n">02</span><span class="ko">기본 사용</span><span class="en">Basics</span></h2>
+      <p class="ko">기존 버튼이나 링크 안에 넣으세요. 아이콘은 가장 가까운 <code>button</code>, <code>a</code>, <code>[role=button]</code> 같은 컨트롤에 마우스를 올리거나 키보드로 포커스하면 효과를 재생합니다. 터치에서는 누를 때 재생해요.</p>
+      <p class="en">Put the icon inside your existing button or link. It plays its effect when the nearest control (<code>button</code>, <code>a</code>, <code>[role=button]</code> and similar) is hovered or receives keyboard focus, and on press for touch.</p>
+      <div class="d-pair">
+        <div class="d-code"><pre tabindex="0"><code>&lt;button type="button" class="like" aria-pressed="false"&gt;
+  &lt;lucian-heart&gt;&lt;/lucian-heart&gt;
+  &lt;span&gt;좋아요&lt;/span&gt;
+&lt;/button&gt;</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+        <div class="d-live" aria-label="Live example">
+          <button type="button" class="d-demo-btn" id="demo-like" aria-pressed="false"><lucian-heart size="22"></lucian-heart><span class="ko">좋아요</span><span class="en">Like</span></button>
+          <button type="button" class="d-demo-btn"><lucian-send size="22"></lucian-send><span class="ko">보내기</span><span class="en">Send</span></button>
+          <a class="d-demo-btn" href="#usage"><lucian-link size="22"></lucian-link><span class="ko">링크</span><span class="en">Link</span></a>
+        </div>
+      </div>
+      <p class="ko">아이콘은 기본적으로 장식으로 취급되어 보조 기술에서 숨겨집니다. 버튼의 글자나 <code>aria-label</code>을 그대로 두세요. 글자 없이 아이콘만으로 뜻을 전한다면 <code>label</code> 속성에 현지화된 설명을 넣습니다.</p>
+      <p class="en">Icons are decorative by default and hidden from assistive technology. Keep your button’s text or <code>aria-label</code>. When the icon alone carries meaning, give it a localized <code>label</code>.</p>
+    </section>
+
+    <section id="attributes">
+      <h2><span class="d-n">03</span><span class="ko">속성</span><span class="en">Attributes</span></h2>
+      <div class="d-table" tabindex="0"><table>
+        <thead><tr><th><span class="ko">속성</span><span class="en">Attribute</span></th><th><span class="ko">값</span><span class="en">Values</span></th><th><span class="ko">설명</span><span class="en">What it does</span></th></tr></thead>
+        <tbody>
+          <tr><td><code>state</code></td><td><span class="ko">아이콘별 상태</span><span class="en">Per icon</span></td><td><span class="ko">현재 상태. 바뀌면 이전 상태에서 스프링으로 전환됩니다. 지원하지 않는 값은 기본 상태로 돌아가요.</span><span class="en">Current state. Changing it springs from the previous state. Unsupported values fall back to the default.</span></td></tr>
+          <tr><td><code>size</code></td><td>8–512 · <b>24</b></td><td><span class="ko">CSS 픽셀 크기. CSS 변수 <code>--li-size</code>로도 정할 수 있어요.</span><span class="en">Size in CSS pixels. The <code>--li-size</code> variable works too.</span></td></tr>
+          <tr><td><code>tone</code></td><td><b>color</b> · line</td><td><span class="ko"><code>color</code>는 아이콘 고유 색으로 면과 포인트를 칠하고, <code>line</code>은 모든 선을 글자색 한 가지로 그립니다.</span><span class="en"><code>color</code> paints surfaces and details in the icon’s own hue; <code>line</code> draws everything in the text color.</span></td></tr>
+          <tr><td><code>accent</code></td><td><span class="ko">CSS 색</span><span class="en">CSS color</span></td><td><span class="ko">고유 색 대신 쓸 색. <code>#hex</code>, <code>rgb()</code>, <code>oklch()</code>, 색 이름을 받습니다.</span><span class="en">Replaces the icon’s own hue. Accepts <code>#hex</code>, <code>rgb()</code>, <code>oklch()</code> and named colors.</span></td></tr>
+          <tr><td><code>weight</code></td><td>0.5–3 · <b>1.75</b></td><td><span class="ko">선 굵기(24 그리드 기준).</span><span class="en">Stroke width on the 24 grid.</span></td></tr>
+          <tr><td><code>progress</code></td><td>0–100</td><td><span class="ko">다운로드, 업로드, 배터리만. 실제로 잰 진행률을 넣으세요.</span><span class="en">Download, upload and battery only. Pass measured progress.</span></td></tr>
+          <tr><td><code>label</code></td><td><span class="ko">문자열</span><span class="en">Text</span></td><td><span class="ko">있으면 <code>role="img"</code>와 이름이 붙고, 없으면 장식으로 숨겨집니다.</span><span class="en">Adds <code>role="img"</code> and a name. Without it the icon stays decorative.</span></td></tr>
+          <tr><td><code>animate</code></td><td><b>hover</b> · click · none</td><td><span class="ko">효과를 재생할 때. <code>none</code>이면 상태 전환만 움직입니다.</span><span class="en">When the effect plays. With <code>none</code>, only state changes move.</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="methods">
+      <h2><span class="d-n">04</span><span class="ko">메서드</span><span class="en">Methods</span></h2>
+      <div class="d-table" tabindex="0"><table>
+        <tbody>
+          <tr><td><code>setState(name)</code></td><td><span class="ko">상태를 바꿉니다. 지원하지 않는 이름이면 <code>RangeError</code>를 던져요.</span><span class="en">Changes state. Throws <code>RangeError</code> for unsupported names.</span></td></tr>
+          <tr><td><code>setProgress(n)</code></td><td><span class="ko">0–100으로 잘라 진행률을 옮깁니다. 진행률이 없는 아이콘은 <code>TypeError</code>.</span><span class="en">Moves progress, clamped to 0–100. Throws <code>TypeError</code> on icons without progress.</span></td></tr>
+          <tr><td><code>play()</code></td><td><span class="ko">효과를 한 번 재생합니다. 재생 중이거나 동작 줄이기 설정이면 <code>false</code>.</span><span class="en">Plays the effect once. Returns <code>false</code> while one is running or under reduced motion.</span></td></tr>
+          <tr><td><code>next()</code></td><td><span class="ko">다음 상태로 넘기고 그 이름을 돌려줍니다. 상태가 없는 아이콘은 효과를 재생하고 <code>null</code>.</span><span class="en">Advances to the next state and returns it. Icons without states play their effect and return <code>null</code>.</span></td></tr>
+          <tr><td><code>.state</code> · <code>.states</code></td><td><span class="ko">현재 상태와 지원 상태 목록(읽기 전용).</span><span class="en">Current state and the supported list (read only).</span></td></tr>
+          <tr><td><code>.definition</code></td><td><span class="ko">아이콘 정의 데이터(이름, 색, 키워드, 상태 이름).</span><span class="en">The icon’s definition data (names, color, keywords, state labels).</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="ko">요소는 문서 전역 이벤트나 타이머를 등록하지 않습니다. 가장 가까운 컨트롤에 붙인 리스너는 요소가 문서에서 빠지면 함께 정리돼요.</p>
+      <p class="en">The element registers no document listeners or timers. Listeners on the nearest control are removed when the element leaves the document.</p>
+    </section>
+
+    <section id="state">
+      <h2><span class="d-n">05</span><span class="ko">상태는 앱이 정합니다</span><span class="en">Your app owns the state</span></h2>
+      <p class="ko">상태가 있는 아이콘 {{STATEFUL_COUNT}}개는 앱의 실제 상태를 보여 주는 표시등입니다. 클릭은 성공이 아니에요. 요청이 끝났을 때, 값이 실제로 바뀌었을 때 <code>setState()</code>를 부르세요.</p>
+      <p class="en">The {{STATEFUL_COUNT}} stateful icons are indicators of real application state. A click is not success. Call <code>setState()</code> when the request settles or the value actually changes.</p>
+      <div class="d-code"><pre tabindex="0"><code>const button = document.querySelector('#export');
+const icon = button.querySelector('lucian-download');
+
+button.addEventListener('click', async () =&gt; {
+  icon.setState('progress');
+  try {
+    await exportReport({ onProgress: percent =&gt; icon.setProgress(percent) });
+    icon.setState('success');
+  } catch (error) {
+    icon.setState(error.name === 'AbortError' ? 'idle' : 'error');
+  }
+});</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+      <div class="d-live d-live--wide" aria-label="Live example">
+        <div class="d-demo-row">
+          <span class="d-demo-icon"><lucian-download id="demo-dl" size="40" animate="none"></lucian-download></span>
+          <div class="d-demo-ctl">
+            <p class="d-demo-t"><span class="ko">시연용 컨트롤</span><span class="en">Demo controls</span> · <code id="demo-dl-state">idle</code></p>
+            <div class="d-demo-btns">
+              <button class="g-btn" type="button" data-dl="start"><span class="ko">요청 시작</span><span class="en">Start</span></button>
+              <button class="g-btn" type="button" data-dl="step">+25%</button>
+              <button class="g-btn" type="button" data-dl="success"><span class="ko">성공</span><span class="en">Resolve</span></button>
+              <button class="g-btn" type="button" data-dl="error"><span class="ko">실패</span><span class="en">Reject</span></button>
+              <button class="g-btn" type="button" data-dl="idle"><span class="ko">취소</span><span class="en">Cancel</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="d-demo-row">
+          <span class="d-demo-icon"><lucian-battery id="demo-bat" size="40" animate="none"></lucian-battery></span>
+          <div class="d-demo-ctl">
+            <label class="d-demo-t" for="demo-bat-v"><span class="ko">배터리 잔량</span><span class="en">Battery level</span> · <output id="demo-bat-o">70</output>%</label>
+            <input type="range" id="demo-bat-v" min="0" max="100" value="70">
+          </div>
+        </div>
+      </div>
+      <p class="ko">진행률을 모르면 숫자를 지어내지 말고 <code>progress</code> 상태만 두세요. 진행률 100은 성공과 다릅니다. 버튼의 <code>disabled</code>, <code>aria-busy</code>, <code>aria-pressed</code>, 상태 문구는 요소가 건드리지 않으니 앱에서 관리합니다.</p>
+      <p class="en">If you don’t know the progress, don’t invent a number; stay in <code>progress</code>. Progress 100 is not success. The element never touches your button’s <code>disabled</code>, <code>aria-busy</code>, <code>aria-pressed</code> or status text; your app manages them.</p>
+      <p class="ko"><a href="./examples/download.html">Promise 연동 예제</a>는 자동 성공 타이머 없이 대기, 성공, 실패, 취소를 직접 눌러 확인합니다.</p>
+      <p class="en">The <a href="./examples/download.html">Promise integration example</a> lets you resolve, reject and cancel by hand, with no timer faking success.</p>
+    </section>
+
+    <section id="color">
+      <h2><span class="d-n">06</span><span class="ko">색과 톤</span><span class="en">Color and tone</span></h2>
+      <p class="ko">선은 언제나 글자색(<code>currentColor</code>)을 따르고, 면과 포인트는 아이콘마다 고른 고유 색을 씁니다. 그래서 다크 테마에서도 따로 손댈 필요가 없어요.</p>
+      <p class="en">Strokes always follow the text color (<code>currentColor</code>); surfaces and details use each icon’s own hue. Dark themes need no extra work.</p>
+      <div class="d-swatch" aria-label="Examples">
+        <figure><lucian-heart size="36"></lucian-heart><figcaption>color</figcaption></figure>
+        <figure><lucian-heart size="36" tone="line"></lucian-heart><figcaption>tone="line"</figcaption></figure>
+        <figure><lucian-heart size="36" accent="#3093EC"></lucian-heart><figcaption>accent</figcaption></figure>
+        <figure><lucian-heart size="36" weight="2.5"></lucian-heart><figcaption>weight="2.5"</figcaption></figure>
+      </div>
+      <div class="d-code"><pre tabindex="0"><code>/* 브랜드 색 하나로 맞추기 · One brand hue */
+.toolbar { --li-accent: var(--brand); }
+
+/* 면 채움 진하기 0–1 (기본 .24) · Surface tint 0–1 (default .24) */
+.dense { --li-tint: 0; }
+
+/* 크기와 굵기 · Size and weight */
+.nav lucian-home { --li-size: 20px; --li-weight: 2; color: var(--text-2); }</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+    </section>
+
+    <section id="motion">
+      <h2><span class="d-n">07</span><span class="ko">모션과 접근성</span><span class="en">Motion and accessibility</span></h2>
+      <ul class="d-list ko">
+        <li><b>스프링 전환.</b> 상태가 바뀌면 부품마다 스프링 곡선으로 움직입니다. 전환 중에 다시 바뀌어도 지금 그려진 자리에서 이어서 갑니다.</li>
+        <li><b>겹쳐지는 효과.</b> 마우스 효과는 상태 위에 더해지는 방식이라 열린 상태의 쓰레기통도 자연스럽게 흔들립니다.</li>
+        <li><b>상태 루프.</b> 전화의 <code>ringing</code>, 새로고침의 <code>loading</code>처럼 계속 움직여야 하는 상태는 그 상태일 때만 반복하고, 벗어나면 한 바퀴를 마저 돈 뒤 멈춥니다.</li>
+        <li><b>동작 줄이기.</b> <code>prefers-reduced-motion</code>이 켜져 있으면 움직임 없이 최종 모양과 진행률만 바로 보여 줍니다.</li>
+        <li><b>격리.</b> 아이콘마다 자기 Shadow DOM을 써서 SVG ID나 CSS가 서로 부딪치지 않습니다. 같은 아이콘을 여러 개 써도 괜찮아요.</li>
+      </ul>
+      <ul class="d-list en">
+        <li><b>Spring transitions.</b> Each part springs to its new pose. If the state changes mid-flight, motion continues from where it is drawn.</li>
+        <li><b>Additive effects.</b> Hover effects add on top of the state, so an open trash can still wiggles naturally.</li>
+        <li><b>State loops.</b> States that keep moving, like the phone’s <code>ringing</code> or refresh’s <code>loading</code>, loop only while active and finish their cycle on exit.</li>
+        <li><b>Reduced motion.</b> With <code>prefers-reduced-motion</code>, icons jump straight to the final pose and progress.</li>
+        <li><b>Isolation.</b> Every icon has its own shadow root, so SVG IDs and CSS never collide. Repeat icons freely.</li>
+      </ul>
+    </section>
+
+    <section id="frameworks">
+      <h2><span class="d-n">08</span><span class="ko">프레임워크</span><span class="en">Frameworks</span></h2>
+      <h3>React</h3>
+      <p class="ko">클라이언트에서 모듈을 불러오고 속성으로 상태를 넘기세요. React 19는 커스텀 요소의 속성을 그대로 전달합니다.</p>
+      <p class="en">Import the module on the client and pass state as an attribute. React 19 forwards custom element attributes as is.</p>
+      <div class="d-code"><pre tabindex="0"><code>import './vendor/lucian-icons/heart.js';
+
+export function LikeButton({ liked, onToggle }) {
+  return (
+    &lt;button type="button" aria-pressed={liked} onClick={onToggle}&gt;
+      &lt;lucian-heart state={liked ? 'on' : 'off'} /&gt;
+      &lt;span&gt;Like&lt;/span&gt;
+    &lt;/button&gt;
+  );
+}</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+      <p class="ko">Next.js 같은 SSR 환경에서는 <code>'use client'</code> 컴포넌트나 <code>useEffect</code> 안에서만 불러오세요. TypeScript에서는 <code>JSX.IntrinsicElements</code>에 <code>'lucian-heart'</code>를 선언합니다.</p>
+      <p class="en">In SSR frameworks like Next.js, import only in a <code>'use client'</code> component or inside <code>useEffect</code>. In TypeScript, declare <code>'lucian-heart'</code> in <code>JSX.IntrinsicElements</code>.</p>
+      <h3>Vue · Svelte</h3>
+      <div class="d-code"><pre tabindex="0"><code>// vite.config.js
+vue({ template: { compilerOptions: { isCustomElement: tag =&gt; tag.startsWith('lucian-') } } })
+
+&lt;!-- Svelte --&gt;
+&lt;lucian-bell state={unread ? 'unread' : 'idle'}&gt;&lt;/lucian-bell&gt;</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+    </section>
+
+    <section id="formats">
+      <h2><span class="d-n">09</span><span class="ko">내려받기 형식</span><span class="en">Formats</span></h2>
+      <div class="d-table" tabindex="0"><table>
+        <tbody>
+          <tr><td><b>JS <span class="ko">모듈</span><span class="en">module</span></b></td><td><code>modules/&lt;id&gt;.js</code> + <code>runtime.js</code></td><td><span class="ko">움직임과 상태가 모두 들어 있는 본편.</span><span class="en">The full icon, with motion and state.</span></td></tr>
+          <tr><td><b>SVG</b></td><td><code>downloads/svg/&lt;id&gt;.svg</code></td><td><span class="ko">선택한 상태와 색으로 멈춘 정지 이미지. 디자인 도구용.</span><span class="en">A still image in the chosen state and color, for design tools.</span></td></tr>
+          <tr><td><b>HTML</b></td><td><code>downloads/html/&lt;id&gt;.html</code></td><td><span class="ko">런타임까지 담은 단일 파일 시연. 파일로 바로 열어도 동작합니다.</span><span class="en">A single-file demo with the runtime inlined. Opens straight from disk.</span></td></tr>
+          <tr><td><b><span class="ko">프롬프트</span><span class="en">Prompt</span></b></td><td><span class="ko">상세 창</span><span class="en">Detail view</span></td><td><span class="ko">아이콘 코드와 적용 지침. AI 코딩 도구에 붙여넣습니다.</span><span class="en">Icon code plus integration rules, for AI coding tools.</span></td></tr>
+          <tr><td><b>JSON</b></td><td><code>api/v1/catalog.json</code></td><td><span class="ko">이름, 키워드, 색, 상태, 해시를 담은 카탈로그. 아이콘별 정의는 <code>api/v1/icons/&lt;id&gt;.json</code>.</span><span class="en">Catalog with names, keywords, colors, states and hashes. Per icon: <code>api/v1/icons/&lt;id&gt;.json</code>.</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="skill">
+      <h2><span class="d-n">10</span><span class="ko">에이전트 스킬</span><span class="en">Agent skill</span></h2>
+      <p class="ko">스킬을 설치하면 Claude Code와 Codex가 카탈로그에서 알맞은 아이콘을 찾아 기존 버튼과 상태에 연결합니다. 오프라인으로 동작하고, 고른 아이콘의 코드만 읽어요.</p>
+      <p class="en">With the skill installed, Claude Code and Codex search the catalog, pick the right icon and wire it to your existing buttons and state. It works offline and reads only the code it picks.</p>
+      <p><a class="g-btn g-btn--pri" href="./downloads/lucian-icons-skill-{{VERSION}}.zip" download><lucian-download tone="line" size="17"></lucian-download><span class="ko">스킬 받기 (ZIP)</span><span class="en">Download skill (ZIP)</span></a></p>
+      <div class="d-table" tabindex="0"><table>
+        <thead><tr><th></th><th><span class="ko">프로젝트</span><span class="en">Project</span></th><th><span class="ko">사용자 전체</span><span class="en">User</span></th><th><span class="ko">부르기</span><span class="en">Invoke</span></th></tr></thead>
+        <tbody>
+          <tr><td><b>Claude Code</b></td><td><code>.claude/skills/lucian-icons/</code></td><td><code>~/.claude/skills/lucian-icons/</code></td><td><code>/lucian-icons</code></td></tr>
+          <tr><td><b>Codex</b></td><td><code>.agents/skills/lucian-icons/</code></td><td><code>~/.agents/skills/lucian-icons/</code></td><td><code>$lucian-icons</code></td></tr>
+        </tbody>
+      </table></div>
+      <p class="ko">압축을 풀면 나오는 <code>lucian-icons</code> 폴더 바로 안에 <code>SKILL.md</code>가 있어야 합니다. 새 스킬이 보이지 않으면 에이전트를 다시 시작하세요. CLI는 Node.js 18 이상에서 패키지 설치 없이 돌아갑니다.</p>
+      <p class="en">The unzipped <code>lucian-icons</code> folder must contain <code>SKILL.md</code> directly. Restart the agent if a new skill doesn’t show up. The CLI runs on Node.js 18+ with nothing to install.</p>
+      <div class="d-code"><pre tabindex="0"><code>node &lt;skill-dir&gt;/scripts/lucian-icons.mjs search 다운로드
+node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download heart
+node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download heart --out ./src/vendor/lucian-icons</code></pre><button class="g-cmd-c" type="button" data-copy aria-label="Copy"><lucian-copy tone="line" size="16"></lucian-copy></button></div>
+      <p class="ko"><code>--out</code>은 고른 모듈과 <code>runtime.js</code>, <code>LICENSE</code>만 복사하고 이미 있는 파일은 덮어쓰지 않습니다.</p>
+      <p class="en"><code>--out</code> copies only the chosen modules, <code>runtime.js</code> and <code>LICENSE</code>, and never overwrites existing files.</p>
+    </section>
+
+    <section id="states">
+      <h2><span class="d-n">11</span><span class="ko">상태 목록</span><span class="en">State list</span></h2>
+      <p class="ko">상태가 있는 아이콘과 상태 이름입니다. 첫 번째가 기본 상태예요. 나머지 아이콘은 상태 없이 효과만 재생합니다.</p>
+      <p class="en">Icons with states and their state names. The first one is the default. All other icons only play an effect.</p>
+      <div class="d-table d-table--states" tabindex="0"><table>
+        <thead><tr><th><span class="ko">아이콘</span><span class="en">Icon</span></th><th><span class="ko">상태</span><span class="en">States</span></th></tr></thead>
+        <tbody>{{STATE_TABLE}}</tbody>
+      </table></div>
+    </section>
+
+    <section id="migrate">
+      <h2><span class="d-n">12</span><span class="ko">1.x에서 옮기기</span><span class="en">Moving from 1.x</span></h2>
+      <ul class="d-list ko">
+        <li><b>색.</b> <code>ink</code>, <code>paper</code> 속성은 없어졌습니다. 선은 <code>color</code>(글자색)를, 포인트는 <code>accent</code>나 <code>--li-accent</code>를 쓰세요.</li>
+        <li><b>상태.</b> 상태는 실제 앱 상태를 나타낼 때만 남겼습니다. 예를 들어 벨은 <code>ringing</code> 대신 <code>unread</code>가 되었고, 마우스 반응만 있던 아이콘 69개는 상태 없이 효과로 바뀌었어요. 상태 이름은 위 목록을 확인하세요.</li>
+        <li><b>효과.</b> 마우스와 포커스 반응이 자동으로 붙습니다. 직접 제어하려면 <code>animate="none"</code>과 <code>play()</code>를 쓰세요.</li>
+        <li><b>이전 버전.</b> 1.x 패키지는 <a href="./downloads/lucian-icons-skill-1.2.0.zip" download>스킬 1.2.0</a>, <a href="./downloads/lucian-icons-source-1.2.0.zip" download>소스 1.2.0</a>으로 계속 받을 수 있습니다.</li>
+      </ul>
+      <ul class="d-list en">
+        <li><b>Color.</b> The <code>ink</code> and <code>paper</code> attributes are gone. Strokes use <code>color</code> (the text color); details use <code>accent</code> or <code>--li-accent</code>.</li>
+        <li><b>States.</b> States remain only where they mirror real app state. The bell’s <code>ringing</code> became <code>unread</code>, for example, and 69 hover-only icons now play an effect without states. Check the list above for names.</li>
+        <li><b>Effects.</b> Hover and focus responses attach automatically. For manual control use <code>animate="none"</code> and <code>play()</code>.</li>
+        <li><b>Older versions.</b> 1.x packages remain available: <a href="./downloads/lucian-icons-skill-1.2.0.zip" download>skill 1.2.0</a> and <a href="./downloads/lucian-icons-source-1.2.0.zip" download>source 1.2.0</a>.</li>
+      </ul>
+    </section>
+
+    <section id="license">
+      <h2><span class="d-n">13</span><span class="ko">라이선스</span><span class="en">License</span></h2>
+      <p class="ko">코드와 아이콘 모두 <a href="./LICENSE">MIT © 2026 Lucian</a>입니다. 상업적으로 쓰고 고쳐도 되며, 배포할 때 저작권 고지만 남겨 주세요. 아이콘은 모두 직접 그린 오리지널이고, 사이트 글꼴 Pretendard는 SIL Open Font License를 따릅니다(<a href="./THIRD_PARTY_NOTICES.txt">외부 자산 고지</a>).</p>
+      <p class="en">Code and icons are <a href="./LICENSE">MIT © 2026 Lucian</a>. Use and modify them commercially; keep the copyright notice when you redistribute. Every icon is an original drawing. The site font Pretendard is under the SIL Open Font License (<a href="./THIRD_PARTY_NOTICES.txt">notices</a>).</p>
+    </section>
+  </main>
 </div>
-<div data-lang="en" hidden><h1>A little icon.<br>In your own project.</h1><p>Lucian Icons v{{VERSION}}. Free under MIT. SVG, CSS and minimal JavaScript, with no animation dependencies.</p>
-<h2>1. Install the agent skill</h2><p><a href="./downloads/lucian-icons-skill-{{VERSION}}.zip" download>Download the skill ZIP</a>, unzip it and put the <code>lucian-icons</code> folder in one of these locations. SKILL.md must be directly inside that folder. The CLI needs Node.js 18+, with no packages to install.</p><table><thead><tr><th>Agent</th><th>Project</th><th>User</th></tr></thead><tbody><tr><td>Claude Code</td><td><code>.claude/skills/lucian-icons/</code></td><td><code>~/.claude/skills/lucian-icons/</code></td></tr><tr><td>Codex</td><td><code>.agents/skills/lucian-icons/</code></td><td><code>~/.agents/skills/lucian-icons/</code></td></tr></tbody></table><h3>Claude Code</h3><pre>/lucian-icons Add an opening trash icon to the delete button.</pre><h3>Codex</h3><pre>$lucian-icons Connect the download icon to real progress and completion.</pre><p>You can also select the skill with <code>/skills</code> in Codex. Restart the agent if it does not discover the new skill. The skill reads your project, searches a lightweight catalog, loads only selected code, and preserves existing behavior and accessibility.</p>
-<h2>2. Retrieve only what you need</h2><p>Replace <code>&lt;skill-dir&gt;</code> with the installed skill path.</p><pre>node &lt;skill-dir&gt;/scripts/lucian-icons.mjs search download
-node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download
-node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download --out ./vendor/lucian-icons</pre><p><code>--out</code> copies the selected modules, shared runtime.js and LICENSE. It refuses existing files. The bundled versioned catalog and code work offline. The public catalog is <a href="./api/v1/catalog.json">api/v1/catalog.json</a>.</p>
-<h2>3. Keep your button. Add the icon.</h2><pre>&lt;script type="module" src="./vendor/lucian-icons/download.js"&gt;&lt;/script&gt;
-&lt;button type="button" id="export-report"&gt;
-  &lt;lucian-download size="24" state="idle"&gt;&lt;/lucian-download&gt;
-  &lt;span&gt;Export report&lt;/span&gt;
-&lt;/button&gt;</pre><p>Icons are decorative by default. Keep visible text and accessible names. Supply a localized <code>label</code> if the icon itself conveys meaning. Connect visual state inside your existing operation handler:</p><pre>icon.setState('progress'); // when the real request starts
-icon.setProgress(42);     // measured progress from the operation
-icon.setState('success'); // only on actual success
-icon.setState('error');   // on actual failure</pre><p>A click is not success. If progress is unknown, keep zero and provide the app's own indeterminate status. <a href="./examples/download.html">Open the Promise integration fixture</a> to explicitly resolve, reject or cancel the pending request. It has no automatic success timer.</p>
-<h2>4. Size, color and state</h2><p><code>size</code>: 16 to 256px. <code>accent</code>, <code>ink</code>, <code>paper</code>: six-digit HEX colors. <code>state</code>: a supported catalog state. <code>progress</code>: 0 to 100, for download only. Progress 100 does not mean success.</p><p>In React, import on the client and synchronize attributes or a ref with your state. In Vue, configure the selected lucian-* tag as a custom element. Preserve your framework's events and cleanup. Components add no document listeners or timers.</p>
-<h2>5. Export formats</h2><p><strong>SVG:</strong> a static snapshot of the selected state, without click behavior.<br><strong>HTML / Copy code:</strong> a self-contained interactive demonstration with the selected settings. Works by opening the file directly.<br><strong>AI prompt:</strong> only the chosen icon's code and integration instructions.</p><p>Leave demo controls out of production. Preserve real requests, cancellation, errors and accessibility. Multiple instances coexist without SVG IDs or CSS collisions. Reduced motion preserves state changes.</p>
-<h2>License and sources</h2><p>Original icons and code: <a href="./LICENSE">MIT © 2026 Lucian</a>. Personal and commercial use allowed; retain notices. Pretendard is used under SIL Open Font License. <a href="./THIRD_PARTY_NOTICES.txt">Third-party notices</a>.</p><p>Install locations and invocation checked on 2026-10-14 against <a href="https://code.claude.com/docs/en/skills">Claude Code documentation</a> and <a href="https://developers.openai.com/codex/skills">Codex documentation</a>.</p></div></main>
-<script>let lang='ko';try{lang=localStorage.getItem('lucian-icons-lang')||'ko';document.documentElement.dataset.theme=localStorage.getItem('lucian-icons-theme')||'light'}catch{}function render(){document.documentElement.lang=lang;document.querySelectorAll('[data-lang]').forEach(e=>e.hidden=e.dataset.lang!==lang);document.querySelector('#lang').textContent=lang==='ko'?'English':'한국어'}document.querySelector('#lang').onclick=()=>{lang=lang==='ko'?'en':'ko';try{localStorage.setItem('lucian-icons-lang',lang)}catch{}render()};render()</script></html>
+
+<footer class="g-foot">
+  <div><a class="g-brand" href="/"><span class="g-orb" aria-hidden="true"></span><span class="g-brand-t">lucianLabs</span></a><p><span class="ko">작은 움직임을 만드는 실험실.</span><span class="en">A lab for small motions.</span></p></div>
+  <nav aria-label="Footer"><a href="./">Lucian Icons</a><a href="/uxui-prompt/">Lucian UX/UI Prompt ↗</a><a href="./LICENSE">MIT License</a><a href="./downloads/lucian-icons-source-{{VERSION}}.zip" download><span class="ko">소스 받기</span><span class="en">Source</span></a></nav>
+  <p class="g-copy">© 2026 Lucian · v{{VERSION}}</p>
+</footer>
+<div class="g-toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

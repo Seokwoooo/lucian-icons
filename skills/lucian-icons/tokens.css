@@ -1,4 +1,9 @@
-/* Lucian Icons v1.2.0 | MIT (c) 2026 Lucian
-   Reference tokens. Map the attributes to your existing theme. */
-.lucian-icon-theme { --li-accent: #b7a4ff; --li-ink: #252b2a; --li-paper: #fffdf8; }
-[data-theme="dark"] .lucian-icon-theme { --li-ink: #ede9df; --li-paper: #222628; }
+/* Lucian Icons v2.0.0 | MIT (c) 2026 Lucian
+   Optional CSS variables. Strokes follow `color`; these tune the rest. */
+.lucian-icon-theme {
+  --li-accent: var(--brand, #6a57f2); /* replaces each icon's own color; omit to keep per-icon colors */
+  --li-tint: .24;                     /* surface fill opacity, 0 to 1 */
+  --li-weight: 1.75;                  /* stroke width on the 24 grid */
+  --li-size: 24px;
+}
+[data-theme="dark"] .lucian-icon-theme { --li-tint: .32; }

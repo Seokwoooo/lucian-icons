@@ -1,79 +1,70 @@
 # Lucian Icons
 
-112 original interactive SVG icons. Small motions, thoughtful details. Dependency-free, MIT licensed, with a portable Claude Code and Codex skill.
+212 original animated SVG icons. Each one has its own color, a hover effect and, where it means something, real states your app controls. Dependency-free web components, MIT licensed, with a portable Claude Code and Codex skill.
 
-Gallery: https://lucianlabs.dev/icons/
+Gallery: https://lucianlabs.dev/icons/ · API guide: https://lucianlabs.dev/icons/guide.html
 
-Source: https://github.com/Seokwoooo/lucian-icons (currently private). Public source and skill packages are available from the gallery without GitHub access.
+Source: https://github.com/Seokwoooo/lucian-icons (currently private). Source and skill packages are downloadable from the gallery.
 
-## Icons
+## Use
 
-| Icon | States and motion |
-| --- | --- |
-| Trash | closed / open, right-hinged lid |
-| Folder | closed / open, folding front and revealed paper |
-| Envelope | closed / open, flap and rising letter |
-| Lock | locked / unlocked, articulated shackle |
-| Bell | idle / ringing, one decaying pendulum ring |
-| Heart | off / on, fill and short beat |
-| Bookmark | off / on, fill and saved mark |
-| Download | idle / progress / success / error, real progress API |
-| Search | idle / searching, a short lens sweep |
-| Power | off / on, split ring and stem fill |
-| Mouse click | idle / pressed, left button press and click rays |
-| Cursor | idle / pressed, pointer fill and click rays |
+```html
+<!-- every icon -->
+<script type="module" src="https://lucianlabs.dev/icons/all.js"></script>
+<!-- or one icon (loads its sibling runtime.js) -->
+<script type="module" src="https://lucianlabs.dev/icons/modules/heart.js"></script>
 
-## Build and preview
+<button type="button" aria-pressed="false">
+  <lucian-heart></lucian-heart>
+  <span>Like</span>
+</button>
+```
+
+The icon plays its effect when its nearest button or link is hovered or focused. Icons with states follow your app:
+
+```js
+icon.setState('on');          // RangeError for unsupported states
+download.setProgress(42);     // download, upload, battery: measured progress only
+icon.play();                  // effect once
+```
+
+Attributes: `state`, `size` (8–512, default 24), `tone` (`color` | `line`), `accent` (CSS color), `weight` (0.5–3, default 1.75), `progress` (0–100), `label`, `animate` (`hover` | `click` | `none`). CSS variables: `--li-accent`, `--li-tint`, `--li-size`, `--li-weight`. Strokes follow `currentColor`.
+
+53 icons have states (heart `off/on`, bell `idle/unread`, download `idle/progress/success/error`, ...). The other 159 only play an effect. The full list is in the [API guide](https://lucianlabs.dev/icons/guide.html#states) and the [catalog](https://lucianlabs.dev/icons/catalog.json).
+
+For production, copy `modules/<id>.js` and `modules/runtime.js` into your project (or use the skill CLI below) so the version is pinned. Each icon has its own shadow root, no SVG IDs, no document listeners or timers, and honors `prefers-reduced-motion`.
+
+Upgrading from 1.x is a breaking change: see [the migration table](skills/lucian-icons/references/migration.md).
+
+## Agent skill
+
+Copy `skills/lucian-icons` to `.claude/skills/lucian-icons/` (Claude Code) or `.agents/skills/lucian-icons/` (Codex), or download the skill ZIP from the gallery. User-wide paths are `~/.claude/skills/lucian-icons/` and `~/.agents/skills/lucian-icons/`. Invoke `/lucian-icons ...` in Claude Code or `$lucian-icons ...` in Codex.
+
+```sh
+node skills/lucian-icons/scripts/lucian-icons.mjs search 다운로드
+node skills/lucian-icons/scripts/lucian-icons.mjs get download --out ./src/vendor/lucian-icons
+```
+
+## Develop
 
 Node.js 18 or later. No npm dependencies.
 
 ```sh
-node scripts/build.mjs
-npm test
-python -m http.server 4173 -d dist
+npm run build      # dist/icons/ and skills/lucian-icons/{code,catalog.json}
+npm test           # definitions, exports, skill CLI, build output
+npm run serve      # http://localhost:4173/icons/
 ```
 
-Open http://localhost:4173/icons/. The output is `dist/icons/`; it is intended to be added to an existing site's `/icons/` directory. It does not replace root routes, install a service worker, or change DNS. Do not publish it over an occupied path.
+Icons are authored in `src/icons/<category>.js` with helpers from `src/icons/_kit.js`: a 24-unit SVG drawing with `data-part` groups, per-state `poses`, `transitions`, looping states, and a hover `effect`. `src/runtime/icon.js` turns a definition into a custom element using the Web Animations API with spring easing. The gallery lives in `web/`.
 
-Browser QA uses Python Playwright and an installed Chromium (`/usr/bin/chromium` by default). Run `python tests/gallery.py`, `python tests/runtime.py`, and `python tests/acceptance.py` with the preview server running. `TEST_URL` can select a deployed base URL.
-
-## Gallery autoplay
-
-All previews that are at least 90 percent in view play concurrently, each with an approaching cursor and click indicator. Pause or resume from the header or collection controls. The choice is saved locally. Direct interaction stops only the touched preview until autoplay is re-enabled. Hidden tabs, offscreen previews and an open inspector stop their demos. Reduced motion disables autoplay while keeping manual state controls. These gallery timers are never included in exported icons or the skill. Search English/Korean keywords and filter by category.
-
-The catalog contains 112 icons across files, communication, people, security, navigation, editing, media, devices, commerce and everyday objects. Use the [live catalog](https://lucianlabs.dev/icons/catalog.json) or the offline skill search to find every ID and its supported states. The table above lists the original 12.
-
-Motion QA: `python tests/autoplay.py`, `python tests/motion-regression.py`, and `FRAME_OUT=.artifacts/motion-after python tests/motion-frames.py`. The frame script captures forward and reverse transitions at 60fps and readable contact sheets.
-
-## Use one icon
-
-Copy only the chosen module from `dist/icons/modules/` plus sibling `runtime.js` and LICENSE, or use the skill CLI:
+Browser QA (gallery, guide, runtime, widths 320–1440) needs `playwright-core` and Chrome, with the preview server running:
 
 ```sh
-node skills/lucian-icons/scripts/lucian-icons.mjs search download
-node skills/lucian-icons/scripts/lucian-icons.mjs get download --out ./vendor/lucian-icons
+PLAYWRIGHT_CORE=/path/to/node_modules/playwright-core node tests/browser.mjs
 ```
 
-```html
-<script type="module" src="./vendor/lucian-icons/download.js"></script>
-<button type="button">
-  <lucian-download state="idle" size="24"></lucian-download>
-  <span>Export report</span>
-</button>
-```
-
-Drive `setState('progress'|'success'|'error'|'idle')` and `setProgress(percent)` from actual app events. A click never implies success. No business operation or timer is built into the icon. Preserve existing labels, disabled state, event handlers and accessibility. Meaningful standalone icons can set `label`.
-
-Each icon has Shadow DOM isolation, no SVG IDs, scoped CSS and reduced motion support. State attributes are validated. One runtime version per page. Gallery controls are explicitly demos.
-
-## Install lucian-icons
-
-Copy `skills/lucian-icons` to `.claude/skills/lucian-icons/` (Claude Code) or `.agents/skills/lucian-icons/` (Codex). User-wide paths are `~/.claude/skills/lucian-icons/` and `~/.agents/skills/lucian-icons/`.
-
-Invoke `/lucian-icons ...` in Claude Code or `$lucian-icons ...` in Codex. See [installation](skills/lucian-icons/INSTALL.md) and [API guide](skills/lucian-icons/references/porting.md).
-
-Build outputs include the portable skill ZIP, complete source ZIP, per-icon static SVGs, standalone interactive HTML files, a lightweight API catalog and content hashes. The source definitions in `src/icons/` generate both the gallery and skill data. Generated files inside `skills/lucian-icons/code/` and catalog.json are committed so a repository installation works without building.
+`dist/icons/` is served at `/icons/` of the existing site through scoped rewrites; see [docs/deployment.md](docs/deployment.md). Never deploy it over the root site.
 
 ## License
 
-[MIT](LICENSE), Copyright (c) 2026 Lucian. Retain this notice in redistributed code. Pretendard uses the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No external icon package, tracking script, or animation runtime.
+[MIT](LICENSE), Copyright (c) 2026 Lucian. All drawings are original. Pretendard uses the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No tracking, no external icon package, no animation library.

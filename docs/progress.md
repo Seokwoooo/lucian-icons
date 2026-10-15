@@ -27,3 +27,6 @@ Revision 1.1.0 production: Git commit 07cb63b deployed READY. Canonical and orig
 
 
 Revision1.2.0: user requested simultaneous viewport autoplay,100 more icons and improvements to awkward existing designs. Added100 original definitions and bilingual state labels, refined7 originals, independent visible autoplay, category filtering and scalable visual evidence.112-icon contract was red before authoring and passed afterward. Node7 and complete local browser acceptance passed. Fresh review found exported transforms lacked the runtime default origin; reproduced, fixed, and verified live/export geometry for all226 supported states. Existing Vercel routing is unchanged; only icons project deployment will advance.
+
+
+Revision 2.0.0: user found the 1.x drawings and motion unsatisfying and asked Claude Code to redo everything in the style of lucianlabs.dev/uxui-prompt. Approved a 12-icon prototype first, then: all 112 icons redrawn with per-icon colors, 100 new icons, breaking API 2.0 (tone/accent/weight/animate, real-state-only states, additive hover effects, spring transitions), new gallery with four large tiles per row and ghost-cursor demos on every visible tile, new API guide, skill and tests. See verification.md. Production push waits for the user's approval.

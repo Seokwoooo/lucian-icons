@@ -27,6 +27,12 @@ Live route version: `fc25bc36-185c-4f45-8e7f-8e75cecacd10`.
 
 The existing root deployment, domain alias, `/uxui-prompt/`, its introducing page, API functions and other paths are preserved. The icons origin uses `main` for future releases; root-site CLI deployments do not replace this project-level routing configuration. Public assets are all under `/icons/`; there is no root service worker or catch-all route.
 
+## Release 2.0.0 notes
+
+- `vercel.json` adds `Access-Control-Allow-Origin: *` for `/icons/all.js`, `/icons/export.js`, `/icons/catalog.json`, `/icons/modules/*`, `/icons/runtime/*` and `/icons/api/*`, because the gallery advertises loading modules directly from `https://lucianlabs.dev/icons/`. Cross-origin module scripts fail without it. The headers come from the lucian-icons origin project and pass through the existing rewrite; the root project is unchanged.
+- 1.x archives stay downloadable: `web/downloads/` keeps the 1.0.0, 1.1.0 and 1.2.0 skill and source ZIPs (1.2.0 copies match the production hashes).
+- After pushing `main`, verify on https://lucianlabs.dev/icons/: catalog version 2.0.0 with 212 icons, manifest hashes, `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS header, gallery and guide load without page errors, and the root site and `/uxui-prompt/` are unchanged.
+
 ## Verification and rollback
 
 Origin acceptance passed before publishing the scoped rules. Public acceptance then passed at the canonical URL. All 61 public manifest files matched SHA-256 and byte size. Existing root and both UX/UI pages returned the same titles with no page errors; 28 loaded existing assets retained exactly the same SHA-256 hashes. Evidence is stored locally in `.artifacts/production-baseline.json` and `.artifacts/production-verification.json`.

@@ -1,0 +1,5 @@
+/* Lucian Icons train v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"train","version":"2.0.0","order":178,"name":{"ko":"기차","en":"Train"},"keywords":["기차","지하철","열차","교통","train","subway","rail","transit"],"category":"travel","description":{"ko":"기차가 덜컹덜컹 두 번 흔들리고 전조등이 켜집니다.","en":"The train clatters twice and its lights come on."},"color":"#5D73EA","svg":"<g data-part=\"body\"><rect class=\"s\" x=\"5\" y=\"3\" width=\"14\" height=\"14.5\" rx=\"3\"/><rect x=\"7.5\" y=\"5.5\" width=\"9\" height=\"4.5\" rx=\"1\"/><path data-part=\"lights\" class=\"a\" d=\"M8.5 14h.01M15.5 14h.01\"/></g><path d=\"m8 17.5-2 3.5M16 17.5l2 3.5\"/>","origins":{"body":[12,17.5]},"effect":{"body":{"k":[{"translate":[0,0]},{"translate":[0,-0.8]},{"translate":[0,0]},{"translate":[0,-0.8]},{"translate":[0,0]}],"d":560,"e":"inOut","delay":0},"lights":{"k":[{"opacity":0,"offset":0},{"opacity":-1,"offset":0.3},{"opacity":-1,"offset":0.55},{"opacity":0,"offset":1}],"d":420,"delay":200,"e":"linear"}}};
+defineIcon(definition);
+export default definition;

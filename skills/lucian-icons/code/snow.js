@@ -1,0 +1,5 @@
+/* Lucian Icons snow v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"snow","version":"2.0.0","order":189,"name":{"ko":"눈","en":"Snow"},"keywords":["눈","겨울","추위","눈송이","냉동","snow","winter","cold","snowflake","freeze"],"category":"nature","description":{"ko":"눈송이가 60도 돌며 반짝 커집니다.","en":"The snowflake turns sixty degrees and sparkles."},"color":"#26B7D3","svg":"<circle class=\"t\" cx=\"12\" cy=\"12\" r=\"3.5\"/><g data-part=\"flake\"><path d=\"M12 12V2.75M12 12l8.01-4.63M12 12l8.01 4.62M12 12v9.25M12 12l-8.01 4.63M12 12 3.99 7.37\"/><path class=\"a\" d=\"M9.75 4.5 12 6.75l2.25-2.25M17.37 6.3l-.82 3.08 3.07.82M19.62 13.8l-3.07.82.82 3.08M14.25 19.5 12 17.25 9.75 19.5M6.63 17.7l.82-3.07-3.07-.83M4.38 10.2l3.07-.82-.82-3.08\"/></g>","origins":{"flake":[12,12]},"effect":{"flake":{"k":[{"rotate":0,"scale":1},{"rotate":70,"scale":1.12,"offset":0.65},{"rotate":60,"scale":1}],"d":820,"e":"inOut","delay":0}}};
+defineIcon(definition);
+export default definition;

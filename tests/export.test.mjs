@@ -1,24 +1,60 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
-import {staticSVG,normalize} from '../src/runtime/icon.js';
-const trash=JSON.parse(await readFile(new URL('../src/icons/trash.json',import.meta.url),'utf8'));
-test('static exports reflect selected state and palette without unsafe attributes',()=>{
- const svg=staticSVG(trash,{size:24,accent:'#123456',state:'open'});
- assert.match(svg,/width="24"/);assert.match(svg,/#123456/);assert.match(svg,/rotate\(32deg\)/);assert.doesNotMatch(svg,/var\(--/);assert.doesNotMatch(svg,/\bid=/);
- const o=normalize(trash,{size:'bad',accent:'"><script>',state:'success'});assert.equal(o.size,48);assert.equal(o.state,'closed');assert.equal(o.accent,trash.accent);
+import { readFile } from 'node:fs/promises';
+import authored from '../src/icons/index.js';
+import { staticSVG, normalize, poseOf } from '../src/runtime/icon.js';
+import { usageHTML, usageReact, standaloneHTML, applicationPrompt } from '../src/export.js';
+
+const { version } = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+const get = id => ({ ...authored.find(d => d.id === id), version });
+const trash = get('trash'), download = get('download'), sparkle = get('sparkle');
+
+test('normalize clamps values and rejects unsafe colors', () => {
+  const o = normalize(trash, { size: 'bad', accent: '"><script>', state: 'nope', weight: 9, tone: 'neon' });
+  assert.deepEqual([o.size, o.accent, o.state, o.weight, o.tone], [24, null, 'closed', 3, 'color']);
+  assert.equal(normalize(trash, { size: 4000 }).size, 512);
+  assert.equal(normalize(trash, { accent: 'oklch(70% 0.1 200)' }).accent, 'oklch(70% 0.1 200)');
+  assert.equal(normalize(download, { progress: 140 }).progress, 100);
+  assert.equal(normalize(get('battery')).progress, 70, 'battery default level');
 });
-test('standalone HTML includes selected state, no imports and no auto success',async()=>{
- const {standaloneHTML}=await import('../src/export.js');
- const html=await standaloneHTML(trash,{size:32,state:'open',accent:'#445566',trigger:'hover'},'en');
- assert.match(html,/size="32"/);assert.match(html,/state="open"/);assert.match(html,/#445566/);assert.doesNotMatch(html,/import /);assert.match(html,/pointerenter/);
+
+test('static SVG freezes the chosen state and color without CSS variables or IDs', () => {
+  const svg = staticSVG(trash, { state: 'open', accent: '#123456', size: 32 });
+  assert.match(svg, /width="32"/);
+  assert.match(svg, /#123456/);
+  assert.match(svg, /rotate\(18\)/, 'lid open');
+  assert.doesNotMatch(svg, /var\(--|\bid=|<script/);
+  assert.doesNotMatch(staticSVG(trash), /rotate\(/, 'closed lid has no rotation');
+  const line = staticSVG(trash, { tone: 'line' });
+  assert.doesNotMatch(line, new RegExp(trash.color, 'i'), 'line tone drops the icon color');
+  assert.ok(Object.keys(poseOf(trash, 'open')).length > 0);
 });
-test('embeddable exports scope behavior to the nearest instance and include focus trigger',async()=>{
- const {embeddableCode}=await import('../src/export.js');const code=await embeddableCode(trash,{trigger:'hover'},'en');
- assert.doesNotMatch(code,/<!doctype/);assert.match(code,/document.currentScript.closest/);assert.match(code,/addEventListener\('focus'/);assert.match(code,/addEventListener\('blur'/);
+
+test('usage snippets write only non-default attributes and real-state wiring', () => {
+  const html = usageHTML(download, { state: 'progress', progress: 40 }, 'en');
+  assert.match(html, /modules\/download\.js/);
+  assert.match(html, /<lucian-download state="progress" progress="40">/);
+  assert.match(html, /setProgress/);
+  assert.doesNotMatch(usageHTML(sparkle, {}, 'en'), /setState/, 'stateless icons get no state wiring');
+  assert.match(usageReact(trash, {}, 'ko'), /<lucian-trash state=\{state\} \/>/);
 });
-test('localized demo state labels retain exact controlled API values',async()=>{
- const {embeddableCode}=await import('../src/export.js');const code=await embeddableCode(trash,{state:'open'},'ko');
- assert.match(code,/<option value="open" selected>열림<\/option>/);
- assert.match(code,/aria-label="쓰레기통: 열림"/);
+
+test('standalone HTML is self-contained and labels demo wiring', async () => {
+  const html = await standaloneHTML(trash, { size: 32, state: 'open', accent: '#445566' }, 'en');
+  assert.match(html, /^<!doctype html>/);
+  assert.match(html, /state="open"/);
+  assert.match(html, /#445566/);
+  assert.doesNotMatch(html, /\bimport\b[^(]/);
+  assert.doesNotMatch(html, /src="http/);
+  assert.match(html, /Demo wiring only/);
+});
+
+test('application prompt carries the module source and integration rules', async () => {
+  const ko = await applicationPrompt(download, {}, 'ko');
+  assert.match(ko, /--- runtime\.js ---/);
+  assert.match(ko, /--- download\.js ---/);
+  assert.match(ko, /클릭이 곧 성공은 아닙니다/);
+  assert.match(ko, /setProgress/);
+  const en = await applicationPrompt(sparkle, {}, 'en');
+  assert.match(en, /No state wiring is needed/);
 });

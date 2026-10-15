@@ -9,6 +9,12 @@
     {
       "source": "/icons/(.*)",
       "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }]
-    }
+    },
+    { "source": "/icons/all.js", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
+    { "source": "/icons/export.js", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
+    { "source": "/icons/catalog.json", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
+    { "source": "/icons/modules/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
+    { "source": "/icons/runtime/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
+    { "source": "/icons/api/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] }
   ]
 }

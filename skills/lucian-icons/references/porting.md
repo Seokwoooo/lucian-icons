@@ -1,27 +1,57 @@
-# Integration API
+# Integration API (v2.0.0)
 
-Import just `code/download.js` and its sibling `runtime.js`. Every icon module registers its element idempotently and exports its `definition`. Registration does not install click handlers or timers.
+Import just the chosen module, for example `code/download.js`, with its sibling `runtime.js`. Every module registers `<lucian-ID>` idempotently and exports its `definition`. Registration installs no document listeners or timers.
 
 ```html
 <script type="module" src="./vendor/lucian-icons/download.js"></script>
 <button id="export-report" type="button">
-  <lucian-download size="24" state="idle"></lucian-download>
+  <lucian-download state="idle"></lucian-download>
   <span>Export report</span>
 </button>
 ```
 
-Keep the existing operation handler. Update the element when that handler's actual state changes. Use `setState('progress')` while pending, `setProgress(percentage)` only from measured progress, `setState('success')` on real resolution, `setState('error')` on real rejection. The element never mutates a parent button's label, disabled state or ARIA. The app owns them. On cancellation use `idle` and preserve the app's cancellation behavior.
+## Attributes
 
-Attributes: `state`, `size` (16 to 256 CSS pixels), `accent`, `ink`, `paper` (six-digit hex colors), `progress` (0 to 100, download only), `label` (optional accessible name). Unknown states fall back to the default when set as an attribute; `setState` rejects them with RangeError. Invalid colors/sizes use defaults. A progress value of 100 does not imply success.
+| Attribute | Values | Notes |
+| --- | --- | --- |
+| `state` | per icon (see catalog `states`) | Unsupported values fall back to `defaultState`. |
+| `size` | 8–512, default 24 | CSS pixels. `--li-size` also works. |
+| `tone` | `color` (default), `line` | `line` draws everything in `currentColor`. |
+| `accent` | CSS color | Replaces the icon's own color. Same as CSS `--li-accent`. |
+| `weight` | 0.5–3, default 1.75 | Stroke width on the 24 grid. `--li-weight` also works. |
+| `progress` | 0–100 | Download, upload and battery only. |
+| `label` | text | Adds `role="img"` and an accessible name. Omit for decorative icons. |
+| `animate` | `hover` (default), `click`, `none` | When the effect plays. State transitions always animate. |
 
-The default icon is `aria-hidden` inside its shadow root. Button labels remain visible and accessible. A meaningful standalone icon must use `label="localized description"`. Toggle controls retain their own `aria-pressed` or `aria-expanded`, download controls retain live status text and busy/disabled behavior.
+CSS variables: `--li-accent`, `--li-tint` (surface fill opacity, default .24), `--li-size`, `--li-weight`. Strokes always follow `color`.
 
-The catalog lists supported states and demonstration triggers. Triggers are adapters in your application, not automatic behavior. Trash opening never deletes a record. Folder opening follows disclosure state. Lock follows actual lock state. Bell's `ringing` state plays one finite ring, ending at rest. Reset to `idle` before a later notification. Heart and bookmark use `on` and `off`. Search uses `searching` and `idle`. Power uses `on` and `off`.
+## Methods
 
-Each element owns an isolated shadow root. No SVG IDs, global selectors, document listeners, timers, or animation runtime. Same-name custom element registration is idempotent; import one version per page. Different versions with the same tag do not override an existing registration. Inspect `VERSION` in runtime.js before combining copies.
+- `setState(name)`: throws `RangeError` for unsupported names.
+- `setProgress(n)`: clamps to 0–100; throws `TypeError` on icons without progress.
+- `play()`: plays the effect once; returns `false` if one is running or reduced motion is on.
+- `next()`: advances to the next state and returns it; stateless icons play their effect and return `null`. Meant for demos, not for production state.
+- Read-only `state`, `states`, `definition`.
 
-For React, load the module on the client, render the custom element in the existing button, and synchronize its attributes from state or call the API through a ref in an effect. In Vue configure `isCustomElement` for the chosen `lucian-*` tag, or port SVG/CSS into the existing component. Svelte and plain HTML can use the custom element directly. In SSR frameworks register only in client execution. Preserve actual event handlers and remove any listeners your adapter adds on cleanup. Do not copy the gallery or its demo handlers.
+## Real state
 
-If adapting colors from CSS variables, resolve them to six-digit hex values in your framework or port the isolated SVG variables. The current public attribute API does not accept arbitrary CSS expressions. Check both themes. Reduced motion removes motion while retaining fill, state and progress.
+Keep the existing operation handler and update the element when the actual state changes. For download/upload use `setState('progress')` while pending, `setProgress(percentage)` only from measured progress, `setState('success')` on real resolution, `setState('error')` on real rejection, `idle` on cancellation. Progress 100 does not imply success. For battery, `level` shows the measured charge through `setProgress`; `charging` follows the real charging flag.
 
-Static SVG downloads freeze the selected state and palette. They do not contain a click interaction. Standalone HTML includes runtime and explicit demonstration controls and works from file:// without fetching scripts. The application prompt includes only the selected icon plus this distinction.
+The element never mutates a parent button's label, disabled state or ARIA; the app owns them. Toggle controls keep their own `aria-pressed` or `aria-expanded`; download controls keep live status text and busy/disabled behavior. Typical mappings: heart, star, bookmark, thumbsup, toggle use `off`/`on` with `aria-pressed`; bell uses `unread` while unread notifications exist and `idle` otherwise; lock follows the actual lock; trash and folder `open` follow disclosure or a confirmation step, never deletion itself; copy shows `copied` only after the clipboard write resolves, then returns to `idle`.
+
+Looping states (phone `ringing`, refresh `loading`, cloud `syncing`, fingerprint `scanning`, chat `typing` and similar) loop only while active and finish their cycle on exit. Change state to stop them; do not remove the element.
+
+## Behavior
+
+- Hover effects bind to the nearest `button`, `a[href]`, `summary`, `label` or ARIA control role, and to keyboard `:focus-visible`. Touch plays on press. Listeners are removed on disconnect.
+- Effects compose on top of the current state. State changes interrupted mid-flight continue from the rendered pose.
+- `prefers-reduced-motion: reduce` removes motion while keeping the final pose, colors and progress.
+- Each element owns a shadow root: no SVG IDs, no global selectors. Duplicates are safe. Same-name registration is idempotent; import one runtime version per page and check `VERSION` in `runtime.js` before combining copies.
+
+## Frameworks
+
+React: load the module on the client, render the custom element inside the existing button, and pass `state` from props or call methods through a ref in an effect. React 19 forwards attributes to custom elements. In TypeScript declare the tag in `JSX.IntrinsicElements`. Vue: configure `isCustomElement: tag => tag.startsWith('lucian-')`. Svelte and plain HTML use the element directly. In SSR frameworks register only in client execution. Preserve actual event handlers and remove any listeners your adapter adds on cleanup. Do not copy the gallery or its demo handlers.
+
+## Exports
+
+Static SVG downloads freeze the selected state and color, with no interaction. Standalone HTML inlines the runtime and works from file://. The application prompt contains only the selected icon plus these rules.

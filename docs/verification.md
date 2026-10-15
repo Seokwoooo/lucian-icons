@@ -1,6 +1,17 @@
 # Verification record
 
-Date: 2026-10-14 UTC. Product path `/icons/`.
+Product path `/icons/`.
+
+## Release 2.0.0 local checks
+
+Date: 2026-10-15. Full redesign: 212 icons (112 kept IDs, 100 new), new runtime, gallery and guide.
+
+- Every icon was drawn on the 24 grid and reviewed in contact sheets at 16/20/24/28/48px in color and line tone, light and dark, plus motion strips of each state transition and hover effect. Fixes found this way include folder skew, envelope folds, fingerprint, handshake, hammer, tree canopy, quote, star start angle, full 360 degree spins for asymmetric icons and the power stem color.
+- `npm test`: 14 passed (definitions, exports, skill CLI, build manifest and hashes, page placeholders).
+- `tests/browser.mjs` (Chrome, local build): 12 passed. 212 tiles, four per row, visible tiles demo themselves; category, search (Korean typed immediately after opening), `/` shortcut and empty state; language/tone/theme persistence; deep-linked detail dialog with state chips, code tabs, clipboard copy, SVG and HTML downloads, Escape; tile keyboard activation; 25 rapid opposite state changes settle on the last state with no running animations, duplicates independent, reinsertion keeps state; reduced motion runs no animations and stops gallery demos; no horizontal overflow at 320/390/768/1440 on gallery and guide; guide demos drive real element state.
+- Bug found by the browser suite and fixed: typing within about 0.6s of opening search placed the caret at the start (the input had zero width while expanding), reversing text.
+- axe-core 4.10.3 WCAG 2 A/AA and 2.1 AA: zero violations on the gallery, open detail dialog and guide, light and dark, after raising `--ink-3` contrast and making code blocks keyboard-scrollable.
+- Performance: 60fps while scrolling with 12 live demos (average frame 16.6ms).
 
 ## Release 1.2.0 local checks
 

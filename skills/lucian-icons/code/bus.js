@@ -1,0 +1,5 @@
+/* Lucian Icons bus v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"bus","version":"2.0.0","order":179,"name":{"ko":"버스","en":"Bus"},"keywords":["버스","대중교통","정류장","통학","bus","transit","public","transport"],"category":"travel","description":{"ko":"버스가 정류장에 서듯 앞으로 쏠렸다가 돌아옵니다.","en":"The bus pitches forward as if stopping, then settles."},"color":"#F2CF3B","svg":"<g data-part=\"body\"><rect class=\"s\" x=\"4.5\" y=\"3\" width=\"15\" height=\"15\" rx=\"2.5\"/><rect x=\"6.75\" y=\"5.5\" width=\"10.5\" height=\"5.5\" rx=\"1\"/><path class=\"a\" d=\"M7.75 14.5h.01M16.25 14.5h.01\"/></g><path d=\"M4.5 7.5H3M19.5 7.5H21M7.5 18v2.5M16.5 18v2.5\"/>","origins":{"body":[12,18]},"effect":{"body":{"k":[{"rotate":0,"translate":[0,0]},{"rotate":0,"translate":[1.2,0],"offset":0.3},{"rotate":4,"translate":[0.6,0],"offset":0.55},{"rotate":-1,"translate":[0,0],"offset":0.8},{"rotate":0,"translate":[0,0]}],"d":700,"e":"inOut","delay":0}}};
+defineIcon(definition);
+export default definition;

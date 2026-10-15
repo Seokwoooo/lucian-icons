@@ -1,0 +1,5 @@
+/* Lucian Icons ship v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"ship","version":"2.0.0","order":180,"name":{"ko":"배","en":"Ship"},"keywords":["배","선박","항해","해운","크루즈","ship","boat","sail","cruise"],"category":"travel","description":{"ko":"배가 파도 위에서 좌우로 흔들립니다.","en":"The ship rocks on the waves."},"color":"#3093EC","svg":"<g data-part=\"boat\"><path class=\"a\" d=\"M10.5 8.5v-3h3v3\"/><path d=\"M7 13.5V9.5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4\"/><path class=\"s\" d=\"M3 13.5h18l-2.2 4.4a2 2 0 0 1-1.8 1.1H7a2 2 0 0 1-1.8-1.1z\"/></g><path data-part=\"waves\" d=\"M3 21.75c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1\"/>","origins":{"boat":[12,18]},"effect":{"boat":{"k":[{"rotate":0},{"rotate":-6},{"rotate":5},{"rotate":-3},{"rotate":0}],"d":900,"e":"inOut","delay":0},"waves":{"k":[{"translate":[0,0]},{"translate":[-1.5,0]},{"translate":[0,0]}],"d":900,"e":"inOut","delay":0}}};
+defineIcon(definition);
+export default definition;

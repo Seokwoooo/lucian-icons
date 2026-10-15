@@ -1,0 +1,5 @@
+/* Lucian Icons eraser v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"eraser","version":"2.0.0","order":88,"name":{"ko":"지우개","en":"Eraser"},"keywords":["지우개","지우기","삭제","정리","eraser","erase","clear","remove"],"category":"editing","description":{"ko":"지우개가 좌우로 문질러 지웁니다.","en":"The eraser rubs back and forth."},"color":"#E662A8","svg":"<g data-part=\"eraser\"><path class=\"s\" d=\"M7.5 20.5 3.6 16.6a1.5 1.5 0 0 1 0-2.1L14 4.1a1.5 1.5 0 0 1 2.1 0l4.3 4.3a1.5 1.5 0 0 1 0 2.1L10.4 20.5z\"/><path class=\"a\" d=\"m8.75 9.25 6 6\"/></g><path data-part=\"floor\" d=\"M12.5 20.5h8\"/>","origins":{"floor":[20.5,20.5]},"effect":{"eraser":{"k":[{"translate":[0,0]},{"translate":[-1.5,0]},{"translate":[1.4,0]},{"translate":[-1.2,0]},{"translate":[1,0]},{"translate":[0,0]}],"d":760,"e":"inOut","delay":0},"floor":{"k":[{"scale":1},{"scale":[0.3,1],"offset":0.5},{"scale":[0.3,1],"offset":0.7},{"scale":1}],"d":760,"e":"inOut","delay":0}}};
+defineIcon(definition);
+export default definition;

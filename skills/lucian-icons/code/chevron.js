@@ -1,0 +1,5 @@
+/* Lucian Icons chevron v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"chevron","version":"2.0.0","order":68,"name":{"ko":"펼침 화살표","en":"Chevron"},"keywords":["펼치기","접기","드롭다운","아코디언","chevron","dropdown","expand","collapse","accordion"],"category":"navigation","description":{"ko":"펼치면 꺾쇠가 스프링처럼 반 바퀴 뒤집힙니다.","en":"Expanding flips the chevron with a spring."},"color":"#5D73EA","states":["collapsed","expanded"],"defaultState":"collapsed","stateLabels":{"ko":{"collapsed":"접힘","expanded":"펼침"},"en":{"collapsed":"Collapsed","expanded":"Expanded"}},"svg":"<path data-part=\"mark\" class=\"a\" d=\"m6 9 6 6 6-6\"/>","poses":{"expanded":{"mark":{"rotate":180}}},"effect":{"mark":{"k":[{"translate":[0,0],"offset":0},{"translate":[0,1.5],"offset":0.38},{"translate":[0,-0.27],"offset":0.72},{"translate":[0,0],"offset":1}],"d":440,"delay":0,"e":"inOut"}},"motion":{"e":"bouncy"}};
+defineIcon(definition);
+export default definition;

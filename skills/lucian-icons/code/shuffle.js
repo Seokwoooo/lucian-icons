@@ -1,0 +1,5 @@
+/* Lucian Icons shuffle v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"shuffle","version":"2.0.0","order":106,"name":{"ko":"섞기","en":"Shuffle"},"keywords":["섞기","랜덤","무작위","셔플","shuffle","random","mix"],"category":"media","description":{"ko":"교차한 두 화살표가 차례로 앞으로 뻗습니다.","en":"The two crossing arrows reach forward one after the other."},"color":"#AC5CD7","svg":"<g data-part=\"a1\"><path d=\"M3.5 7.5H6c2.5 0 3.75 1.25 5 3.5l2 3.5c1.25 2.25 2.5 3.5 5 3.5h2.5\"/><path d=\"M18 15.5l2.5 2.5-2.5 2.5\"/></g><g data-part=\"a2\" class=\"a\"><path d=\"M3.5 18H6c2.5 0 3.75-1.25 5-3.5l2-3.5c1.25-2.25 2.5-3.5 5-3.5h2.5\"/><path d=\"M18 5l2.5 2.5L18 10\"/></g>","effect":{"a1":{"k":[{"translate":[0,0],"offset":0},{"translate":[1.6,0],"offset":0.38},{"translate":[-0.288,0],"offset":0.72},{"translate":[0,0],"offset":1}],"d":480,"delay":0,"e":"inOut"},"a2":{"k":[{"translate":[0,0],"offset":0},{"translate":[1.6,0],"offset":0.38},{"translate":[-0.288,0],"offset":0.72},{"translate":[0,0],"offset":1}],"d":480,"delay":120,"e":"inOut"}}};
+defineIcon(definition);
+export default definition;

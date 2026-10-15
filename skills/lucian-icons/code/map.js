@@ -1,0 +1,5 @@
+/* Lucian Icons map v2.0.0 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+import { defineIcon } from './runtime.js';
+export const definition = {"id":"map","version":"2.0.0","order":174,"name":{"ko":"지도","en":"Map"},"keywords":["지도","길찾기","여행","경로","map","route","travel","directions"],"category":"travel","description":{"ko":"접힌 지도가 좁아졌다가 탁 펼쳐지고 위치 점이 튑니다.","en":"The folded map squeezes and snaps open while its dot pops."},"color":"#43B966","svg":"<g data-part=\"map\"><path class=\"s\" d=\"M9 4.5 3.5 6.5v13l5.5-2 6 2 5.5-2v-13l-5.5 2z\"/><path d=\"M9 4.5v13M15 6.5v13\"/></g><circle data-part=\"dot\" class=\"f\" cx=\"12\" cy=\"11\" r=\"1.5\"/>","origins":{"map":[12,12],"dot":[12,11]},"effect":{"map":{"k":[{"scale":1},{"scale":[0.72,1],"offset":0.35},{"scale":[1.05,1],"offset":0.7},{"scale":1}],"d":640,"e":"inOut","delay":0},"dot":{"k":[{"scale":1,"offset":0},{"scale":1.6,"offset":0.34},{"scale":0.82,"offset":0.68},{"scale":1,"offset":1}],"d":420,"delay":260,"e":"inOut"}}};
+defineIcon(definition);
+export default definition;
