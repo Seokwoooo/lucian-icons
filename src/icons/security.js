@@ -46,23 +46,12 @@ export default group('security', [
   icon({
     id: 'fingerprint', name: ['지문', 'Fingerprint'], color: C.purple,
     keywords: '지문 생체 인증 로그인 fingerprint biometric auth touch id',
-    desc: ['인식 중에는 빛줄기가 오르내리고, 마우스를 올리면 지문 결이 다시 그려집니다.', 'While scanning a light line sweeps; hovering redraws the ridges.'],
+    desc: ['인식 중에는 빛줄기가 오르내리고, 마우스를 올리면 가운데부터 바깥으로 지문 결이 다시 그려집니다.', 'While scanning a light line sweeps; hovering redraws the ridges from the centre outward.'],
     states: { idle: ['대기', 'Idle'], scanning: ['인식 중', 'Scanning'] },
-    svg: '<path data-part="r1" d="M5.5 18.5c-.65-1.4-1-3-1-4.75V12a7.5 7.5 0 0 1 15 0v1.5"/><path data-part="r4" d="M19.3 16.6c-.2.9-.5 1.75-.85 2.55"/><path data-part="r2" d="M8.75 20.25c-.8-1.6-1.25-3.6-1.25-5.75V12a4.5 4.5 0 0 1 9 0v2.25c0 1.7-.25 3.3-.7 4.75"/><path data-part="core" class="a" d="M12 12v2.25c0 2.2-.4 4.3-1.2 6.25"/><path data-part="scan" class="a" d="M3 12h18"/>',
+    svg: '<path data-part="r1" d="M3 13.5V12a9 9 0 0 1 16.2-5.4"/><path data-part="r2" d="M20.75 9.75c.17.73.25 1.48.25 2.25v1.75"/><path data-part="r3" d="M20.7 17.25c-.15.8-.38 1.6-.65 2.35"/><path data-part="mid" d="M7.1 19.5c.6-1.75.9-3.6.9-5.5V12a4 4 0 0 1 8 0v1.5c0 2.6-.4 5.1-1.15 7.5"/><path data-part="r6" d="M3.5 17.25c-.15.55-.35 1.1-.55 1.6"/><path data-part="r7" d="M18.5 12v1.75c0 1.75-.25 3.45-.75 5"/><path data-part="core" class="a" d="M12 11.75v2c0 3-.55 5.7-1.6 8"/><path data-part="scan" class="a" d="M4.5 12h15"/>',
     poses: { '*': { scan: { opacity: 0 } }, scanning: { scan: { opacity: 1 } } },
-    loops: { scanning: { scan: fx.keys([{ translate: [0, 0] }, { translate: [0, -7] }, { translate: [0, 7] }, { translate: [0, 0] }], 1600, 'inOut') } },
-    effect: { r1: fx.redraw(560, 0), r4: fx.redraw(240, 300), r2: fx.redraw(480, 100), core: fx.redraw(380, 200) }
-  }),
-  icon({
-    id: 'eye', name: ['보기', 'Eye'], color: C.indigo,
-    keywords: '눈 보기 표시 숨기기 비밀번호 eye view show hide visibility',
-    desc: ['눈을 깜빡이며 주위를 둘러보고, 숨김 상태에서는 사선이 그어집니다.', 'It blinks and glances around; the hidden state draws a slash.'],
-    states: { visible: ['보임', 'Visible'], hidden: ['숨김', 'Hidden'] },
-    svg: '<g data-part="eye"><path class="s" d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><g data-part="iris"><circle class="f" cx="12" cy="12" r="3.25"/><circle cx="12" cy="12" r="3.25"/></g></g><path data-part="slash" class="a" d="M3.5 3.5l17 17"/>',
-    origins: { eye: [12, 12], iris: [12, 12] },
-    poses: { '*': { slash: { draw: 0, opacity: 0 } }, hidden: { slash: { draw: 1, opacity: 1 }, iris: { scale: 0.7 } } },
-    transitions: { 'visible>hidden': { slash: DRAW_IN(380, 40), eye: fx.squish(0.12, 320) } },
-    effect: { eye: fx.squish(0.1, 360), iris: fx.keys([{ translate: [0, 0] }, { translate: [0, 0], offset: 0.35 }, { translate: [-2, 0], offset: 0.55 }, { translate: [2, 0], offset: 0.8 }, { translate: [0, 0] }], 1000) }
+    loops: { scanning: { scan: fx.keys([{ translate: [0, 0] }, { translate: [0, -6.5] }, { translate: [0, 6.5] }, { translate: [0, 0] }], 1800, 'inOut') } },
+    effect: { core: fx.redraw(380, 0), mid: fx.redraw(480, 100), r7: fx.redraw(260, 260), r1: fx.redraw(520, 300), r2: fx.redraw(240, 480), r3: fx.redraw(200, 560), r6: fx.redraw(200, 520) }
   }),
   icon({
     id: 'scanface', name: ['얼굴 인식', 'Face scan'], color: C.green,

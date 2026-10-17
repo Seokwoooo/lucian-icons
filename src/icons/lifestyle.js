@@ -53,9 +53,17 @@ export default group('lifestyle', [
   icon({
     id: 'coffee', name: ['커피', 'Coffee'], color: C.amber,
     keywords: '커피 카페 휴식 음료 coffee cafe break drink',
-    desc: ['김이 피어올라 흩어지고 다시 피어납니다.', 'Steam rises, fades, and curls up again.'],
-    svg: '<path data-part="s1" class="a" d="M8.5 2.5c-.8.8-.8 1.7 0 2.5s.8 1.7 0 2.5"/><path data-part="s2" class="a" d="M12.5 2.5c-.8.8-.8 1.7 0 2.5s.8 1.7 0 2.5"/><path class="s" d="M4.5 9.5h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5H18a2.5 2.5 0 0 1 0 5h-1.6"/>',
-    effect: Object.fromEntries(['s1', 's2'].map((p, i) => [p, fx.keys([{ translate: [0, 0], opacity: 0 }, { translate: [0, -2], opacity: -1, offset: 0.45 }, { translate: [0, 1.5], opacity: -1, offset: 0.46 }, { translate: [0, 0], opacity: 0 }], 900, 'inOut', i * 140)]))
+    desc: ['김이 살짝 떠오르며 옅어져 사라지고, 잠시 뒤 제자리에 천천히 다시 피어납니다.', 'The steam lifts a little as it fades away, then slowly reappears in its place.'],
+    // Only the two wisps: they drift up a touch and fade out like smoke, move back while invisible,
+    // and fade in where they started.
+    svg: '<path data-part="s1" class="a" d="M8.5 7c.8-.8.8-1.7 0-2.5s-.8-1.7 0-2.5"/><path data-part="s2" class="a" d="M12.5 7c.8-.8.8-1.7 0-2.5s-.8-1.7 0-2.5"/><path class="s" d="M4.5 9.5h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5H18a2.5 2.5 0 0 1 0 5h-1.6"/>',
+    origins: { s1: [8.5, 4.75], s2: [12.5, 4.75] },
+    effect: Object.fromEntries([['s1', 0], ['s2', 260]].map(([p, delay]) => [p, fx.keys([
+      { offset: 0, translate: [0, 0], scale: 1, opacity: 0, easing: 'out' },
+      { offset: 0.5, translate: [0.2, -0.9], scale: [1.15, 1.05], opacity: -1 },
+      { offset: 0.62, translate: [0, 0], scale: 1, opacity: -1, easing: 'inOut' },
+      { offset: 1, translate: [0, 0], scale: 1, opacity: 0 }
+    ], 2600, 'linear', delay)]))
   }),
   icon({
     id: 'trophy', name: ['트로피', 'Trophy'], color: C.yellow,
@@ -129,11 +137,14 @@ export default group('lifestyle', [
   }),
   icon({
     id: 'paw', name: ['반려동물', 'Pet paw'], color: C.amber,
-    keywords: '반려동물 반려견 강아지 고양이 발자국 펫 pet dog puppy cat paw animal',
-    desc: ['하트 발바닥이 꾹 눌렸다가 콩닥 튀어 오르고, 발가락이 차례로 톡톡 튑니다.', 'The heart-shaped pad presses down and bounces back, then the toes pop one by one.'],
-    svg: '<path data-part="t1" class="f" d="M3.21 10.88A1.7 2.15 -35 1 0 5.99 8.92A1.7 2.15 -35 1 0 3.21 10.88Z"/><path data-part="t2" class="f" d="M6.84 5.97A1.8 2.3 -12 1 0 10.36 5.23A1.8 2.3 -12 1 0 6.84 5.97Z"/><path data-part="t3" class="f" d="M13.64 5.23A1.8 2.3 12 1 0 17.16 5.97A1.8 2.3 12 1 0 13.64 5.23Z"/><path data-part="t4" class="f" d="M18.01 8.92A1.7 2.15 35 1 0 20.79 10.88A1.7 2.15 35 1 0 18.01 8.92Z"/><path data-part="pad" class="f" d="M12 20.5c-.5-.45-6-4.3-6-7.9a3.1 3.1 0 0 1 6-1.15 3.1 3.1 0 0 1 6 1.15c0 3.6-5.5 7.45-6 7.9z"/>',
-    origins: { pad: [12, 16], t1: [4.6, 9.9], t2: [8.6, 5.6], t3: [15.4, 5.6], t4: [19.4, 9.9] },
-    effect: { pad: fx.keys([{ scale: 1 }, { scale: 0.86, offset: 0.25 }, { scale: 1.12, offset: 0.5 }, { scale: 1 }], 640), t1: fx.pop(1.35, 320, 200), t2: fx.pop(1.35, 320, 280), t3: fx.pop(1.35, 320, 360), t4: fx.pop(1.35, 320, 440) }
+    keywords: '반려동물 반려견 강아지 고양이 발자국 발바닥 펫 pet dog puppy cat paw animal',
+    desc: ['발바닥이 꾹 눌렸다 올라오고, 발가락 젤리 네 개가 차례로 톡톡 튑니다.', 'The paw presses down and lifts, and the four toe beans pop one after another.'],
+    svg: '<g data-part="paw"><path data-part="pad" class="f" d="M12 11.25c-2.7 0-5.75 3.4-5.75 6.1 0 1.65 1.25 2.65 2.85 2.65 1 0 1.85-.55 2.9-.55s1.9.55 2.9.55c1.6 0 2.85-1 2.85-2.65 0-2.7-3.05-6.1-5.75-6.1z"/><path data-part="t1" class="f" d="M4.24 10.72A1.55 2.1 -32 1 0 6.86 9.08A1.55 2.1 -32 1 0 4.24 10.72z"/><path data-part="t2" class="f" d="M7.63 6.55A1.7 2.25 -10 1 0 10.97 5.95A1.7 2.25 -10 1 0 7.63 6.55z"/><path data-part="t3" class="f" d="M13.03 5.95A1.7 2.25 10 1 0 16.37 6.55A1.7 2.25 10 1 0 13.03 5.95z"/><path data-part="t4" class="f" d="M17.14 9.08A1.55 2.1 32 1 0 19.76 10.72A1.55 2.1 32 1 0 17.14 9.08z"/></g>',
+    origins: { paw: [12, 20], pad: [12, 16], t1: [5.55, 9.9], t2: [9.3, 6.25], t3: [14.7, 6.25], t4: [18.45, 9.9] },
+    effect: {
+      paw: fx.keys([{ scale: 1, translate: [0, 0] }, { scale: [1.04, 0.94], translate: [0, 0.3], offset: 0.25 }, { scale: [0.98, 1.03], translate: [0, -0.5], offset: 0.5 }, { scale: 1, translate: [0, 0], offset: 0.75 }, { scale: 1, translate: [0, 0] }], 800),
+      t1: fx.pop(1.14, 360, 340), t2: fx.pop(1.14, 360, 420), t3: fx.pop(1.14, 360, 500), t4: fx.pop(1.14, 360, 580)
+    }
   }),
   icon({
     id: 'dice', name: ['주사위', 'Dice'], color: C.violet,

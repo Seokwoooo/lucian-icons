@@ -1,6 +1,6 @@
 # Lucian Icons
 
-212 original animated SVG icons. Each one has its own color, a hover effect and, where it means something, real states your app controls. Dependency-free web components, MIT licensed, with a portable Claude Code and Codex skill.
+211 original animated SVG icons. Each one has its own color, a hover effect and, where it means something, real states your app controls. Dependency-free web components, MIT licensed, with a portable Claude Code and Codex skill.
 
 Gallery: https://lucianlabs.dev/icons/ · API guide: https://lucianlabs.dev/icons/guide.html
 
@@ -30,7 +30,7 @@ icon.play();                  // effect once
 
 Attributes: `state`, `size` (8–512, default 24), `tone` (`color` | `line`), `accent` (CSS color), `weight` (0.5–3, default 1.75), `progress` (0–100), `label`, `animate` (`hover` | `click` | `none`). CSS variables: `--li-accent`, `--li-tint`, `--li-size`, `--li-weight`. Strokes follow `currentColor`.
 
-53 icons have states (heart `off/on`, bell `idle/unread`, download `idle/progress/success/error`, ...). The other 159 only play an effect. The full list is in the [API guide](https://lucianlabs.dev/icons/guide.html#states) and the [catalog](https://lucianlabs.dev/icons/catalog.json).
+52 icons have states (heart `off/on`, bell `idle/unread`, download `idle/progress/success/error`, ...). The other 159 only play an effect. The full list is in the [API guide](https://lucianlabs.dev/icons/guide.html#states) and the [catalog](https://lucianlabs.dev/icons/catalog.json).
 
 For production, copy `modules/<id>.js` and `modules/runtime.js` into your project (or use the skill CLI below) so the version is pinned. Each icon has its own shadow root, no SVG IDs, no document listeners or timers, and honors `prefers-reduced-motion`.
 

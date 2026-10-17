@@ -6,22 +6,36 @@ export default group('communication', [
   icon({
     id: 'envelope', name: ['봉투', 'Envelope'], color: C.blue,
     keywords: '메일 편지 이메일 메시지 받은편지 mail email letter message',
-    desc: ['열면 봉인이 톡 떨어지고 덮개가 위로 젖혀집니다. 닫으면 덮개가 내려와 다시 봉인됩니다.', 'Opening pops the seal and folds the flap up; closing brings the flap down and seals it again.'],
+    desc: ['열면 봉인이 톡 떨어지고 덮개가 접혀 올라간 뒤 편지가 쏙 올라옵니다. 닫으면 편지가 들어가고 덮개가 내려와 다시 봉인됩니다.', 'Opening pops the seal, folds the flap away and a letter slides up; closing tucks the letter in, brings the flap down and seals it.'],
     states: { closed: ['닫힘', 'Closed'], open: ['열림', 'Open'] },
-    svg: '<path data-part="top" class="s" d="M3.6 6.6 12 2.9l8.4 3.7"/><rect class="s" x="3" y="5.5" width="18" height="13" rx="2"/><path data-part="folds" d="M3.6 17.9 9.75 12.75M20.4 17.9l-6.15-5.15"/><path data-part="flap" d="M3.6 6.6 12 12.5l8.4-5.9"/><circle data-part="seal" class="f" cx="12" cy="12.5" r="1.6"/>',
-    origins: { flap: [12, 6.6], top: [12, 6.6], seal: [12, 12.5] },
+    // The top edge behind the letter is its own part so it can hide while the letter covers it;
+    // the letter stops where the front pocket begins, so no outline crosses another.
+    svg: '<path class="s" d="M7 8H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2"/><path data-part="hinge" d="M7 8h10"/><g data-part="letter"><path d="M6 10.29V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.29"/><path class="a" d="M8.75 5.75h6.5M8.75 8.25h4"/></g><path data-part="pocket" d="M3.6 9.1 12 13.25l8.4-4.15"/><path data-part="flap" class="s" d="M3.6 9.1 12 14.75l8.4-5.65"/><circle data-part="seal" class="f" cx="12" cy="14.75" r="1.6"/>',
+    origins: { flap: [12, 8.6], seal: [12, 14.75], letter: [12, 10.3] },
     poses: {
-      '*': { top: { opacity: 0, scale: [1, 0.1] }, folds: { opacity: 0 } },
-      open: { flap: { opacity: 0, scale: [1, 0.1] }, seal: { opacity: 0, scale: 1.8 }, top: { opacity: 1, scale: 1 }, folds: { opacity: 1 } }
+      '*': { letter: { opacity: 0, scale: [1, 0.02] }, pocket: { opacity: 0 } },
+      open: { letter: { opacity: 1, scale: 1 }, pocket: { opacity: 1 }, hinge: { opacity: 0 }, flap: { opacity: 0, scale: [1, 0.02] }, seal: { opacity: 0, scale: 1.6 } }
     },
     transitions: {
-      'closed>open': { seal: { e: 'out', d: 220 }, flap: { e: 'in', d: 200, delay: 120 }, top: { e: 'bouncy', delay: 300 }, folds: { e: 'out', d: 240, delay: 320 } },
-      'open>closed': { top: { e: 'in', d: 180 }, folds: { e: 'out', d: 140 }, flap: { e: 'out', d: 260, delay: 160 }, seal: { e: 'bouncy', delay: 380 } }
+      'closed>open': {
+        seal: fx.keys([{ opacity: 1, scale: 1 }, { opacity: 1, scale: 1.3, offset: 0.4 }, { opacity: 0, scale: 1.6 }], 260, 'out'),
+        flap: fx.keys([{ scale: 1, opacity: 1 }, { scale: [1, 0.02], opacity: 1, offset: 0.9 }, { scale: [1, 0.02], opacity: 0 }], 320, 'in', 140),
+        pocket: { e: 'out', d: 200, delay: 300 },
+        hinge: { e: 'out', d: 160, delay: 520 },
+        letter: { e: 'bouncy', delay: 440 }
+      },
+      'open>closed': {
+        letter: { e: 'in', d: 260 },
+        hinge: { e: 'out', d: 120, delay: 180 },
+        pocket: { e: 'out', d: 160, delay: 220 },
+        flap: fx.keys([{ scale: [1, 0.02], opacity: 1 }, { scale: 1, opacity: 1 }], 300, 'out', 240),
+        seal: { e: 'bouncy', delay: 500 }
+      }
     },
     effect: {
-      flap: fx.keys([{ scale: 1 }, { scale: [1, 0.55], offset: 0.35 }, { scale: [1, 1.05], offset: 0.7 }, { scale: 1 }], 640),
-      seal: fx.pop(1.3, 420, 160),
-      top: fx.keys([{ scale: 1 }, { scale: [1, 1.15], offset: 0.4 }, { scale: 1 }], 560)
+      flap: fx.keys([{ scale: 1 }, { scale: [1, 0.72], offset: 0.35 }, { scale: [1, 1.04], offset: 0.7 }, { scale: 1 }], 680),
+      seal: fx.pop(1.18, 420, 200),
+      letter: fx.nudge([0, -0.9], 640)
     }
   }),
   icon({
@@ -142,10 +156,15 @@ export default group('communication', [
   icon({
     id: 'translate', name: ['번역', 'Translate'], color: C.blue,
     keywords: '번역 언어 다국어 한영 translate language locale i18n',
-    desc: ['A가 먼저 살짝 튀고, 화살표가 천천히 다시 그려진 뒤 가가 이어서 튀어 오릅니다.', 'The A bobs first, the arrow redraws slowly, then the 가 bobs in reply.'],
-    svg: '<path data-part="latin" d="M3.5 12.5 7 3.75l3.5 8.75M4.9 9.25h4.2"/><path data-part="hangul" class="a" d="M12.75 13.25h4c0 3.4-1.4 5.9-4 7.25M20.25 12.25v8.5M20.25 16.25h1.5"/><path data-part="arrow" d="M14 4.25h3.5a2 2 0 0 1 2 2v2.5m-1.75-1.5 1.75 1.75 1.75-1.75"/>',
-    origins: { latin: [7, 8], hangul: [17, 16.5] },
-    effect: { latin: fx.pop(1.12, 560, 0), arrow: fx.retype([0.12, 0.28], [0.34, 0.72], 1300), hangul: fx.pop(1.15, 560, 860) }
+    desc: ['A가 먼저 살짝 튀고, 화살표가 꼬리부터 쭉 그려지며 끝에 화살촉이 생긴 뒤 가가 이어서 튀어 오릅니다.', 'The A bobs, the arrow draws itself from its tail and its head appears at the tip, then the 가 bobs in reply.'],
+    svg: '<path data-part="latin" d="M3.5 12.5 7 3.75l3.5 8.75M4.9 9.25h4.2"/><path data-part="hangul" class="a" d="M12.75 13.25h4c0 3.4-1.4 5.9-4 7.25M20.25 12.25v8.5M20.25 16.25h1.5"/><path data-part="shaft" d="M14 4.25h3.5a2 2 0 0 1 2 2v2.5"/><path data-part="head" d="m17.75 7.25 1.75 1.75 1.75-1.75"/>',
+    origins: { latin: [7, 8], hangul: [17, 16.5], head: [19.5, 9] },
+    effect: {
+      latin: fx.pop(1.12, 520, 0),
+      shaft: fx.keys([{ draw: 1, opacity: 0 }, { draw: 1, opacity: -1, offset: 0.1 }, { draw: 0, opacity: -1, offset: 0.2 }, { draw: 0.03, opacity: 0, offset: 0.24, easing: 'inOut' }, { draw: 1, opacity: 0, offset: 0.62 }, { draw: 1, opacity: 0 }], 1500, 'linear'),
+      head: fx.keys([{ opacity: 0, scale: 1 }, { opacity: -1, scale: 1, offset: 0.1 }, { opacity: -1, scale: 0.3, offset: 0.6 }, { opacity: 0, scale: 1.2, offset: 0.67 }, { opacity: 0, scale: 1, offset: 0.74 }, { opacity: 0, scale: 1 }], 1500, 'linear'),
+      hangul: fx.pop(1.15, 520, 1000)
+    }
   }),
   icon({
     id: 'smile', name: ['미소', 'Smile'], color: C.yellow,

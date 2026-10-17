@@ -29,7 +29,7 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
 <script type="module" src="./gallery.js"></script>
 </head>
 <body data-count="{{ICON_COUNT}}" data-cats="{{CATEGORY_COUNT}}" data-version="{{VERSION}}">
-<a class="g-skip" href="#grid" data-i18n="skip">아이콘 목록으로 건너뛰기</a>
+<a class="g-skip" href="#icon-grid" data-i18n="skip">아이콘 목록으로 건너뛰기</a>
 
 <header class="g-head" id="top">
   <div class="g-head-line">
@@ -55,7 +55,7 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
       <b class="g-w" aria-hidden="true">Icons</b>
     </h1>
     <div class="g-intro-r">
-      <p class="g-intro-s" data-i18n="intro">눌러 보고 싶은 아이콘 {{ICON_COUNT}}개. 화면에 보이면 스스로 움직이고, 누르면 바로 반응해요. 아이콘마다 어울리는 색과 상태 전환까지 담았으니 코드 한 줄로 가져가세요.</p>
+      <p class="g-intro-s" data-i18n="intro">눌러 보고 싶은 아이콘 {{ICON_COUNT}}개. 화면에 보이면 스스로 움직이고, 누르면 화면 가득 크게 열려 직접 눌러 볼 수 있어요. 아이콘마다 어울리는 색과 상태 전환까지 담았으니 코드 한 줄로 가져가세요.</p>
       <p class="g-intro-meta"><span data-i18n="metaCount">{{ICON_COUNT}}개</span><span class="g-dot" aria-hidden="true"></span><span data-i18n="metaCats">{{CATEGORY_COUNT}}가지 분류</span><span class="g-dot" aria-hidden="true"></span><span data-i18n="metaMotion">스프링 모션</span><span class="g-dot" aria-hidden="true"></span><span>MIT</span></p>
       <div class="g-install">
         <p class="g-install-cmd"><code id="install-code">&lt;script type="module" src="https://lucianlabs.dev/icons/all.js"&gt;&lt;/script&gt;</code><button class="g-cmd-c" type="button" data-copy="#install-code" aria-label="코드 복사" data-i18n-attr="aria-label:copyCmd"><lucian-copy tone="line" size="17"></lucian-copy></button></p>
@@ -74,6 +74,10 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
         <button class="g-tool g-search-btn" type="button" id="search-btn" aria-label="검색 열기" data-i18n-attr="aria-label:searchOpen" aria-expanded="false" aria-controls="q"><lucian-search tone="line" size="19"></lucian-search></button>
         <input id="q" type="search" placeholder="하트, 다운로드, 날씨…" autocomplete="off" aria-label="아이콘 검색" data-i18n-attr="placeholder:searchPh;aria-label:searchLabel" tabindex="-1">
       </div>
+      <button class="g-tool g-tool--label" type="button" id="to-reel" aria-label="릴스로 크게 넘겨 보기" data-i18n-attr="aria-label:reelBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.5" width="12" height="17" rx="3"/><path d="M10.5 9.6v4.8l4-2.4z" fill="currentColor" stroke="none"/></svg>
+        <span data-i18n="reelLabel">릴스</span>
+      </button>
       <button class="g-tool" type="button" id="auto" aria-pressed="true" aria-label="자동 시연 멈추기"><lucian-play tone="line" size="19" state="playing"></lucian-play></button>
       <button class="g-tool" type="button" id="tone" aria-pressed="false" aria-label="라인 톤으로 보기"><lucian-palette size="19"></lucian-palette></button>
       <button class="g-tool g-theme" type="button" id="theme" aria-label="다크 테마로 전환"><lucian-sun class="g-theme-sun" tone="line" size="20"></lucian-sun><lucian-moon class="g-theme-moon" tone="line" size="20"></lucian-moon></button>
@@ -81,7 +85,7 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
   </div>
 </div>
 
-<main class="g-grid" id="grid" aria-label="아이콘" data-i18n-attr="aria-label:grid"></main>
+<main class="g-grid" id="icon-grid" aria-label="아이콘" data-i18n-attr="aria-label:grid"></main>
 <div class="g-empty" id="empty" hidden>
   <p class="g-empty-t" data-i18n="emptyT">맞는 아이콘이 없어요</p>
   <p class="g-empty-s" data-i18n="emptyS">다른 단어로 찾거나 분류를 ‘전체’로 바꿔 보세요.</p>
@@ -93,6 +97,20 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
   <nav aria-label="Footer"><a href="/uxui-prompt/">Lucian UX/UI Prompt ↗</a><a href="./guide.html">API</a><a href="./LICENSE">MIT License</a><a href="./THIRD_PARTY_NOTICES.txt" data-i18n="credits">크레딧</a><a href="./downloads/lucian-icons-source-{{VERSION}}.zip" download data-i18n="sourceBtn">소스 받기</a></nav>
   <p class="g-copy">© 2026 Lucian · v{{VERSION}}</p>
 </footer>
+
+<!-- Reels: one icon per screen, moved up and down -->
+<div class="g-reel" id="reel" role="region" aria-label="아이콘 릴스" data-i18n-attr="aria-label:reel" aria-hidden="true" inert></div>
+<nav class="g-hud" id="hud" aria-label="릴스 도구" data-i18n-attr="aria-label:hud">
+  <button class="g-hud-b" type="button" data-act="back" aria-label="그리드로 돌아가기" data-i18n-attr="aria-label:back">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg>
+    <span data-i18n="backText">그리드</span>
+  </button>
+  <div class="g-prog"><span id="prog-n">001</span><i aria-hidden="true"><b id="prog-bar"></b></i><span id="prog-t">{{ICON_COUNT}}</span><span class="g-sr" id="prog-live" aria-live="polite"></span></div>
+  <div class="g-hud-r">
+    <button class="g-hud-b g-hud-ic" type="button" data-act="auto" aria-pressed="true" aria-label="자동 시연 멈추기"><lucian-play tone="line" size="18" state="playing"></lucian-play></button>
+    <button class="g-hud-b g-hud-ic g-theme" type="button" data-act="theme" aria-label="다크 테마로 전환"><lucian-sun class="g-theme-sun" tone="line" size="19"></lucian-sun><lucian-moon class="g-theme-moon" tone="line" size="19"></lucian-moon></button>
+  </div>
+</nav>
 
 <dialog class="g-dlg g-dlg--icon" id="dlg-icon" aria-labelledby="d-title">
   <div class="g-dlg-head">

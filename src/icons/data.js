@@ -1,4 +1,4 @@
-import { C, icon, group, fx } from './_kit.js';
+import { C, icon, group, fx, keycap } from './_kit.js';
 
 const grow = (i, n = 3, d = 760) => fx.keys([{ scale: 1 }, { scale: [1, 0.02], offset: 0.01 }, { scale: [1, 0.02], offset: 0.05 + i * 0.12 }, { scale: [1, 1.08], offset: 0.45 + i * 0.12 }, { scale: 1, offset: Math.min(0.6 + i * 0.12, 1) }, { scale: 1 }], d, 'out');
 
@@ -42,10 +42,15 @@ export default group('data', [
   icon({
     id: 'bug', name: ['버그', 'Bug'], color: C.red,
     keywords: '버그 오류 디버그 문제 bug error debug issue',
-    desc: ['무당벌레가 다리를 바쁘게 움직이며 좌우로 꿈틀거립니다.', 'The ladybug scurries its legs and wriggles side to side.'],
-    svg: '<path class="s" d="M12 8.5c3 0 5 2.6 5 6s-2 6-5 6-5-2.6-5-6 2-6 5-6z"/><path d="M9.25 8.9a2.75 2.75 0 0 1 5.5 0M12 8.5v12M10.25 6.5 9 4.5M13.75 6.5 15 4.5"/><path data-part="legs" d="M7 12.5H4.5M7.2 16H4.5M7.9 19l-2.2 1.5M17 12.5h2.5M16.8 16h2.7M16.1 19l2.2 1.5"/><circle class="f" cx="9.75" cy="13.25" r="1"/><circle class="f" cx="14.25" cy="13.25" r="1"/><circle class="f" cx="9.9" cy="17" r=".9"/><circle class="f" cx="14.1" cy="17" r=".9"/>',
-    origins: { legs: [12, 15], '*': [12, 15] },
-    effect: { legs: fx.keys([1, 0.8, 1.06, 0.8, 1].map(x => ({ scale: [x, 1] })), 640, 'inOut'), '*': fx.keys([0, -6, 6, -3, 0].map(r => ({ rotate: r })), 640) }
+    desc: ['무당벌레가 다리 여섯 개를 번갈아 저으며 앞으로 기어가고, 더듬이가 까딱입니다.', 'The ladybug paddles its six legs in alternating steps as it crawls, and its feelers twitch.'],
+    svg: '<g data-part="ant"><path d="M10.25 6.5 9 4.5M13.75 6.5 15 4.5"/></g><path data-part="l1" d="M7.45 12 5 10.25"/><path data-part="l2" d="M7 14.75H4.25"/><path data-part="l3" d="M7.8 17.75 5.5 19.5"/><path data-part="r1" d="M16.55 12 19 10.25"/><path data-part="r2" d="M17 14.75h2.75"/><path data-part="r3" d="M16.2 17.75l2.3 1.75"/><path class="s" d="M12 8.5c3 0 5 2.6 5 6s-2 6-5 6-5-2.6-5-6 2-6 5-6z"/><path d="M9.25 8.9a2.75 2.75 0 0 1 5.5 0M12 8.5v12"/><circle class="f" cx="9.75" cy="13.25" r="1"/><circle class="f" cx="14.25" cy="13.25" r="1"/><circle class="f" cx="9.9" cy="17" r=".9"/><circle class="f" cx="14.1" cy="17" r=".9"/>',
+    origins: { ant: [12, 7], l1: [7.45, 12], l2: [7, 14.75], l3: [7.8, 17.75], r1: [16.55, 12], r2: [17, 14.75], r3: [16.2, 17.75], '*': [12, 14.5] },
+    // Tripod gait: front-left, middle-right and back-left step together, then the other three.
+    effect: {
+      ...Object.fromEntries([['l1', -1, 1], ['r2', 1, 1], ['l3', -1, 1], ['r1', 1, -1], ['l2', -1, -1], ['r3', 1, -1]].map(([p, side, phase]) => [p, fx.keys([0, 1, -1, 1, -1, 0].map(v => ({ rotate: v * phase * side * 14 })), 760, 'inOut')])),
+      ant: fx.keys([{ rotate: 0 }, { rotate: -6, offset: 0.3 }, { rotate: 5, offset: 0.65 }, { rotate: 0 }], 760),
+      '*': fx.keys([{ translate: [0, 0], rotate: 0 }, { translate: [0, -0.5], rotate: -2.5, offset: 0.3 }, { translate: [0, -0.7], rotate: 2.5, offset: 0.65 }, { translate: [0, 0], rotate: 0 }], 760)
+    }
   }),
   icon({
     id: 'branch', name: ['브랜치', 'Branch'], color: C.orange,
@@ -84,12 +89,13 @@ export default group('data', [
   icon({
     id: 'calculator', name: ['계산기', 'Calculator'], color: C.coral,
     keywords: '계산기 계산 숫자 합계 calculator math numbers sum',
-    desc: ['자판이 줄마다 눌리고, 마지막 등호 키가 눌리면 화면이 반짝입니다.', 'The keys press row by row, and the equals key flashes the display.'],
-    svg: '<rect class="s" x="5" y="2.5" width="14" height="19" rx="2.5"/><rect data-part="screen" class="f" x="7.75" y="5.25" width="8.5" height="3.75" rx="1"/><path data-part="k1" d="M8.75 12.5h.01M12 12.5h.01M15.25 12.5h.01"/><path data-part="k2" d="M8.75 15.5h.01M12 15.5h.01M15.25 15.5h.01"/><path data-part="k3" d="M8.75 18.5h.01M12 18.5h.01"/><path data-part="eq" class="a" d="M15.25 18.5h.01"/>',
-    origins: { k1: [12, 12.5], k2: [12, 15.5], k3: [10.4, 18.5], eq: [15.25, 18.5], screen: [12, 7.1] },
+    desc: ['숫자 키가 하나씩 눌리고, 마지막에 등호 키를 누르면 화면이 톡 바뀝니다.', 'Number keys press one at a time, then the equals key goes down and the display pops.'],
+    svg: `<rect class="s" x="5" y="2.5" width="14" height="19" rx="2.5"/><rect data-part="screen" class="f" x="7.75" y="5.25" width="8.5" height="3.75" rx="1"/><path d="M12 12.5h.01M8.75 15.5h.01M15.25 15.5h.01M8.75 18.5h.01M12 18.5h.01"/>${keycap('k1', 8.75, 12.5)}${keycap('k2', 15.25, 12.5)}${keycap('k3', 12, 15.5)}<path data-part="eq" class="a" d="M15.25 18.5h.01"/>`,
+    origins: { k1: [8.75, 12.5], k2: [15.25, 12.5], k3: [12, 15.5], eq: [15.25, 18.5], screen: [12, 7.1] },
+    poses: { '*': { k1a: { opacity: 0 }, k2a: { opacity: 0 }, k3a: { opacity: 0 } } },
     effect: {
-      k1: fx.pop(0.55, 260, 0), k2: fx.pop(0.55, 260, 130), k3: fx.pop(0.55, 260, 260), eq: fx.pop(1.7, 320, 400),
-      screen: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 0, scale: 1, offset: 0.62 }, { opacity: -0.6, scale: [1.06, 1.1], offset: 0.74 }, { opacity: 0, scale: 1 }], 820, 'linear')
+      k1: fx.tap(0), k1a: fx.lit(0), k2: fx.tap(200), k2a: fx.lit(200), k3: fx.tap(400), k3a: fx.lit(400), eq: fx.tap(620, 260),
+      screen: fx.keys([{ scale: 1 }, { scale: [1.08, 1.12], offset: 0.4 }, { scale: 1 }], 360, 'inOut', 760)
     }
   }),
   icon({

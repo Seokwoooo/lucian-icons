@@ -63,7 +63,7 @@
 | shield | resting, guarding | protected, alert |
 | key | ready, turned | none (effect only) |
 | fingerprint | idle, tracing | idle, scanning |
-| eye | forward, looking | visible, hidden |
+| eye | forward, looking | removed in 2.0.4 (the drawing never felt friendly; use your own visibility icon) |
 | help | resting, focused | none (effect only) |
 | home | closed, open | none (effect only) |
 | menu | closed, open | closed, open (unchanged) |

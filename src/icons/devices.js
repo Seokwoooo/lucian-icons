@@ -1,4 +1,4 @@
-import { C, icon, group, fx } from './_kit.js';
+import { C, icon, group, fx, keycap } from './_kit.js';
 
 export default group('devices', [
   icon({
@@ -21,10 +21,13 @@ export default group('devices', [
   icon({
     id: 'mouse', name: ['마우스', 'Mouse'], color: C.blue,
     keywords: '마우스 스크롤 클릭 입력 mouse scroll click input',
-    desc: ['휠이 두 번 아래로 굴러갑니다.', 'The wheel rolls down twice.'],
-    svg: '<rect class="s" x="5.75" y="3" width="12.5" height="18" rx="6.25"/><path data-part="wheel" class="a" d="M12 7v3"/>',
-    origins: { wheel: [12, 8.5] },
-    effect: { wheel: fx.keys([{ translate: [0, 0], opacity: 0 }, { translate: [0, 2], opacity: -1, offset: 0.3 }, { translate: [0, -1.5], opacity: -1, offset: 0.31 }, { translate: [0, 0], opacity: 0, offset: 0.55 }, { translate: [0, 2], opacity: -1, offset: 0.75 }, { translate: [0, -1.5], opacity: -1, offset: 0.76 }, { translate: [0, 0], opacity: 0 }], 1100, 'linear') }
+    desc: ['왼쪽 버튼이 딸깍딸깍 두 번 눌립니다.', 'The left button clicks twice.'],
+    svg: '<path data-part="btn" class="t" d="M12 3.75a5.25 5.25 0 0 0-5.25 5.25v2.5H12z"/><rect class="s" x="6" y="3" width="12" height="18" rx="6"/><path d="M6 11.5h12M12 3v8.5"/><rect class="f" x="10.9" y="5.6" width="2.2" height="4" rx="1.1"/>',
+    poses: { '*': { btn: { opacity: 0 } } },
+    effect: {
+      btn: fx.keys([{ opacity: 0 }, { opacity: 1, offset: 0.08 }, { opacity: 0.2, offset: 0.24 }, { opacity: 1, offset: 0.34 }, { opacity: 1, offset: 0.44 }, { opacity: 0, offset: 0.66 }, { opacity: 0 }], 1100, 'linear'),
+      '*': fx.keys([{ translate: [0, 0] }, { translate: [0, 0.35], offset: 0.08 }, { translate: [0, 0], offset: 0.2 }, { translate: [0, 0.35], offset: 0.32 }, { translate: [0, 0], offset: 0.46 }, { translate: [0, 0] }], 1100, 'inOut')
+    }
   }),
   icon({
     id: 'monitor', name: ['모니터', 'Monitor'], color: C.indigo,
@@ -37,14 +40,9 @@ export default group('devices', [
   icon({
     id: 'laptop', name: ['노트북', 'Laptop'], color: C.blue,
     keywords: '노트북 랩톱 컴퓨터 화면 laptop computer notebook screen',
-    desc: ['화면이 살짝 젖혀지며 깨어나고, 화면 속 글줄이 지워졌다가 다시 쓰입니다.', 'The screen tilts awake and its lines clear and type back in.'],
-    svg: '<g data-part="lid"><path class="s" d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4h11A1.5 1.5 0 0 1 19 5.5V15"/><path data-part="l1" class="a" d="M8 8h8"/><path data-part="l2" class="a" d="M8 11h5"/></g><path d="M3.25 15h17.5l1.15 2.85A1.2 1.2 0 0 1 20.8 19.5H3.2a1.2 1.2 0 0 1-1.1-1.65z"/>',
-    origins: { lid: [12, 15] },
-    effect: {
-      lid: fx.keys([{ scale: 1 }, { scale: [1, 0.9], offset: 0.2 }, { scale: [1, 1.03], offset: 0.45 }, { scale: 1 }], 640),
-      l1: fx.retype([0.1, 0.25], [0.3, 0.6], 1000),
-      l2: fx.retype([0.05, 0.2], [0.55, 0.85], 1000)
-    }
+    desc: ['화면 속 글줄이 지워졌다가 한 줄씩 다시 쓰입니다.', 'The lines on the screen clear and type back in, one after another.'],
+    svg: '<g data-part="lid"><path class="s" d="M4.5 16V5.5A1.5 1.5 0 0 1 6 4h12a1.5 1.5 0 0 1 1.5 1.5V16"/><path data-part="l1" class="a" d="M7.75 7.75h8"/><path data-part="l2" class="a" d="M7.75 11.25h5"/></g><path d="M2.25 16h19.5v1.5a2 2 0 0 1-2 2H4.25a2 2 0 0 1-2-2zM10 16v.25a.75.75 0 0 0 .75.75h2.5a.75.75 0 0 0 .75-.75V16"/>',
+    effect: { l1: fx.retype([0.1, 0.25], [0.3, 0.6], 1000), l2: fx.retype([0.05, 0.2], [0.55, 0.85], 1000) }
   }),
   icon({
     id: 'tablet', name: ['태블릿', 'Tablet'], color: C.teal,
@@ -72,16 +70,14 @@ export default group('devices', [
   icon({
     id: 'keyboard', name: ['키보드', 'Keyboard'], color: C.indigo,
     keywords: '키보드 입력 타자 단축키 keyboard typing input shortcut',
-    desc: ['자판이 하나씩 눌리며 불이 들어오고, 마지막에 스페이스바가 눌립니다.', 'Keys light up one by one as they are typed, then the space bar goes down.'],
-    svg: '<rect class="s" x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 9.75h.01M9 9.75h.01M12 9.75h.01M15 9.75h.01M18 9.75h.01M7.5 12.5h.01M10.5 12.5h.01M13.5 12.5h.01M16.5 12.5h.01"/><path data-part="space" class="a" d="M8.5 15.25h7"/><path data-part="k1" class="a" d="M6 9.75h.01"/><path data-part="k2" class="a" d="M13.5 12.5h.01"/><path data-part="k3" class="a" d="M12 9.75h.01"/><path data-part="k4" class="a" d="M7.5 12.5h.01"/>',
-    origins: { space: [12, 15.25], k1: [6, 9.75], k2: [13.5, 12.5], k3: [12, 9.75], k4: [7.5, 12.5] },
-    poses: { '*': { k1: { opacity: 0 }, k2: { opacity: 0 }, k3: { opacity: 0 }, k4: { opacity: 0 } } },
+    desc: ['자판이 타자 치듯 하나씩 쏙 눌렸다 올라오고, 마지막에 스페이스바가 눌립니다.', 'Keys go down and up one at a time like typing, then the space bar is pressed.'],
+    svg: `<rect class="s" x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M9 9.75h.01M18 9.75h.01M10.5 12.5h.01"/>${keycap('k1', 6, 9.75)}${keycap('k2', 13.5, 12.5)}${keycap('k3', 12, 9.75)}${keycap('k4', 7.5, 12.5)}${keycap('k5', 15, 9.75)}${keycap('k6', 16.5, 12.5)}<g data-part="space"><path d="M8.5 15.25h7"/><path data-part="spacea" class="a" d="M8.5 15.25h7"/></g>`,
+    origins: { k1: [6, 9.75], k2: [13.5, 12.5], k3: [12, 9.75], k4: [7.5, 12.5], k5: [15, 9.75], k6: [16.5, 12.5], space: [12, 15.25] },
+    poses: { '*': { k1a: { opacity: 0 }, k2a: { opacity: 0 }, k3a: { opacity: 0 }, k4a: { opacity: 0 }, k5a: { opacity: 0 }, k6a: { opacity: 0 }, spacea: { opacity: 0 } } },
     effect: {
-      k1: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 0),
-      k2: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 150),
-      k3: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 300),
-      k4: fx.keys([{ opacity: 0, scale: 1 }, { opacity: 1, scale: 1.7, offset: 0.3 }, { opacity: 1, scale: 1, offset: 0.6 }, { opacity: 0, scale: 1 }], 300, 'out', 450),
-      space: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.8], scale: [0.86, 1], offset: 0.4 }, { translate: [0, 0], scale: 1 }], 340, 'inOut', 640)
+      ...Object.fromEntries([0, 140, 300, 430, 600, 720].flatMap((t, i) => [['k' + (i + 1), fx.tap(t)], ['k' + (i + 1) + 'a', fx.lit(t)]])),
+      space: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.5], scale: [0.92, 1], offset: 0.35 }, { translate: [0, 0], scale: 1 }], 280, 'inOut', 900),
+      spacea: fx.lit(900, 280)
     }
   }),
   icon({
@@ -100,12 +96,17 @@ export default group('devices', [
   icon({
     id: 'wifi', name: ['와이파이', 'Wi-Fi'], color: C.blue,
     keywords: '와이파이 무선 인터넷 연결 신호 wifi wireless internet signal',
-    desc: ['점에서 시작해 물결 두 개가 차례로 켜지고, 연결 중에는 이 흐름이 반복됩니다.', 'The dot and then the two arcs light up in turn; connecting repeats the sweep.'],
+    desc: ['연결됨은 물결 세 개가 모두 진하고, 연결 중에는 물결이 흐려진 채 안쪽부터 차례로 켜지기를 반복합니다. 연결되면 물결이 하나씩 켜집니다.', 'Connected shows all three arcs solid; connecting dims them and lights them from the inside out, over and over; connecting finishes by lighting them one by one.'],
     states: { connected: ['연결됨', 'Connected'], connecting: ['연결 중', 'Connecting'] },
-    svg: '<circle data-part="w1" class="f" cx="12" cy="19.5" r="1.6"/><path data-part="w2" class="a" d="M6.96 14.64A7 7 0 0 1 17.04 14.64"/><path data-part="w3" d="M3.01 10.82A12.5 12.5 0 0 1 20.99 10.82"/>',
-    origins: { w1: [12, 19.5] },
-    loops: { connecting: Object.fromEntries(['w1', 'w2', 'w3'].map((p, i) => [p, fx.keys([{ opacity: -0.8 }, { opacity: 0, offset: 0.25 }, { opacity: -0.8, offset: 0.6 }, { opacity: -0.8 }], 1200, 'inOut', i * 200)])) },
-    effect: Object.fromEntries(['w1', 'w2', 'w3'].map((p, i) => [p, fx.keys([{ opacity: 0 }, { opacity: -0.85, offset: 0.01 }, { opacity: -0.85, offset: 0.2 + i * 0.18 }, { opacity: 0, offset: 0.4 + i * 0.18 }, { opacity: 0 }], 900, 'linear')]))
+    svg: '<circle data-part="dot" class="f" cx="12" cy="18" r="1.5"/><path data-part="a1" class="a" d="M8.82 14.82a4.5 4.5 0 0 1 6.36 0"/><path data-part="a2" d="M5.64 11.64a9 9 0 0 1 12.72 0"/><path data-part="a3" d="M2.45 8.45a13.5 13.5 0 0 1 19.1 0"/>',
+    origins: { dot: [12, 18], a1: [12, 18], a2: [12, 18], a3: [12, 18] },
+    poses: { connecting: { a1: { opacity: 0.3 }, a2: { opacity: 0.3 }, a3: { opacity: 0.3 } } },
+    transitions: {
+      'connected>connecting': { a1: { e: 'out', d: 260 }, a2: { e: 'out', d: 260 }, a3: { e: 'out', d: 260 } },
+      'connecting>connected': { a1: { e: 'out', d: 240 }, a2: { e: 'out', d: 240, delay: 110 }, a3: { e: 'out', d: 240, delay: 220 }, dot: fx.pop(1.25, 420, 0) }
+    },
+    loops: { connecting: Object.fromEntries(['a1', 'a2', 'a3'].map((p, i) => [p, fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.08 + i * 0.16 }, { opacity: 0.7, offset: 0.16 + i * 0.16 }, { opacity: 0.7, offset: 0.72 }, { opacity: 0, offset: 0.86 }, { opacity: 0 }], 1500, 'linear')])) },
+    effect: Object.fromEntries(['a1', 'a2', 'a3'].map((p, i) => [p, fx.keys([{ scale: 1 }, { scale: 1.07, offset: 0.4 }, { scale: 1 }], 380, 'inOut', i * 110)]))
   }),
   icon({
     id: 'bluetooth', name: ['블루투스', 'Bluetooth'], color: C.indigo,
@@ -125,13 +126,19 @@ export default group('devices', [
   icon({
     id: 'bulb', name: ['전구', 'Light bulb'], color: C.yellow,
     keywords: '전구 아이디어 빛 조명 bulb idea light lamp',
-    desc: ['켜질 때 전구가 깜빡이며 차오르고, 고른 간격의 빛줄기 다섯 개가 퍼집니다.', 'Switching on flickers the bulb full and five evenly spaced rays spread out.'],
+    desc: ['켜질 때 전구가 깜빡이며 차오르고, 전구에서 넉넉히 떨어진 빛줄기 다섯 개가 바깥으로 퍼집니다.', 'Switching on flickers the bulb full, and five rays spread outward with clear space around the bulb.'],
     states: { off: ['꺼짐', 'Off'], on: ['켜짐', 'On'] },
-    svg: '<path data-part="glow" class="f" d="M9 17.5v-1.3c0-1-.45-1.9-1.15-2.6A6 6 0 1 1 16.15 13.6c-.7.7-1.15 1.6-1.15 2.6v1.3z"/><path class="s" d="M9 17.5v-1.3c0-1-.45-1.9-1.15-2.6A6 6 0 1 1 16.15 13.6c-.7.7-1.15 1.6-1.15 2.6v1.3z"/><path d="M9.5 20.75h5"/><path data-part="rays" class="a" d="M4.4 9.6L2.8 9.6M6.63 4.23L5.49 3.09M12 2L12 0.4M17.37 4.23L18.51 3.09M19.6 9.6L21.2 9.6"/>',
-    origins: { rays: [12, 9.6] },
-    poses: { '*': { glow: { opacity: 0 }, rays: { opacity: 0, scale: 0.8 } }, on: { glow: { opacity: 1 }, rays: { opacity: 1, scale: 1 } } },
-    transitions: { 'off>on': { glow: fx.keys([{ opacity: 0 }, { opacity: 1, offset: 0.15 }, { opacity: 0.2, offset: 0.3 }, { opacity: 1, offset: 0.5 }, { opacity: 1 }], 560, 'linear'), rays: { e: 'bouncy', delay: 200 } } },
-    effect: { rays: fx.flash(640, 0, 0.8), glow: fx.keys([{ opacity: 0 }, { opacity: 0.7, offset: 0.3 }, { opacity: 0 }], 640, 'inOut') }
+    svg: '<path data-part="glow" class="f" d="M10 17.75V15.75C10 15.15 9.79 14.52 9.1 13.94A4.5 4.5 0 1 1 14.9 13.94C14.21 14.52 14 15.15 14 15.75V17.75z"/><path class="s" d="M10 17.75V15.75C10 15.15 9.79 14.52 9.1 13.94A4.5 4.5 0 1 1 14.9 13.94C14.21 14.52 14 15.15 14 15.75V17.75z"/><path d="M10.25 20.5h3.5"/><path data-part="rays" class="a" d="M4.5 10.5H2.75M6.7 5.2 5.46 3.96M12 3V1.25M17.3 5.2l1.24-1.24M19.5 10.5h1.75"/>',
+    origins: { rays: [12, 10.5] },
+    poses: { '*': { glow: { opacity: 0 }, rays: { opacity: 0, scale: 0.82 } }, on: { glow: { opacity: 1 }, rays: { opacity: 1, scale: 1 } } },
+    transitions: {
+      'off>on': { glow: fx.keys([{ opacity: 0 }, { opacity: 1, offset: 0.15 }, { opacity: 0.25, offset: 0.3 }, { opacity: 1, offset: 0.5 }, { opacity: 1 }], 560, 'linear'), rays: { e: 'gentle', delay: 220 } },
+      'on>off': { glow: { e: 'out', d: 220 }, rays: { e: 'out', d: 200 } }
+    },
+    effect: {
+      rays: fx.keys([{ opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, offset: 0.4 }, { opacity: 1, scale: 1, offset: 0.62 }, { opacity: 0, scale: 1.06 }], 820, 'out'),
+      glow: fx.keys([{ opacity: 0 }, { opacity: 0.75, offset: 0.35 }, { opacity: 0.75, offset: 0.6 }, { opacity: 0 }], 820, 'inOut')
+    }
   }),
   icon({
     id: 'gamepad', name: ['게임패드', 'Gamepad'], color: C.purple,
@@ -168,12 +175,17 @@ export default group('devices', [
   icon({
     id: 'signal', name: ['신호', 'Signal'], color: C.green,
     keywords: '신호 세기 셀룰러 안테나 signal strength cellular bars',
-    desc: ['막대가 왼쪽부터 차례로 솟아오르고, 검색 중에는 반복해서 깜빡입니다.', 'The bars rise from the left; searching makes them blink in sequence.'],
+    desc: ['막대가 왼쪽부터 물결치듯 낮아졌다 올라오고, 검색 중에는 막대가 흐려진 채 왼쪽부터 차례로 켜지기를 반복합니다.', 'A wave runs through the bars from the left; searching dims them and lights them left to right, over and over.'],
     states: { full: ['강함', 'Full'], searching: ['검색 중', 'Searching'] },
-    svg: '<path data-part="b1" d="M5 19.5v-2"/><path data-part="b2" d="M9.67 19.5v-5"/><path data-part="b3" d="M14.33 19.5v-8.5"/><path data-part="b4" class="a" d="M19 19.5v-15"/>',
-    origins: { b1: [5, 19.5], b2: [9.67, 19.5], b3: [14.33, 19.5], b4: [19, 19.5] },
-    loops: { searching: Object.fromEntries(['b1', 'b2', 'b3', 'b4'].map((p, i) => [p, fx.keys([{ opacity: -0.75 }, { opacity: 0, offset: 0.2 }, { opacity: -0.75, offset: 0.45 }, { opacity: -0.75 }], 1400, 'inOut', i * 160)])) },
-    effect: Object.fromEntries(['b1', 'b2', 'b3', 'b4'].map((p, i) => [p, fx.keys([{ scale: 1 }, { scale: [1, 0.05], offset: 0.01 }, { scale: [1, 0.05], offset: 0.1 + i * 0.12 }, { scale: [1, 1.1], offset: 0.35 + i * 0.12 }, { scale: 1, offset: 0.5 + i * 0.12 }, { scale: 1 }], 900, 'out')]))
+    svg: '<path data-part="b1" d="M5 20v-3.5"/><path data-part="b2" d="M9.67 20v-7"/><path data-part="b3" d="M14.33 20v-10.5"/><path data-part="b4" class="a" d="M19 20V6"/>',
+    poses: { searching: { b1: { opacity: 0.3 }, b2: { opacity: 0.3 }, b3: { opacity: 0.3 }, b4: { opacity: 0.3 } } },
+    transitions: {
+      'full>searching': Object.fromEntries(['b1', 'b2', 'b3', 'b4'].map(p => [p, { e: 'out', d: 260 }])),
+      'searching>full': Object.fromEntries(['b1', 'b2', 'b3', 'b4'].map((p, i) => [p, { e: 'out', d: 220, delay: i * 100 }]))
+    },
+    loops: { searching: Object.fromEntries(['b1', 'b2', 'b3', 'b4'].map((p, i) => [p, fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.06 + i * 0.13 }, { opacity: 0.7, offset: 0.14 + i * 0.13 }, { opacity: 0.7, offset: 0.72 }, { opacity: 0, offset: 0.86 }, { opacity: 0 }], 1600, 'linear')])) },
+    // Bars shorten with draw instead of scale, so their round ends keep their shape.
+    effect: Object.fromEntries(['b1', 'b2', 'b3', 'b4'].map((p, i) => [p, fx.keys([{ draw: 1 }, { draw: 0.35, offset: 0.4 }, { draw: 1 }], 420, 'inOut', i * 110)]))
   }),
   icon({
     id: 'router', name: ['공유기', 'Router'], color: C.teal,

@@ -54,20 +54,21 @@ export default group('commerce', [
   icon({
     id: 'ticket', name: ['티켓', 'Ticket'], color: C.violet,
     keywords: '티켓 입장권 쿠폰 예매 ticket coupon pass admission',
-    desc: ['절취선을 따라 오른쪽 조각이 찢어질 듯 젖혀지고, 별이 한 바퀴 돕니다.', 'The stub bends away along the perforation and the star spins.'],
-    svg: '<path class="s" d="M15.5 6.5h-12a1 1 0 0 0-1 1v2.25a2.25 2.25 0 0 1 0 4.5v2.25a1 1 0 0 0 1 1h12"/><path data-part="stub" class="s" d="M15.5 6.5h5a1 1 0 0 1 1 1v2.25a2.25 2.25 0 0 0 0 4.5v2.25a1 1 0 0 1-1 1h-5"/><path d="M15.5 6.5v.01M15.5 9.25v.01M15.5 12v.01M15.5 14.75v.01M15.5 17.5v.01"/><path data-part="star" class="f" d="m9 8.9 1.02 2.07 2.28.33-1.65 1.61.39 2.27L9 14.1l-2.04 1.08.39-2.27L5.7 11.3l2.28-.33z"/>',
+    desc: ['절취선을 따라 오른쪽 조각이 뜯겨 떨어지고 별이 반짝인 뒤, 새 조각이 오른쪽에서 천천히 밀려 들어와 제자리에 맞춰집니다.', 'The stub tears off along the perforation and falls as the star shines, then a fresh stub slides slowly in from the right and settles into place.'],
+    // Both halves carry the perforation, so each keeps a dotted edge once they separate.
+    svg: '<path class="s" d="M15.5 6.5h-12a1 1 0 0 0-1 1v2.25a2.25 2.25 0 0 1 0 4.5v2.25a1 1 0 0 0 1 1h12"/><path d="M15.5 6.5v.01M15.5 9.25v.01M15.5 12v.01M15.5 14.75v.01M15.5 17.5v.01"/><g data-part="stub"><path class="s" d="M15.5 6.5h5a1 1 0 0 1 1 1v2.25a2.25 2.25 0 0 0 0 4.5v2.25a1 1 0 0 1-1 1h-5"/><path d="M15.5 6.5v.01M15.5 9.25v.01M15.5 12v.01M15.5 14.75v.01M15.5 17.5v.01"/></g><path data-part="star" class="f" d="m9 8.9 1.02 2.07 2.28.33-1.65 1.61.39 2.27L9 14.1l-2.04 1.08.39-2.27L5.7 11.3l2.28-.33z"/>',
     origins: { stub: [15.5, 17.5], star: [9, 11.75] },
     effect: {
-      stub: fx.keys([{ rotate: 0, translate: [0, 0] }, { rotate: 12, translate: [0.8, 0], offset: 0.4 }, { rotate: -2, translate: [0, 0], offset: 0.75 }, { rotate: 0, translate: [0, 0] }], 680),
-      star: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 72, scale: 1.3, offset: 0.55 }, { rotate: 72, scale: 1 }], 680)
+      stub: fx.keys([{ rotate: 0, translate: [0, 0], opacity: 0, easing: 'in' }, { rotate: 9, translate: [0.7, 0.2], opacity: 0, offset: 0.2 }, { rotate: 18, translate: [1.6, 2.4], opacity: -1, offset: 0.36 }, { rotate: 0, translate: [3, 0], opacity: -1, offset: 0.5, easing: 'out' }, { rotate: 0, translate: [-0.15, 0], opacity: 0, offset: 0.88, easing: 'inOut' }, { rotate: 0, translate: [0, 0], opacity: 0 }], 2000, 'linear'),
+      star: fx.keys([{ scale: 1 }, { scale: 1, offset: 0.14 }, { scale: 1.16, offset: 0.24 }, { scale: 1, offset: 0.36 }, { scale: 1 }], 2000, 'inOut')
     }
   }),
   icon({
     id: 'coin', name: ['동전', 'Coin'], color: C.yellow,
     keywords: '동전 돈 포인트 화폐 coin money points currency',
-    desc: ['동전이 톡 튀어 올랐다가 짤랑 내려앉고, 모서리에 반짝임이 일어납니다.', 'The coin hops up, lands with a clink, and a sparkle flashes at its edge.'],
-    svg: '<g data-part="coin"><circle class="s" cx="12" cy="12" r="8.75"/><circle cx="12" cy="12" r="6.25" stroke-opacity=".35"/><path class="a" d="M14 9.4c-.4-.7-1.15-1.15-2.15-1.15-1.35 0-2.2.7-2.2 1.65 0 2.3 4.6 1.35 4.6 3.85 0 1.05-.95 1.7-2.4 1.7-1.05 0-1.95-.5-2.35-1.2M12 6.75V8.2m0 7.6v1.45"/></g><path data-part="glint" class="a" d="M19.5 2.5V5M18.25 3.75h2.5"/>',
-    origins: { coin: [12, 20.75], glint: [19.5, 3.75] },
+    desc: ['두께가 보이는 동전이 톡 튀어 올랐다가 짤랑 내려앉고, 모서리에 반짝임이 일어납니다.', 'A coin, its edge showing, hops up, lands with a clink, and a sparkle flashes beside it.'],
+    svg: '<g data-part="coin"><path class="s" d="M11 4.25h2.25a7.75 7.75 0 0 1 0 15.5H11"/><circle class="s" cx="11" cy="12" r="7.75"/><circle class="t" cx="11" cy="12" r="7.75"/><path d="M12.9 9.6c-.35-.6-1-1-1.9-1-1.2 0-1.95.6-1.95 1.45 0 2.05 4.1 1.2 4.1 3.4 0 .95-.85 1.5-2.15 1.5-.95 0-1.75-.45-2.1-1.05M11 7.25v1.35m0 6.75v1.4"/></g><path data-part="glint" class="a" d="M19.75 2.25V4.5M18.6 3.4h2.3"/>',
+    origins: { coin: [12, 19.75], glint: [19.75, 3.4] },
     poses: { '*': { glint: { opacity: 0, scale: 0.4 } } },
     effect: {
       coin: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.4], scale: [1.04, 0.95], offset: 0.12 }, { translate: [0, -3], scale: 1, offset: 0.42, easing: 'in' }, { translate: [0, 0.3], scale: [1.05, 0.94], offset: 0.66, easing: 'out' }, { translate: [0, 0], scale: 1, offset: 0.82 }, { translate: [0, 0], scale: 1 }], 820, 'linear'),
@@ -144,9 +145,13 @@ export default group('commerce', [
   icon({
     id: 'box', name: ['택배 상자', 'Package'], color: C.orange,
     keywords: '상자 택배 포장 배송 box package parcel shipping',
-    desc: ['상자가 통 튀어 오르고 테이프가 다시 붙습니다.', 'The box hops and its tape is pressed on again.'],
+    desc: ['테이프가 한쪽 끝부터 뜯겨 나가며 상자가 톡 들리고, 새 테이프가 착 붙으며 상자가 내려앉습니다.', 'The tape peels off from one end as the box pops up, then fresh tape slaps on and the box settles.'],
     svg: '<path class="s" d="M3.5 8.5 12 4l8.5 4.5v9L12 22l-8.5-4.5z"/><path d="M3.5 8.5 12 13l8.5-4.5M12 13v9"/><path data-part="tape" class="a" d="m7.75 6.25 8.5 4.5"/>',
-    origins: { '*': [12, 22] },
-    effect: { '*': fx.hop(1.8, 600), tape: fx.redraw(420, 200) }
+    origins: { '*': [12, 22], tape: [12, 8.5] },
+    // draw above 1 hides the tape from its start; it fades out before it gets short enough to leave a dot.
+    effect: {
+      tape: fx.keys([{ draw: 1, opacity: 0, scale: 1 }, { draw: 1, opacity: 0, scale: 1, offset: 0.06, easing: 'in' }, { draw: 1.86, opacity: 0, scale: 1, offset: 0.3 }, { draw: 1.92, opacity: -1, scale: 1, offset: 0.34 }, { draw: 1, opacity: -1, scale: 1.15, offset: 0.6 }, { draw: 1, opacity: 0, scale: 1.04, offset: 0.68, easing: 'out' }, { draw: 1, opacity: 0, scale: 1, offset: 0.76 }, { draw: 1, opacity: 0, scale: 1 }], 1500, 'linear'),
+      '*': fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.26 }, { translate: [0, -1.1], scale: [0.98, 1.03], offset: 0.36 }, { translate: [0, 0], scale: 1, offset: 0.46 }, { translate: [0, 0], scale: 1, offset: 0.62 }, { translate: [0, 0.35], scale: [1.03, 0.97], offset: 0.69 }, { translate: [0, 0], scale: 1, offset: 0.8 }, { translate: [0, 0], scale: 1 }], 1500, 'inOut')
+    }
   })
 ]);

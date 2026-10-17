@@ -6,14 +6,17 @@ import { statesOf } from '../src/runtime/icon.js';
 
 const migration = await readFile(new URL('../skills/lucian-icons/references/migration.md', import.meta.url), 'utf8');
 const legacy = [...migration.matchAll(/^\| ([a-z]+) \|/gm)].map(m => m[1]);
+// 1.x icons later removed on purpose (listed as removed in the migration table).
+const removed = [...migration.matchAll(/^\| ([a-z]+) \|[^|]*\| removed/gm)].map(m => m[1]);
 
-test('212 original definitions: 112 from 1.x plus 100 new, unique and bilingual', () => {
-  assert.equal(defs.length, 212);
+test('211 original definitions: 111 kept from 1.x plus 100 new, unique and bilingual', () => {
+  assert.equal(defs.length, 211);
   assert.equal(legacy.length, 112);
   const ids = new Set(defs.map(d => d.id));
-  assert.equal(ids.size, 212, 'unique ids');
-  assert.equal(new Set(defs.map(d => d.svg)).size, 212, 'unique drawings');
-  for (const id of legacy) assert.ok(ids.has(id), `1.x icon kept: ${id}`);
+  assert.deepEqual(removed, ['eye']);
+  assert.equal(ids.size, 211, 'unique ids');
+  assert.equal(new Set(defs.map(d => d.svg)).size, 211, 'unique drawings');
+  for (const id of legacy) assert.equal(ids.has(id), !removed.includes(id), `1.x icon ${removed.includes(id) ? 'removed' : 'kept'}: ${id}`);
   for (const d of defs) {
     assert.match(d.id, /^[a-z]+$/);
     assert.ok(d.name.ko && d.name.en && d.description.ko && d.description.en, d.id);
@@ -38,7 +41,7 @@ test('drawings are safe and every animated part exists', () => {
 
 test('states are real app states with labels in both languages', () => {
   const stateful = defs.filter(d => statesOf(d).length);
-  assert.equal(stateful.length, 53);
+  assert.equal(stateful.length, 52);
   for (const d of stateful) {
     const states = statesOf(d);
     assert.ok(states.length >= 2 && states.includes(d.defaultState), d.id);

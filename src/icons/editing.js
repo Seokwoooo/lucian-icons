@@ -105,10 +105,14 @@ export default group('editing', [
   icon({
     id: 'wand', name: ['요술봉', 'Magic wand'], color: C.purple,
     keywords: '요술봉 마법 자동 보정 AI wand magic auto enhance',
-    desc: ['요술봉이 한 번 휘둘리고 끝에서 반짝임이 터집니다.', 'The wand flicks and sparkles burst from its tip.'],
-    svg: '<path data-part="wand" d="m3.5 20.5 11-11"/><path data-part="tip" class="a" d="m14.5 9.5 2.5-2.5"/><path data-part="sp" class="a" d="M18.5 2.5v3M17 4h3M20.5 9.5v2M19.5 10.5h2M11.5 3v2M10.5 4h2"/>',
-    origins: { wand: [3.5, 20.5], tip: [3.5, 20.5], sp: [17, 7] },
-    effect: { wand: fx.turn(-10, 600), tip: fx.turn(-10, 600), sp: fx.keys([{ scale: 1, opacity: 0, rotate: 0 }, { scale: 0.4, opacity: -1, offset: 0.25 }, { scale: 1.25, opacity: 0, rotate: 20, offset: 0.65 }, { scale: 1, rotate: 0 }], 700, 'out') }
+    desc: ['요술봉이 살짝 기울고, 끝의 반짝임이 하나씩 차례로 은은하게 깜빡입니다.', 'The wand tips slightly and the sparkles twinkle softly, one after another.'],
+    svg: '<path data-part="wand" d="m3.5 20.5 11-11"/><path data-part="tip" class="a" d="m14.5 9.5 2.5-2.5"/><path data-part="sp1" class="a" d="M18.5 2.5v3M17 4h3"/><path data-part="sp2" class="a" d="M20.5 9.5v2M19.5 10.5h2"/><path data-part="sp3" class="a" d="M11.5 3v2M10.5 4h2"/>',
+    origins: { wand: [3.5, 20.5], tip: [3.5, 20.5], sp1: [18.5, 4], sp2: [20.5, 10.5], sp3: [11.5, 4] },
+    effect: {
+      wand: fx.keys([{ rotate: 0 }, { rotate: -5, offset: 0.35 }, { rotate: 1, offset: 0.7 }, { rotate: 0 }], 760),
+      tip: fx.keys([{ rotate: 0 }, { rotate: -5, offset: 0.35 }, { rotate: 1, offset: 0.7 }, { rotate: 0 }], 760),
+      ...Object.fromEntries([['sp1', 160], ['sp2', 300], ['sp3', 440]].map(([p, delay]) => [p, fx.keys([{ scale: 1, opacity: 0 }, { scale: 0.55, opacity: -0.5, offset: 0.4 }, { scale: 1.1, opacity: 0, offset: 0.75 }, { scale: 1, opacity: 0 }], 520, 'inOut', delay)]))
+    }
   }),
   icon({
     id: 'eyedropper', name: ['스포이트', 'Eyedropper'], color: C.teal,
@@ -122,17 +126,23 @@ export default group('editing', [
   icon({
     id: 'wrench', name: ['렌치', 'Wrench'], color: C.blue,
     keywords: '렌치 도구 수리 설정 wrench tool fix repair settings',
-    desc: ['렌치가 볼트를 조이듯 반 바퀴 돌렸다가 돌아옵니다.', 'The wrench turns as if tightening a bolt, then returns.'],
-    svg: '<path class="s" d="M14.5 3.75a4.75 4.75 0 0 0-4.4 6.55L3.9 16.5a1.9 1.9 0 0 0 2.7 2.7l6.2-6.2a4.75 4.75 0 0 0 6.55-4.4l-2.6 2.6-2.95-.8-.8-2.95z"/><circle class="f" cx="5.25" cy="17.85" r=".9"/>',
-    origins: { '*': [14.5, 8.5] },
-    effect: { '*': fx.keys([{ rotate: 0 }, { rotate: -28, offset: 0.45 }, { rotate: 4, offset: 0.8 }, { rotate: 0 }], 680) }
+    desc: ['렌치가 볼트를 조이듯 머리를 축으로 돌렸다가 돌아옵니다.', 'The wrench turns around its jaw as if tightening a bolt, then returns.'],
+    // One outline: a round head with a square jaw cut along the handle's axis.
+    svg: '<path class="s" d="M6.35 19.85L12.98 13.21A5 5 0 0 0 19.8 6.68L16.91 9.56L14.44 7.09L17.32 4.2A5 5 0 0 0 10.79 11.02L4.15 17.65A1.55 1.55 0 0 0 6.35 19.85z"/><circle class="f" cx="5.25" cy="18.75" r=".85"/>',
+    origins: { '*': [15.25, 8.75] },
+    effect: { '*': fx.keys([{ rotate: 0 }, { rotate: -28, offset: 0.45 }, { rotate: 4, offset: 0.8 }, { rotate: 0 }], 720) }
   }),
   icon({
     id: 'hammer', name: ['망치', 'Hammer'], color: C.orange,
     keywords: '망치 도구 만들기 빌드 hammer tool build make',
-    desc: ['손잡이를 축으로 뒤로 젖혔다가 빠르게 내리쳐 땅 박고 멈춥니다.', 'It winds back on the grip, strikes down fast, and settles.'],
-    svg: '<g data-part="hammer"><path class="f" d="M12.55 8.16L14.6 9.59L8.15 18.81A1.25 1.25 35 0 1 6.1 17.37Z"/><path d="M12.55 8.16L14.6 9.59L8.15 18.81A1.25 1.25 35 0 1 6.1 17.37Z"/><path class="s" d="M10.55 1.87A1.5 1.5 35 0 1 12.64 1.5L18.78 5.8C20.58 7.06 21.54 8.83 21.85 11C20.77 9.76 19.49 8.98 17.88 8.83L16.45 10.88L9.48 6A1.5 1.5 35 0 1 9.11 3.92Z"/></g>',
-    origins: { hammer: [7.27, 17.88] },
-    effect: { hammer: fx.keys([{ rotate: 0 }, { rotate: -22, offset: 0.42, easing: 'in' }, { rotate: 9, offset: 0.56, easing: 'out' }, { rotate: -2, offset: 0.78 }, { rotate: 0 }], 860, 'linear') }
+    desc: ['머리를 위로 들어 올렸다가 아래로 탕 내리치고, 맞는 순간 충격선이 퍼집니다.', 'It lifts its head, strikes downward, and impact lines flash on contact.'],
+    svg: '<g data-part="hammer"><path class="f" d="M10.55 8.66L12.6 10.09L6.15 19.31A1.25 1.25 35 0 1 4.1 17.87Z"/><path d="M10.55 8.66L12.6 10.09L6.15 19.31A1.25 1.25 35 0 1 4.1 17.87Z"/><path class="s" d="M19.19 9.82A1.5 1.5 0 0 0 18.82 7.73L12.68 3.43C10.88 2.17 8.89 1.88 6.75 2.33C8.28 2.92 9.45 3.85 10.14 5.31L8.71 7.36L15.68 12.24A1.5 1.5 0 0 0 17.76 11.87Z"/></g><path data-part="hit" class="a" d="M19.98 14.55v1.2M20.83 14.21l.83.87M21.2 13.37h1.2"/>',
+    origins: { hammer: [5.27, 18.38], hit: [20, 13.35] },
+    poses: { '*': { hit: { opacity: 0 } } },
+    // The face is the head's lower-right end, so it winds up counter-clockwise and strikes clockwise, downward.
+    effect: {
+      hammer: fx.keys([{ rotate: 0, easing: 'inOut' }, { rotate: -16, offset: 0.42, easing: 'in' }, { rotate: 8, offset: 0.53, easing: 'out' }, { rotate: 4, offset: 0.66, easing: 'inOut' }, { rotate: 0 }], 960, 'linear'),
+      hit: fx.keys([{ opacity: 0, scale: 0.5 }, { opacity: 0, scale: 0.5, offset: 0.52 }, { opacity: 1, scale: 1.1, offset: 0.6 }, { opacity: 1, scale: 1, offset: 0.72 }, { opacity: 0, scale: 1 }], 960, 'linear')
+    }
   })
 ]);

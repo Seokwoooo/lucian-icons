@@ -16,7 +16,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 let lang = html.lang === 'en' ? 'en' : 'ko';
 let tone = html.dataset.tone === 'line' ? 'line' : 'color';
 let autoOn = !reduce.matches && store.get('lucian-icons-auto') !== 'off';
-let cat = 'all', query = '', dialogOpen = false;
+let cat = 'all', query = '', dialogOpen = false, view = 'grid';
 const t = key => {
   const v = copy[lang][key] ?? copy.ko[key] ?? key;
   return typeof v === 'string' ? v.replaceAll('{count}', defs.length).replaceAll('{cats}', Object.keys(categories).length) : v;
@@ -24,13 +24,13 @@ const t = key => {
 const stateText = (d, s) => d.stateLabels?.[lang]?.[s] || s;
 const catText = c => categories[c]?.[lang] || c;
 
-/* ---------- Tiles ---------- */
-const grid = $('#grid');
+/* ---------- Tiles: the whole tile opens the icon full screen ---------- */
+const grid = $('#icon-grid');
+const byId = new Map(defs.map(d => [d.id, d]));
 grid.innerHTML = defs.map((d, i) => `<article class="g-tile is-new" data-id="${d.id}" style="--h:${d.color};--d:${Math.min(i, 11) * 45}ms">
 <button class="g-stage" type="button"><lucian-${d.id} class="g-icon" data-icon animate="none"${tone === 'line' ? ' tone="line"' : ''}${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}></button>
 <span class="g-ghost" aria-hidden="true"></span>
 <div class="g-cap"><b>${num(i)}</b><span class="g-name"></span>${statesOf(d).length ? '<span class="g-state"></span>' : ''}</div>
-<button class="g-exp" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
 </article>`).join('');
 const tiles = new Map($$('.g-tile', grid).map(el => [el.dataset.id, el]));
 setTimeout(() => $$('.g-tile.is-new').forEach(el => el.classList.remove('is-new')), 1600);
@@ -40,12 +40,15 @@ const STOP = Symbol('stop');
 const effectMs = d => Math.max(500, ...Object.values(d.effect || {}).map(s => (s.delay || 0) + (s.d || 640)));
 const transitionMs = d => Math.max(700, ...Object.values(d.transitions || {}).flatMap(g => Object.values(g).map(s => (s.delay || 0) + (s.d || 600))));
 const players = [];
-function makePlayer(host, def, icon, label) {
-  const P = { host, def, icon, label, ghost: $('.g-ghost', host), states: statesOf(def), vis: false, user: false, on: false, gen: 0, timers: [], userT: 0, dialog: host.classList.contains('d-stage') };
+// kind: 'tile' runs in the grid, 'slide' in the reel, 'dialog' in the detail dialog.
+function makePlayer(host, def, icon, label, kind) {
+  const P = { host, def, icon, label, kind, ghost: $('.g-ghost', host), states: statesOf(def), vis: false, user: false, on: false, gen: 0, timers: [], userT: 0 };
   players.push(P);
   return P;
 }
-const shouldRun = P => autoOn && !reduce.matches && P.vis && !P.user && !document.hidden && (P.dialog ? dialogOpen : !dialogOpen) && P.host.isConnected && !P.host.hidden;
+function dropPlayer(P) { if (!P) return; stop(P); clearTimeout(P.userT); const i = players.indexOf(P); if (i >= 0) players.splice(i, 1); }
+const inView = P => P.kind === 'dialog' ? dialogOpen : !dialogOpen && (P.kind === 'slide') === (view === 'reel');
+const shouldRun = P => autoOn && !reduce.matches && P.vis && !P.user && !document.hidden && inView(P) && P.host.isConnected && !P.host.hidden;
 function sync(P) { const go = shouldRun(P); if (go && !P.on) start(P); else if (!go && P.on) stop(P); }
 const syncAll = () => players.forEach(sync);
 function start(P) { P.on = true; run(P, ++P.gen).catch(e => { if (e !== STOP) console.error(e); }); }
@@ -77,9 +80,10 @@ function feedProgress(P, gen) {
 }
 async function run(P, gen) {
   P.host.classList.add('is-live');
-  const center = P.dialog ? [0.56, 0.56] : [0.57, 0.52];
+  const center = P.aim ? P.aim() : P.kind === 'dialog' ? [0.56, 0.56] : [0.57, 0.52];
+  const from = P.aim ? [center[0] + 0.2, center[1] + 0.32] : [0.9, 1.06];
   while (true) {
-    ghost(P, null, 0.9, 1.06, 0);
+    ghost(P, null, ...from, 0);
     await sleep(P, gen, 30);
     P.ghost.dataset.cur = 'arrow';
     ghost(P, 'on', ...center, 520);
@@ -101,32 +105,35 @@ async function run(P, gen) {
       await sleep(P, gen, effectMs(P.def) + 420);
     }
     P.ghost.dataset.cur = 'arrow';
-    ghost(P, 'hide', 0.9, 1.08, 520);
+    ghost(P, 'hide', from[0], from[1] + 0.02, 520);
     await sleep(P, gen, 760);
   }
 }
-function takeOver(P, active) {
+function takeOver(P, active, ms = 1400) {
   clearTimeout(P.userT);
   if (active) { P.user = true; sync(P); }
-  else P.userT = setTimeout(() => { P.user = false; sync(P); }, 1400);
+  else P.userT = setTimeout(() => { P.user = false; sync(P); }, ms);
+}
+// A click on an icon: stateful icons step to their next state, the others play their effect again.
+function press(P, ms) {
+  takeOver(P, true); takeOver(P, false, ms);
+  const d = P.def, icon = P.icon;
+  if (!P.states.length) { icon.play(); return null; }
+  const s = icon.next();
+  if (s) { P.label?.(s); if (d.progress?.state === s && d.progress.axis !== 'x') icon.setProgress(70); }
+  return s;
 }
 
 const tilePlayers = new Map();
 for (const d of defs) {
   const tile = tiles.get(d.id), icon = $('[data-icon]', tile), stateEl = $('.g-state', tile);
-  const P = makePlayer(tile, d, icon, s => { if (stateEl) { stateEl.textContent = stateText(d, s); stateEl.classList.toggle('is-changed', s !== d.defaultState); } updateTileLabel(d); });
+  const P = makePlayer(tile, d, icon, s => { if (stateEl) { stateEl.textContent = stateText(d, s); stateEl.classList.toggle('is-changed', s !== d.defaultState); } updateTileLabel(d); }, 'tile');
   tilePlayers.set(d.id, P);
   const stage = $('.g-stage', tile);
   // Hovering changes nothing: the demo keeps running. Keyboard focus takes over the tile.
   tile.addEventListener('focusin', e => { if (!e.target.matches(':focus-visible')) return; takeOver(P, true); if (e.target === stage) icon.play(); });
   tile.addEventListener('focusout', () => takeOver(P, false));
-  stage.addEventListener('click', () => {
-    takeOver(P, true); takeOver(P, false);
-    const s = icon.next();
-    if (s) P.label(s);
-    if (s && d.progress?.state === s && d.progress.axis !== 'x') icon.setProgress(70);
-  });
-  $('.g-exp', tile).addEventListener('click', () => openDetail(d));
+  stage.addEventListener('click', () => openReel(d.id, tile));
 }
 const io = new IntersectionObserver(entries => {
   for (const e of entries) { const P = tilePlayers.get(e.target.dataset.id); if (P) { P.vis = e.intersectionRatio >= 0.5; sync(P); } }
@@ -164,6 +171,7 @@ function filter() {
   }
   $('#empty').hidden = shown > 0;
   $('#search').classList.toggle('has-q', !!query);
+  reelDirty = true;
   syncAll();
 }
 const search = $('#search'), q = $('#q');
@@ -183,20 +191,22 @@ $('#empty-reset').addEventListener('click', () => {
   movePill(); filter(); openSearch(false);
 });
 document.addEventListener('keydown', e => {
-  if (e.key === '/' && !dialogOpen && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName)) { e.preventDefault(); openSearch(true); }
+  if (e.key === '/' && !dialogOpen && view === 'grid' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName)) { e.preventDefault(); openSearch(true); }
 });
 
 /* ---------- Toolbar: autoplay, tone, theme ---------- */
-const autoBtn = $('#auto'), autoIcon = $('lucian-play', autoBtn);
+const autoBtns = [$('#auto'), $('#hud [data-act="auto"]')];
 function setAuto(on, save = true) {
   autoOn = on && !reduce.matches;
-  autoBtn.setAttribute('aria-pressed', String(autoOn));
-  autoBtn.setAttribute('aria-label', t(autoOn ? 'autoOn' : 'autoOff'));
-  autoIcon.setAttribute('state', autoOn ? 'playing' : 'paused');
+  for (const b of autoBtns) {
+    b.setAttribute('aria-pressed', String(autoOn));
+    b.setAttribute('aria-label', t(autoOn ? 'autoOn' : 'autoOff'));
+    $('lucian-play', b).setAttribute('state', autoOn ? 'playing' : 'paused');
+  }
   if (save) store.set('lucian-icons-auto', autoOn ? 'on' : 'off');
   syncAll();
 }
-autoBtn.addEventListener('click', () => setAuto(!autoOn));
+$('#auto').addEventListener('click', () => setAuto(!autoOn));
 reduce.addEventListener?.('change', () => setAuto(autoOn, false));
 
 const toneBtn = $('#tone');
@@ -214,19 +224,22 @@ function setTone(next, save = true) {
 }
 toneBtn.addEventListener('click', () => setTone(tone === 'line' ? 'color' : 'line'));
 
-const themeBtn = $('#theme');
+const themeBtns = [$('#theme'), $('#hud [data-act="theme"]')];
 const isDark = () => html.dataset.theme ? html.dataset.theme === 'dark' : darkQuery.matches;
 function paintTheme() {
   html.classList.toggle('is-dark', isDark());
-  themeBtn.setAttribute('aria-label', t(isDark() ? 'themeLight' : 'themeDark'));
-  themeBtn.setAttribute('aria-pressed', String(isDark()));
+  for (const b of themeBtns) {
+    b.setAttribute('aria-label', t(isDark() ? 'themeLight' : 'themeDark'));
+    b.setAttribute('aria-pressed', String(isDark()));
+  }
 }
-themeBtn.addEventListener('click', () => {
+function toggleTheme(btn) {
   html.dataset.theme = isDark() ? 'light' : 'dark';
   store.set('lucian-icons-theme', html.dataset.theme);
   paintTheme();
-  $(isDark() ? 'lucian-moon' : 'lucian-sun', themeBtn).play();
-});
+  $(isDark() ? 'lucian-moon' : 'lucian-sun', btn).play();
+}
+$('#theme').addEventListener('click', e => toggleTheme(e.currentTarget));
 darkQuery.addEventListener?.('change', paintTheme);
 
 /* ---------- Language ---------- */
@@ -242,7 +255,7 @@ langBox.addEventListener('click', e => {
 });
 function updateTileLabel(d) {
   const tile = tiles.get(d.id), icon = $('[data-icon]', tile), states = statesOf(d);
-  $('.g-stage', tile).setAttribute('aria-label', `${d.name[lang]}${states.length ? `, ${stateText(d, icon.state || d.defaultState)}. ${t('tileHint')}` : `. ${t('tilePlay')}`}`);
+  $('.g-stage', tile).setAttribute('aria-label', `${d.name[lang]}${states.length ? `, ${stateText(d, icon.state || d.defaultState)}` : ''}. ${t('tileOpen')}`);
 }
 function localize() {
   html.lang = lang;
@@ -254,7 +267,6 @@ function localize() {
     const tile = tiles.get(d.id), icon = $('[data-icon]', tile);
     $('.g-name', tile).textContent = d.name[lang];
     const st = $('.g-state', tile); if (st) st.textContent = stateText(d, icon.state || d.defaultState);
-    $('.g-exp', tile).setAttribute('aria-label', `${d.name[lang]} ${t('details')}`);
     updateTileLabel(d);
   }
   $('#guide-steps').innerHTML = t('guideSteps').map(s => `<li>${s}</li>`).join('');
@@ -263,25 +275,27 @@ function localize() {
   toneBtn.setAttribute('aria-label', t(tone === 'line' ? 'toneLine' : 'toneColor'));
   requestAnimationFrame(() => { movePill(false); moveLangPill(); });
   html.classList.remove('i18n-wait');
+  slides.forEach(s => { if (s._P) { slideMeta(s, s._P.def); placeStage(s); } });
+  if (cur >= 0) progress();
   if (detail.def) refreshDetail();
 }
 
 /* ---------- Copy, download, toast ---------- */
 let toastT;
 function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('is-on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('is-on'), 2200); }
-async function copyText(text, button, select) {
+async function copyText(text, button, select, done = t('copied')) {
   try {
     if (!navigator.clipboard?.writeText) throw new Error('no clipboard');
     await navigator.clipboard.writeText(text);
-    toast(t('copied'));
+    toast(done);
     if (button) {
       button.classList.add('is-done');
       const ic = $('lucian-copy', button); ic?.setAttribute('state', 'copied');
       setTimeout(() => { button.classList.remove('is-done'); ic?.setAttribute('state', 'idle'); }, 1600);
     }
   } catch {
-    if (select) { select.focus(); select.select?.(); }
-    toast(t('clipboardBlocked'));
+    if (select) { select.focus(); select.select?.(); toast(t('clipboardBlocked')); }
+    else toast(t('failed'));
   }
 }
 document.addEventListener('click', e => {
@@ -305,9 +319,9 @@ function moveSeg(seg) {
   const b = $('[aria-selected="true"],[aria-checked="true"]', seg), p = $('.g-seg-pill', seg);
   if (b && p) { p.style.setProperty('--x', (b.offsetLeft - 4) + 'px'); p.style.setProperty('--w', b.offsetWidth + 'px'); }
 }
-function openDetail(d) {
+function openDetail(d, state) {
   detail.def = d;
-  detail.opts = { tone, accent: null, weight: 1.75, size: 24, state: tilePlayers.get(d.id).icon.state || d.defaultState };
+  detail.opts = { tone, accent: null, weight: 1.75, size: 24, state: state || tilePlayers.get(d.id).icon.state || d.defaultState };
   dlg.style.setProperty('--h', d.color);
   dStage.style.setProperty('--h', d.color);
   dHit.innerHTML = `<lucian-${d.id} data-icon animate="none"${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}>`;
@@ -318,14 +332,13 @@ function openDetail(d) {
   $('#d-weight').value = 1.75; $('#d-weight-v').textContent = '1.75'; $('#d-size').value = '24';
   const icon = $('[data-icon]', dHit);
   if (detail.opts.state) icon.setAttribute('state', detail.opts.state);
-  detail.player?.host && (players.splice(players.indexOf(detail.player), 1), stop(detail.player));
-  detail.player = makePlayer(dStage, d, icon, s => { detail.opts.state = s; renderStates(); renderCode(); });
+  dropPlayer(detail.player);
+  detail.player = makePlayer(dStage, d, icon, s => { detail.opts.state = s; renderStates(); renderCode(); }, 'dialog');
   detail.player.vis = true;
   refreshDetail();
   if (!dlg.open) { dlg.showModal(); dialogOpen = true; body.classList.add('has-dlg'); }
   syncAll();
   requestAnimationFrame(() => $$('.g-seg', dlg).forEach(moveSeg));
-  if (location.hash !== '#' + d.id) history.replaceState(null, '', '#' + d.id);
 }
 function renderStates() {
   const d = detail.def, states = statesOf(d);
@@ -363,10 +376,7 @@ function refreshDetail() {
   dHit.setAttribute('aria-label', `${d.name[lang]}. ${statesOf(d).length ? t('tileHint') : t('tilePlay')}`);
   renderStates(); applyOptions(); renderCode();
 }
-dHit.addEventListener('click', () => {
-  const P = detail.player; takeOver(P, true); takeOver(P, false);
-  const s = $('[data-icon]', dHit).next(); if (s) { detail.opts.state = s; renderStates(); renderCode(); }
-});
+dHit.addEventListener('click', () => press(detail.player));
 $('#d-states').addEventListener('click', e => {
   const b = e.target.closest('.d-chip'); if (!b) return;
   const icon = $('[data-icon]', dHit);
@@ -404,25 +414,213 @@ document.addEventListener('click', e => {
 for (const d of [dlg, guide]) {
   d.addEventListener('click', e => { if (e.target === d) d.close(); });
   d.addEventListener('close', () => {
-    if (d === dlg) {
-      if (detail.player) { stop(detail.player); players.splice(players.indexOf(detail.player), 1); detail.player = null; }
-      detail.def = null;
-      if (/^#[a-z]+$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
-    }
+    if (d === dlg) { dropPlayer(detail.player); detail.player = null; detail.def = null; }
     dialogOpen = dlg.open || guide.open;
     body.classList.toggle('has-dlg', dialogOpen);
     syncAll();
   });
 }
-function followHash() { const d = defs.find(x => '#' + x.id === location.hash); if (d) openDetail(d); }
-addEventListener('hashchange', followHash);
+/* ---------- Reels: one icon per screen, moved up and down ---------- */
+const reel = $('#reel'), hud = $('#hud');
+const pageParts = [$('.g-skip'), $('.g-head'), $('#bar'), grid, $('#empty'), $('.g-foot')];
+const wideQ = matchMedia('(min-width:1100px)');
+const HAND = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11.5V5.2a1.6 1.6 0 0 1 3.2 0v5.6m0-1.2a1.6 1.6 0 0 1 3.2 0v1.6m0-.6a1.6 1.6 0 0 1 3.2 0v3.3a6 6 0 0 1-6 6h-.6a6 6 0 0 1-4.7-2.3l-2.6-3.3a1.7 1.7 0 0 1 2.6-2.1L9 13.6"/></svg>';
+let reelIds = [], slides = [], cur = -1, reelDirty = true, opener = null, closeT = 0;
+const slideHeight = () => slides[0]?.offsetHeight || reel.clientHeight || 1;
+function buildReel(all) {
+  slides.forEach(emptySlide);
+  const shown = defs.filter(d => !tiles.get(d.id).hidden).map(d => d.id);
+  reelIds = shown.length && !all ? shown : defs.map(d => d.id);
+  // Empty screens first; only the ones near the current screen get an icon.
+  reel.innerHTML = reelIds.map((id, p) => `<section class="g-slide" data-p="${p}" tabindex="-1"></section>`).join('');
+  slides = $$('.g-slide', reel);
+  cur = -1;
+  reelDirty = false;
+}
+function slideMeta(s, d) {
+  const states = statesOf(d), now = s._P?.icon.state || d.defaultState;
+  s.setAttribute('aria-label', `${num(defs.indexOf(d))} ${d.name[lang]}`);
+  $('.g-rail', s).setAttribute('aria-label', d.name[lang]);
+  $('.g-slide-hit', s).setAttribute('aria-label', `${d.name[lang]}${states.length ? `, ${stateText(d, now)}. ${t('tileHint')}` : `. ${t('tilePlay')}`}`);
+  $('.g-slide-meta', s).innerHTML =
+    `<p class="g-slide-kick"><b>${num(defs.indexOf(d))}</b> · ${esc(catText(d.category))}</p>` +
+    `<h2 class="g-slide-t">${esc(d.name[lang])}</h2>` +
+    `<p class="g-slide-s">${esc(d.description[lang])}</p>` +
+    (states.length ? `<div class="g-slide-states" role="group" aria-label="${esc(t('states'))}">${states.map(x => `<button class="d-chip" type="button" data-s="${x}" aria-pressed="${x === now}">${esc(stateText(d, x))}</button>`).join('')}</div>` : '') +
+    `<p class="g-slide-hint">${HAND}<span>${esc(t(states.length ? 'reelHintState' : 'reelHintPlay'))}</span></p>`;
+  $('.g-rail', s).innerHTML = [['code', 'lucian-code'], ['copy', 'lucian-copy'], ['svg', 'lucian-download']].map(([act, tag]) =>
+    `<button class="g-rb" type="button" data-act="${act}" aria-label="${esc(t(`rail${act[0].toUpperCase()}${act.slice(1)}Label`))}"><i><${tag} tone="line" size="21"></${tag}></i><span aria-hidden="true">${esc(t(`rail${act[0].toUpperCase()}${act.slice(1)}`))}</span></button>`).join('');
+}
+function fillSlide(p) {
+  const s = slides[p]; if (!s || s._P) return;
+  const d = byId.get(reelIds[p]), from = $('[data-icon]', tiles.get(d.id)).state;
+  s.style.setProperty('--h', d.color);
+  s.innerHTML = `<div class="g-slide-bg" aria-hidden="true"></div>
+<div class="g-slide-stage"><button class="g-slide-hit" type="button"><span class="g-slide-icon"><lucian-${d.id} data-icon animate="none"${tone === 'line' ? ' tone="line"' : ''}${from && from !== d.defaultState ? ` state="${from}"` : ''}${d.progress ? ` progress="${d.progress.value ?? 60}"` : ''}></lucian-${d.id}></span></button><span class="g-ghost" aria-hidden="true"></span></div>
+<div class="g-slide-meta"></div>
+<nav class="g-rail"></nav>`;
+  const stage = $('.g-slide-stage', s), icon = $('[data-icon]', s);
+  const P = s._P = makePlayer(stage, d, icon, st => markState(s, d, st), 'slide');
+  // The demo cursor rests just below and right of the icon's centre, like on the tiles.
+  P.aim = () => { const w = stage.clientWidth || 1, h = stage.clientHeight || 1, z = $('.g-slide-icon', s).offsetWidth; return [0.5 + 0.22 * z / w, 0.5 + 0.21 * z / h]; };
+  slideMeta(s, d);
+  placeStage(s);
+}
+function emptySlide(s) { if (!s?._P) return; dropPlayer(s._P); s._P = null; s.innerHTML = ''; }
+function markState(s, d, st) {
+  $$('.g-slide-states [data-s]', s).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.s === st)));
+  $('.g-slide-hit', s).setAttribute('aria-label', `${d.name[lang]}, ${stateText(d, st)}. ${t('tileHint')}`);
+}
+// Narrow screens: lift the stage above the text so the icon and the description never overlap.
+function placeStage(s) {
+  const st = $('.g-slide-stage', s), m = $('.g-slide-meta', s);
+  if (!st || !m) return;
+  st.style.bottom = wideQ.matches ? '' : Math.ceil(m.offsetHeight + (parseFloat(getComputedStyle(m).bottom) || 0) + 12) + 'px';
+}
+function progress() {
+  const d = byId.get(reelIds[cur]);
+  $('#prog-n').textContent = String(cur + 1).padStart(3, '0');
+  $('#prog-t').textContent = String(slides.length).padStart(3, '0');
+  $('#prog-bar').style.setProperty('--p', ((cur + 1) / slides.length).toFixed(4));
+  $('#prog-live').textContent = `${cur + 1} / ${slides.length} · ${d.name[lang]}`;
+}
+function setCurrent(p) {
+  if (p === cur || p < 0 || p >= slides.length) return;
+  slides[cur]?.classList.remove('is-on');
+  cur = p;
+  slides[p].classList.add('is-on');
+  for (let k = Math.max(0, p - 2); k <= Math.min(slides.length - 1, p + 2); k++) fillSlide(k);
+  slides.forEach((s, k) => { if (Math.abs(k - p) > 4) emptySlide(s); });
+  // Only the icon on screen demonstrates itself; its neighbours wait.
+  slides.forEach((s, k) => { if (s._P) { s._P.vis = k === p; sync(s._P); } });
+  progress();
+  if (view === 'reel') history.replaceState({ reel: true }, '', '#' + reelIds[p]);
+}
+let scrollRaf = 0;
+reel.addEventListener('scroll', () => {
+  if (scrollRaf) return;
+  scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; setCurrent(Math.round(reel.scrollTop / slideHeight())); });
+}, { passive: true });
+function goTo(p, smooth) {
+  p = Math.max(0, Math.min(slides.length - 1, p));
+  reel.scrollTo({ top: p * slideHeight(), behavior: smooth && !reduce.matches ? 'smooth' : 'instant' });
+  if (!smooth) setCurrent(p);
+}
+// The big icon grows out of the tile that was pressed, and shrinks back into it on the way out.
+function flight(s, tile, out) {
+  const ic = s && $('.g-slide-icon', s), small = tile && $('[data-icon]', tile);
+  if (!ic || !small || reduce.matches) return;
+  const st = $('.g-slide-stage', s).getBoundingClientRect(), r = small.getBoundingClientRect(), z = ic.offsetWidth;
+  if (!z || !r.width) return;
+  const moved = `translate(${r.left + r.width / 2 - (st.left + st.width / 2)}px,${r.top + r.height / 2 - (st.top + st.height / 2)}px) scale(${r.width / z})`;
+  ic.animate(out ? [{ transform: 'none', opacity: 1, filter: 'none' }, { transform: moved, opacity: 1, filter: 'none' }] : [{ transform: moved, opacity: 1, filter: 'none' }, { transform: 'none', opacity: 1, filter: 'none' }],
+    { duration: out ? 420 : 640, easing: out ? 'cubic-bezier(.4,0,.2,1)' : 'cubic-bezier(.2,.9,.25,1)', fill: out ? 'forwards' : 'none' });
+}
+function openReel(id, fromTile, noPush) {
+  if (view === 'reel') { const p = reelIds.indexOf(id); if (p >= 0) goTo(p, true); return; }
+  clearTimeout(closeT);
+  slides.forEach(s => $('.g-slide-icon', s)?.getAnimations().forEach(a => a.cancel()));
+  if (reelDirty || !slides.length) buildReel();
+  let p = reelIds.indexOf(id);
+  if (p < 0) { buildReel(true); reelDirty = true; p = reelIds.indexOf(id); }
+  if (p < 0) return;
+  opener = fromTile || null;
+  loadExports();
+  view = 'reel';
+  body.dataset.view = 'reel';
+  reel.inert = false; reel.setAttribute('aria-hidden', 'false');
+  pageParts.forEach(el => { el.inert = true; });
+  // Going back must not restore the old grid scroll: closing scrolls to the icon last seen instead.
+  history.scrollRestoration = 'manual';
+  if (!noPush) history.pushState({ reel: true }, '', '#' + id);
+  goTo(p, false);
+  flight(slides[p], fromTile, false);
+  slides[p].focus({ preventScroll: true });
+  syncAll();
+}
+function closeReel(fromPop) {
+  if (view !== 'reel') return;
+  const s = slides[cur], id = reelIds[cur], tile = tiles.get(id);
+  // Come back to the tile of the icon that was on screen, not where the reel started.
+  if (tile && !tile.hidden) {
+    const r = tile.getBoundingClientRect();
+    if (r.top < 72 || r.bottom > innerHeight - 8) scrollTo({ top: scrollY + r.top - Math.max(80, (innerHeight - r.height) / 2), behavior: 'instant' });
+    flight(s, tile, true);
+  }
+  view = 'grid';
+  body.dataset.view = 'grid';
+  reel.inert = true; reel.setAttribute('aria-hidden', 'true');
+  pageParts.forEach(el => { el.inert = false; });
+  syncAll();
+  // Clear the screens once the fade is over (unless the reel was opened again meanwhile).
+  closeT = setTimeout(() => { if (view === 'grid') { slides.forEach(emptySlide); slides.forEach(x => x.classList.remove('is-on')); cur = -1; } }, 460);
+  if (!fromPop) {
+    if (history.state?.reel) history.back();
+    else { history.replaceState(null, '', location.pathname + location.search); history.scrollRestoration = 'auto'; }
+  }
+  const back = tile && !tile.hidden ? tile : opener?.isConnected ? opener : null;
+  $('.g-stage', back)?.focus({ preventScroll: true });
+}
+addEventListener('popstate', () => {
+  const id = location.hash.slice(1);
+  if (!byId.has(id)) { closeReel(true); history.scrollRestoration = 'auto'; return; }
+  if (view !== 'reel') openReel(id, null, true);
+  else { const p = reelIds.indexOf(id); if (p >= 0 && p !== cur) goTo(p, true); }
+});
+$('#to-reel').addEventListener('click', () => {
+  const first = defs.find(d => !tiles.get(d.id).hidden) || defs[0];
+  openReel(first.id, null);
+});
+reel.addEventListener('click', async e => {
+  const s = e.target.closest('.g-slide'), P = s?._P; if (!P) return;
+  const d = P.def, icon = P.icon;
+  if (e.target.closest('.g-slide-hit')) { press(P, 2600); return; }
+  const chip = e.target.closest('[data-s]');
+  if (chip) {
+    takeOver(P, true); takeOver(P, false, 2600);
+    icon.setState(chip.dataset.s); markState(s, d, chip.dataset.s);
+    if (d.progress?.state === chip.dataset.s && d.progress.axis !== 'x') icon.setProgress(70);
+    return;
+  }
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const opts = { tone, state: icon.state || d.defaultState };
+  if (b.dataset.act === 'code') openDetail(d, opts.state);
+  else if (b.dataset.act === 'copy') copyText((await loadExports()).usageHTML(d, opts, lang), b, null, t('copiedHTML'));
+  else if (b.dataset.act === 'svg') { download((await loadExports()).staticSVG(d, opts), 'image/svg+xml', `lucian-${d.id}${opts.state ? '-' + opts.state : ''}.svg`); $('lucian-download', b)?.play(); }
+});
+hud.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  if (b.dataset.act === 'back') closeReel(false);
+  else if (b.dataset.act === 'auto') setAuto(!autoOn);
+  else if (b.dataset.act === 'theme') toggleTheme(b);
+});
+document.addEventListener('keydown', e => {
+  if (view !== 'reel' || dialogOpen) return;
+  const k = e.key;
+  if (k === 'Escape') { e.preventDefault(); closeReel(false); return; }
+  // Buttons keep Space and Enter; the arrows always move between icons.
+  if ((k === ' ' || k === 'Enter') && e.target.closest('button')) return;
+  if (k === 'ArrowDown' || k === 'PageDown' || k === 'j' || (k === ' ' && !e.shiftKey)) { e.preventDefault(); goTo(cur + 1, true); }
+  else if (k === 'ArrowUp' || k === 'PageUp' || k === 'k' || (k === ' ' && e.shiftKey)) { e.preventDefault(); goTo(cur - 1, true); }
+  else if (k === 'Home') { e.preventDefault(); goTo(0, true); }
+  else if (k === 'End') { e.preventDefault(); goTo(slides.length - 1, true); }
+});
+let reelRT = 0;
+function reelResize() {
+  clearTimeout(reelRT);
+  reelRT = setTimeout(() => {
+    slides.forEach(s => s._P && placeStage(s));
+    if (view === 'reel' && cur >= 0) reel.scrollTop = cur * slideHeight();
+  }, 120);
+}
 
 /* ---------- Boot ---------- */
 const bar = $('#bar');
 new IntersectionObserver(([e]) => bar.classList.toggle('is-stuck', !e.isIntersecting), { rootMargin: '-1px 0px 0px 0px' }).observe($('.g-intro'));
-addEventListener('resize', () => { movePill(false); moveLangPill(); if (dlg.open) $$('.g-seg', dlg).forEach(moveSeg); });
+addEventListener('resize', () => { movePill(false); moveLangPill(); if (dlg.open) $$('.g-seg', dlg).forEach(moveSeg); reelResize(); });
 setTone(tone, false);
 localize();
 filter();
 requestAnimationFrame(() => $('.g-head').classList.add('is-ready'));
-followHash();
+// A shared link such as /icons/#download opens that icon in the reel; Back returns to the grid.
+if (byId.has(location.hash.slice(1))) { const id = location.hash.slice(1); history.replaceState(null, '', location.pathname + location.search); openReel(id); }

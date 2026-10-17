@@ -33,6 +33,8 @@ export function icon(d) {
   return out;
 }
 export const group = (category, icons) => icons.map(i => ({ ...i, category }));
+// A key dot that can be pressed: the group moves, its accent copy lights up.
+export const keycap = (id, x, y) => `<g data-part="${id}"><path d="M${x} ${y}h.01"/><path data-part="${id}a" class="a" d="M${x} ${y}h.01"/></g>`;
 
 // Motion vocabulary. Effects are composited on top of the current pose, so
 // translate/rotate/opacity values are offsets and scale values are factors.
@@ -62,6 +64,10 @@ export const fx = {
   flash: (d = 600, delay = 0, s = 0.6) => ({ k: at([{ opacity: 0, scale: s }, { opacity: 1, scale: 1.08 }, { opacity: 1, scale: 1 }, { opacity: 0, scale: 1 }], [0, 0.3, 0.7, 1]), d, delay, e: 'out' }),
   // backspace a stroke from its end, then type it back in: [erase start, erase end], [type start, type end] as 0..1 offsets
   retype: ([a, b], [c, e], d = 1000) => ({ k: [{ draw: 1 }, { draw: 1, offset: a }, { draw: 0, offset: b, easing: 'out' }, { draw: 0, offset: c, easing: 'inOut' }, { draw: 1, offset: e }, { draw: 1 }], d, delay: 0, e: 'linear' }),
+  // a key going down and coming back up
+  tap: (delay = 0, d = 220) => ({ k: at([{ translate: [0, 0], scale: 1 }, { translate: [0, 0.45], scale: 0.78 }, { translate: [0, 0], scale: 1 }], [0, 0.35, 1]), d, delay, e: 'inOut' }),
+  // a highlight that switches on briefly (for parts hidden at rest: base opacity 0)
+  lit: (delay = 0, d = 220) => ({ k: at([{ opacity: 0 }, { opacity: 1 }, { opacity: 1 }, { opacity: 0 }], [0, 0.25, 0.6, 1]), d, delay, e: 'linear' }),
   // custom keyframes
   keys: (k, d = 600, e = 'inOut', delay = 0) => ({ k, d, e, delay })
 };

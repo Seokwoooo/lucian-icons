@@ -1,5 +1,11 @@
 import { C, icon, group, fx } from './_kit.js';
 
+// A cover swinging round the spine at a steady angular speed: its width follows cos(angle).
+// One continuous curve per swing, so it never slows to a stop halfway.
+const coverSwing = (t0, t1, opening, steps = 8) => Array.from({ length: steps + 1 }, (_, i) => {
+  const a = ((opening ? i : steps - i) / steps) * Math.PI / 2;
+  return { offset: +(t0 + (t1 - t0) * i / steps).toFixed(3), scale: [Math.max(0.02, +Math.cos(a).toFixed(3)), 1] };
+});
 const DOC = 'M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z';
 const FOLD = 'M14 3v4a1 1 0 0 0 1 1h4';
 // Shared transfer behavior for download and upload: idle, measured progress, success, error.
@@ -208,13 +214,16 @@ export default group('files', [
   icon({
     id: 'notebook', name: ['노트', 'Notebook'], color: C.lime,
     keywords: '노트 공책 메모 기록 일지 notebook journal notes diary',
-    desc: ['표지가 스프링을 넘어 왼쪽으로 완전히 젖혀져 줄 쳐진 속지가 보이고, 잠시 뒤 다시 덮입니다.', 'The cover swings all the way over the spiral to show the ruled page, then closes again.'],
-    svg: '<rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><path data-part="lines" class="a" d="M9.5 8.5h6.5M9.5 12h6.5M9.5 15.5h4"/><g data-part="cover"><rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><rect x="9.5" y="7" width="6" height="3.25" rx=".75"/></g><path class="a" d="M3.5 7.5h3.5M3.5 12h3.5M3.5 16.5h3.5"/>',
+    desc: ['표지가 스프링을 축으로 넘어가 사라지면 줄 쳐진 속지에 글줄이 써지고, 잠시 뒤 표지가 같은 속도로 돌아와 덮입니다.', 'The cover swings round the spiral and out of sight, lines are written on the ruled page, then the cover swings back and closes at the same steady pace.'],
+    svg: '<rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><path data-part="lines" class="a" d="M9.5 8.5h6.5M9.5 12h6.5M9.5 15.5h4"/><g data-part="cover"><g data-part="sheet"><rect class="s" x="5.5" y="3" width="14" height="18" rx="2"/><rect x="9.5" y="7" width="6" height="3.25" rx=".75"/></g></g><path class="a" d="M3.5 7.5h3.5M3.5 12h3.5M3.5 16.5h3.5"/>',
     origins: { cover: [5.5, 12] },
     poses: { '*': { lines: { opacity: 0 } } },
+    // cover carries the swing, sheet only fades: the cover is gone before it narrows to a sliver, and
+    // the ruled lines are drawn only once it is gone and fade before it comes back.
     effect: {
-      cover: fx.keys([{ scale: 1, skewY: 0 }, { scale: [0.06, 1], skewY: -12, offset: 0.22, easing: 'out' }, { scale: [-0.32, 1], skewY: -4, offset: 0.4 }, { scale: [-0.32, 1], skewY: -4, offset: 0.64, easing: 'in' }, { scale: [0.06, 1], skewY: -12, offset: 0.8, easing: 'out' }, { scale: 1, skewY: 0 }], 1250, 'linear'),
-      lines: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.12 }, { opacity: 1, offset: 0.3 }, { opacity: 1, offset: 0.7 }, { opacity: 0, offset: 0.86 }, { opacity: 0 }], 1250, 'linear')
+      cover: fx.keys([...coverSwing(0, 0.3, true), ...coverSwing(0.66, 0.94, false), { offset: 1, scale: 1 }], 1600, 'linear'),
+      sheet: fx.keys([{ opacity: 0 }, { opacity: 0, offset: 0.22 }, { opacity: -1, offset: 0.26 }, { opacity: -1, offset: 0.69 }, { opacity: 0, offset: 0.735 }, { opacity: 0 }], 1600, 'linear'),
+      lines: fx.keys([{ opacity: 0, draw: 1 }, { opacity: 0, draw: 0, offset: 0.3 }, { opacity: 1, draw: 0.02, offset: 0.33 }, { opacity: 1, draw: 1, offset: 0.56 }, { opacity: 1, draw: 1, offset: 0.6 }, { opacity: 0, draw: 1, offset: 0.66 }, { opacity: 0, draw: 1 }], 1600, 'linear')
     }
   }),
   icon({
@@ -261,15 +270,23 @@ export default group('files', [
   icon({
     id: 'save', name: ['저장', 'Save'], color: C.indigo,
     keywords: '저장 디스크 플로피 보관 save disk floppy store',
-    desc: ['셔터가 옆으로 열렸다 닫히며 디스크가 한 번 눌리고, 저장됨 상태에서는 라벨에 체크가 그려집니다.', 'The shutter slides open and shut as the disk clicks in; the saved state draws a check on the label.'],
+    desc: ['화살표가 디스크 라벨 안으로 쏙 들어가며 디스크가 살짝 눌리고, 저장됨 상태에서는 라벨에 체크가 그려집니다.', 'An arrow drops into the disk label as the disk dips; the saved state draws a check on the label.'],
     states: { idle: ['대기', 'Idle'], saved: ['저장됨', 'Saved'] },
-    svg: '<path class="s" d="M5 3.5h11.5l4 4V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V5A1.5 1.5 0 0 1 5 3.5z"/><g data-part="shutter"><path d="M7.5 3.5v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4"/><path class="a" d="M13 5.25v1.5"/></g><path d="M7 20.5V14a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v6.5"/><path data-part="check" class="a" d="m9.75 16.75 1.5 1.5 3-3"/>',
-    origins: { check: [12, 16.75] },
-    poses: { '*': { check: { draw: 0, opacity: 0 } }, saved: { check: { draw: 1, opacity: 1 } } },
-    transitions: { 'idle>saved': { check: fx.keys([{ draw: 0, opacity: 0 }, { draw: 0.05, opacity: 1, offset: 0.1 }, { draw: 1, opacity: 1 }], 380, 'out', 160), shutter: fx.nudge([2, 0], 420) }, 'saved>idle': { check: { e: 'out', d: 160 } } },
+    svg: '<path class="s" d="M5 3.5h11.5l4 4V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V5A1.5 1.5 0 0 1 5 3.5z"/><path d="M7.5 3.5v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4"/><path class="a" d="M13 5.25v1.5"/><path d="M7 20.5V14a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v6.5"/><path data-part="arrow" class="a" d="M12 14.75v3.75M10.25 16.75 12 18.5l1.75-1.75"/><path data-part="check" class="a" d="m9.75 16.75 1.5 1.5 3-3"/>',
+    origins: { check: [12, 16.75], '*': [12, 20.5] },
+    poses: { '*': { check: { draw: 0, opacity: 0 }, arrow: { opacity: 0 } }, saved: { check: { draw: 1, opacity: 1 } } },
+    transitions: {
+      'idle>saved': {
+        arrow: fx.keys([{ opacity: 0, translate: [0, -2.5] }, { opacity: 1, translate: [0, -0.9], offset: 0.35 }, { opacity: 1, translate: [0, 0], offset: 0.6 }, { opacity: 0, translate: [0, 0.6] }], 520, 'inOut'),
+        '*': fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.45 }, { translate: [0, 0.35], scale: [1.02, 0.97], offset: 0.62 }, { translate: [0, 0], scale: 1 }], 640, 'inOut'),
+        check: fx.keys([{ draw: 0, opacity: 0 }, { draw: 0.05, opacity: 1, offset: 0.1 }, { draw: 1, opacity: 1 }], 380, 'out', 460)
+      },
+      'saved>idle': { check: { e: 'out', d: 160 } }
+    },
     effect: {
-      shutter: fx.keys([{ translate: [0, 0] }, { translate: [2.6, 0], offset: 0.35 }, { translate: [2.6, 0], offset: 0.55 }, { translate: [-0.4, 0], offset: 0.82 }, { translate: [0, 0] }], 760),
-      '*': fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.55 }, { translate: [0, 0.6], scale: [1.03, 0.97], offset: 0.7 }, { translate: [0, 0], scale: 1 }], 760)
+      arrow: fx.keys([{ opacity: 0, translate: [0, -2.5] }, { opacity: 1, translate: [0, -0.9], offset: 0.3 }, { opacity: 1, translate: [0, 0], offset: 0.55 }, { opacity: 0, translate: [0, 0.6], offset: 0.75 }, { opacity: 0, translate: [0, 0] }], 820, 'inOut'),
+      check: fx.keys([{ opacity: 0 }, { opacity: -1, offset: 0.08 }, { opacity: -1, offset: 0.72 }, { opacity: 0 }], 820, 'linear'),
+      '*': fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.42 }, { translate: [0, 0.35], scale: [1.02, 0.97], offset: 0.56 }, { translate: [0, 0], scale: 1, offset: 0.78 }, { translate: [0, 0], scale: 1 }], 820, 'inOut')
     }
   }),
   icon({

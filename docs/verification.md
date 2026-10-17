@@ -2,6 +2,26 @@
 
 Product path `/icons/`.
 
+## Release 2.0.4 icon review
+
+Date: 2026-10-18. The user listed 33 icons (numbers 14, 19, 25, 37, 43, 44, 54, 55, 57, 77, 90, 92, 93, 113, 115, 118, 120, 123, 128, 137, 142, 149, 150, 158, 163, 170, 175, 178, 180, 182, 183, 202, 211).
+
+- Each icon was rendered from source as a 12-frame strip for its hover effect and every state transition, before and after. Drawings with several options (wrench, fingerprint, eye, laptop, coin, car, mountain, paw) were compared side by side at 90 to 120px and 28 to 32px, and in line tone, before choosing.
+- Checked specifically: notebook cover never crosses the rings; save arrow stays inside the label; envelope letter ends on the pocket line and the edge behind it hides, so no outlines cross; translate arrow has no dot before it starts drawing; Wi-Fi connecting and signal searching are clearly dimmer than connected and full (opacity .3, readable on dark); bulb rays leave about 1.4 units of clear space; train lights no longer grow past the body; package tape fades out before it gets short, so no dot is left.
+- Runtime: new class `y` (fixed #F4AF2D) used only by the mountain's sun. Color tone keeps it yellow; line tone and static line SVG use currentColor.
+- `npm test` 14/14 and `tests/browser.mjs` 14/14 after the changes. Changed icons reviewed in light and dark.
+- Second review (8 icons: notebook, eye, sliders, hammer, mouse, ticket, internet, coffee): strips re-rendered from source for every effect and transition; eye candidates (plain pupil, lashed, lid only) compared before choosing; globe turn checked for no blue meridian riding on the outline. `npm test` 14/14 and `tests/browser.mjs` 14/14 again.
+- Third review: notebook open and close sampled every 50ms (no stall, no sliver); globe end sampled before and after the effect ends (identical images) and every 150ms through the turn (no doubled meridians); `rx` animation confirmed in Chrome (computed rx follows the keyframes, including shrinking values). Eye removed; counts updated to 211 icons and 52 with states in tests, README, skill and gallery copy.
+
+## Release 2.0.4 local checks
+
+Date: 2026-10-16. Gallery reels: pressing a tile or its icon opens that icon full screen, like the uxui-prompt reels.
+
+- `npm run build` and `npm test`: 14 of 14 passed.
+- `tests/browser.mjs` against the local build: 14 of 14 passed. New and changed checks: deep link `#download` opens the reel; rail Copy puts the HTML snippet on the clipboard, rail SVG downloads a file, rail Code opens the detail dialog with the reel demo paused behind it; the first Escape closes only the dialog, the second returns to the grid with no hash. A tile click opens the reel on that icon; pressing the big heart steps to `on` and the chips follow; a stateless icon (calendar) replays its effect. With a category filter the reel holds only those icons, arrow and End keys move, Escape and browser Back return to the grid with focus and scroll on the last icon seen. Reduced motion opens the reel without the zoom. At 320, 390, 768 and 1440px the open reel has no horizontal overflow, the icon clears the text, rail and HUD, and every HUD control stays on screen.
+- Visual review: open and close frames confirm the icon grows out of the pressed tile and shrinks back into the tile of the icon last seen; light, dark, English, tablet and phone layouts reviewed. axe-core: no violations with the reel open.
+- Hovering a tile still changes nothing: its demo keeps running.
+
 ## Release 2.0.3 local checks
 
 Date: 2026-10-15. Follow-up on folder, megaphone and doors after the user reviewed 2.0.2.

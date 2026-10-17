@@ -36,10 +36,10 @@ export default group('people', [
   icon({
     id: 'badge', name: ['메달', 'Medal'], color: C.orange,
     keywords: '메달 배지 수상 업적 badge medal award achievement',
-    desc: ['리본에 매달린 메달이 시계추처럼 흔들리고, 가운데 별이 반짝 돕니다.', 'The medal swings from its ribbon like a pendulum and the star spins once.'],
+    desc: ['리본에 매달린 메달이 살짝 흔들리고, 가운데 별이 은은하게 커졌다 돌아옵니다.', 'The medal sways gently from its ribbon and the star swells softly.'],
     svg: '<path class="s" d="M7 2.5h3.5l2 4.5h-3.5zM17 2.5h-3.5l-2 4.5h3.5z"/><g data-part="medal"><circle class="s" cx="12" cy="14.5" r="6"/><path data-part="star" class="f" d="m12 11.1 1.05 2.13 2.35.34-1.7 1.66.4 2.34L12 16.46l-2.1 1.1.4-2.33-1.7-1.66 2.35-.34z"/></g>',
     origins: { medal: [12, 7], star: [12, 14.3] },
-    effect: { medal: fx.wiggle(10, 950), star: fx.keys([{ rotate: 0, scale: 1 }, { rotate: 72, scale: 1.25, offset: 0.55 }, { rotate: 72, scale: 1 }], 700, 'inOut', 150) }
+    effect: { medal: fx.wiggle(6, 1200), star: fx.pop(1.12, 520, 160) }
   }),
   icon({
     id: 'userplus', name: ['사용자 추가', 'Add user'], color: C.green,

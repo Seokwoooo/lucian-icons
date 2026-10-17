@@ -68,21 +68,25 @@ export default group('navigation', [
   icon({
     id: 'sliders', name: ['조절', 'Sliders'], color: C.blue,
     keywords: '조절 슬라이더 옵션 필터 설정 sliders adjust controls tune',
-    desc: ['세 손잡이가 엇갈리며 미끄러졌다가 제자리로 돌아옵니다.', 'Three knobs slide in different directions and return.'],
+    desc: ['손잡이 세 개가 모두 같은 쪽으로 차례로 밀렸다가 천천히 제자리로 돌아옵니다.', 'All three knobs slide the same way, one after another, then ease back.'],
     svg: '<path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/><g data-part="k1"><circle class="f" cx="8" cy="6.5" r="2.25"/><circle cx="8" cy="6.5" r="2.25"/></g><g data-part="k2"><circle class="f" cx="16" cy="12" r="2.25"/><circle cx="16" cy="12" r="2.25"/></g><g data-part="k3"><circle class="f" cx="10" cy="17.5" r="2.25"/><circle cx="10" cy="17.5" r="2.25"/></g>',
-    effect: { k1: fx.nudge([7, 0], 720), k2: fx.nudge([-7, 0], 720, 80), k3: fx.nudge([5, 0], 720, 160) }
+    effect: Object.fromEntries([['k1', 4.5, 0], ['k2', 2.25, 90], ['k3', 3.75, 180]].map(([p, x, delay]) => [p, fx.keys([{ translate: [0, 0], easing: 'inOut' }, { translate: [x, 0], offset: 0.38 }, { translate: [x, 0], offset: 0.55, easing: 'inOut' }, { translate: [0, 0] }], 1500, 'linear', delay)]))
   }),
   icon({
     id: 'filter', name: ['필터', 'Filter'], color: C.cyan,
     keywords: '필터 거르기 조건 깔때기 filter funnel refine narrow',
-    desc: ['깔때기 끝에서 한 방울이 떨어지고, 적용 상태에서는 깔때기가 채워집니다.', 'A drop falls from the spout; the applied state fills the funnel.'],
+    desc: ['알갱이 세 개가 깔때기 안으로 모여 들어가고 끝에서 한 방울만 떨어집니다. 적용 상태에서는 깔때기가 차오릅니다.', 'Three grains gather into the funnel and a single drop falls from the spout; the applied state fills the funnel.'],
     states: { off: ['꺼짐', 'Off'], on: ['적용됨', 'Applied'] },
-    svg: '<path data-part="fill" class="f" d="M3.5 4.5h17l-6.75 8V19l-3.5 1.5v-8z"/><path class="s" d="M3.5 4.5h17l-6.75 8V19l-3.5 1.5v-8z"/><circle data-part="drop" class="f" cx="12" cy="21.5" r="1"/>',
-    origins: { fill: [12, 4.5], drop: [12, 21.5] },
-    poses: { '*': { fill: { scale: [1, 0], opacity: 0 }, drop: { opacity: 0 } }, on: { fill: { scale: 1, opacity: 1 } } },
-    motion: { e: 'bouncy' },
-    transitions: { 'on>off': { fill: { e: 'smooth', d: 240 } } },
-    effect: { drop: fx.keys([{ translate: [0, -6], opacity: 0, scale: 0.4 }, { translate: [0, -4], opacity: 1, scale: 1, offset: 0.3 }, { translate: [0, 1.5], opacity: 1, offset: 0.8 }, { translate: [0, 2], opacity: 0 }], 700, 'in') }
+    svg: '<path data-part="fill" class="f" d="M3.5 4.5h17l-6.75 8V19l-3.5 1.5v-8z"/><path class="s" d="M3.5 4.5h17l-6.75 8V19l-3.5 1.5v-8z"/><circle data-part="p1" class="f" cx="8" cy="7" r="1"/><circle data-part="p2" class="f" cx="12" cy="6.75" r="1"/><circle data-part="p3" class="f" cx="16" cy="7" r="1"/><circle data-part="drop" class="f" cx="12" cy="21.4" r="1"/>',
+    origins: { fill: [12, 9], drop: [12, 21.4], p1: [8, 7], p2: [12, 6.75], p3: [16, 7] },
+    // Shrinking toward a point inside the cone keeps the fill within the outline.
+    poses: { '*': { fill: { scale: 0.5, opacity: 0 }, drop: { opacity: 0 }, p1: { opacity: 0 }, p2: { opacity: 0 }, p3: { opacity: 0 } }, on: { fill: { scale: 1, opacity: 1 } } },
+    motion: { e: 'smooth' },
+    transitions: { 'off>on': { fill: { e: 'smooth', delay: 60 }, drop: fx.keys([{ opacity: 0, translate: [0, -0.6] }, { opacity: 1, translate: [0, 0], offset: 0.35 }, { opacity: 1, translate: [0, 0.9], offset: 0.7 }, { opacity: 0, translate: [0, 1.4] }], 600, 'in', 240) } },
+    effect: {
+      ...Object.fromEntries([['p1', 2.6, 0], ['p2', 0, 120], ['p3', -2.6, 60]].map(([p, x, delay]) => [p, fx.keys([{ opacity: 0, translate: [0, -1.5], scale: 1 }, { opacity: 1, translate: [0, 0], offset: 0.2 }, { opacity: 1, translate: [x, 3.5], scale: 0.8, offset: 0.48 }, { opacity: 0, translate: [x * 1.38, 4.7], scale: 0.5, offset: 0.58 }, { opacity: 0, translate: [0, 0], scale: 1 }], 1200, 'inOut', delay)])),
+      drop: fx.keys([{ opacity: 0, translate: [0, -0.6] }, { opacity: 0, translate: [0, -0.6], offset: 0.62 }, { opacity: 1, translate: [0, 0], offset: 0.72 }, { opacity: 1, translate: [0, 0.8], offset: 0.86, easing: 'in' }, { opacity: 0, translate: [0, 1.4] }], 1320, 'linear')
+    }
   }),
   icon({
     id: 'sort', name: ['정렬', 'Sort'], color: C.indigo,
@@ -98,13 +102,21 @@ export default group('navigation', [
   icon({
     id: 'layout', name: ['레이아웃', 'Layout'], color: C.violet,
     keywords: '레이아웃 사이드바 패널 화면 layout sidebar panel window',
-    desc: ['사이드바가 접히고 펼쳐지며 칸막이가 따라 움직입니다.', 'The sidebar folds and unfolds with the divider following.'],
+    desc: ['사이드바가 좁은 아이콘 막대로 부드럽게 접히고 다시 펼쳐지며, 메뉴 줄이 점으로 줄었다가 늘어납니다.', 'The sidebar folds smoothly into a narrow rail and back, its menu lines shrinking to dots and growing again.'],
     states: { open: ['펼침', 'Open'], collapsed: ['접힘', 'Collapsed'] },
-    svg: '<rect class="s" x="3" y="4" width="18" height="16" rx="2.5"/><path data-part="panel" class="t" d="M5.5 4H9v16H5.5A2.5 2.5 0 0 1 3 17.5v-11A2.5 2.5 0 0 1 5.5 4z"/><path data-part="divider" d="M9 4v16"/><path data-part="items" class="a" d="M5.25 8h1.5M5.25 11h1.5"/>',
-    origins: { panel: [3, 12] },
-    poses: { collapsed: { panel: { scale: [0.45, 1] }, divider: { translate: [-3.3, 0] }, items: { opacity: 0, translate: [-1.5, 0] } } },
-    motion: { e: 'snappy' },
-    effect: { divider: fx.nudge([-2, 0], 520), panel: fx.keys([{ scale: 1 }, { scale: [0.67, 1], offset: 0.38 }, { scale: [1.05, 1], offset: 0.72 }, { scale: 1 }], 520), items: fx.nudge([-1, 0], 520) }
+    // The panel tint sits under the frame and has square corners, so scaling it never shows past the outline.
+    svg: '<path data-part="panel" class="t" d="M4 5h5v14H4z"/><rect class="s" x="3" y="4" width="18" height="16" rx="2.5"/><path data-part="divider" d="M9 4v16"/><path data-part="items" class="a" d="M5 8.25h2M5 11.25h2"/>',
+    origins: { panel: [4, 12] },
+    poses: { collapsed: { panel: { scale: [0.6, 1] }, divider: { translate: [-2, 0] }, items: { draw: 0.01 } } },
+    motion: { e: 'smooth' },
+    transitions: {
+      'open>collapsed': { items: { e: 'out', d: 220 }, panel: { e: 'smooth', delay: 80 }, divider: { e: 'smooth', delay: 80 } },
+      'collapsed>open': { panel: { e: 'smooth' }, divider: { e: 'smooth' }, items: { e: 'out', d: 280, delay: 200 } }
+    },
+    effect: {
+      divider: fx.keys([{ translate: [0, 0] }, { translate: [1.3, 0], offset: 0.4 }, { translate: [1.3, 0], offset: 0.55 }, { translate: [0, 0] }], 900, 'inOut'),
+      panel: fx.keys([{ scale: 1 }, { scale: [1.26, 1], offset: 0.4 }, { scale: [1.26, 1], offset: 0.55 }, { scale: 1 }], 900, 'inOut')
+    }
   }),
   icon({
     id: 'grid', name: ['그리드', 'Grid'], color: C.blue,
@@ -279,12 +291,9 @@ export default group('navigation', [
   icon({
     id: 'login', name: ['로그인', 'Log in'], color: C.blue,
     keywords: '로그인 들어가기 입장 계정 login sign in enter account',
-    desc: ['화살표가 문 안으로 쑥 들어가 사라지고, 왼쪽에서 다시 나타나 제자리로 옵니다.', 'The arrow slides through the door and disappears, then comes back in from the left.'],
+    desc: ['화살표가 문 쪽으로 천천히 들어갔다가 부드럽게 제자리로 돌아옵니다.', 'The arrow eases into the doorway and gently comes back.'],
     svg: '<path data-part="door" class="s" d="M14 3.5h4a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-4"/><g data-part="arrow" class="a"><path d="M3.5 12h11"/><path d="m10.5 8 4 4-4 4"/></g>',
     origins: { door: [17, 12] },
-    effect: {
-      arrow: fx.keys([{ translate: [0, 0], opacity: 0 }, { translate: [-1, 0], opacity: 0, offset: 0.16, easing: 'in' }, { translate: [3.6, 0], opacity: -1, offset: 0.44 }, { translate: [-4, 0], opacity: -1, offset: 0.46, easing: 'out' }, { translate: [0, 0], opacity: 0, offset: 0.82 }, { translate: [0, 0], opacity: 0 }], 960, 'linear'),
-      door: fx.keys([{ translate: [0, 0], scale: 1 }, { translate: [0, 0], scale: 1, offset: 0.34 }, { translate: [0.7, 0], scale: [1.05, 1], offset: 0.44 }, { translate: [0, 0], scale: 1, offset: 0.6 }, { translate: [0, 0], scale: 1 }], 960)
-    }
+    effect: { arrow: fx.keys([{ translate: [0, 0] }, { translate: [2, 0], offset: 0.42 }, { translate: [2, 0], offset: 0.54 }, { translate: [0, 0] }], 1000, 'inOut') }
   })
 ]);

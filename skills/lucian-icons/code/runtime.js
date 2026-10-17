@@ -1,5 +1,5 @@
-/* Lucian Icons v2.0.3 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '2.0.3';
+/* Lucian Icons v2.0.4 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '2.0.4';
 
 // Motion vocabulary ---------------------------------------------------------
 // Springs follow Apple's (duration, bounce) model. The runtime samples each
@@ -34,6 +34,7 @@ function timing(spec = {}, fallback = {}) {
 // Poses -----------------------------------------------------------------------
 // A pose is a small object: rotate (deg), translate [x, y], scale (n or [x, y]),
 // opacity, draw (0..1 of a stroked path). Values are in 24-unit icon space.
+// Effect keyframes may also set an ellipse's rx (absolute, see frame()).
 const REST = { rotate: 0, translate: [0, 0], scale: 1, skewX: 0, skewY: 0, opacity: 1, draw: 1 };
 const PROPS = Object.keys(REST);
 const pair = v => Array.isArray(v) ? v : [v, v];
@@ -50,6 +51,9 @@ function frame(pose) {
   const out = {};
   for (const [k, v] of Object.entries(pose)) {
     if (k === 'offset' || k === 'easing') out[k] = k === 'easing' ? (CURVES[v] || v) : v;
+    // rx reshapes an <ellipse> itself, so its stroke keeps its width. rx cannot be negative, so a
+    // keyframe with rx is absolute (replace) for every property in it, even inside an additive effect.
+    else if (k === 'rx') { out.rx = `${v}px`; out.composite = 'replace'; }
     else if (k === 'skewX' || k === 'skewY') out.transform = `skewX(${pose.skewX ?? 0}deg) skewY(${pose.skewY ?? 0}deg)`;
     else if (PROPS.includes(k)) out[cssProp(k)] = cssValue(k, v);
   }
@@ -109,10 +113,11 @@ function transformAttr(def, part, p) {
 export function staticSVG(def, options = {}) {
   const o = normalize(def, options), line = o.tone === 'line';
   const accent = o.accent || (line ? o.color : def.color || o.color), pose = poseOf(def, o.state, o.progress), draws = drawParts(def);
-  let body = def.svg.replace(/class="([saftk])"/g, (_, c) => ({
+  let body = def.svg.replace(/class="([saftky])"/g, (_, c) => ({
     s: line ? '' : `fill="${accent}" fill-opacity="${TINT}"`,
     t: line ? 'fill="none" stroke="none"' : `fill="${accent}" fill-opacity="${TINT}" stroke="none"`,
-    a: `stroke="${accent}"`, f: `fill="${accent}" stroke="none"`, k: `fill="${o.color}" stroke="none"`
+    a: `stroke="${accent}"`, f: `fill="${accent}" stroke="none"`, k: `fill="${o.color}" stroke="none"`,
+    y: `fill="${line ? o.color : SUN}" stroke="none"`
   })[c]);
   // Parts that are invisible in this state are left out of the static file.
   const hidden = part => pose[part] && (pose[part].opacity === 0 || (draws.has(part) && pose[part].draw === 0) || pose[part].scale === 0);
@@ -129,11 +134,12 @@ export function staticSVG(def, options = {}) {
 }
 
 // Custom element ------------------------------------------------------------------
-const TINT = 0.24;
+const TINT = 0.24, SUN = '#F4AF2D';
 const TRIGGER = 'button,a[href],summary,label,[role=button],[role=link],[role=menuitem],[role=tab],[role=switch],[role=checkbox],[role=option]';
 // Color tone: ink strokes, the icon's own color on tinted surfaces (.s, .t) and
-// on one or two signal details (.a strokes, .f fills). Line tone is monochrome.
-const STYLE = color => `:host{display:inline-block;width:var(--li-size,24px);height:var(--li-size,24px);flex:none;line-height:0;vertical-align:middle;contain:layout style;--_c:var(--li-accent,${color});--_t:var(--li-tint,${TINT})}:host([tone=line]){--_c:var(--li-accent,currentColor);--_t:0}svg{display:block;width:100%;height:100%;overflow:visible;stroke-width:var(--li-weight,1.75)}[data-part]{transform-box:view-box}.s{fill:var(--_c);fill-opacity:var(--_t)}.t{fill:var(--_c);fill-opacity:var(--_t);stroke:none}.a{stroke:var(--_c)}.f{fill:var(--_c);stroke:none}.k{fill:currentColor;stroke:none}`;
+// on one or two signal details (.a strokes, .f fills). .y is a fixed sun yellow
+// for the rare detail that must not take the icon's color. Line tone is monochrome.
+const STYLE = color => `:host{display:inline-block;width:var(--li-size,24px);height:var(--li-size,24px);flex:none;line-height:0;vertical-align:middle;contain:layout style;--_c:var(--li-accent,${color});--_t:var(--li-tint,${TINT})}:host([tone=line]){--_c:var(--li-accent,currentColor);--_t:0}svg{display:block;width:100%;height:100%;overflow:visible;stroke-width:var(--li-weight,1.75)}[data-part]{transform-box:view-box}.s{fill:var(--_c);fill-opacity:var(--_t)}.t{fill:var(--_c);fill-opacity:var(--_t);stroke:none}.a{stroke:var(--_c)}.f{fill:var(--_c);stroke:none}.k{fill:currentColor;stroke:none}.y{fill:${SUN};stroke:none}:host([tone=line]) .y{fill:currentColor}`;
 const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 export function defineIcon(def) {
   const tag = `lucian-${def.id}`;
