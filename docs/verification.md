@@ -2,6 +2,17 @@
 
 Product path `/icons/`.
 
+## Release 2.0.5 gallery redesign
+
+Date: 2026-10-18 (local review on branch `gallery-keys`); released as 2.0.5 on 2026-10-19 together with the calmer heart.
+
+- Before release (2026-10-19, after the version bump and archiving the 2.0.4 ZIPs): `npm run build` 884 files, `npm test` 14 of 14, `tests/browser.mjs` 17 of 17 in Chrome.
+- `npm run build` and `npm test`: 14 of 14 passed.
+- `tests/browser.mjs` rewritten for the new gallery, 17 of 17 passed in Chrome and 17 of 17 in Playwright WebKit 26.6 (Safari's engine; clipboard reads stubbed there because WebKit automation cannot grant clipboard access). Checks: 211 icons in 13 category tables, five per row, inspector closed until a click; visible icons demonstrate themselves with the cursor; the hero card runs the cursor demo, a featured pick switches the icon and a click steps its state; hovering a running icon changes nothing; category, search, `/` and empty state; language, tone and theme persist; at 1360px a click steps the icon and slides in the docked inspector, still five per row, the inspector and the icon stay in sync both ways, close button and Escape close it; reel deep link, rail copy, SVG and code, the inspector sheet over the reel with states, code tabs, copy and downloads, first Escape closes only the sheet; at 900px a click opens the reel and the big icon steps or replays; the reel follows the filter, Escape and Back land on the last icon seen (also in WebKit after the scroll restoration fix); arrow keys cross categories and keep the column; runtime interruption; reduced motion; no horizontal overflow at 320, 390, 768 and 1440px with the large icon clear of the text, rail and HUD; guide demos.
+- No horizontal overflow on the gallery or the guide at 320, 360, 390, 414, 600, 768, 900, 1024, 1180, 1280 and 1440px.
+- axe-core 4.10.2 (WCAG 2.1 A/AA and best practice): no violations on the grid (light and dark at 1440, light at 390), with the inspector open, the reel (dark 390), the inspector sheet (light 900) and the guide (light and dark).
+- Visual review in Chrome and WebKit: light, dark, phone, tablet and desktop; no page errors. Simulating the stale-cache case in WebKit (2.0.4 CSS and JS with the new HTML) reproduced the broken page the user saw.
+
 ## Release 2.0.4 icon review
 
 Date: 2026-10-18. The user listed 33 icons (numbers 14, 19, 25, 37, 43, 44, 54, 55, 57, 77, 90, 92, 93, 113, 115, 118, 120, 123, 128, 137, 142, 149, 150, 158, 163, 170, 175, 178, 180, 182, 183, 202, 211).

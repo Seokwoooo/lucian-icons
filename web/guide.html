@@ -12,6 +12,9 @@
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400..700&display=swap">
 <link rel="stylesheet" href="./gallery.css">
 <link rel="stylesheet" href="./guide.css">
 <script>
@@ -28,29 +31,29 @@ r.setAttribute('lang',l)})();
 <body>
 <a class="g-skip" href="#doc"><span class="ko">본문으로 건너뛰기</span><span class="en">Skip to content</span></a>
 
-<header class="g-head">
-  <div class="g-head-line">
+<header class="d-header">
+  <div class="g-top">
     <a class="g-brand" href="./">
       <svg class="g-logo" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><g transform="translate(6 9) scale(.85)"><path d="M20 72C43 55 68 35 68 24C68 10 47 11 45 27L40 66C38 80 48 87 61 80L82 65" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
       <span class="g-brand-t">lucianLabs</span>
       <span class="g-brand-s">Icons</span>
     </a>
-    <div class="g-head-r">
-      <a class="g-link" href="./"><span class="ko">← 아이콘 목록</span><span class="en">← All icons</span></a>
-      <button class="g-tool g-theme" type="button" id="theme"><lucian-sun class="g-theme-sun" tone="line" size="20"></lucian-sun><lucian-moon class="g-theme-moon" tone="line" size="20"></lucian-moon></button>
+    <div class="g-top-r">
+      <a class="g-link g-link--back" href="./"><span class="ko">← 아이콘 목록</span><span class="en">← All icons</span></a>
+      <button class="g-tool g-theme" type="button" id="theme"><lucian-sun class="g-theme-sun" tone="line" size="19"></lucian-sun><lucian-moon class="g-theme-moon" tone="line" size="19"></lucian-moon></button>
       <div class="g-lang" role="group" aria-label="Language">
-        <span class="g-lang-pill" aria-hidden="true"></span>
-        <lucian-globe class="g-lang-ic" tone="line" animate="none" aria-hidden="true"></lucian-globe>
         <button class="g-lang-b" type="button" data-lang="ko" lang="ko" aria-label="한국어">KO</button>
         <button class="g-lang-b" type="button" data-lang="en" lang="en" aria-label="English">EN</button>
       </div>
     </div>
   </div>
+  <div class="g-wrap">
   <div class="d-hero">
     <p class="d-kicker">API · v{{VERSION}}</p>
     <h1 class="d-title"><span class="ko">아이콘을 앱의 실제 상태에 연결하기</span><span class="en">Wire icons to your app’s real state</span></h1>
     <p class="d-lead ko">아이콘 {{ICON_COUNT}}개는 모두 같은 커스텀 요소 API를 씁니다. 스크립트 한 줄로 불러오고, 속성으로 꾸미고, 앱의 상태가 바뀔 때 <code>setState()</code>를 부르면 됩니다. 의존성은 없고 MIT 라이선스예요.</p>
     <p class="d-lead en">All {{ICON_COUNT}} icons share one custom element API. Load them with one script, style them with attributes, and call <code>setState()</code> when your app’s state changes. No dependencies, MIT licensed.</p>
+  </div>
   </div>
 </header>
 
@@ -263,7 +266,7 @@ vue({ template: { compilerOptions: { isCustomElement: tag =&gt; tag.startsWith('
       <p class="en">With the skill installed, Claude Code and Codex search the catalog, pick the right icon and wire it to your existing buttons and state. It works offline and reads only the code it picks.</p>
       <p><a class="g-btn g-btn--pri" href="./downloads/lucian-icons-skill-{{VERSION}}.zip" download><lucian-download tone="line" size="17"></lucian-download><span class="ko">스킬 받기 (ZIP)</span><span class="en">Download skill (ZIP)</span></a></p>
       <div class="d-table" tabindex="0"><table>
-        <thead><tr><th></th><th><span class="ko">프로젝트</span><span class="en">Project</span></th><th><span class="ko">사용자 전체</span><span class="en">User</span></th><th><span class="ko">부르기</span><span class="en">Invoke</span></th></tr></thead>
+        <thead><tr><th><span class="g-sr"><span class="ko">도구</span><span class="en">Tool</span></span></th><th><span class="ko">프로젝트</span><span class="en">Project</span></th><th><span class="ko">사용자 전체</span><span class="en">User</span></th><th><span class="ko">부르기</span><span class="en">Invoke</span></th></tr></thead>
         <tbody>
           <tr><td><b>Claude Code</b></td><td><code>.claude/skills/lucian-icons/</code></td><td><code>~/.claude/skills/lucian-icons/</code></td><td><code>/lucian-icons</code></td></tr>
           <tr><td><b>Codex</b></td><td><code>.agents/skills/lucian-icons/</code></td><td><code>~/.agents/skills/lucian-icons/</code></td><td><code>$lucian-icons</code></td></tr>
@@ -306,14 +309,14 @@ node &lt;skill-dir&gt;/scripts/lucian-icons.mjs get download heart --out ./src/v
 
     <section id="license">
       <h2><span class="d-n">13</span><span class="ko">라이선스</span><span class="en">License</span></h2>
-      <p class="ko">코드와 아이콘 모두 <a href="./LICENSE">MIT © 2026 Lucian</a>입니다. 상업적으로 쓰고 고쳐도 되며, 배포할 때 저작권 고지만 남겨 주세요. 아이콘은 모두 직접 그린 오리지널이고, 사이트 글꼴 Pretendard는 SIL Open Font License를 따릅니다(<a href="./THIRD_PARTY_NOTICES.txt">외부 자산 고지</a>).</p>
-      <p class="en">Code and icons are <a href="./LICENSE">MIT © 2026 Lucian</a>. Use and modify them commercially; keep the copyright notice when you redistribute. Every icon is an original drawing. The site font Pretendard is under the SIL Open Font License (<a href="./THIRD_PARTY_NOTICES.txt">notices</a>).</p>
+      <p class="ko">코드와 아이콘 모두 <a href="./LICENSE">MIT © 2026 Lucian</a>입니다. 상업적으로 쓰고 고쳐도 되며, 배포할 때 저작권 고지만 남겨 주세요. 아이콘은 모두 직접 그린 오리지널이고, 사이트 글꼴 Pretendard와 Geist Mono는 SIL Open Font License를 따릅니다(<a href="./THIRD_PARTY_NOTICES.txt">외부 자산 고지</a>).</p>
+      <p class="en">Code and icons are <a href="./LICENSE">MIT © 2026 Lucian</a>. Use and modify them commercially; keep the copyright notice when you redistribute. Every icon is an original drawing. The site fonts Pretendard and Geist Mono are under the SIL Open Font License (<a href="./THIRD_PARTY_NOTICES.txt">notices</a>).</p>
     </section>
   </main>
 </div>
 
 <footer class="g-foot">
-  <div><a class="g-brand" href="/"><svg class="g-logo" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><g transform="translate(6 9) scale(.85)"><path d="M20 72C43 55 68 35 68 24C68 10 47 11 45 27L40 66C38 80 48 87 61 80L82 65" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span class="g-brand-t">lucianLabs</span></a><p><span class="ko">작은 움직임을 만드는 실험실.</span><span class="en">A lab for small motions.</span></p></div>
+  <div><a class="g-brand" href="/"><svg class="g-logo" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><g transform="translate(6 9) scale(.85)"><path d="M20 72C43 55 68 35 68 24C68 10 47 11 45 27L40 66C38 80 48 87 61 80L82 65" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span class="g-brand-t">lucianLabs</span><span class="g-brand-s">Icons</span></a><p><span class="ko">작은 움직임을 만드는 실험실.</span><span class="en">A lab for small motions.</span></p></div>
   <nav aria-label="Footer"><a href="./">Lucian Icons</a><a href="/uxui-prompt/">Lucian UX/UI Prompt ↗</a><a href="./LICENSE">MIT License</a><a href="./downloads/lucian-icons-source-{{VERSION}}.zip" download><span class="ko">소스 받기</span><span class="en">Source</span></a></nav>
   <p class="g-copy">© 2026 Lucian · v{{VERSION}}</p>
 </footer>

@@ -1,6 +1,6 @@
 # Install lucian-icons
 
-Download https://lucianlabs.dev/icons/downloads/lucian-icons-skill-2.0.4.zip and unzip it. The archive contains one `lucian-icons` folder with SKILL.md, CLI, catalog, per-icon code, examples and license. Node.js 18+ is required for the CLI. No package or global installation command is needed.
+Download https://lucianlabs.dev/icons/downloads/lucian-icons-skill-2.0.5.zip and unzip it. The archive contains one `lucian-icons` folder with SKILL.md, CLI, catalog, per-icon code, examples and license. Node.js 18+ is required for the CLI. No package or global installation command is needed.
 
 Claude Code: place that folder in `.claude/skills/lucian-icons/` inside a project, or `~/.claude/skills/lucian-icons/` for your user. Invoke `/lucian-icons` followed by your request. Natural-language requests naming the skill also work.
 

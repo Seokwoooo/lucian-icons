@@ -1,6 +1,6 @@
 Lucian Icons: original code and SVG artwork, MIT License, Copyright (c) 2026 Lucian.
-Design reference: Lucian UX/UI Prompt, MIT License, Copyright (c) 2026 Seokwoooo.
-The color values and typography direction follow that project. No third-party icon package is included.
+Design: the gallery's specimen-sheet design is original to Lucian Icons. Its autoplay cursor demo and reels follow
+Lucian UX/UI Prompt, MIT License, Copyright (c) 2026 Seokwoooo. No third-party icon package is included.
 
 Pretendard Variable v1.3.9
 Copyright (c) 2021, Kil Hyung-jin (https://github.com/orioncactus/pretendard)
@@ -9,5 +9,12 @@ The gallery requests this font through jsDelivr. It is not an analytics script.
 Source: https://github.com/orioncactus/pretendard
 License: https://github.com/orioncactus/pretendard/blob/main/LICENSE
 The full license is included in ./font-OFL.txt.
+
+Geist Mono
+Copyright (c) 2023 Vercel, in collaboration with basement.studio
+Licensed under the SIL Open Font License, Version 1.1.
+The gallery requests this font through Google Fonts. It is not an analytics script.
+Source: https://github.com/vercel/geist-font
+License: https://github.com/vercel/geist-font/blob/main/LICENSE.TXT
 
 System fonts are provided by the visitor's operating system and are not redistributed.

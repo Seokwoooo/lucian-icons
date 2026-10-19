@@ -29,14 +29,12 @@ themeBtn.addEventListener('click', () => {
 darkQuery.addEventListener?.('change', paintTheme);
 
 /* Language */
-const langBox = $('.g-lang'), langPill = $('.g-lang-pill', langBox);
+const langBox = $('.g-lang');
 function localize() {
   html.lang = lang;
   document.title = w('title');
   $$('.g-lang-b').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   $$('[data-copy]').forEach(b => b.setAttribute('aria-label', w('copy')));
-  const b = $(`.g-lang-b[data-lang="${lang}"]`, langBox);
-  requestAnimationFrame(() => { langPill.style.setProperty('--x', b.offsetLeft + 'px'); langPill.style.setProperty('--w', b.offsetWidth + 'px'); });
   paintTheme();
 }
 langBox.addEventListener('click', e => {

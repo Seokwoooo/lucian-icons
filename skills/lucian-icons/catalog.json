@@ -1,7 +1,7 @@
 {
-  "version": "2.0.4",
+  "version": "2.0.5",
   "base": "https://lucianlabs.dev/icons/",
-  "runtimeSha256": "2775306c2cd9b56d55b86e7f3ead3d8d760023c951aaeaa2c5a600ebb63ffcc7",
+  "runtimeSha256": "5e4b55b7f12d80f98f968981944f3a33839987423f8407c100377dc7229d0f93",
   "categories": {
     "files": {
       "ko": "파일·문서",
@@ -72,7 +72,7 @@
   "icons": [
     {
       "id": "trash",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 1,
       "name": {
         "ko": "쓰레기통",
@@ -110,12 +110,12 @@
         }
       },
       "progress": false,
-      "sha256": "06b8e2d5c5123917ff01b40a7e333f43ff800c18aa82f292eceb2bbee65cdca8",
+      "sha256": "dd8b3310de2d5510e060ce08f76f4ffc097ce8bad6b255e883a6ea725f00e6e2",
       "codePath": "modules/trash.js"
     },
     {
       "id": "folder",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 2,
       "name": {
         "ko": "폴더",
@@ -153,12 +153,12 @@
         }
       },
       "progress": false,
-      "sha256": "4f3d2cbfd963ca3bc78998e29fc70e695839416e44ad32874971da838e66c39d",
+      "sha256": "3eeeb30170affa050153f7bea66393a6eea2fcb0f38a1e865c09594c64b8a753",
       "codePath": "modules/folder.js"
     },
     {
       "id": "download",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 3,
       "name": {
         "ko": "다운로드",
@@ -204,12 +204,12 @@
         }
       },
       "progress": true,
-      "sha256": "4ce581ab02c4103590850c263364fb2099753e53ade8af40cb7b8f01bb3afa6b",
+      "sha256": "dbc4212dec067ceb2aaad37bccb391930cdb37d94373ff4cc66f5aef3de2e048",
       "codePath": "modules/download.js"
     },
     {
       "id": "upload",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 4,
       "name": {
         "ko": "업로드",
@@ -255,12 +255,12 @@
         }
       },
       "progress": true,
-      "sha256": "3637c42d23c83cd2c3df5f3874b0e28503d8591fd976f5fe44767ddbcc825f19",
+      "sha256": "3965d0371641f66639528bdd31c52b3f47fb25cb72dad27765eb14b3931bc5ad",
       "codePath": "modules/upload.js"
     },
     {
       "id": "document",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 5,
       "name": {
         "ko": "문서",
@@ -284,12 +284,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "0db5f25e349861cb4fa137a820263bf8108d521959e3e9f389c4a1d15e258cdb",
+      "sha256": "0d5d26a3862232b6f2c8f1a00b8045c0e0e7f4ccf7fbc546a347da3c8df2cc27",
       "codePath": "modules/document.js"
     },
     {
       "id": "clipboard",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 6,
       "name": {
         "ko": "클립보드",
@@ -329,12 +329,12 @@
         }
       },
       "progress": false,
-      "sha256": "4a801a6ce9f75c44375bbfe40f15c904ba015e2993e07c3ab74a44c863812cea",
+      "sha256": "1bd3222fd8fa6244fb049b5116ebfcaa48971faec1b0bedd154e66048018850a",
       "codePath": "modules/clipboard.js"
     },
     {
       "id": "archive",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 7,
       "name": {
         "ko": "보관함",
@@ -372,12 +372,12 @@
         }
       },
       "progress": false,
-      "sha256": "57e324ce1bd04570e09c0e7c891c5c62378bbf74c3dcff2fb4cae5aa1362046c",
+      "sha256": "f1ce3907a4ca344a521c278567a81031bc4f178986c6317d295a0c94f3e49c62",
       "codePath": "modules/archive.js"
     },
     {
       "id": "inbox",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 8,
       "name": {
         "ko": "받은편지함",
@@ -415,12 +415,12 @@
         }
       },
       "progress": false,
-      "sha256": "c659cfa885dcc13f9fd092983de3789435fd3c2695a221a530e726c64450db5c",
+      "sha256": "224c17e555a29d77e5f6395a055dcb6a7e08299e2ff42362447863cad7b89c89",
       "codePath": "modules/inbox.js"
     },
     {
       "id": "copy",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 9,
       "name": {
         "ko": "복사",
@@ -458,12 +458,12 @@
         }
       },
       "progress": false,
-      "sha256": "1d7b49dcb3a6b8a6a0971f6fc5057bdfa50d432d51a26d602855c664fe135d46",
+      "sha256": "b50570e86efd1d4363c8ae19c7745ea016b6e4d25829bdda892898c7df0d70ad",
       "codePath": "modules/copy.js"
     },
     {
       "id": "attachment",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 10,
       "name": {
         "ko": "첨부",
@@ -487,12 +487,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "0f872c84f837c1bfdf1b3dcf1d59bc91b78302b560f7336e0a52a557715d9766",
+      "sha256": "47d996f8751d20a7e71a44e806838049471eb4d58b0c539154c64c6fd738eb2a",
       "codePath": "modules/attachment.js"
     },
     {
       "id": "link",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 11,
       "name": {
         "ko": "링크",
@@ -531,12 +531,12 @@
         }
       },
       "progress": false,
-      "sha256": "e9b260a4366f4ba37ccab5b2f022f6b68316f7b32665e2aaabf4771b8a4f7ad4",
+      "sha256": "8e5ac81b1c6eacc50b735c42a8c4ef33e6de38a2829313fae5dfd64d94a10fa2",
       "codePath": "modules/link.js"
     },
     {
       "id": "bookmark",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 12,
       "name": {
         "ko": "북마크",
@@ -574,12 +574,12 @@
         }
       },
       "progress": false,
-      "sha256": "5508cd0a521dd3f8df40fe48ea24aaedd2bd3d4637658dca7e721ab22d9d1c30",
+      "sha256": "42cdc61113fb7f0f603c4e3daf24aef049cc8e69eb06d09c185aa53d719566be",
       "codePath": "modules/bookmark.js"
     },
     {
       "id": "book",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 13,
       "name": {
         "ko": "책",
@@ -605,12 +605,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "287274afb595245786676cd5b029e48434d200dbbf096dd47e1ebbfaae9000c7",
+      "sha256": "ac8e122e414ecea3b3bed59fbe32f22df9a598453fd5df29225d1dc7a8f5fc04",
       "codePath": "modules/book.js"
     },
     {
       "id": "notebook",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 14,
       "name": {
         "ko": "노트",
@@ -635,12 +635,12 @@
       "color": "#98CB46",
       "states": [],
       "progress": false,
-      "sha256": "36e8e1d5b3413edd1fb8b3612a2d07b01d7286364c40c017def7b875eecd824d",
+      "sha256": "9e4e94127a9d14256acab4e4e9f3ff7985c7f7c3d2efe218156a196a50816c91",
       "codePath": "modules/notebook.js"
     },
     {
       "id": "tag",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 15,
       "name": {
         "ko": "태그",
@@ -664,12 +664,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "3dac10cda56957d8052b19712c86cdac160b8b4e0df1e5ca7cb3244387b19948",
+      "sha256": "28ba1da9476c428ec09242a4061964ec060c5925a0fa5e77b37ec194a47204a2",
       "codePath": "modules/tag.js"
     },
     {
       "id": "filezip",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 16,
       "name": {
         "ko": "압축 파일",
@@ -693,12 +693,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "0e3c2ca1d04bc0a59b469be578c9446514d5b82058b45317929e29d0f4ebbc23",
+      "sha256": "25809554063c0242131ea4741a4981d16497b2e6442b161633580874c3714480",
       "codePath": "modules/filezip.js"
     },
     {
       "id": "receipt",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 17,
       "name": {
         "ko": "영수증",
@@ -723,12 +723,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "80e4cc9aeae12298a221065d12f5ba0d114ea02d8ef67fdda21343a16d8d23fa",
+      "sha256": "5a61fe2a588cff965a3edb8b4f6a436ef04bea8759361dacbe71fd15184041d4",
       "codePath": "modules/receipt.js"
     },
     {
       "id": "cloud",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 18,
       "name": {
         "ko": "클라우드",
@@ -769,12 +769,12 @@
         }
       },
       "progress": false,
-      "sha256": "961caf810084758681e21a13eed40eebf9c94f0a8a0d635d8f2df1b571c9d6f6",
+      "sha256": "9fbe6ed48492bc997416ce692aacec735d0a3cc3674e9c49da099475ee00cbea",
       "codePath": "modules/cloud.js"
     },
     {
       "id": "save",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 19,
       "name": {
         "ko": "저장",
@@ -812,12 +812,12 @@
         }
       },
       "progress": false,
-      "sha256": "2df9316d2d478c408bf1a4dc30aeed5b5168a89effbd6ce2836a5bbf3f1d2ac9",
+      "sha256": "a96d60183481c96af676edeb100195244d811f22af9d2c19e035cde1f42deab1",
       "codePath": "modules/save.js"
     },
     {
       "id": "newspaper",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 20,
       "name": {
         "ko": "뉴스",
@@ -841,12 +841,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "da97a1a55c275b4df6bda8ead0279ec8ea423aa09071d77a12920ce2dfe4cef8",
+      "sha256": "567b294b7252edaf6fa286699b235351db5e725f3dca53869ce4322198dd2bee",
       "codePath": "modules/newspaper.js"
     },
     {
       "id": "stickynote",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 21,
       "name": {
         "ko": "메모지",
@@ -870,12 +870,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "9214de8950ffe3cb33ca21bb9c94b41769d0d6fa0a9af00042b75b14f6328e80",
+      "sha256": "bc351339e25365e5276d30764eec028ceab5e0c5e98157add4823740b8afe61f",
       "codePath": "modules/stickynote.js"
     },
     {
       "id": "history",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 22,
       "name": {
         "ko": "기록",
@@ -899,12 +899,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "89fb4246a32167565c3b8dc4527ea946091526c4f6b227f8aba927244bb2df43",
+      "sha256": "a5c08463912eb1d7ce8ebb8e8c75fd5e44259a04cfb4781e234f73ebd53810f2",
       "codePath": "modules/history.js"
     },
     {
       "id": "qrcode",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 23,
       "name": {
         "ko": "QR 코드",
@@ -930,12 +930,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "9f778f7e8a3954011f74717bcc23ed6360461ab1ace93fa63b2fd175f309bd44",
+      "sha256": "05d9c27dc232f90093a65089f5e5df87890be34cb000a838dd3ea7431fcfed98",
       "codePath": "modules/qrcode.js"
     },
     {
       "id": "signature",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 24,
       "name": {
         "ko": "서명",
@@ -959,12 +959,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "e91dd68c0c0b938741f2101435040d942e24427ec5b6da9ff63e04cad065c49c",
+      "sha256": "72c678224aca61c935d24f75f83550f1b2738d0a3636dec597d7c9aafe530818",
       "codePath": "modules/signature.js"
     },
     {
       "id": "envelope",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 25,
       "name": {
         "ko": "봉투",
@@ -1003,12 +1003,12 @@
         }
       },
       "progress": false,
-      "sha256": "0db7a13cf91a7c489cb13c46fedcbb4ee491070e3e31ad4d277803387f5e99fe",
+      "sha256": "391aecbbeb9f04bd62aa8e68259d7f201b62a598d4ac5877bfaea718ea493166",
       "codePath": "modules/envelope.js"
     },
     {
       "id": "bell",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 26,
       "name": {
         "ko": "알림",
@@ -1046,12 +1046,12 @@
         }
       },
       "progress": false,
-      "sha256": "68a7d55ae4ee5c560a9f9d6f2497876284feac7347b7e5a58060db8141c80bd2",
+      "sha256": "3c7bb60e416208b4ee5f8ee905d95365fdf9baa93061e50094b74a0094ee6fbe",
       "codePath": "modules/bell.js"
     },
     {
       "id": "chat",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 27,
       "name": {
         "ko": "대화",
@@ -1089,12 +1089,12 @@
         }
       },
       "progress": false,
-      "sha256": "ac013f42667187903f92e38c20bff7b290ed7272ce205c614b60ff457940a117",
+      "sha256": "9070151d2139631f0a0369d4383e7d5f438ebe7368c904d913c3f6ba1ebcdfe6",
       "codePath": "modules/chat.js"
     },
     {
       "id": "messages",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 28,
       "name": {
         "ko": "메시지",
@@ -1118,12 +1118,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "4d06136f71ff47b7f82a1af7e14500cd67fa06e6edb985b0098f0a2d8bd2a2d4",
+      "sha256": "52a396a6e9fde283571369a10d8f668924b1319862c759c4a3603788ae7a4986",
       "codePath": "modules/messages.js"
     },
     {
       "id": "send",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 29,
       "name": {
         "ko": "보내기",
@@ -1147,12 +1147,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "e1457ff22d3f1647941f0e02764cc35e2e144ae1c28a12c6789905a9343d7220",
+      "sha256": "83f41c9b5a8796ecd369ef0d893fcce2c11fd2977c37978b79c066e64de2b7cc",
       "codePath": "modules/send.js"
     },
     {
       "id": "phone",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 30,
       "name": {
         "ko": "전화",
@@ -1190,12 +1190,12 @@
         }
       },
       "progress": false,
-      "sha256": "4dece39efc6f02242201ee16fc39c18e65667d1900cc4225d4772d7cab8e33c3",
+      "sha256": "4bc8495fa23ee4304aa1cda0f989caccba1992a7d6c4c3ace5ec8c67d0e88bd5",
       "codePath": "modules/phone.js"
     },
     {
       "id": "videochat",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 31,
       "name": {
         "ko": "영상 통화",
@@ -1234,12 +1234,12 @@
         }
       },
       "progress": false,
-      "sha256": "12dcc4cdce90fd07b8d530df7385cc1779d939ffa72c51b9a82f6fe86883811f",
+      "sha256": "deb6a8acecfaa407112a20f622d762870bb42b85b26f6ed1e243624276bbdd4a",
       "codePath": "modules/videochat.js"
     },
     {
       "id": "megaphone",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 32,
       "name": {
         "ko": "확성기",
@@ -1263,12 +1263,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "d20fe6b7edbde69f22780f9947bb54b869aaca10036cc53f1bcbedb312ccdaf2",
+      "sha256": "905def18a21ff075732b292201f5e9926b5821a32edb1c9557aeb79c68688396",
       "codePath": "modules/megaphone.js"
     },
     {
       "id": "at",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 33,
       "name": {
         "ko": "멘션",
@@ -1292,12 +1292,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "1802d4b765228454455ee099b6a3607f9dc36b572b7cf873d0e9b483a2f1e674",
+      "sha256": "57543e4861d07ae6d4267a27713c628253fd51edb0743158149573a25fa002c0",
       "codePath": "modules/at.js"
     },
     {
       "id": "hashtag",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 34,
       "name": {
         "ko": "해시태그",
@@ -1321,12 +1321,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "0684c766c37686df2985657943d294d9b19ccbcbe0a803fc43f7b2a06c047364",
+      "sha256": "9db1fbabc7c88f4187b4688ed8601ad1b0681d0d932aa3e4939b9f1de1ba7739",
       "codePath": "modules/hashtag.js"
     },
     {
       "id": "rss",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 35,
       "name": {
         "ko": "구독 피드",
@@ -1350,12 +1350,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "0b0ccec59afb1d9cf0306514e8531d9b4f123da1532dec7a873283a3400ddce0",
+      "sha256": "0bfdd825121db4045ae7755c71f1b8554abca6ab98e7ada66c68a4b73e03110c",
       "codePath": "modules/rss.js"
     },
     {
       "id": "quote",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 36,
       "name": {
         "ko": "인용",
@@ -1378,12 +1378,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "cec75ad1ed372e6d9a7ceb9775c4f7c1165545297fc5ef344021a6dfabb27456",
+      "sha256": "76f8bd689071494b03876b2106cb9146a6d8e43fb221ffa883e581118825af87",
       "codePath": "modules/quote.js"
     },
     {
       "id": "translate",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 37,
       "name": {
         "ko": "번역",
@@ -1407,12 +1407,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "ccb0ba003fd85025c3af41188db151d9213ccaaf858d04ddca81eb271efc0e62",
+      "sha256": "90536d91b543a482f62e91b3547185681f9577b215800574e513ade4f7c54f71",
       "codePath": "modules/translate.js"
     },
     {
       "id": "smile",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 38,
       "name": {
         "ko": "미소",
@@ -1438,12 +1438,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "d3b711bfb90fcb90880d66ec0c7cef5a5dec4d138de334b8e4af4b2e5c10c675",
+      "sha256": "31cf99b9ccb05b0620884b7c69549c9bd56f89d52790175bde77b33a1cde2e8f",
       "codePath": "modules/smile.js"
     },
     {
       "id": "thumbsup",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 39,
       "name": {
         "ko": "좋아요",
@@ -1482,12 +1482,12 @@
         }
       },
       "progress": false,
-      "sha256": "87c120c26de60e4463efcfb07726fdc91572b112a75cc94d4d14b869d8d538b0",
+      "sha256": "69d7fcf7caa3217d5c4d57368513417f933a17f11b1f865bba04d14a3118cc16",
       "codePath": "modules/thumbsup.js"
     },
     {
       "id": "lock",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 40,
       "name": {
         "ko": "자물쇠",
@@ -1526,12 +1526,12 @@
         }
       },
       "progress": false,
-      "sha256": "a480e68171f810ce5350d83d3f0fc67505ec00398bee1ab834fe914846c287f3",
+      "sha256": "32411ee0bfd4324adf2c056aea12ef58190a11b3dabe2f6c1e0593c3afcce760",
       "codePath": "modules/lock.js"
     },
     {
       "id": "shield",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 41,
       "name": {
         "ko": "방패",
@@ -1571,12 +1571,12 @@
         }
       },
       "progress": false,
-      "sha256": "19a5412df9a021d6405732636e0303173e557137436a00ba77293861b77f63b7",
+      "sha256": "3d846f0c89eca36f4f6fcf138a34462537f34388b57946fc1a3a4e3f14b543eb",
       "codePath": "modules/shield.js"
     },
     {
       "id": "key",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 42,
       "name": {
         "ko": "열쇠",
@@ -1601,12 +1601,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "6e85137968983dd1d4de4a9620ba2ec4bbc1dc090a1c29954b0933c97b600e6a",
+      "sha256": "2ec847eefacf6138638f2203c4a0550961a2bdf576088285f9371f2ba105b12d",
       "codePath": "modules/key.js"
     },
     {
       "id": "fingerprint",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 43,
       "name": {
         "ko": "지문",
@@ -1645,12 +1645,12 @@
         }
       },
       "progress": false,
-      "sha256": "1d2e07d12d98d08a5d41b933857a083c90317b92e2e53b91631d17c61785087c",
+      "sha256": "8ea44b32ed5b96a3039fc3761e8d16b577afc63766870a119cfb58a7455969a7",
       "codePath": "modules/fingerprint.js"
     },
     {
       "id": "scanface",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 44,
       "name": {
         "ko": "얼굴 인식",
@@ -1676,12 +1676,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "a048ff81967283f7c0e5e9ba7d65f3c7fa0dab46bc7acc11bbde1c2bdaddd16b",
+      "sha256": "e3bee52a50e55a1114d3652f6c56b8d85f17e08b57baaafaa15be32e0c26cb64",
       "codePath": "modules/scanface.js"
     },
     {
       "id": "password",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 45,
       "name": {
         "ko": "비밀번호",
@@ -1705,12 +1705,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "f040f5002906f66d9a50dca598bedbf0fe513cb30619e8b406966f2e23544560",
+      "sha256": "d1ce505608f2a70a74100ee823e9156e1113f663a3e6fb3ed485aa069d2531d5",
       "codePath": "modules/password.js"
     },
     {
       "id": "verified",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 46,
       "name": {
         "ko": "인증됨",
@@ -1735,12 +1735,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "4f07ef6b8f124ed4ba039da5599aaf607c6eda62bbcddfd1d486914850c244fa",
+      "sha256": "acf399fea9e82aad098b9035871e57ad93dffb2dea80a1c53b5e70b83a160092",
       "codePath": "modules/verified.js"
     },
     {
       "id": "siren",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 47,
       "name": {
         "ko": "경광등",
@@ -1778,12 +1778,12 @@
         }
       },
       "progress": false,
-      "sha256": "fbcb55f58aaed7633ca6f647d8c49640383c2f0a42d0c855ae72159c2ef0fb16",
+      "sha256": "57ce4afff8d5f02abcb04da21734058ac7f3fd68a8b81118ce41160f47138573",
       "codePath": "modules/siren.js"
     },
     {
       "id": "search",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 48,
       "name": {
         "ko": "검색",
@@ -1822,12 +1822,12 @@
         }
       },
       "progress": false,
-      "sha256": "fcdc9f5a5524d7b75f77b7519d4689913ae186ca27829ac802007d635ad870e2",
+      "sha256": "e8125ac269bb7a4fc07d2ca377c4a9138d7f99aad0a87462b0595d63bbe95e10",
       "codePath": "modules/search.js"
     },
     {
       "id": "cursor",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 49,
       "name": {
         "ko": "커서",
@@ -1851,12 +1851,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "db8f7df13c91c80fff917aafe5f2c77749608eb6be2ddb05e92a3798276e145e",
+      "sha256": "34d2e51d299180c911406541dc8e4b2b3d9d64427429987f0811480caef21291",
       "codePath": "modules/cursor.js"
     },
     {
       "id": "home",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 50,
       "name": {
         "ko": "홈",
@@ -1880,12 +1880,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "f0445ba69e0d5e85ec3da5f7551732260a883304b26e7d6d4612edfcf1a275bb",
+      "sha256": "4b9022ed5c4ea595d4e72ffef351ad4cbe662e3d010b6dc697adaef3e5427a88",
       "codePath": "modules/home.js"
     },
     {
       "id": "menu",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 51,
       "name": {
         "ko": "메뉴",
@@ -1925,12 +1925,12 @@
         }
       },
       "progress": false,
-      "sha256": "e5d7232dcc5ec20229033f4303e1ac1aab31bba1e88fb570b5ff8e803292e41f",
+      "sha256": "9d9e0738877d743e88f23b9249258772a0123348651b42df390700e95231b74f",
       "codePath": "modules/menu.js"
     },
     {
       "id": "settings",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 52,
       "name": {
         "ko": "설정",
@@ -1954,12 +1954,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "7608b206d43d4c3e6c99bb8dc40e99a16f7098e79d63025c790b9e963c36aebe",
+      "sha256": "a9297c14a0769b03df430dde216988fbb4915986bb21bd5f23d7c7c47f9e3f8f",
       "codePath": "modules/settings.js"
     },
     {
       "id": "sliders",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 53,
       "name": {
         "ko": "조절",
@@ -1984,12 +1984,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "b5f779e529b7ae2ad1085b4b4e05bb7d11b7fc86fe809e6fa5de4aa16124cac1",
+      "sha256": "7842904ec2b4009a23fb88dc801d90e95b556b6d503c5a4c3b6c7b726ec4334c",
       "codePath": "modules/sliders.js"
     },
     {
       "id": "filter",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 54,
       "name": {
         "ko": "필터",
@@ -2027,12 +2027,12 @@
         }
       },
       "progress": false,
-      "sha256": "78a974539f8ffce5afd707594baf314e193e3542da753aeb695d1aee1eed5649",
+      "sha256": "eeee4163ca98c83c7fa02fd0de2c72e2ae62eb3a3a3316e8256bf7c880fdf57a",
       "codePath": "modules/filter.js"
     },
     {
       "id": "sort",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 55,
       "name": {
         "ko": "정렬",
@@ -2070,12 +2070,12 @@
         }
       },
       "progress": false,
-      "sha256": "bb131147579d12b562a006c4610584e86d73ab18dfad78a72e99065b67805147",
+      "sha256": "f4373de17c7b8ee27e1f81fd07a2f90f2cdfd02060928727bd3b5439e0e5a7a5",
       "codePath": "modules/sort.js"
     },
     {
       "id": "layout",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 56,
       "name": {
         "ko": "레이아웃",
@@ -2113,12 +2113,12 @@
         }
       },
       "progress": false,
-      "sha256": "cc5305a8f9f8426eb7c2226e4de061c5eba4e18e0fba0f8581b94c8ca955e036",
+      "sha256": "abdab4dc378a3287c41802b6653ca5954e0c170e6db29292e18d0a8bd1517488",
       "codePath": "modules/layout.js"
     },
     {
       "id": "grid",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 57,
       "name": {
         "ko": "그리드",
@@ -2143,12 +2143,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "4d0ee05a80c1c3012dbe899bf447516b4ca3ec09c821fd2a32c827db8a9fafd9",
+      "sha256": "b523ab57e7b0dc2300dc3a28f411c0a90dec35904c02cbe467146ba55346d497",
       "codePath": "modules/grid.js"
     },
     {
       "id": "list",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 58,
       "name": {
         "ko": "목록",
@@ -2172,12 +2172,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "7c45431114e50bb5e6ceeae63b8b0c9ce9e5a56972ddd867af6af8be803c36fc",
+      "sha256": "30ee8a09a9e122d21310ff247b8747fb7cad17d2ed150133d50fce8e56e306b8",
       "codePath": "modules/list.js"
     },
     {
       "id": "expand",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 59,
       "name": {
         "ko": "확대",
@@ -2201,12 +2201,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "78b080bbec0bf3ef218155ef6075caad665193b08377d27f9287d0f2aa624b56",
+      "sha256": "e3fa2a0214563b2e4324595ea016104628b18be67777069e2bce8a3a8f9cb4bd",
       "codePath": "modules/expand.js"
     },
     {
       "id": "collapse",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 60,
       "name": {
         "ko": "축소",
@@ -2231,12 +2231,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "856fb2fe22a1e30afa673d53a788f481238c3b05b299225e0a5efe28019663bf",
+      "sha256": "c8e95da6876fa97103d0484ad41247ee7ff41e241581df2bcf01d7fa92489225",
       "codePath": "modules/collapse.js"
     },
     {
       "id": "refresh",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 61,
       "name": {
         "ko": "새로고침",
@@ -2275,12 +2275,12 @@
         }
       },
       "progress": false,
-      "sha256": "62808b9b7c77c7432e8675a07efcfe1006dc1bd835278256b9c014f684264fcb",
+      "sha256": "8e0bc735631261e773a270acda9e16fa5710dd03ac04e7b6df30d50eb60c01be",
       "codePath": "modules/refresh.js"
     },
     {
       "id": "plus",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 62,
       "name": {
         "ko": "추가",
@@ -2304,12 +2304,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "496b884605be1531236e7e78673b48f035d3c7c19dbeb23d0814ca53c6a7187b",
+      "sha256": "7e073efdd72ddf273c9866c3c57e10d31209a15da15908d6c9939a505ccfe48e",
       "codePath": "modules/plus.js"
     },
     {
       "id": "minus",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 63,
       "name": {
         "ko": "빼기",
@@ -2333,12 +2333,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "812bb78d5d82ade509afd101fcf3cb0e43fdaeb755cd1d1b48e1439e9bd9ffca",
+      "sha256": "58dca3f6d78dd54d4df074552a0d37a718a7c39763b98155236276118db05ea0",
       "codePath": "modules/minus.js"
     },
     {
       "id": "close",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 64,
       "name": {
         "ko": "닫기",
@@ -2362,12 +2362,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "0909723a8900b9cfb3c373c12118c6df8af895ae7f156aa27ab8a11ccddec782",
+      "sha256": "0ba008fc4a47f961de4e9aef83c028da020a57abf00d187f1fb873efe49de3c5",
       "codePath": "modules/close.js"
     },
     {
       "id": "check",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 65,
       "name": {
         "ko": "확인",
@@ -2391,12 +2391,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "b053f4104583905cf0b8219d99db1aadc522d9eb2b299d62a84279009b11aac4",
+      "sha256": "f129c4e0747034a5f8c26413e3bcc94ed73edaee5a6fae6a9c76d2eee64260e0",
       "codePath": "modules/check.js"
     },
     {
       "id": "arrow",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 66,
       "name": {
         "ko": "화살표",
@@ -2421,12 +2421,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "c49a145677d8584716368695665deafa7925403ee7ef71ed08c899c2f06f0869",
+      "sha256": "8e152f8c0944b216431e6586f9f76b0994109e1bd64c2554f4b2e1469fa98628",
       "codePath": "modules/arrow.js"
     },
     {
       "id": "chevron",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 67,
       "name": {
         "ko": "펼침 화살표",
@@ -2465,12 +2465,12 @@
         }
       },
       "progress": false,
-      "sha256": "d2aaa9a80f08ee1684123002aa52f3d327a3a4fd0ffddc646ec630a756663209",
+      "sha256": "45447dd36dbc0205da3e07de5cd46b6828876ca3fe865967036b35d7059eef7e",
       "codePath": "modules/chevron.js"
     },
     {
       "id": "share",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 68,
       "name": {
         "ko": "공유",
@@ -2494,12 +2494,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "3800f756c079c08b05585a51f0e153b85d93425eacb2a4505252cdc8dfa4dbab",
+      "sha256": "60b3c174e89acb7bcfbce605802b7100df569a9319f526517e9de79ac6de145a",
       "codePath": "modules/share.js"
     },
     {
       "id": "more",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 69,
       "name": {
         "ko": "더보기",
@@ -2523,12 +2523,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "99b74f0f225b1ceee068ac0b4a3677a745e3cd4eaa9117249613c15cbe005669",
+      "sha256": "2b746b4bda5743e68493112109bec169924e8088cdb1b4e2c80825d7159f5f0a",
       "codePath": "modules/more.js"
     },
     {
       "id": "info",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 70,
       "name": {
         "ko": "정보",
@@ -2552,12 +2552,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "6072fa0013c805c9f112ebcd5b393c70008a43577a5ffd6849da1d010a27c723",
+      "sha256": "33a05de133836ec49a8affa16613f656fc5733f42e42c13ec2b7deccb807974d",
       "codePath": "modules/info.js"
     },
     {
       "id": "alert",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 71,
       "name": {
         "ko": "경고",
@@ -2581,12 +2581,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "9941dd653e88152ac945e98124589f221295abbcf9208cb9cdebdd8c6529f054",
+      "sha256": "8d151590ba6a4ea3f294a441f8d4dd46bd43cd9e4d7bc9d2b9f33473bdcda579",
       "codePath": "modules/alert.js"
     },
     {
       "id": "help",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 72,
       "name": {
         "ko": "도움말",
@@ -2610,12 +2610,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "37c6bd9abce4efe135cfe5821e66921ff8e05b7860eb5e996e336f96f28ca756",
+      "sha256": "40131d7f56269b790c1af495ca39d6ce68781ae05f1c8e9517ddb6ec322f8301",
       "codePath": "modules/help.js"
     },
     {
       "id": "star",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 73,
       "name": {
         "ko": "별",
@@ -2653,12 +2653,12 @@
         }
       },
       "progress": false,
-      "sha256": "540d6d1632dfbf768f4546ef53cd9480e7f119c26a242461b4dbac5a948afdb5",
+      "sha256": "60dc7ac3202877e62fefeaf754eeb13ebbd5300e083146303e5f680a675252ec",
       "codePath": "modules/star.js"
     },
     {
       "id": "sparkle",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 74,
       "name": {
         "ko": "반짝임",
@@ -2685,12 +2685,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "c23322f53fec7ef0364813a222517a1694b92351aabc66eefbfd0c6b2f6beeb0",
+      "sha256": "f1cee6b8c9e0b3519430c2e64b09cef4bd8f518554cc4a970f07e7f500923358",
       "codePath": "modules/sparkle.js"
     },
     {
       "id": "toggle",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 75,
       "name": {
         "ko": "스위치",
@@ -2729,12 +2729,12 @@
         }
       },
       "progress": false,
-      "sha256": "7ec143ae97ed11798c6126c8d1580c3625e074cceed230e678fec76e2eda8331",
+      "sha256": "5a30fd7c0d37258a49707475622d35b67836a014d59248a711833c613dfd30fa",
       "codePath": "modules/toggle.js"
     },
     {
       "id": "login",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 76,
       "name": {
         "ko": "로그인",
@@ -2759,12 +2759,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "ad312c40ce4975ba2436f2ae05788408aad435ea3fcb5e6d20f6aae794d053fb",
+      "sha256": "f42a63ddd945cff5f502bd03366859f042ace0e2e8aa45db3869b545f6a897e0",
       "codePath": "modules/login.js"
     },
     {
       "id": "undo",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 77,
       "name": {
         "ko": "실행 취소",
@@ -2788,12 +2788,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "93f1f98916935cb1946e36bc47469b3278b55c3a586c053ff90288e4e4baa87b",
+      "sha256": "0607bc5043877129e8e9cb48689073490499a80570f56f0eabad861815ba1dd6",
       "codePath": "modules/undo.js"
     },
     {
       "id": "redo",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 78,
       "name": {
         "ko": "다시 실행",
@@ -2817,12 +2817,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "74b638abc795e49771e655a08fddd5c091c01d1ff7e0600f6977a7ea652c544c",
+      "sha256": "d5663ecbf6ad913e6a3abd92d8c57c0f1f2f072ece0eb2591690719813de1a8c",
       "codePath": "modules/redo.js"
     },
     {
       "id": "edit",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 79,
       "name": {
         "ko": "편집",
@@ -2846,12 +2846,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "14ea12dc54804d044cfcc8de369828e9d143dab0d51cffbbaf342c7eaf6905ed",
+      "sha256": "0780f27b769bf152f07aa774b446b68ab236c0ddf3f3a7a3b745528fa6b2837b",
       "codePath": "modules/edit.js"
     },
     {
       "id": "brush",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 80,
       "name": {
         "ko": "붓",
@@ -2875,12 +2875,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "4129c5d1b57b6cf9925441abecc08c9fc3726ef8a0d95406e925197834a86c95",
+      "sha256": "012eb2c42e213d892950b44daf1381c9a73c9735b7e2c3da5ea4f16f9caea5be",
       "codePath": "modules/brush.js"
     },
     {
       "id": "palette",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 81,
       "name": {
         "ko": "팔레트",
@@ -2904,12 +2904,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "13edbfc3c2306c01af8ba33cce6c7643d76d965e513a3ea508002e9a7f7debd5",
+      "sha256": "03c21fb628e7c7557b1ce73b5c26b432e0d9d9cb39932f51ece0c51f1c607c3f",
       "codePath": "modules/palette.js"
     },
     {
       "id": "crop",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 82,
       "name": {
         "ko": "자르기",
@@ -2933,12 +2933,12 @@
       "color": "#98CB46",
       "states": [],
       "progress": false,
-      "sha256": "9f08f410a33a44317986d63188a351b78d446bdf3472037406fec8b0c6c8aafa",
+      "sha256": "0ecd1e3ba6a70320872fe954cecd39fbaa101afba859c621cf733ac259acbdec",
       "codePath": "modules/crop.js"
     },
     {
       "id": "layers",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 83,
       "name": {
         "ko": "레이어",
@@ -2962,12 +2962,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "d68a02f3a3b328124a48609af233d98d55c8d90e597af69fe5d7a45ed24f60f5",
+      "sha256": "c0324a8a8ba8846b45fe35a6e7548da7d2bdce3b0725f76610fd539e311eb881",
       "codePath": "modules/layers.js"
     },
     {
       "id": "ruler",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 84,
       "name": {
         "ko": "자",
@@ -2991,12 +2991,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "c5ad4ceb0232580d7731e89027cf41d1bb4e5394818c184d829ad66dd28badc6",
+      "sha256": "f06e3e29f63d35b79a6ef26c93f13a731cda5a14857d877eb7e7d371a51381be",
       "codePath": "modules/ruler.js"
     },
     {
       "id": "scissors",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 85,
       "name": {
         "ko": "가위",
@@ -3020,12 +3020,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "8bcfb9a2a7dfedbefeda9ad8e7223c950b5351d19cf8d37c46a3f1a9caafc3f6",
+      "sha256": "894c71028baa0f39e0491f84d305669f05641b29bfe15771fc6291628dc1b8bf",
       "codePath": "modules/scissors.js"
     },
     {
       "id": "pen",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 86,
       "name": {
         "ko": "펜",
@@ -3051,12 +3051,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "16f1026ab36ed16883e243b2168f9ae41f0355729a8fbf4238112fbff9c8a77e",
+      "sha256": "3732d9691d6b3b77549bf4d92263d70d300f29d5677a39f01696a606dd9e5e39",
       "codePath": "modules/pen.js"
     },
     {
       "id": "eraser",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 87,
       "name": {
         "ko": "지우개",
@@ -3080,12 +3080,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "9dfffe0dd29f633211bdd8ab33ac6f48dd66661e835b61bf523c6181152c6426",
+      "sha256": "33447cce05cb0c6c90da54b5c5f03f1c701eb69ce7f4e0967b97831eb986a8ca",
       "codePath": "modules/eraser.js"
     },
     {
       "id": "text",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 88,
       "name": {
         "ko": "텍스트",
@@ -3109,12 +3109,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "28df6cddb8241bb818e35ee7886744115274f2de0ae2adca59c98aac07d6c166",
+      "sha256": "72a780f525e8bfa9616381ad339b1eda0eae1253de40809d8dee3019396fa895",
       "codePath": "modules/text.js"
     },
     {
       "id": "wand",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 89,
       "name": {
         "ko": "요술봉",
@@ -3139,12 +3139,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "0452c9d8f5fba289105ab6507f113ffb1b124753bc55af5afa69f18bb8ac3746",
+      "sha256": "eace599be831811a966083974fb3d9e3283755c6ba938389299939a57ef1c283",
       "codePath": "modules/wand.js"
     },
     {
       "id": "eyedropper",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 90,
       "name": {
         "ko": "스포이트",
@@ -3168,12 +3168,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "f71b6723033e0919c2dc7f33ad35aa4221b8415fc5151c67378af39fe51937e4",
+      "sha256": "59e49a5fb460958c22c6a4055c9babc5b5455802faf4600906a4bf34c4a06c6d",
       "codePath": "modules/eyedropper.js"
     },
     {
       "id": "wrench",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 91,
       "name": {
         "ko": "렌치",
@@ -3198,12 +3198,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "b9deeba414d074b2a2b2bcf6eb1b388d1dd1a03ea779ad9c7e0d5392e025ce93",
+      "sha256": "5197563c1e2add196ac46bd7689131747127615b5a65adc9b4dcb998955d850a",
       "codePath": "modules/wrench.js"
     },
     {
       "id": "hammer",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 92,
       "name": {
         "ko": "망치",
@@ -3227,12 +3227,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "a9bd872918e3e876cf24ebd8cb7d59ea88453e874dfe5c90343ce887392c9622",
+      "sha256": "86b5f748b2aa1e1772259903cd9430d7e47ffd91cb06998a0d00eb0e360fa91d",
       "codePath": "modules/hammer.js"
     },
     {
       "id": "play",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 93,
       "name": {
         "ko": "재생",
@@ -3273,12 +3273,12 @@
         }
       },
       "progress": false,
-      "sha256": "4417c8ab1bb499fb7bf74d2e93da0e4d5d29121e3d58571b2fa51b54f13a7f9a",
+      "sha256": "5c13579541671bdc7c781ac661ba7efe7349c1270f83b979c0b5d9f94ec6c5ff",
       "codePath": "modules/play.js"
     },
     {
       "id": "pause",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 94,
       "name": {
         "ko": "일시정지",
@@ -3300,12 +3300,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "bf77f8396be7cbd9bb591b4450ac201f3fbcbfd62a7632a0435dddfc0c524063",
+      "sha256": "9643b6592cb8ef6fdbdf10de3b90c518e33b9e3d26b9875b5ed682918e628ec9",
       "codePath": "modules/pause.js"
     },
     {
       "id": "stop",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 95,
       "name": {
         "ko": "정지",
@@ -3328,12 +3328,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "9db25b8a119d68b7b41c6e6f26ee6f32799bc7fc1c0cc0f49234d00c2999c40c",
+      "sha256": "8208225bcd3597e8ceae0c797e8538981a5bec5125e6ff52920634086966846b",
       "codePath": "modules/stop.js"
     },
     {
       "id": "record",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 96,
       "name": {
         "ko": "녹화",
@@ -3371,12 +3371,12 @@
         }
       },
       "progress": false,
-      "sha256": "d9f69e53d499fc60adfbde99a1fef300eb869c7fa9d7086d50601c0c229dda32",
+      "sha256": "4a364ac2e456b69fcc60f874a76819ca28166d52ea00410bbfdd3f2161731425",
       "codePath": "modules/record.js"
     },
     {
       "id": "music",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 97,
       "name": {
         "ko": "음악",
@@ -3414,12 +3414,12 @@
         }
       },
       "progress": false,
-      "sha256": "991739fdc554a38f29ad897dff19a913305b859410ef3ee97786615172d485f6",
+      "sha256": "dc95a1287f7355567f07a48020eb857729f4e869715228cc492dbe684b9c8cb3",
       "codePath": "modules/music.js"
     },
     {
       "id": "headphones",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 98,
       "name": {
         "ko": "헤드폰",
@@ -3443,12 +3443,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "1ccb6cdfe9aafef18fbf544fc6870e6aeaf6f5a0574c2c94ebe1310be560f877",
+      "sha256": "0f1421a7837d53db80fdede1c6bf965866eb27677a05add0f3f4463d3d2fd85b",
       "codePath": "modules/headphones.js"
     },
     {
       "id": "camera",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 99,
       "name": {
         "ko": "카메라",
@@ -3472,12 +3472,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "8e1d2fbec0957b6d17fc728dcd8987f525d880e09ceb7bc6941e9c25ea7095df",
+      "sha256": "b637a8a307bc3d24846f67adfa535512bf17d7ad98fcdc102fbe76ce834c70c9",
       "codePath": "modules/camera.js"
     },
     {
       "id": "image",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 100,
       "name": {
         "ko": "이미지",
@@ -3501,12 +3501,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "e5e4ec90cd1d6dc1deddc28f962e86bcb0e2d97d9f35861b0be390874d4f7aa7",
+      "sha256": "c5fbf65233416cb71c27a2a57f3c062e2439fac0490596a100b850f6e2cc6dca",
       "codePath": "modules/image.js"
     },
     {
       "id": "film",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 101,
       "name": {
         "ko": "영화",
@@ -3530,12 +3530,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "a46633941c3625f00e1a5a3fd2574298cddaa37bc816dfd3cbf89f2e281c38f0",
+      "sha256": "3bd3282542b3d8b8fd3e2c5085dffc55b8b621adc7100efd86113d7dce70e786",
       "codePath": "modules/film.js"
     },
     {
       "id": "microphone",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 102,
       "name": {
         "ko": "마이크",
@@ -3575,12 +3575,12 @@
         }
       },
       "progress": false,
-      "sha256": "fb7aa5dc788ba424bdfc0f11d35c2491775fef252c6c1c27872e54d063b05364",
+      "sha256": "7a314abf96ddfdda2ac649d8eae3ad07d72bdd4c99978c43125c04de8aa18c8e",
       "codePath": "modules/microphone.js"
     },
     {
       "id": "speaker",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 103,
       "name": {
         "ko": "스피커",
@@ -3619,12 +3619,12 @@
         }
       },
       "progress": false,
-      "sha256": "47a6be2147e98656d451068818c21c5d9a5acab5dedda3cf842de9f0f31be7f8",
+      "sha256": "d0a64093f3ffb567f9818a8a6aeaf2820d393845b59ec3413c52e3331a067f53",
       "codePath": "modules/speaker.js"
     },
     {
       "id": "next",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 104,
       "name": {
         "ko": "다음 곡",
@@ -3648,12 +3648,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "4e670cd31d460c21c16df0d7f36e9ae7658f70a59d034564e3ae28aa1e54693c",
+      "sha256": "96c77c792c0aa886afe8a256f546edf2e35f7772b6c409ab10303cec1bc0cd0b",
       "codePath": "modules/next.js"
     },
     {
       "id": "shuffle",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 105,
       "name": {
         "ko": "섞기",
@@ -3676,12 +3676,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "9c511da33aaa65ff0bb38bda3b1a6663cdee24cf757696cc9cf674e7500ed693",
+      "sha256": "5fd2f6c393606ecc75b5e80986ac62a1fa2a678e9d097e6a4d11a4359a3b0079",
       "codePath": "modules/shuffle.js"
     },
     {
       "id": "repeat",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 106,
       "name": {
         "ko": "반복",
@@ -3705,12 +3705,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "94b52d7a2b7dd6ba71412a5d7a1a3e82bbea80dd053ac208c31062b5b465898a",
+      "sha256": "178f9aef51be2d8159a5641c8b607b7e0550af71d9841dfa41f93198703102e3",
       "codePath": "modules/repeat.js"
     },
     {
       "id": "radio",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 107,
       "name": {
         "ko": "라디오",
@@ -3734,12 +3734,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "e0e5ba502e3ed322189215f38c5dda24f2019b174557a9c4f383c58dc263be63",
+      "sha256": "86db198aaef62467db28e9495e5c8a6b42c68a5bfb6c53544e3441ca2da08380",
       "codePath": "modules/radio.js"
     },
     {
       "id": "tv",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 108,
       "name": {
         "ko": "TV",
@@ -3777,12 +3777,12 @@
         }
       },
       "progress": false,
-      "sha256": "da42ac9a8da5f248f527aea782f4b6e8a8d3c01d8e7dd1e2786ab0283313a4eb",
+      "sha256": "56e27cace9e2dbb61c2b5bfd8796eb523adcaefad0e953007f75a30b9c018cc0",
       "codePath": "modules/tv.js"
     },
     {
       "id": "aperture",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 109,
       "name": {
         "ko": "조리개",
@@ -3806,12 +3806,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "fe2fca63bcba0e3778c906bb8f8561370c730a03e04fc5afd3fcaab148ee4147",
+      "sha256": "6f264f49011bf8d014c33b31c2b83f032349db6f8d9224e134d93d281101aac0",
       "codePath": "modules/aperture.js"
     },
     {
       "id": "disc",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 110,
       "name": {
         "ko": "음반",
@@ -3849,12 +3849,12 @@
         }
       },
       "progress": false,
-      "sha256": "c2d4d07b993312aee6eea6562fdaecc6e8afb6797322200621a9dd31846029de",
+      "sha256": "6d275801ee8665b94849f424444c47d9748dd2e564f2e94286b8775f8457ad3b",
       "codePath": "modules/disc.js"
     },
     {
       "id": "power",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 111,
       "name": {
         "ko": "전원",
@@ -3892,12 +3892,12 @@
         }
       },
       "progress": false,
-      "sha256": "29c0202984e7bb6b9d560b13d085bb1d2c560e0cfbabe1080575c58ad06770a0",
+      "sha256": "860803a86496333e99f8c620eddb0a268f372ddfb2da709fe3cecf88304f7eba",
       "codePath": "modules/power.js"
     },
     {
       "id": "mouse",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 112,
       "name": {
         "ko": "마우스",
@@ -3921,12 +3921,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "e7665ea490f9dde58a0a8f1b485aa172e13875828af161725e126d15247349a2",
+      "sha256": "e006b9e8d3c9b43d79d12bf1906ff523e55d8f2b675ec601f6bcf715aae78a7c",
       "codePath": "modules/mouse.js"
     },
     {
       "id": "monitor",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 113,
       "name": {
         "ko": "모니터",
@@ -3950,12 +3950,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "d9901aa81017c2a1433b34d41d951655b7ce269239b71e9334a2a00476d395c0",
+      "sha256": "6c2a977a44e9cc22775eab3d301c11b2aed611fcb8cc8385e557cf7d733b8d60",
       "codePath": "modules/monitor.js"
     },
     {
       "id": "laptop",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 114,
       "name": {
         "ko": "노트북",
@@ -3979,12 +3979,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "60d5a16b16739d6f86f5bdddb8a40aeb48bdab00db9ea5c4592edd2c5a56f2fa",
+      "sha256": "e50e3b1bf0c458834ca666a0587f5aca1fbea2ffd8058f2285acd76d46e0fad9",
       "codePath": "modules/laptop.js"
     },
     {
       "id": "tablet",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 115,
       "name": {
         "ko": "태블릿",
@@ -4022,12 +4022,12 @@
         }
       },
       "progress": false,
-      "sha256": "340b031a52e46860bd2677a08b2f5386d6b3efac86c83eee60b15b1f9ad30da3",
+      "sha256": "22fbe93261df0263077c00c6ec0b8605f29ad4e3a370ecbcb13a537efac437cb",
       "codePath": "modules/tablet.js"
     },
     {
       "id": "smartphone",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 116,
       "name": {
         "ko": "스마트폰",
@@ -4065,12 +4065,12 @@
         }
       },
       "progress": false,
-      "sha256": "d98c91680bcc9f5dcf0aa3a0d3c8126f34e78044edb33e1c7b9d0a5fb7f46e9a",
+      "sha256": "a188c517865064865f4436a8f58d7fb3ef530312cb03b53c2d4d61c33b143bbb",
       "codePath": "modules/smartphone.js"
     },
     {
       "id": "keyboard",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 117,
       "name": {
         "ko": "키보드",
@@ -4094,12 +4094,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "3b1b58f2b27946aad4778df02202814bfe134689c0c54751c76edb999054c31d",
+      "sha256": "eff90fd631065712c5a8643ee680c0e042aef5e64493a04a946ae56b7bd6a3eb",
       "codePath": "modules/keyboard.js"
     },
     {
       "id": "battery",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 118,
       "name": {
         "ko": "배터리",
@@ -4137,12 +4137,12 @@
         }
       },
       "progress": true,
-      "sha256": "85db9e6dba02c1a49ecedf10b1603d8af4216c5875e9273767ae8aeaa301ff16",
+      "sha256": "bb5a6be6378846c5c93ac214f5c09f3bd8b85da12855d8fa1ead311dccafc36e",
       "codePath": "modules/battery.js"
     },
     {
       "id": "wifi",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 119,
       "name": {
         "ko": "와이파이",
@@ -4181,12 +4181,12 @@
         }
       },
       "progress": false,
-      "sha256": "fa18bc2d94c22c5b4e0194d0c8e5405fb2f40ddbdf6651b04edcf27791219625",
+      "sha256": "9bfd4206154ea203e1e1801b9a5afa998c8fa0bbddbc7db3d048701e410c522c",
       "codePath": "modules/wifi.js"
     },
     {
       "id": "bluetooth",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 120,
       "name": {
         "ko": "블루투스",
@@ -4210,12 +4210,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "163fc94cab770dd722d83d59bb7a9abf4eb81542d4551691cd842c5982607b1e",
+      "sha256": "efb63b78fa4e1849be9f908cf0b549780e6197454c93804e2124f1e75b1d7c0e",
       "codePath": "modules/bluetooth.js"
     },
     {
       "id": "plug",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 121,
       "name": {
         "ko": "플러그",
@@ -4239,12 +4239,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "17d707acb4118caca2f0dd3d10db7678478931c44b2d353910969849760d1fb2",
+      "sha256": "dac6e06506a49daa52303650a7e185390608a7625324f3dd4aa99c2098232990",
       "codePath": "modules/plug.js"
     },
     {
       "id": "bulb",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 122,
       "name": {
         "ko": "전구",
@@ -4282,12 +4282,12 @@
         }
       },
       "progress": false,
-      "sha256": "5e5b6191aa2cb29fa0ec9975727b97e5b5a8cdf9d57a8a69c2d333a642b46958",
+      "sha256": "c5e138aef2e233d6dff6ec1097e608a5bab731bd6feb638bb9ca2c8e17569dec",
       "codePath": "modules/bulb.js"
     },
     {
       "id": "gamepad",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 123,
       "name": {
         "ko": "게임패드",
@@ -4311,12 +4311,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "c8d575d985180ae7ce7674606edd88c88a42d0b1b6d7f40191936b60bc7dd1ac",
+      "sha256": "7f0c8cc7d5640a2c4b56a482dcd70a4b1571ec2ea70450023c43ab89b083f783",
       "codePath": "modules/gamepad.js"
     },
     {
       "id": "printer",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 124,
       "name": {
         "ko": "프린터",
@@ -4340,12 +4340,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "4a8957723d0443351f79dd5eb05e12eec98e29f3a566d3d2529de53f0c570bae",
+      "sha256": "cdb896d75d28fadffa180a79225ef40d97a3a5e457b63dba559b05198155d0db",
       "codePath": "modules/printer.js"
     },
     {
       "id": "scan",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 125,
       "name": {
         "ko": "문서 스캔",
@@ -4369,12 +4369,12 @@
       "color": "#98CB46",
       "states": [],
       "progress": false,
-      "sha256": "62fcc302ed039177153f4738aa1595757c6fc842aa897c4e324f0ef073381bf3",
+      "sha256": "df1bc181b9d3bc6e51b57e356ed6df1e356e6f06ac17beffa6d1fdc3bb4820b6",
       "codePath": "modules/scan.js"
     },
     {
       "id": "watch",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 126,
       "name": {
         "ko": "스마트워치",
@@ -4398,12 +4398,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "96247d9506c53e5fba1f703c6be0a4ec1122019588dcbe2e941782e6dcabdd4b",
+      "sha256": "c1421fc1f69f7e6efd59d5cad30fd14572d694faa15f629c69bac5348ee8e11d",
       "codePath": "modules/watch.js"
     },
     {
       "id": "signal",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 127,
       "name": {
         "ko": "신호",
@@ -4441,12 +4441,12 @@
         }
       },
       "progress": false,
-      "sha256": "73057305a02e558d8a7a6dcaea14a3cc3ab8fe23d18149b15506ccee4f21c6df",
+      "sha256": "2fc78d1acae9d99bc4f927e30a72efd4f075e8fb82a982793ee7e4db4c7cd499",
       "codePath": "modules/signal.js"
     },
     {
       "id": "router",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 128,
       "name": {
         "ko": "공유기",
@@ -4470,12 +4470,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "8c7f50562eb74351cbf04f0696f92ef2af351aedc03e26db1e157b81205a05cd",
+      "sha256": "126cd6f588c4b20e7b47de3f08d0cc3094833917cb9303a903c677286b418990",
       "codePath": "modules/router.js"
     },
     {
       "id": "usb",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 129,
       "name": {
         "ko": "USB",
@@ -4499,12 +4499,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "032a6ec64431bb210b5a9f4fe057f2f050b8fb11064b7c0a2cf10c0b48bd0ce8",
+      "sha256": "44bdf7c4c4533c88b985c06faca6a85d8fcdd26e6e3a538ff7f817ba0e465e36",
       "codePath": "modules/usb.js"
     },
     {
       "id": "cast",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 130,
       "name": {
         "ko": "화면 전송",
@@ -4543,12 +4543,12 @@
         }
       },
       "progress": false,
-      "sha256": "d1068d02c12bf9890a414903b0ff408a427e372c3c4a80e2467a90fcdcf051f7",
+      "sha256": "1890b34b079d65cf285162e7a825608ffd05429b86225c27050d9e17c936a0f6",
       "codePath": "modules/cast.js"
     },
     {
       "id": "database",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 131,
       "name": {
         "ko": "데이터베이스",
@@ -4572,12 +4572,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "f040d92777c67218da9901a3a745ca7f6de26ab1cbeefd7612c14874d28c0171",
+      "sha256": "f8c8d8a9a40fe5cec552f05efdaec983832b0526d6eccbccec5b5f2a5bdcea1c",
       "codePath": "modules/database.js"
     },
     {
       "id": "server",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 132,
       "name": {
         "ko": "서버",
@@ -4601,12 +4601,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "96da1f173dd1d129141b4a56363b9c58b95feb1782f6f7e9d0e8b90479ba4fff",
+      "sha256": "226f0263c4ccf25047384f39232c349348409c94e98b6f08fd8b5dc3ce941100",
       "codePath": "modules/server.js"
     },
     {
       "id": "chart",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 133,
       "name": {
         "ko": "막대 차트",
@@ -4632,12 +4632,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "9959031e469dcedf2e97cad8facb60707c0e8563b96da25137af74a6fd7ec777",
+      "sha256": "f928e502dcad74232695b36e97b6c48d8fb35d1149b9fc380c9c0a90445d6ee1",
       "codePath": "modules/chart.js"
     },
     {
       "id": "code",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 134,
       "name": {
         "ko": "코드",
@@ -4661,12 +4661,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "d7fdfc2f6db06341d1d89c75c19cd3104f1244cb5726e2efdaa782a92c44c9a1",
+      "sha256": "ef1a0cc0b730e7fa97db0e3535127c0bf0a4c31c0e73989e9eac27ac692f0f92",
       "codePath": "modules/code.js"
     },
     {
       "id": "terminal",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 135,
       "name": {
         "ko": "터미널",
@@ -4691,12 +4691,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "44e6b456a196d785b30d9a28d903ae6278f4a5dfbe11a5610656a02cfe2139fc",
+      "sha256": "6b322f4def692c0fb3636075eee8e07993de32bd2762a7a28136275e94045cd5",
       "codePath": "modules/terminal.js"
     },
     {
       "id": "bug",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 136,
       "name": {
         "ko": "버그",
@@ -4720,12 +4720,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "f66e56ee64ba91b6d3c1d702a7a5048156ff60da5ba90681ab8c27aca6e72c45",
+      "sha256": "da80dd28743fdf7395bd74ae9dd2ddd8bacb46fcf2573f5652e58cf6c02c51fc",
       "codePath": "modules/bug.js"
     },
     {
       "id": "branch",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 137,
       "name": {
         "ko": "브랜치",
@@ -4749,12 +4749,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "be48826d6277afd46fa73444569707dc2e867bb46f4351c1ce6ed05b368e67d4",
+      "sha256": "2376deb7e98e5e46065ab9a7e516411139dfd73af77357c10d721eb8509c8f04",
       "codePath": "modules/branch.js"
     },
     {
       "id": "cpu",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 138,
       "name": {
         "ko": "프로세서",
@@ -4779,12 +4779,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "41c74e8b3fc4042446d941b7d647fc57309334b74059a48511f8ae1e5d9a0739",
+      "sha256": "c1e5aced74d91aae248e08aa8df66bf63f72696bd94de616764c8366e1c033e2",
       "codePath": "modules/cpu.js"
     },
     {
       "id": "linechart",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 139,
       "name": {
         "ko": "선 그래프",
@@ -4809,12 +4809,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "0656f31d670aee2fc4ef5493e02e249f157da49803604e9622dc8dd4b2efc4e9",
+      "sha256": "60e12c477d67a6713a0276944eafa6a716c294de3d2e521f62bf934274f918d5",
       "codePath": "modules/linechart.js"
     },
     {
       "id": "piechart",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 140,
       "name": {
         "ko": "원 그래프",
@@ -4838,12 +4838,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "12fb74d0b8a9fa93894e1a04edd2b88d6dd8d80f7193290cf1fd2fe6be5bcf4a",
+      "sha256": "04c2dcccc9900fff96069df7e4668332b7c46224bb65955a091e811aeb8d5e47",
       "codePath": "modules/piechart.js"
     },
     {
       "id": "calculator",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 141,
       "name": {
         "ko": "계산기",
@@ -4867,12 +4867,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "301e51a2482cbca4d616676213ae18f2dd256d733caa95eeca0453ca45780d99",
+      "sha256": "5f38b5d88669c6dd6607a4e0ecc018001c5756674ef1f0aa4f449df765254dd8",
       "codePath": "modules/calculator.js"
     },
     {
       "id": "percent",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 142,
       "name": {
         "ko": "퍼센트",
@@ -4896,12 +4896,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "f4376b835c4bd49bef6bd634642674358a222c58ad8af9055c2c5cea305dfb07",
+      "sha256": "7a45f2c8d15b95b6ca6f50c9e5879160c48913c03c75ed638495c10945e30574",
       "codePath": "modules/percent.js"
     },
     {
       "id": "cart",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 143,
       "name": {
         "ko": "장바구니",
@@ -4941,12 +4941,12 @@
         }
       },
       "progress": false,
-      "sha256": "4cb85a1437d116cf43d62d641b828b4142c6a49b997dee365f26dad0d6b00b55",
+      "sha256": "abd8ad7cc5d9d888bf8d5910575f83ab8704b200bc75e8d2dbf008db6c26004c",
       "codePath": "modules/cart.js"
     },
     {
       "id": "bag",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 144,
       "name": {
         "ko": "쇼핑백",
@@ -4970,12 +4970,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "6275ebd1fc0b20a979d4ec9ac24329728d20daa0f7191f8dab981e6d2d5b975f",
+      "sha256": "716efc21b5a59f912cbd54ad890a9641322d2b078b6fb26a6f366b343dce9b2d",
       "codePath": "modules/bag.js"
     },
     {
       "id": "wallet",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 145,
       "name": {
         "ko": "지갑",
@@ -5000,12 +5000,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "fa8dcf89387043e9404c6718f6e54dfcce325cf527e37c7537dbc9c87a9c2f4e",
+      "sha256": "299b90c04bd60c295fc08e149d3509eec87e8addc2b03e5ec891af5e340679c9",
       "codePath": "modules/wallet.js"
     },
     {
       "id": "card",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 146,
       "name": {
         "ko": "결제 카드",
@@ -5031,12 +5031,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "3531e8236b0685c55293087a324d08eaeabada0d10b6b168b8cc29b2e907b115",
+      "sha256": "255c2346836f698437c1966602eda210b0b7c21048419fae1f14f067e1bd10c0",
       "codePath": "modules/card.js"
     },
     {
       "id": "gift",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 147,
       "name": {
         "ko": "선물",
@@ -5074,12 +5074,12 @@
         }
       },
       "progress": false,
-      "sha256": "e9a36a81821f4a19f9cba2adb6a8da0d0b38c1876bab2db08cad329b5e4a8618",
+      "sha256": "55358a3c35727b6d304546a18f6850e78bc39aea14f952b8463b88c92f43429e",
       "codePath": "modules/gift.js"
     },
     {
       "id": "ticket",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 148,
       "name": {
         "ko": "티켓",
@@ -5103,12 +5103,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "00aa7807cc357b923179e68e51b562969f6a9d849588861557341d55b56f84d3",
+      "sha256": "251984593c3720e236185b05a4b011634d663dc6798e3b94ad8eff5a26547796",
       "codePath": "modules/ticket.js"
     },
     {
       "id": "coin",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 149,
       "name": {
         "ko": "동전",
@@ -5132,12 +5132,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "33fe002e86aa503f457b80482bfc8fa6a96422cbb5f2cf5f3795eee3a4a3d6d7",
+      "sha256": "8f92476a564c62e8453ea59a2db5398c9c4ce06af377af22c1f7ac18a233ef32",
       "codePath": "modules/coin.js"
     },
     {
       "id": "store",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 150,
       "name": {
         "ko": "상점",
@@ -5161,12 +5161,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "fcd5395ae1f838a7ff66b310b41021c6eaf4fc0e6284c1264acf36c607823bd4",
+      "sha256": "7388a28a975f497780ed6b027caa35d68d88bd500d6b200714cb38661af7fef5",
       "codePath": "modules/store.js"
     },
     {
       "id": "bank",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 151,
       "name": {
         "ko": "은행",
@@ -5190,12 +5190,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "ae0e1ad7f3067f839c584bdd10fe7a8ea3840720fe65db8b50c07ee14fe1ff13",
+      "sha256": "bf3138e47bbc6b824acbdad870fb82f4735106a321a3a11bdaddc1f51d9cf3d4",
       "codePath": "modules/bank.js"
     },
     {
       "id": "piggybank",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 152,
       "name": {
         "ko": "저금통",
@@ -5220,12 +5220,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "8ebd976fa866a45292b640073ef2edda77b8b3e75451963a9682e56a6663067a",
+      "sha256": "19399fd8b575a48a33feff7553c45e688376116069188043d60f433ffbdaf246",
       "codePath": "modules/piggybank.js"
     },
     {
       "id": "truck",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 153,
       "name": {
         "ko": "배송",
@@ -5249,12 +5249,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "dd6622eb4818ce0b7e0f83108b76406211c54346de6e6ffc82c62769be9adeef",
+      "sha256": "0f8a93a07dc7342e5566eda731beb7af2f1c27f8a19e5706a96a3004d8c560af",
       "codePath": "modules/truck.js"
     },
     {
       "id": "scale",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 154,
       "name": {
         "ko": "저울",
@@ -5278,12 +5278,12 @@
       "color": "#AC5CD7",
       "states": [],
       "progress": false,
-      "sha256": "f8ce3c404c6e4ec21f04b5f1300b87f3d7a28d1922843c606142f67412e2abde",
+      "sha256": "32c4de19458c18ae7a89950942f78f5371a0161ef692c471a3b87f78ed670bba",
       "codePath": "modules/scale.js"
     },
     {
       "id": "diamond",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 155,
       "name": {
         "ko": "다이아몬드",
@@ -5307,12 +5307,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "311674b08e1246ed58b73505cf0a5af3ad1a3a55e230bdd4093e917e7a6765b4",
+      "sha256": "095175a1abdcced1a9c3ca7c059b7039cce6446199149401e63d28d5a0a990e2",
       "codePath": "modules/diamond.js"
     },
     {
       "id": "barcode",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 156,
       "name": {
         "ko": "바코드",
@@ -5337,12 +5337,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "580926d86eadfbee3742b4f8ac8f7d64c6dc6a6b127254b2f6f555f1e6a413be",
+      "sha256": "9b870f609a4009af8a8ca815725c066c95e92c1a9298b0bde7bc31928204a9e1",
       "codePath": "modules/barcode.js"
     },
     {
       "id": "box",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 157,
       "name": {
         "ko": "택배 상자",
@@ -5366,12 +5366,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "69c90a79c01223365de289a23d6edc7ec32bc21949e5dd40ce9238de3dbf7f06",
+      "sha256": "f9f806e8bf9fa05e88b650ed8cc4c50b4060bb49925f99d45ca485af97d8aee4",
       "codePath": "modules/box.js"
     },
     {
       "id": "user",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 158,
       "name": {
         "ko": "사용자",
@@ -5395,12 +5395,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "1a19ab5cc0f5b8524caa2cb1f4172e79671eca6ca80ec0aba8e9f41ae1d9de9c",
+      "sha256": "a8bc2f17b367f1faa82f68359058691d8e8f4ed0da3c6f46de9f06552d1df5ef",
       "codePath": "modules/user.js"
     },
     {
       "id": "users",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 159,
       "name": {
         "ko": "사용자 그룹",
@@ -5424,12 +5424,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "9608a3a3f62529becd526330c721153f08be16b36ae680210bef90aed9fda7c1",
+      "sha256": "5da914f5964a6a0870c6f9f1b60d95a23802d1ec28133d68feb0db01079708ee",
       "codePath": "modules/users.js"
     },
     {
       "id": "contact",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 160,
       "name": {
         "ko": "연락처",
@@ -5453,12 +5453,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "bfc473852dd86fa5ad0cab55d72ba0136b3d47c05d5dd84ef8301cee52816c53",
+      "sha256": "0589c557fce6bfb1513ab1d0b4779bfbcb13725962c3075ac46c6253de5f544b",
       "codePath": "modules/contact.js"
     },
     {
       "id": "handshake",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 161,
       "name": {
         "ko": "악수",
@@ -5483,12 +5483,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "a4cc57f675d2ae72d36233a1955a85dce9e5d6c28f521fb6465347b464c171f9",
+      "sha256": "a1940cbdbb751ded1142653876537b0744e0e4786f661e4c0a5bc5a94ab30a0c",
       "codePath": "modules/handshake.js"
     },
     {
       "id": "badge",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 162,
       "name": {
         "ko": "메달",
@@ -5512,12 +5512,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "4b80b71a24c1f925a9e47fcc8a2f11a7234bbe7c739c0b92fb3f0eeb855e2a28",
+      "sha256": "8626b1d07c2b06594bdc860813d7bad4d446e36ec656bf00038915a159d04f87",
       "codePath": "modules/badge.js"
     },
     {
       "id": "userplus",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 163,
       "name": {
         "ko": "사용자 추가",
@@ -5542,12 +5542,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "c53a6513f225c5f2fea758816e74fbde1ae64f14c16dc1bf57d3f5b9aa630d23",
+      "sha256": "35287c432e8a66f3af2ce4d304f93a10f2f841cd34bae93500b9d3afa3af2646",
       "codePath": "modules/userplus.js"
     },
     {
       "id": "crown",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 164,
       "name": {
         "ko": "왕관",
@@ -5572,12 +5572,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "2163634bc0f764e2231c03bc52696e6489eb0a1083e14df4133b8a51c81a313c",
+      "sha256": "c3d8e72970c6542fd6e6295618fdae1fd700c0fd005248bce77f218b840a98a3",
       "codePath": "modules/crown.js"
     },
     {
       "id": "graduation",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 165,
       "name": {
         "ko": "졸업",
@@ -5602,12 +5602,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "c5e4087ced9da4712a1c96e91e02004e7bfd5ce455d298d7b982fd3e18b5bdeb",
+      "sha256": "ea4180b1e86c33e63b351e089648d7b43e848b3e59f46b88f1dceb332f6c2440",
       "codePath": "modules/graduation.js"
     },
     {
       "id": "briefcase",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 166,
       "name": {
         "ko": "서류 가방",
@@ -5632,12 +5632,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "1645cce75f04552ca2df326b56d01c4d32d1432d077ea9e6adbca7a0c15df938",
+      "sha256": "ccc121e437b6fb01dcb2b7b50f4121a26a1aa47a4cd9806b76ac761772cd3c7a",
       "codePath": "modules/briefcase.js"
     },
     {
       "id": "idcard",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 167,
       "name": {
         "ko": "신분증",
@@ -5661,12 +5661,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "74eb3a19a7944bc81baf9e9ce98c51a69f15a5750d0e5a407a903354a8688cd4",
+      "sha256": "55b02df3af91488d15e2964254e089f17b6192783083ce96e519016fa9c69b0f",
       "codePath": "modules/idcard.js"
     },
     {
       "id": "accessibility",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 168,
       "name": {
         "ko": "접근성",
@@ -5690,12 +5690,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "4249981358afa789b1c7704220453c76497cd8a4357f7436a626cb194721f7fa",
+      "sha256": "0a2936578fba0d1d9f18c986606d452f1d3b853dcae2f478eb053e710a70a8ab",
       "codePath": "modules/accessibility.js"
     },
     {
       "id": "globe",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 169,
       "name": {
         "ko": "인터넷",
@@ -5723,12 +5723,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "10d9078939eab2472ae4c5df241ac432a78d471fec8dc6433fe31064b38e9da2",
+      "sha256": "3a8ebbecc95773d06adefa34e793e2ffce9959191a7e8fd2fe22e55f86546d29",
       "codePath": "modules/globe.js"
     },
     {
       "id": "compass",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 170,
       "name": {
         "ko": "나침반",
@@ -5752,12 +5752,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "da219a0b91b0d8365bac5bf49c48a513c56ef399d0c8af0250537649da32f917",
+      "sha256": "45cc55d45618e509e6cc5fb3d28e6ba55b43d9edaf6fd3824b6fefa25ad38c27",
       "codePath": "modules/compass.js"
     },
     {
       "id": "pin",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 171,
       "name": {
         "ko": "위치",
@@ -5783,12 +5783,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "8918fbf0a0040cf014ecdc3419b053df456928ed435161123541aa016c3b20d9",
+      "sha256": "2af4f8b83329457bb7b84aefc6214fdd92e98f474aba562c54479b7e467066c2",
       "codePath": "modules/pin.js"
     },
     {
       "id": "flag",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 172,
       "name": {
         "ko": "깃발",
@@ -5812,12 +5812,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "3ef7d9ef67a081da7997eb4318e2e38361a510952b1d132ce23ae8e6904b7cb7",
+      "sha256": "38c1f866330cc9d05e2739c412eab42099e7bf171b2a28992554fa6c5a60213b",
       "codePath": "modules/flag.js"
     },
     {
       "id": "map",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 173,
       "name": {
         "ko": "지도",
@@ -5841,12 +5841,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "66d8763922186a3c83321e323e1c962864394f0ac3b1bf521c1b61b6edef9f5e",
+      "sha256": "22d730456055834901765071645f2e8ae5934d27a82ed5c920afad0b328f77f6",
       "codePath": "modules/map.js"
     },
     {
       "id": "car",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 174,
       "name": {
         "ko": "자동차",
@@ -5872,12 +5872,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "df0b84a829caf17661b7ca0e7f0a610c6a1b36302f62d1003425a445f09764a1",
+      "sha256": "9d97bc76075ba222eb568bc5dac20351bf578234c50dbd2dafa92907b3e9f2ad",
       "codePath": "modules/car.js"
     },
     {
       "id": "bike",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 175,
       "name": {
         "ko": "자전거",
@@ -5901,12 +5901,12 @@
       "color": "#98CB46",
       "states": [],
       "progress": false,
-      "sha256": "a5d75165bb1510abc4cf494a87d4d39b5cc75c06ca59d6b24dc5df5c3cbb7dca",
+      "sha256": "9f78ab131939c1c934e9450351c5b6d47093e5e63c5d3e66b3d1d0c3fdeb9ced",
       "codePath": "modules/bike.js"
     },
     {
       "id": "plane",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 176,
       "name": {
         "ko": "비행기",
@@ -5930,12 +5930,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "18b439f1856727dc5518cfc7a8b9f5a7ec276307f23adaa2397a8bf1ea7ace02",
+      "sha256": "bd7972e49f8847e5d3cbfefeb432d70e6896bbdb7aa7ff80999e3276dfda0340",
       "codePath": "modules/plane.js"
     },
     {
       "id": "train",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 177,
       "name": {
         "ko": "기차",
@@ -5959,12 +5959,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "3aefd0941f27da95fd868b628a75d33708d4fc1f97f89b5ea6a309058e545714",
+      "sha256": "b78c03908d01813cce57d5b955f8ab3d595701d431aa446ffc675150f791c087",
       "codePath": "modules/train.js"
     },
     {
       "id": "bus",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 178,
       "name": {
         "ko": "버스",
@@ -5988,12 +5988,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "1b91b47c193c77ed039552f819a3be845cdcbe4a1edfbc811347e01b73e18147",
+      "sha256": "ee00f6798c7bf30f35e70fdb5a6a9b1ed04a53d74fffc7f3a9a3392c0aa41ef2",
       "codePath": "modules/bus.js"
     },
     {
       "id": "ship",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 179,
       "name": {
         "ko": "배",
@@ -6018,12 +6018,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "de8da6998c82a0f8c9b89dc595ba3fb8901367c99ed99e3041b7789ee9274f3a",
+      "sha256": "221ce1f96f1c38c55c66b0f7062d5f44c87d670f0ebc7f408ac325f1ff6cc2a4",
       "codePath": "modules/ship.js"
     },
     {
       "id": "anchor",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 180,
       "name": {
         "ko": "닻",
@@ -6048,12 +6048,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "f05eed4e900c3f90e8b8bac3776ae29d774ae7b385a0104744ea8c8b4e88dae9",
+      "sha256": "2d0df5a65ed89dd68b8861a164745b627d9b0894033171489bb5c7da49a8518b",
       "codePath": "modules/anchor.js"
     },
     {
       "id": "building",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 181,
       "name": {
         "ko": "건물",
@@ -6077,12 +6077,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "24e046a7db04792d02a0efcfb2c124e4f66747f7160e85781ebeb5d43866c9f5",
+      "sha256": "632e36ed0120870cf4fc534e0c9f01c9b05b2ba1ac8e25d9cee29e3a78982b91",
       "codePath": "modules/building.js"
     },
     {
       "id": "mountain",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 182,
       "name": {
         "ko": "산",
@@ -6106,12 +6106,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "942c2d00f5a7388c91b222645e0279a6647c54ef4edfe39e2500afa3ac477291",
+      "sha256": "ec004e1b234c77f25d4622005264083657763adffb19b42790767a00c0eee9aa",
       "codePath": "modules/mountain.js"
     },
     {
       "id": "rocket",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 183,
       "name": {
         "ko": "로켓",
@@ -6137,12 +6137,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "66ecfe16a7a37937de9eb4eef7ac5f9b27762c494add3792c2806f73ed3e9af4",
+      "sha256": "6253030fa034e7dd97a8ba9533ee84fe09b73a670ff623660469102d6edc976b",
       "codePath": "modules/rocket.js"
     },
     {
       "id": "sun",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 184,
       "name": {
         "ko": "해",
@@ -6168,12 +6168,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "185c147622c8fb4ae1fe3fdd960e5a7837de52b6e24387b9906f67b8ccb862b9",
+      "sha256": "81e2ab92e4a648566d221fb76bce7bd349b920e62dc11952ec2470bd33b7a13e",
       "codePath": "modules/sun.js"
     },
     {
       "id": "moon",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 185,
       "name": {
         "ko": "달",
@@ -6199,12 +6199,12 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "6532df2cd8a124120af81bc96e82fd349073f7ce4f12a9291337f61b2efe68f4",
+      "sha256": "22acec347d6b4885d7518da64c495d6b0890e4e1bb3e2c66149ec7b312eeb957",
       "codePath": "modules/moon.js"
     },
     {
       "id": "umbrella",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 186,
       "name": {
         "ko": "우산",
@@ -6244,12 +6244,12 @@
         }
       },
       "progress": false,
-      "sha256": "f1a50bf42cefe87a28faa7e27da42828ed5be06f5ab331069746fc2adcbe7e85",
+      "sha256": "bb5f2a7db3260c2847c49fb9f645836697c47a46823da04cd3f2befa67f42be5",
       "codePath": "modules/umbrella.js"
     },
     {
       "id": "rain",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 187,
       "name": {
         "ko": "비",
@@ -6273,12 +6273,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "744fc0b84d30e1dc7a724f9a9da7ecbd6fabc6aba64b6d088d610e8e7e3af3a0",
+      "sha256": "5398e86b6ba471743797f6e23d3743f900c05923aeb6169d4d838355710d9191",
       "codePath": "modules/rain.js"
     },
     {
       "id": "snow",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 188,
       "name": {
         "ko": "눈",
@@ -6304,12 +6304,12 @@
       "color": "#26B7D3",
       "states": [],
       "progress": false,
-      "sha256": "af47b56a23a95156cc9fc19b4d60050968a3cebcc7a5e120918e977137ccbdf4",
+      "sha256": "aea66f668d8cb087023114d4b36c79f2fa98c5e2b5b2e1deea9cdfd888bedd64",
       "codePath": "modules/snow.js"
     },
     {
       "id": "wind",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 189,
       "name": {
         "ko": "바람",
@@ -6333,12 +6333,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "e2ca1d2e800919db62dc19514e3aec78d53a861f6bb9fc76c39328d31446af93",
+      "sha256": "c360ad851e9f9f7cfecd8e17959a593853e66422d4c5390aa1c032d2e3895381",
       "codePath": "modules/wind.js"
     },
     {
       "id": "thermometer",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 190,
       "name": {
         "ko": "온도계",
@@ -6362,12 +6362,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "917d09423daa455758d4d12cb26ff00b1c3c85943a7cafeb932cb5cc880b0ffb",
+      "sha256": "13c763c0af7997e95a6599843520b6b5932959d8affbc85c24847381fdf0e687",
       "codePath": "modules/thermometer.js"
     },
     {
       "id": "bolt",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 191,
       "name": {
         "ko": "번개",
@@ -6394,12 +6394,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "0fb9acbf819e12f252995da90097751ba1a2a48890dbb12046a3980cf1a09221",
+      "sha256": "fdb6758c61263efe54f43c740875458361dc2fd46275480b36e7ffa0ebd73d26",
       "codePath": "modules/bolt.js"
     },
     {
       "id": "flame",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 192,
       "name": {
         "ko": "불꽃",
@@ -6425,12 +6425,12 @@
       "color": "#F48D2F",
       "states": [],
       "progress": false,
-      "sha256": "629e7e7b719b5e9488a7991e1383c301855cbaddd43183cff5b44be28c5fda48",
+      "sha256": "e5927c70bfd5b0e336144f70ca7ddc9e6a0f7855d1ae9348ff23a013ecfa6c89",
       "codePath": "modules/flame.js"
     },
     {
       "id": "droplet",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 193,
       "name": {
         "ko": "물방울",
@@ -6454,12 +6454,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "8aa5263803c99765a192284d19495d665de62ed66ea845b6e96dae6d8ef426c7",
+      "sha256": "dff575ea59178864a9aee2f4eddc1bdb19dc336ea02c7f30858c1bc2a0401668",
       "codePath": "modules/droplet.js"
     },
     {
       "id": "leaf",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 194,
       "name": {
         "ko": "나뭇잎",
@@ -6485,12 +6485,12 @@
       "color": "#98CB46",
       "states": [],
       "progress": false,
-      "sha256": "8fed2d0b251f6d507d2b9c2359705a970ae69f90c80be22d4c70b50c3a6eff15",
+      "sha256": "fe1a52cf19b1dce995ecad51a3dfd038ac29cd831f04d84c0479c8cb60409aec",
       "codePath": "modules/leaf.js"
     },
     {
       "id": "flower",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 195,
       "name": {
         "ko": "꽃",
@@ -6515,12 +6515,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "c8c6be939e458a055a2ee3d8751502bec7c037e89d55f1b8da5469ab3b6d1f25",
+      "sha256": "269d8ab408e42a080faae59220f0f610f39650c2340ade81111d683a98631e62",
       "codePath": "modules/flower.js"
     },
     {
       "id": "tree",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 196,
       "name": {
         "ko": "나무",
@@ -6546,12 +6546,12 @@
       "color": "#43B966",
       "states": [],
       "progress": false,
-      "sha256": "da5fd3cc83d31c19b79e46cedf9fae96252e3d9ab0c8a449d0a573a78ae706a5",
+      "sha256": "2b1a629a0bc787452a537a8c772026745abc4abd8ae9ff97f98ba962c53ed637",
       "codePath": "modules/tree.js"
     },
     {
       "id": "heart",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 197,
       "name": {
         "ko": "하트",
@@ -6569,8 +6569,8 @@
       ],
       "category": "lifestyle",
       "description": {
-        "ko": "누르면 움츠렸다 튀어 오르며 차오르고, 주변으로 작은 빛이 터집니다.",
-        "en": "It crouches, springs, and fills, with a small burst around it."
+        "ko": "누르면 살짝 움츠렸다가 부드럽게 차오르며 색이 채워집니다.",
+        "en": "It dips a little, then springs back softly as it fills."
       },
       "color": "#F05465",
       "states": [
@@ -6589,12 +6589,12 @@
         }
       },
       "progress": false,
-      "sha256": "c32061ad735d317490b53a235094fac2a15d0df82357facd5eb09df9fd80c221",
+      "sha256": "3f2a6f967f04968b5f2ad3b45f3d0c1dc9296f85681c71419de55dc7d9724e47",
       "codePath": "modules/heart.js"
     },
     {
       "id": "calendar",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 198,
       "name": {
         "ko": "달력",
@@ -6619,12 +6619,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "1e0c20cbe2fc2b2ea1219f00027384459e7c7b52af4af806581d4f901d6aa886",
+      "sha256": "936e5291dae632fff4f25d75b972fdf01d336f45ce8809277cc2bd480d12dd8a",
       "codePath": "modules/calendar.js"
     },
     {
       "id": "clock",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 199,
       "name": {
         "ko": "시계",
@@ -6648,12 +6648,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "0bca1995cb8eafac0310a3d4f5984f04cabe9b7e67f2f19000bdb3bfbe8d1fb2",
+      "sha256": "94039afbcac0f82e11d1c91373e50cc7659d0d9669191f486dc4bf0259a8fe73",
       "codePath": "modules/clock.js"
     },
     {
       "id": "stopwatch",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 200,
       "name": {
         "ko": "스톱워치",
@@ -6691,12 +6691,12 @@
         }
       },
       "progress": false,
-      "sha256": "4b80aae9da8ca70dec3dae55744377ce853fcca9ef4ca83082803e119bb83516",
+      "sha256": "c07b8af67d69418c30e2751f2ca9042efe04d98330b640c3f1a57eb68c824452",
       "codePath": "modules/stopwatch.js"
     },
     {
       "id": "coffee",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 201,
       "name": {
         "ko": "커피",
@@ -6720,12 +6720,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "f75f57673c55bbb4ae7e2c197977c4463519266128c53ba54d2a21828c9f1b2f",
+      "sha256": "538f70fa85512aecbc82d3c1f223966ad8a760c0b328b10102aa6111ca653b7f",
       "codePath": "modules/coffee.js"
     },
     {
       "id": "trophy",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 202,
       "name": {
         "ko": "트로피",
@@ -6750,12 +6750,12 @@
       "color": "#F2CF3B",
       "states": [],
       "progress": false,
-      "sha256": "6879167da971eb4f4be3a1eeebf518fb28dabad3b1c6735e2e380ee697b75d08",
+      "sha256": "9ece15a7dbd35a01f45572e5bc6c7075d13665bd541bb426def79016b5bee2ca",
       "codePath": "modules/trophy.js"
     },
     {
       "id": "utensils",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 203,
       "name": {
         "ko": "식사",
@@ -6782,12 +6782,12 @@
       "color": "#F0764F",
       "states": [],
       "progress": false,
-      "sha256": "83b8edd4a4522cd0c949d073512c5f501a8b25799cf28c71adf4cd4621e72ea1",
+      "sha256": "861879b411dd80e52258763f994be694b9e07a365707ecacd1f683f8431eb249",
       "codePath": "modules/utensils.js"
     },
     {
       "id": "cake",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 204,
       "name": {
         "ko": "케이크",
@@ -6812,12 +6812,12 @@
       "color": "#E662A8",
       "states": [],
       "progress": false,
-      "sha256": "513f80a366c5522ad3452aeded4e354942cc3afc8acc4b2123059b9661179057",
+      "sha256": "039671b526ad6d3b6e72f4aee4b9dc39ff1d3fdaacb3d3664f505ff26850ccf3",
       "codePath": "modules/cake.js"
     },
     {
       "id": "pizza",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 205,
       "name": {
         "ko": "피자",
@@ -6841,12 +6841,12 @@
       "color": "#F05465",
       "states": [],
       "progress": false,
-      "sha256": "9c6d4882488f5ad12ee0ebe579727aa16d2fe523ed2b9cb7e22a334649caf2ce",
+      "sha256": "0682230e130d11bd2c1118f0504718207328d45110d31dc066a8d172de858e6e",
       "codePath": "modules/pizza.js"
     },
     {
       "id": "bed",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 206,
       "name": {
         "ko": "침대",
@@ -6872,12 +6872,12 @@
       "color": "#5D73EA",
       "states": [],
       "progress": false,
-      "sha256": "a9d16cfc90c3d46fd356eae2aff13cc90767ff5f0c98ac224ca1ffe88d7c9d79",
+      "sha256": "616e8b70a63ffb8f03e294d2693859915698ed547546e536724215cab9b754d9",
       "codePath": "modules/bed.js"
     },
     {
       "id": "lamp",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 207,
       "name": {
         "ko": "스탠드",
@@ -6915,12 +6915,12 @@
         }
       },
       "progress": false,
-      "sha256": "bf5545342965856183f31a96ac2cbb6e7701ac65dc3e6fbd0b016fee0b4f5047",
+      "sha256": "d06a7f593b6f14aa61bed255a8a5daabcd7f35fd0e36a663b15a4de57309b888",
       "codePath": "modules/lamp.js"
     },
     {
       "id": "dumbbell",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 208,
       "name": {
         "ko": "덤벨",
@@ -6944,12 +6944,12 @@
       "color": "#3093EC",
       "states": [],
       "progress": false,
-      "sha256": "89532e10e2f1e0e94bdeb8c9e5313387559e091ae673c70d7bb2f23c1da34b39",
+      "sha256": "cb3c4edf2c389cd74cc3ffb778d17b425510b5bbf7a60416577f03ff6873e75c",
       "codePath": "modules/dumbbell.js"
     },
     {
       "id": "pill",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 209,
       "name": {
         "ko": "약",
@@ -6975,12 +6975,12 @@
       "color": "#24B6A1",
       "states": [],
       "progress": false,
-      "sha256": "6e88e7be4cb2311d9d85cc380762fd1046eedbe195674e8fcca8e804da766288",
+      "sha256": "9f1c80c07c1b102192248ae9ae68e50c42c94a58700e9ca49eb301abe64cfa32",
       "codePath": "modules/pill.js"
     },
     {
       "id": "paw",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 210,
       "name": {
         "ko": "반려동물",
@@ -7009,12 +7009,12 @@
       "color": "#F4AF2D",
       "states": [],
       "progress": false,
-      "sha256": "638d300bc3d3331de9e24895eea6a191cc31a4817f59fefa469d974c98c35c9a",
+      "sha256": "531b458dfc77b9604baf25c6bc579dd242acabd9834bb4d74121a098313c0b43",
       "codePath": "modules/paw.js"
     },
     {
       "id": "dice",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "order": 211,
       "name": {
         "ko": "주사위",
@@ -7040,7 +7040,7 @@
       "color": "#8968F4",
       "states": [],
       "progress": false,
-      "sha256": "705a9177cef9aed34ad34deb14754278e6c8b382b16e981668e58ea8a2c7342e",
+      "sha256": "43e7dac44a1e25a31869fdcc88163ce64d096b047b380b0b921390ad5e1576e4",
       "codePath": "modules/dice.js"
     }
   ]

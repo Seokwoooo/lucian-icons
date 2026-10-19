@@ -27,42 +27,61 @@ async function check(name, fn, ctxOptions = {}) {
   await ctx.close();
 }
 const shot = async (page, name) => { if (process.env.SHOTS) await page.screenshot({ path: path.join(process.env.SHOTS, name + '.png') }); };
-const visible = page => page.locator('.g-tile:not([hidden])').count();
-const open = async (page, hash = '') => { await page.goto(base + hash); await page.waitForFunction(() => document.querySelectorAll('.g-tile').length > 0 && customElements.get('lucian-heart')); };
+const visible = page => page.locator('#icon-grid .g-key:not([hidden])').count();
+const key = id => `#icon-grid .g-key[data-id="${id}"]`;
+const open = async (page, hash = '') => { await page.goto(base + hash); await page.waitForFunction(() => document.querySelectorAll('#icon-grid .g-key').length > 0 && customElements.get('lucian-heart')); };
+const narrow = { viewport: { width: 900, height: 900 } };
 
-await check('gallery renders 211 tiles, 4 per row, with live demos', async page => {
+await check('gallery renders 211 keys in 13 categories, five per row; visible keys demo themselves with a cursor', async page => {
   await open(page);
-  assert.equal(await page.locator('.g-tile').count(), 211);
-  const tops = await page.locator('.g-tile').evaluateAll(els => els.slice(0, 8).map(e => e.offsetTop));
-  assert.equal(new Set(tops.slice(0, 4)).size, 1, 'first four share a row');
-  assert.notEqual(tops[3], tops[4], 'fifth wraps');
-  await page.evaluate(() => scrollTo(0, document.querySelector('#icon-grid').offsetTop - 80));
+  assert.equal(await page.locator('#icon-grid .g-key').count(), 211);
+  assert.equal(await page.locator('#icon-grid .g-bank').count(), 13);
+  const tops = await page.locator('#icon-grid .g-key').evaluateAll(els => els.slice(0, 6).map(e => e.offsetTop));
+  assert.equal(new Set(tops.slice(0, 5)).size, 1, 'first five share a row');
+  assert.notEqual(tops[4], tops[5], 'sixth wraps');
+  assert.equal(await page.locator('#main.has-insp').count(), 0, 'the inspector waits for a click');
+  await page.evaluate(() => scrollTo(0, document.querySelector('#main').getBoundingClientRect().top + scrollY - 80));
   await page.waitForTimeout(1500);
-  assert.ok(await page.locator('.g-tile.is-live').count() >= 4, 'visible tiles demo themselves');
+  assert.ok(await page.locator('#icon-grid .g-key.is-live').count() >= 5, 'visible keys demo themselves');
+  assert.ok(await page.locator('#icon-grid .g-ghost.is-on').count() >= 3, 'the demo cursor is drawn');
   await shot(page, 'qa-gallery');
 });
 
-await check('hovering a tile changes nothing: its demo keeps running', async page => {
+await check('the hero card demonstrates featured icons with the cursor and answers a click', async page => {
   await open(page);
-  await page.evaluate(() => scrollTo(0, document.querySelector('#icon-grid').offsetTop - 80));
-  await page.waitForSelector('.g-tile[data-id="folder"].is-live');
-  await page.hover('.g-tile[data-id="folder"] .g-stage');
+  await page.waitForSelector('#pad .g-ghost.is-on', { state: 'attached' });
+  assert.equal(await page.locator('#pad .g-pick').count(), 6);
+  await page.click('#pad .g-pick[data-id="bulb"]');
+  assert.match(await page.textContent('#screen-name'), /전구|bulb/i);
+  assert.equal(await page.getAttribute('#pad .g-pick[data-id="bulb"]', 'aria-pressed'), 'true');
+  const before = await page.locator('#hero-hit lucian-bulb').evaluate(e => e.state);
+  await page.click('#hero-hit');
+  assert.notEqual(await page.locator('#hero-hit lucian-bulb').evaluate(e => e.state), before);
+  await shot(page, 'qa-hero');
+});
+
+await check('hovering a key changes nothing: its demo keeps running', async page => {
+  await open(page);
+  await page.evaluate(() => scrollTo(0, document.querySelector('#main').getBoundingClientRect().top + scrollY - 80));
+  await page.waitForSelector(key('folder') + '.is-live');
+  await page.hover(key('folder'));
   await page.waitForTimeout(1800);
-  assert.equal(await page.locator('.g-tile[data-id="folder"].is-live').count(), 1, 'demo still running under the pointer');
-  assert.equal(await page.getAttribute('.g-tile[data-id="folder"] lucian-folder', 'animate'), 'none');
+  assert.equal(await page.locator(key('folder') + '.is-live').count(), 1, 'demo still running under the pointer');
+  assert.equal(await page.getAttribute(`${key('folder')} lucian-folder`, 'animate'), 'none');
 });
 
 await check('category, search, slash shortcut and empty state', async page => {
   await open(page);
   await page.click('.g-cat[data-cat="security"]');
   assert.equal(await visible(page), Number(await page.locator('.g-cat[data-cat="security"] i').textContent()));
+  assert.equal(await page.locator('#icon-grid .g-bank:not([hidden])').count(), 1, 'only the security bank heading');
   await page.click('.g-cat[data-cat="all"]');
   await page.keyboard.press('/');
   assert.equal(await page.evaluate(() => document.activeElement.id), 'q');
   await page.keyboard.type('삭제');
   await page.waitForTimeout(200);
   assert.equal(await page.inputValue('#q'), '삭제', 'typing right after opening keeps order');
-  assert.ok(await page.locator('.g-tile[data-id="trash"]:not([hidden])').count() === 1);
+  assert.ok(await page.locator(key('trash') + ':not([hidden])').count() === 1);
   await page.fill('#q', 'zzzzqqq'); await page.waitForTimeout(200);
   assert.equal(await visible(page), 0);
   assert.ok(await page.locator('#empty').isVisible());
@@ -76,30 +95,64 @@ await check('language, tone and theme persist', async page => {
   assert.equal(await page.getAttribute('html', 'lang'), 'en');
   assert.match(await page.title(), /animated icons/);
   await page.click('#tone');
-  assert.equal(await page.getAttribute('.g-tile[data-id="heart"] lucian-heart', 'tone'), 'line');
+  assert.equal(await page.getAttribute(`${key('heart')} lucian-heart`, 'tone'), 'line');
   await page.click('#theme');
   const theme = await page.getAttribute('html', 'data-theme');
   await page.reload(); await page.waitForTimeout(400);
   assert.equal(await page.getAttribute('html', 'lang'), 'en');
   assert.equal(await page.getAttribute('html', 'data-theme'), theme);
-  assert.equal(await page.getAttribute('.g-tile[data-id="heart"] lucian-heart', 'tone'), 'line');
+  assert.equal(await page.getAttribute(`${key('heart')} lucian-heart`, 'tone'), 'line');
   await page.evaluate(() => localStorage.clear());
 });
 
-await check('reel deep link; rail copy and code; dialog states, code, downloads; Escape twice', async (page, ctx) => {
+await check('wide: a click steps the key and opens the docked inspector; both stay in sync', async (page, ctx) => {
+  await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: new URL(base).origin });
+  await open(page);
+  await page.click('#auto');
+  await page.click(key('heart'));
+  assert.equal(await page.locator(`${key('heart')} lucian-heart`).evaluate(e => e.state), 'on');
+  await page.waitForSelector('#main.has-insp');
+  assert.equal(await page.locator('#d-stage lucian-heart').evaluate(e => e.state), 'on', 'the inspector follows the key');
+  assert.ok(await page.locator(key('heart') + '.is-sel').count() === 1);
+  const tops = await page.locator('#icon-grid .g-key').evaluateAll(els => els.slice(0, 6).map(e => e.offsetTop));
+  assert.equal(new Set(tops.slice(0, 5)).size, 1, 'still five per row beside the inspector');
+  assert.equal(await page.locator('#dlg-icon[open]').count(), 0, 'no sheet on wide screens');
+  await page.waitForTimeout(600);
+  await page.click('#d-hit');
+  assert.equal(await page.locator(`${key('heart')} lucian-heart`).evaluate(e => e.state), 'off', 'the key follows the inspector');
+  await page.click('#d-states [data-s="on"]');
+  assert.equal(await page.locator(`${key('heart')} lucian-heart`).evaluate(e => e.state), 'on');
+  await page.click('#d-tabs [data-tab="react"]');
+  assert.match(await page.inputValue('#d-code'), /lucian-heart/);
+  await page.click('#d-copy');
+  assert.match(await page.evaluate(() => navigator.clipboard.readText()), /lucian-heart/);
+  for (const [btn, ext] of [['#d-svg', '.svg'], ['#d-html', '.html']]) {
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.click(btn)]);
+    assert.ok(dl.suggestedFilename().endsWith(ext));
+  }
+  await shot(page, 'qa-inspector');
+  await page.click('#insp [data-close]');
+  await page.waitForFunction(() => !document.querySelector('#main').classList.contains('has-insp'));
+  await page.click(key('bell'));
+  await page.waitForSelector('#main.has-insp');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('#main').classList.contains('has-insp'));
+});
+
+await check('reel deep link; rail copy and code; sheet states, code, downloads; Escape twice', async (page, ctx) => {
   await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: new URL(base).origin });
   await open(page, '#download');
   await page.waitForSelector('body[data-view="reel"] .g-slide.is-on lucian-download');
   await page.waitForTimeout(400);
-  assert.equal(await page.locator('.g-tile.is-live').count(), 0, 'grid demos pause behind the reel');
+  assert.equal(await page.locator('#icon-grid .g-key.is-live, #hero-hit.is-live').count(), 0, 'deck and hero pause behind the reel');
   assert.equal(await page.locator('.g-slide.is-on .is-live').count(), 1, 'the icon on screen demonstrates itself');
   await page.click('.g-slide.is-on [data-act="copy"]');
   assert.match(await page.evaluate(() => navigator.clipboard.readText()), /<lucian-download/);
   const [svg] = await Promise.all([page.waitForEvent('download'), page.click('.g-slide.is-on [data-act="svg"]')]);
   assert.match(svg.suggestedFilename(), /^lucian-download.*\.svg$/);
   await page.click('.g-slide.is-on [data-act="code"]');
-  await page.waitForSelector('#dlg-icon[open]');
-  assert.equal(await page.locator('.g-slide.is-on .is-live').count(), 0, 'the reel demo pauses behind the dialog');
+  await page.waitForSelector('#dlg-icon[open] #d-stage lucian-download');
+  assert.equal(await page.locator('.g-slide.is-on .is-live').count(), 0, 'the reel pauses behind the sheet');
   await page.click('#d-states [data-s="error"]');
   assert.equal(await page.locator('#d-stage lucian-download').evaluate(e => e.state), 'error');
   await page.click('#d-tabs [data-tab="react"]');
@@ -110,19 +163,20 @@ await check('reel deep link; rail copy and code; dialog states, code, downloads;
     const [dl] = await Promise.all([page.waitForEvent('download'), page.click(btn)]);
     assert.ok(dl.suggestedFilename().endsWith(ext));
   }
-  await shot(page, 'qa-detail');
+  await shot(page, 'qa-sheet');
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#dlg-icon[open]').count(), 0);
-  assert.equal(await page.getAttribute('body', 'data-view'), 'reel', 'the first Escape only closes the dialog');
+  assert.equal(await page.locator('#insp #insp-in').count(), 1, 'the inspector returns to its dock');
+  assert.equal(await page.getAttribute('body', 'data-view'), 'reel', 'the first Escape only closes the sheet');
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => document.body.dataset.view === 'grid');
   assert.equal(new URL(page.url()).hash, '');
 });
 
-await check('tile click opens the reel; the big icon steps state or replays its effect', async page => {
+await check('narrow: a key opens the reel; the big key steps state or replays its effect', async page => {
   await open(page);
   await page.click('#auto');
-  await page.click('.g-tile[data-id="heart"] .g-stage');
+  await page.click(key('heart'));
   await page.waitForSelector('body[data-view="reel"] .g-slide.is-on lucian-heart');
   assert.equal(new URL(page.url()).hash, '#heart');
   await shot(page, 'qa-reel');
@@ -136,14 +190,14 @@ await check('tile click opens the reel; the big icon steps state or replays its 
   await page.waitForTimeout(800);
   await page.click('.g-slide.is-on .g-slide-hit');
   assert.ok(await page.locator('.g-slide.is-on lucian-calendar').evaluate(e => e.shadowRoot.getAnimations().length) > 0, 'a stateless icon plays its effect');
-});
+}, narrow);
 
-await check('reel follows the filter; keys move; Escape and Back land on the last tile seen', async page => {
+await check('reel follows the filter; keys move; Escape and Back land on the last key seen', async page => {
   await open(page);
   await page.click('.g-cat[data-cat="security"]');
-  const shown = page.locator('.g-tile:not([hidden])'), n = await shown.count();
+  const shown = page.locator('#icon-grid .g-key:not([hidden])'), n = await shown.count();
   const ids = await shown.evaluateAll(els => els.map(e => e.dataset.id));
-  await shown.first().locator('.g-stage').focus();
+  await shown.first().focus();
   await page.keyboard.press('Enter');
   await page.waitForSelector('body[data-view="reel"]');
   assert.equal(await page.textContent('#prog-t'), String(n).padStart(3, '0'), 'reel holds only the filtered icons');
@@ -154,10 +208,10 @@ await check('reel follows the filter; keys move; Escape and Back land on the las
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => document.body.dataset.view === 'grid');
   assert.equal(new URL(page.url()).hash, '');
-  assert.equal(await page.evaluate(() => document.activeElement.closest('.g-tile')?.dataset.id), ids[n - 1], 'focus returns to the last icon seen');
-  const box = await page.locator(`.g-tile[data-id="${ids[n - 1]}"]`).boundingBox();
-  assert.ok(box.y >= 0 && box.y + box.height <= 900, 'its tile is scrolled into view');
-  await page.click(`.g-tile[data-id="${ids[0]}"] .g-stage`);
+  assert.equal(await page.evaluate(() => document.activeElement.closest('.g-key')?.dataset.id), ids[n - 1], 'focus returns to the last icon seen');
+  const box = await page.locator(key(ids[n - 1])).boundingBox();
+  assert.ok(box.y >= 0 && box.y + box.height <= 900, 'its key is scrolled into view');
+  await page.click(key(ids[0]));
   await page.waitForSelector('body[data-view="reel"]');
   await page.goBack();
   await page.waitForFunction(() => document.body.dataset.view === 'grid' && location.hash === '');
@@ -165,6 +219,22 @@ await check('reel follows the filter; keys move; Escape and Back land on the las
   await page.waitForFunction(id => document.body.dataset.view === 'reel' && location.hash === '#' + id, ids[0]);
   await page.click('#hud [data-act="back"]');
   await page.waitForFunction(() => document.body.dataset.view === 'grid' && location.hash === '');
+}, narrow);
+
+await check('arrow keys move between keys across banks', async page => {
+  await open(page);
+  await page.click('#auto');
+  await page.locator(key('signature')).focus();
+  await page.waitForTimeout(100);
+  await page.keyboard.press('ArrowRight');
+  assert.equal(await page.evaluate(() => document.activeElement.dataset.id), 'envelope', 'right steps into the next bank');
+  const x = await page.evaluate(() => document.activeElement.offsetLeft);
+  await page.keyboard.press('ArrowUp');
+  const up = await page.evaluate(() => ({ id: document.activeElement.dataset.id, x: document.activeElement.offsetLeft }));
+  assert.equal(up.x, x, 'up keeps the column');
+  assert.notEqual(up.id, 'envelope');
+  await page.keyboard.press('Home');
+  assert.equal(await page.evaluate(() => document.activeElement.dataset.id), 'trash');
 });
 
 await check('runtime: rapid interruption settles on the last state; duplicates stay independent', async page => {
@@ -192,11 +262,12 @@ await check('reduced motion: no animations, final pose applied', async page => {
     return { state: el.state, anims: el.shadowRoot.getAnimations().length };
   });
   assert.deepEqual(out, { state: 'progress', anims: 0 });
-  assert.equal(await page.locator('.g-tile.is-live').count(), 0, 'gallery demos off');
-  await page.click('.g-tile[data-id="heart"] .g-stage');
+  await page.waitForTimeout(800);
+  assert.equal(await page.locator('.is-live').count(), 0, 'no demos run');
+  await page.click(key('heart'));
   await page.waitForSelector('.g-slide.is-on lucian-heart');
-  assert.equal(await page.evaluate(() => document.querySelector('.g-slide.is-on .g-slide-icon').getAnimations().length), 0, 'the reel opens without a zoom');
-}, { reducedMotion: 'reduce' });
+  assert.equal(await page.evaluate(() => document.querySelector('.g-slide.is-on .g-rspec').getAnimations().length), 0, 'the reel opens without a zoom');
+}, { reducedMotion: 'reduce', ...narrow });
 
 for (const width of [320, 390, 768, 1440]) {
   await check(`no horizontal overflow at ${width}px (gallery and guide)`, async page => {
@@ -209,7 +280,7 @@ for (const width of [320, 390, 768, 1440]) {
     await page.waitForSelector('.g-slide.is-on .g-slide-t');
     await page.waitForTimeout(900);
     const o = await page.evaluate(() => {
-      const s = document.querySelector('.g-slide.is-on'), i = s.querySelector('[data-icon]').getBoundingClientRect(), m = s.querySelector('.g-slide-meta').getBoundingClientRect();
+      const s = document.querySelector('.g-slide.is-on'), i = s.querySelector('.g-rspec').getBoundingClientRect(), m = s.querySelector('.g-slide-meta').getBoundingClientRect();
       const r = s.querySelector('.g-rail').getBoundingClientRect(), h = document.querySelector('.g-hud').getBoundingClientRect();
       const hudIn = [...document.querySelectorAll('.g-hud button, .g-prog')].every(e => { const b = e.getBoundingClientRect(); return b.left >= 0 && b.right <= innerWidth; });
       return { over: document.documentElement.scrollWidth - innerWidth, apart: i.bottom <= m.top + 1 || i.left >= m.right - 1, rail: i.right <= r.left + 1 || i.bottom <= r.top + 1, hud: i.top >= h.bottom - 1, inside: i.left >= 0 && i.right <= innerWidth, hudIn };

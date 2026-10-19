@@ -6,20 +6,19 @@ export default group('lifestyle', [
   icon({
     id: 'heart', name: ['하트', 'Heart'], color: C.red,
     keywords: '좋아요 하트 즐겨찾기 사랑 like heart favorite love',
-    desc: ['누르면 움츠렸다 튀어 오르며 차오르고, 주변으로 작은 빛이 터집니다.', 'It crouches, springs, and fills, with a small burst around it.'],
+    desc: ['누르면 살짝 움츠렸다가 부드럽게 차오르며 색이 채워집니다.', 'It dips a little, then springs back softly as it fills.'],
     states: { off: ['꺼짐', 'Off'], on: ['좋아요', 'Liked'] },
-    svg: `<g data-part="heart"><path data-part="fill" class="f" d="${HEART}"/><path class="s" d="${HEART}"/></g><path data-part="burst" class="a" d="M12 2.5v1.4M4.2 5.4l1 1M19.8 5.4l-1 1M1.9 12.2h1.4M20.7 12.2h1.4"/>`,
-    origins: { heart: [12, 13], fill: [12, 13.5], burst: [12, 12] },
-    poses: { '*': { fill: { scale: 0, opacity: 0 }, burst: { opacity: 0, scale: 0.7 } }, on: { fill: { scale: 1, opacity: 1 } } },
+    svg: `<g data-part="heart"><path data-part="fill" class="f" d="${HEART}"/><path class="s" d="${HEART}"/></g>`,
+    origins: { heart: [12, 13], fill: [12, 13.5] },
+    poses: { '*': { fill: { scale: 0, opacity: 0 } }, on: { fill: { scale: 1, opacity: 1 } } },
     transitions: {
       'off>on': {
-        heart: fx.keys([{ scale: 1 }, { scale: 0.82, offset: 0.25, easing: 'out' }, { scale: 1.14, offset: 0.6, easing: 'inOut' }, { scale: 1 }], 560, 'linear'),
-        fill: fx.keys([{ scale: 0, opacity: 0 }, { scale: 0.4, opacity: 1, offset: 0.25 }, { scale: 1, opacity: 1 }], 520, 'out'),
-        burst: fx.keys([{ opacity: 0, scale: 0.7 }, { opacity: 0, scale: 0.7, offset: 0.35 }, { opacity: 1, scale: 1.05, offset: 0.55 }, { opacity: 0, scale: 1.3 }], 640, 'out')
+        heart: fx.keys([{ scale: 1 }, { scale: 0.93, offset: 0.28, easing: 'out' }, { scale: 1.05, offset: 0.62, easing: 'inOut' }, { scale: 1 }], 480, 'linear'),
+        fill: fx.keys([{ scale: 0.55, opacity: 0 }, { scale: 0.8, opacity: 1, offset: 0.3 }, { scale: 1, opacity: 1 }], 460, 'out')
       },
-      'on>off': { heart: fx.keys([{ scale: 1 }, { scale: 0.9, offset: 0.4 }, { scale: 1 }], 380, 'out'), fill: { e: 'smooth', d: 260 } }
+      'on>off': { heart: fx.keys([{ scale: 1 }, { scale: 0.95, offset: 0.4 }, { scale: 1 }], 320, 'out'), fill: { e: 'smooth', d: 240 } }
     },
-    effect: { heart: fx.keys([{ scale: 1 }, { scale: 1.1, offset: 0.18 }, { scale: 0.98, offset: 0.36 }, { scale: 1.06, offset: 0.54 }, { scale: 1 }], 760, 'linear') }
+    effect: { heart: fx.keys([{ scale: 1 }, { scale: 1.06, offset: 0.16, easing: 'out' }, { scale: 0.995, offset: 0.34, easing: 'inOut' }, { scale: 1.035, offset: 0.52, easing: 'out' }, { scale: 1 }], 720, 'linear') }
   }),
   icon({
     id: 'calendar', name: ['달력', 'Calendar'], color: C.coral,
