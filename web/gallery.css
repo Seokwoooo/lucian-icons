@@ -487,7 +487,7 @@ body[data-view="reel"] .g-hud{opacity:1;transform:none;visibility:visible;transi
   .g-top-r .g-link[data-open-skill]{display:none}
   .g-lang{margin-left:2px}
 }
-@media (max-width:380px){.g-top .g-brand-t,.g-top .g-brand-s::before{display:none}}
+@media (max-width:420px){.g-top .g-brand-t,.g-top .g-brand-s::before{display:none}}
 @media (max-width:350px){
   :root{--cols:2}
   .g-tools #tone{display:none}

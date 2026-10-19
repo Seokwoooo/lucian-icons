@@ -42,7 +42,13 @@ Upgrading from 1.x is a breaking change: see [the migration table](skills/lucian
 
 ## Agent skill
 
-Download the skill ZIP from the [gallery](https://lucianlabs.dev/icons/), or copy [`skills/lucian-icons`](skills/lucian-icons) from this repository:
+Install from GitHub with the skills CLI (Node.js 22.20+):
+
+```sh
+npx skills add Seokwoooo/lucian-icons --skill lucian-icons
+```
+
+Choose your agent and installation scope when prompted. Alternatively, download the skill ZIP from the [gallery](https://lucianlabs.dev/icons/), or copy [`skills/lucian-icons`](skills/lucian-icons) from this repository:
 
 | Tool | Project | User | Invoke |
 | --- | --- | --- | --- |

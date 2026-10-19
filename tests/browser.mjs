@@ -63,6 +63,16 @@ await check('the hero card demonstrates featured icons with the cursor and answe
   await shot(page, 'qa-hero');
 });
 
+await check('hero copies the GitHub skill installation command', async (page, ctx) => {
+  const command = 'npx skills add Seokwoooo/lucian-icons --skill lucian-icons';
+  await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: new URL(base).origin });
+  await open(page);
+  assert.equal(await page.textContent('#install-code'), command);
+  await page.click('[data-copy="#install-code"]');
+  await page.waitForFunction(expected => navigator.clipboard.readText().then(text => text === expected), command);
+  assert.equal(await page.locator('a[href*="lucian-icons-source-"]').count(), 0);
+});
+
 await check('hovering a key changes nothing: its demo keeps running', async page => {
   await open(page);
   await page.evaluate(() => scrollTo(0, document.querySelector('#main').getBoundingClientRect().top + scrollY - 80));
@@ -211,6 +221,7 @@ await check('reel deep link; rail copy and code; sheet states, code, downloads; 
   await shot(page, 'qa-sheet');
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#dlg-icon[open]').count(), 0);
+  await page.waitForSelector('#insp #insp-in', { state: 'attached' });
   assert.equal(await page.locator('#insp #insp-in').count(), 1, 'the inspector returns to its dock');
   assert.equal(await page.getAttribute('body', 'data-view'), 'reel', 'the first Escape only closes the sheet');
   await page.keyboard.press('Escape');

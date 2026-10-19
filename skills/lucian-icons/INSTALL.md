@@ -1,5 +1,15 @@
 # Install lucian-icons
 
+Install directly from GitHub with the skills CLI (Node.js 22.20+):
+
+```sh
+npx skills add Seokwoooo/lucian-icons --skill lucian-icons
+```
+
+Choose the target agent and project or user scope when prompted. For a non-interactive project install in Codex, append `--agent codex --yes`; for Claude Code, append `--agent claude-code --yes`.
+
+For manual installation:
+
 Download https://lucianlabs.dev/icons/downloads/lucian-icons-skill-2.0.13.zip and unzip it. The archive contains one `lucian-icons` folder with SKILL.md, CLI, catalog, per-icon code, examples and license. Node.js 18+ is required for the CLI. No package or global installation command is needed.
 
 Claude Code: place that folder in `.claude/skills/lucian-icons/` inside a project, or `~/.claude/skills/lucian-icons/` for your user. Invoke `/lucian-icons` followed by your request. Natural-language requests naming the skill also work.
@@ -18,4 +28,4 @@ Official documentation checked on 2026-10-14:
 https://code.claude.com/docs/en/skills
 https://developers.openai.com/codex/skills
 
-A full repository checkout can also be installed by copying `skills/lucian-icons` to the locations above. This documentation does not assume an npm package or marketplace entry exists.
+A full repository checkout can also be installed by copying `skills/lucian-icons` to the locations above. The npx command uses the external `skills` installer to fetch this GitHub repository; it does not require a `lucian-icons` npm package.

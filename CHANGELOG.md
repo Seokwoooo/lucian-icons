@@ -4,6 +4,8 @@ Released skill ZIPs stay downloadable at `https://lucianlabs.dev/icons/downloads
 
 ## 2.0.13 (2026-10-20)
 
+- The hero command installs the agent skill from GitHub with `npx skills add Seokwoooo/lucian-icons --skill lucian-icons`; the copy button copies that command.
+- Kept the header within narrow screens in both languages, and made the browser check wait for the dialog close event before checking its dock.
 - Removed website source download buttons and links from the gallery and API guide.
 - Stopped generating website source ZIPs and removed archived source bundles from the current distribution. Individual icon exports and skill ZIPs remain available.
 - Kept the official header logo and favicon by referencing the separately hosted lucianlabs.dev asset; removed bundled logo source files, footer artwork and the branded share image.
