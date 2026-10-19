@@ -95,6 +95,8 @@ a{color:inherit}
 .g-hero{max-width:var(--max);margin:0 auto;padding:36px var(--gut) 80px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:56px 88px;align-items:center}
 .g-kick{display:inline-flex;align-items:center;gap:10px;margin:0;padding:4px 12px 4px 4px;border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px var(--line);font-size:13px;font-weight:550;color:var(--ink-2)}
 .g-kick b{padding:4px 8px;border-radius:999px;background:var(--ink);color:var(--page);font:600 11px/1 var(--mono);letter-spacing:.02em}
+.g-free{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font-weight:680}
+.g-free::after{content:"";width:1px;height:12px;background:var(--line-2)}
 .g-hero-t{margin:26px 0 0;font-size:clamp(44px,5.4vw,78px);line-height:1.04;letter-spacing:-.052em;font-weight:640;word-break:keep-all;text-wrap:balance}
 .g-hero-t .g-num{color:var(--ink-3);font-variant-numeric:tabular-nums}
 .g-hero-s{max-width:480px;margin:22px 0 0;font-size:17px;line-height:1.62;color:var(--ink-2);word-break:keep-all;overflow-wrap:break-word}

@@ -36,6 +36,7 @@ The existing root deployment, domain alias, `/uxui-prompt/`, its introducing pag
 ## Release 2.0.5 notes
 
 - New gallery and guide design (see design.md) and a calmer heart (no burst, smaller pulse). Catalog, ids, states, runtime API, exports, deep links and storage keys are unchanged. Same routing and headers. The 2.0.4 skill and source ZIPs were archived in `web/downloads/` (bytes and SHA-256 match the 2.0.4 production manifest).
+- The share image was redrawn the same day, after 2.0.5 first went live (commit `6894d2e`), and both pages now point to `og.png?v=2.0.5`. The 2.0.5 source ZIP was rebuilt with it; only `web/og.png`, the two pages and docs differ. Icon code, runtime and the skill ZIP are unchanged.
 - After pushing `main`, verify catalog 2.0.5 with 211 icons, every manifest file, CORS, archive URLs, `tests/browser.mjs` against production (17 checks), and that the root site and `/uxui-prompt/` are unchanged.
 
 ## Release 2.0.4 notes
