@@ -1,4 +1,4 @@
-/* Lucian Icons v2.0.6 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+/* Lucian Icons v2.0.7 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
 // Export helpers shared by the gallery, the build and the skill.
 import { normalize, staticSVG, statesOf } from './runtime/icon.js';
 export { staticSVG };

@@ -2,6 +2,15 @@
 
 Product path `/icons/`.
 
+## Release 2.0.7 empty and filled states in dark
+
+Date: 2026-10-19.
+
+- Found after the 2.0.6 deployment: in the dark theme, heart, star, bookmark, thumbs up, toggle, filter, bulb and lamp looked the same off and on.
+- The runtime marks exactly those eight (checked by listing which components carry the rule in Chrome). Off/on pairs in light and dark, Chrome and WebKit 26.6: off reads empty, on fills with the icon's own color; bell, lock, folder, trash, cart, envelope and videochat keep solid surfaces.
+- `npm test` 14 of 14. `tests/browser.mjs` 18 of 18; the dark check now also asserts that an off heart keeps a faint surface and a liked heart fills with `rgb(240, 84, 101)`.
+- Light rendering pixel-identical to 2.0.5 (first 36 icons at 64px).
+
 ## Release 2.0.6 dark colors and hero line
 
 Date: 2026-10-19.

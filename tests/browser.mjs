@@ -105,21 +105,25 @@ await check('language, tone and theme persist', async page => {
   await page.evaluate(() => localStorage.clear());
 });
 
-await check('dark theme: surfaces keep their hue (no olive or brown); light and line tone unchanged', async page => {
+await check('dark theme: surfaces keep their hue (no olive or brown); empty hearts stay empty; light and line tone unchanged', async page => {
   // Reads a surface's (.s) fill through a canvas so any CSS color syntax compares as sRGB; alpha includes fill-opacity.
   const surfaces = () => page.evaluate(() => {
     const cv = document.createElement('canvas'); cv.width = cv.height = 1; const cx = cv.getContext('2d', { willReadFrequently: true });
     const rgba = id => { const s = document.querySelector(`.g-key[data-id="${id}"] lucian-${id}`).shadowRoot.querySelector('.s');
       const cs = getComputedStyle(s); cx.clearRect(0, 0, 1, 1); cx.fillStyle = cs.fill; cx.fillRect(0, 0, 1, 1);
       const [r, g, b, a] = cx.getImageData(0, 0, 1, 1).data; return [r, g, b, Math.round(a * parseFloat(cs.fillOpacity))]; };
-    return { folder: rgba('folder'), star: rgba('stickynote'), trash: rgba('trash') };
+    return { folder: rgba('folder'), star: rgba('stickynote'), trash: rgba('trash'), heart: rgba('heart') };
   });
   await open(page);
   const light = await surfaces();
   assert.ok(Math.abs(light.folder[3] - 61) <= 3, `light tint stays at .24 (${light.folder})`);
   await page.evaluate(() => localStorage.setItem('lucian-icons-theme', 'dark'));
   await page.reload(); await page.waitForFunction(() => customElements.get('lucian-folder')); await page.waitForTimeout(300);
-  const dark = await surfaces();
+  const { heart, ...dark } = await surfaces();
+  assert.ok(heart[3] > 0 && heart[3] < 70, `a heart that is off keeps a faint surface in dark (${heart})`);
+  const liked = await page.evaluate(() => { const el = document.createElement('lucian-heart'); el.setAttribute('state', 'on'); document.body.append(el);
+    const f = el.shadowRoot.querySelector('[data-part="fill"]'), c = getComputedStyle(f); return [c.fill, c.opacity]; });
+  assert.deepEqual(liked, ['rgb(240, 84, 101)', '1'], 'a liked heart fills with its own red');
   for (const [id, [r, g, b, a]] of Object.entries(dark)) {
     assert.equal(a, 255, `${id} surface is solid in dark (${dark[id]})`);
     assert.ok(Math.max(r, g, b) >= 170 && Math.max(r, g, b) - Math.min(r, g, b) >= 90, `${id} keeps a bright, saturated hue (${dark[id]})`);

@@ -5,7 +5,7 @@ description: Use when the user requests Lucian Icons, lucian-icons, original ani
 
 # Lucian Icons
 
-Original animated SVG icons, version 2.0.6, MIT. 211 icons in 13 categories. Gallery: https://lucianlabs.dev/icons/. API guide: https://lucianlabs.dev/icons/guide.html.
+Original animated SVG icons, version 2.0.7, MIT. 211 icons in 13 categories. Gallery: https://lucianlabs.dev/icons/. API guide: https://lucianlabs.dev/icons/guide.html.
 This installed package works offline. `<skill-dir>` is the folder containing this file. Node.js 18 or later runs the CLI; no package installation is needed.
 
 1. Inspect the target project, its framework, theme, icon locations, existing labels and event handlers. Identify the real source of state and confirm the intended insertion point from the task.

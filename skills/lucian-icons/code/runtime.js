@@ -1,5 +1,5 @@
-/* Lucian Icons v2.0.6 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '2.0.6';
+/* Lucian Icons v2.0.7 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '2.0.7';
 
 // Motion vocabulary ---------------------------------------------------------
 // Springs follow Apple's (duration, bounce) model. The runtime samples each
@@ -145,16 +145,26 @@ const TRIGGER = 'button,a[href],summary,label,[role=button],[role=link],[role=me
 const W = 'pow(max(0, cos((h - 90) * .5deg)), 16)';
 const DARK_TINT = `oklch(from var(--_c) calc(l * (.8 + .14 * ${W})) calc(c * (.85 + .1 * ${W})) calc(h - 10 * pow(max(0, cos((h - 98) * .5deg)), 60)) / clamp(0, var(--_t) / .24, 1))`;
 const DARK_ACCENT = 'oklch(from var(--_c) calc(l + (1 - l) * .32) c h)';
-const DARK = `@supports (color:light-dark(#000,#fff)) and (color:oklch(from red calc(l * pow(max(0, cos(1deg)), 2)) c h / clamp(0, .5, 1))) and (color:color-mix(in srgb,red calc(.24 * 100%),transparent)){.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),${DARK_TINT});fill-opacity:1}.a{stroke:light-dark(var(--_c),${DARK_ACCENT})}.f{fill:light-dark(var(--_c),${DARK_ACCENT})}:host([tone=line]) .a{stroke:var(--_c)}:host([tone=line]) .f{fill:var(--_c)}}`;
+const DARK_IF = '@supports (color:light-dark(#000,#fff)) and (color:oklch(from red calc(l * pow(max(0, cos(1deg)), 2)) c h / clamp(0, .5, 1))) and (color:color-mix(in srgb,red calc(.24 * 100%),transparent)){';
+const DARK = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),${DARK_TINT});fill-opacity:1}.a{stroke:light-dark(var(--_c),${DARK_ACCENT})}.f{fill:light-dark(var(--_c),${DARK_ACCENT})}:host([tone=line]) .a{stroke:var(--_c)}:host([tone=line]) .f{fill:var(--_c)}}`;
+// Icons whose state fills the whole shape (a .f part named fill or glow: heart, star, bookmark,
+// thumbs up, toggle, filter, bulb, lamp) keep a faint surface in the dark scheme, so the empty and
+// filled states still read apart, and fill with the icon's own color.
+const HOLLOW = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),oklch(from var(--_c) calc(l * .8) calc(c * .85) h / calc(.18 * clamp(0, var(--_t) / .24, 1))))}.a{stroke:var(--_c)}.f{fill:var(--_c)}}`;
+const hollowOf = def => def.states?.length > 1 && ['fill', 'glow'].some(part => {
+  if (!new RegExp(`<[^>]*data-part="${part}"[^>]*class="f"|<[^>]*class="f"[^>]*data-part="${part}"`).test(def.svg)) return false;
+  const o = def.states.map(st => poseOf(def, st)[part]?.opacity ?? 1);
+  return Math.min(...o) === 0 && Math.max(...o) > 0;
+});
 // Color tone: ink strokes, the icon's own color on tinted surfaces (.s, .t) and
 // on one or two signal details (.a strokes, .f fills). .y is a fixed sun yellow
 // for the rare detail that must not take the icon's color. Line tone is monochrome.
-const STYLE = color => `:host{display:inline-block;width:var(--li-size,24px);height:var(--li-size,24px);flex:none;line-height:0;vertical-align:middle;contain:layout style;--_c:var(--li-accent,${color});--_t:var(--li-tint,${TINT})}:host([tone=line]){--_c:var(--li-accent,currentColor);--_t:0}svg{display:block;width:100%;height:100%;overflow:visible;stroke-width:var(--li-weight,1.75)}[data-part]{transform-box:view-box}.s{fill:var(--_c);fill-opacity:var(--_t)}.t{fill:var(--_c);fill-opacity:var(--_t);stroke:none}.a{stroke:var(--_c)}.f{fill:var(--_c);stroke:none}.k{fill:currentColor;stroke:none}.y{fill:${SUN};stroke:none}:host([tone=line]) .y{fill:currentColor}${DARK}`;
+const STYLE = (color, hollow) => `:host{display:inline-block;width:var(--li-size,24px);height:var(--li-size,24px);flex:none;line-height:0;vertical-align:middle;contain:layout style;--_c:var(--li-accent,${color});--_t:var(--li-tint,${TINT})}:host([tone=line]){--_c:var(--li-accent,currentColor);--_t:0}svg{display:block;width:100%;height:100%;overflow:visible;stroke-width:var(--li-weight,1.75)}[data-part]{transform-box:view-box}.s{fill:var(--_c);fill-opacity:var(--_t)}.t{fill:var(--_c);fill-opacity:var(--_t);stroke:none}.a{stroke:var(--_c)}.f{fill:var(--_c);stroke:none}.k{fill:currentColor;stroke:none}.y{fill:${SUN};stroke:none}:host([tone=line]) .y{fill:currentColor}${DARK}${hollow ? HOLLOW : ''}`;
 const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 export function defineIcon(def) {
   const tag = `lucian-${def.id}`;
   if (customElements.get(tag)) return customElements.get(tag);
-  const states = statesOf(def), parts = posedParts(def), draws = drawParts(def);
+  const states = statesOf(def), parts = posedParts(def), draws = drawParts(def), hollow = hollowOf(def);
   const transition = (from, to) => def.transitions?.[`${from}>${to}`] || def.transitions?.[`*>${to}`] || def.transitions?.[`${from}>*`] || {};
   class LucianIcon extends HTMLElement {
     static observedAttributes = ['state', 'size', 'accent', 'tone', 'weight', 'progress', 'label', 'animate'];
@@ -163,7 +173,7 @@ export function defineIcon(def) {
       super();
       this.#progress = normalize(def).progress;
       const root = this.attachShadow({ mode: 'open' });
-      root.innerHTML = `<style>${STYLE(def.color || 'currentColor')}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g data-part="*">${def.svg}</g></svg>`;
+      root.innerHTML = `<style>${STYLE(def.color || 'currentColor', hollow)}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g data-part="*">${def.svg}</g></svg>`;
       for (const node of root.querySelectorAll('[data-part]')) {
         const name = node.dataset.part, [x, y] = origin(def, name);
         node.style.transformOrigin = `${x}px ${y}px`;
