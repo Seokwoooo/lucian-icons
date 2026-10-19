@@ -15,6 +15,8 @@
   --grid:rgba(12,12,14,.065);--grid-m:rgba(12,12,14,.12);--grid-k:rgba(12,12,14,.2);
   --code:#F6F6F4;--code-ink:#1A1A1E;
   --mint:#0E9F6E;--tint:6%;
+  --free:#E0590B;
+  --free-u:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M3 7.2C48 4.4 118 3.6 197 4.6' fill='none' stroke='%23F48D2F' stroke-opacity='.6' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
   --ease:cubic-bezier(.2,.8,.2,1);--out:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.4,.64,1);
   --max:1440px;--gut:32px;--bar-h:60px;--insp-w:368px;--cols:5;
   --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Noto Sans KR",sans-serif;
@@ -36,6 +38,8 @@
     --grid:rgba(255,255,255,.055);--grid-m:rgba(255,255,255,.1);--grid-k:rgba(255,255,255,.2);
     --code:#0C0C0E;--code-ink:#E4E4E7;
     --mint:#34D399;--tint:10%;
+    --free:#FF9A45;
+    --free-u:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M3 7.2C48 4.4 118 3.6 197 4.6' fill='none' stroke='%23F48D2F' stroke-opacity='.8' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
   }
 }
 :root[data-theme="dark"]{
@@ -51,6 +55,8 @@
   --grid:rgba(255,255,255,.055);--grid-m:rgba(255,255,255,.1);--grid-k:rgba(255,255,255,.2);
   --code:#0C0C0E;--code-ink:#E4E4E7;
   --mint:#34D399;--tint:10%;
+  --free:#FF9A45;
+  --free-u:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M3 7.2C48 4.4 118 3.6 197 4.6' fill='none' stroke='%23F48D2F' stroke-opacity='.8' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -93,11 +99,16 @@ a{color:inherit}
 
 /* ---------- Hero: copy on the left, a live specimen on the drawing grid on the right ---------- */
 .g-hero{max-width:var(--max);margin:0 auto;padding:36px var(--gut) 80px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:56px 88px;align-items:center}
-.g-kick{display:inline-flex;align-items:center;gap:10px;margin:0;padding:4px 12px 4px 4px;border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px var(--line);font-size:13px;font-weight:550;color:var(--ink-2)}
-.g-kick b{padding:4px 8px;border-radius:999px;background:var(--ink);color:var(--page);font:600 11px/1 var(--mono);letter-spacing:.02em}
-.g-free{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font-weight:680}
-.g-free::after{content:"";width:1px;height:12px;background:var(--line-2)}
+.g-kick{display:inline-flex;align-items:center;gap:10px;margin:0;padding:4px 12px 4px 4px;border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px var(--line);font-size:13px;font-weight:550;color:var(--ink-2);max-width:100%;white-space:nowrap}
+.g-kick b{flex:none;padding:4px 8px;border-radius:999px;background:var(--ink);color:var(--page);font:600 11px/1 var(--mono);letter-spacing:.02em}
+.g-kick-t{min-width:0;overflow:hidden;text-overflow:ellipsis}
+/* "100% free and open source": its own line just above the headline, a little smaller */
+.g-hero-free{margin:24px 0 0;font-size:clamp(26px,2.7vw,38px);line-height:1.1;letter-spacing:-.04em;font-weight:660;color:var(--free);word-break:keep-all;text-wrap:balance}
 .g-hero-t{margin:26px 0 0;font-size:clamp(44px,5.4vw,78px);line-height:1.04;letter-spacing:-.052em;font-weight:640;word-break:keep-all;text-wrap:balance}
+.g-hero-free+.g-hero-t{margin-top:16px}
+.g-free-t{padding-bottom:.14em;background:var(--free-u) no-repeat 0 100%/100% .24em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.js .g-free-t{animation:g-underline 1s var(--out) .5s both}
+@keyframes g-underline{from{background-size:0% .24em}}
 .g-hero-t .g-num{color:var(--ink-3);font-variant-numeric:tabular-nums}
 .g-hero-s{max-width:480px;margin:22px 0 0;font-size:17px;line-height:1.62;color:var(--ink-2);word-break:keep-all;overflow-wrap:break-word}
 .g-install{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:34px 0 0;max-width:620px}
@@ -114,6 +125,7 @@ a{color:inherit}
 .js .g-hero-copy>:nth-child(3){animation-delay:.1s}
 .js .g-hero-copy>:nth-child(4){animation-delay:.15s}
 .js .g-hero-copy>:nth-child(5){animation-delay:.2s}
+.js .g-hero-copy>:nth-child(6){animation-delay:.25s}
 .js .g-card{animation:g-in .9s var(--out) .12s both}
 @keyframes g-in{from{opacity:0;transform:translateY(10px)}}
 
@@ -406,6 +418,8 @@ body[data-view="reel"] .g-hud{opacity:1;transform:none;visibility:visible;transi
   .g-top-r .g-link--api{display:none}
   .g-link{padding:0 9px;font-size:13.5px}
   .g-hero{padding-top:24px;padding-bottom:48px;gap:36px}
+  .g-hero-free{font-size:clamp(24px,6vw,28px);margin-top:20px}
+  .g-hero-free+.g-hero-t{margin-top:12px}
   .g-hero-t{font-size:clamp(38px,11vw,56px);margin-top:20px}
   .g-hero-s{font-size:15.5px;margin-top:18px}
   .g-install{margin-top:26px}
@@ -460,7 +474,7 @@ body[data-view="reel"] .g-hud{opacity:1;transform:none;visibility:visible;transi
   .g-tools #tone{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .js .g-key.is-new,.js .g-hero-copy>*,.js .g-card{animation:none}
+  .js .g-key.is-new,.js .g-hero-copy>*,.js .g-card,.js .g-free-t{animation:none}
   .g-ghost{display:none}
   .g-main,.g-insp{transition:none}
   .g-reel,body[data-view="reel"] .g-reel,.g-hud,body[data-view="reel"] .g-hud{transition:none}
