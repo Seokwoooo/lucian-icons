@@ -91,7 +91,7 @@ await zipDirectory(fileURLToPath(skill), fileURLToPath(new URL(`downloads/lucian
 const stage = new URL('.artifacts/source-package/', root);
 await rm(stage, { recursive: true, force: true });
 await mkdir(stage, { recursive: true });
-for (const item of ['src', 'web', 'scripts', 'skills', 'tests', 'docs', 'LICENSE', 'README.md', 'package.json', 'vercel.json']) await cp(new URL(item, root), new URL(item, stage), { recursive: true });
+for (const item of ['src', 'web', 'scripts', 'skills', 'tests', 'docs', 'LICENSE', 'README.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'package.json', 'vercel.json']) await cp(new URL(item, root), new URL(item, stage), { recursive: true });
 await rm(new URL('web/downloads/', stage), { recursive: true, force: true });
 await zipDirectory(fileURLToPath(stage), fileURLToPath(new URL(`downloads/lucian-icons-source-${version}.zip`, out)), 'lucian-icons/');
 

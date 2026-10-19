@@ -30,6 +30,16 @@ test('static SVG freezes the chosen state and color without CSS variables or IDs
   assert.ok(Object.keys(poseOf(trash, 'open')).length > 0);
 });
 
+test('error marks stay red in color tone and follow the line color in line tone', () => {
+  for (const [id, state] of [['download', 'error'], ['upload', 'error'], ['shield', 'alert']]) {
+    const def = get(id);
+    assert.match(def.svg, new RegExp(`data-part="${state}" class="e"`), `${id}: ${state} mark uses the error class`);
+    assert.match(staticSVG(def, { state, accent: '#123456' }), /stroke="#F05465"/, `${id}: red even with an accent`);
+    assert.doesNotMatch(staticSVG(def, { state, tone: 'line' }), /#F05465/, `${id}: line tone stays monochrome`);
+    assert.doesNotMatch(staticSVG(def, { state }), /class="e"/, `${id}: class resolved in static SVG`);
+  }
+});
+
 test('usage snippets write only non-default attributes and real-state wiring', () => {
   const html = usageHTML(download, { state: 'progress', progress: 40 }, 'en');
   assert.match(html, /modules\/download\.js/);

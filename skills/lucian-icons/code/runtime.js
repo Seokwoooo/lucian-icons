@@ -1,5 +1,5 @@
-/* Lucian Icons v2.0.8 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '2.0.8';
+/* Lucian Icons v2.0.9 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '2.0.9';
 
 // Motion vocabulary ---------------------------------------------------------
 // Springs follow Apple's (duration, bounce) model. The runtime samples each
@@ -113,11 +113,11 @@ function transformAttr(def, part, p) {
 export function staticSVG(def, options = {}) {
   const o = normalize(def, options), line = o.tone === 'line';
   const accent = o.accent || (line ? o.color : def.color || o.color), pose = poseOf(def, o.state, o.progress), draws = drawParts(def);
-  let body = def.svg.replace(/class="([saftky])"/g, (_, c) => ({
+  let body = def.svg.replace(/class="([saftkye])"/g, (_, c) => ({
     s: line ? '' : `fill="${accent}" fill-opacity="${TINT}"`,
     t: line ? 'fill="none" stroke="none"' : `fill="${accent}" fill-opacity="${TINT}" stroke="none"`,
     a: `stroke="${accent}"`, f: `fill="${accent}" stroke="none"`, k: `fill="${o.color}" stroke="none"`,
-    y: `fill="${line ? o.color : SUN}" stroke="none"`
+    y: `fill="${line ? o.color : SUN}" stroke="none"`, e: `stroke="${line ? accent : ERROR}"`
   })[c]);
   // Parts that are invisible in this state are left out of the static file.
   const hidden = part => pose[part] && (pose[part].opacity === 0 || (draws.has(part) && pose[part].draw === 0) || pose[part].scale === 0);
@@ -134,7 +134,7 @@ export function staticSVG(def, options = {}) {
 }
 
 // Custom element ------------------------------------------------------------------
-const TINT = 0.24, SUN = '#F4AF2D';
+const TINT = 0.24, SUN = '#F4AF2D', ERROR = '#F05465';
 const TRIGGER = 'button,a[href],summary,label,[role=button],[role=link],[role=menuitem],[role=tab],[role=switch],[role=checkbox],[role=option]';
 // Dark color scheme (the page declares color-scheme: dark): a thin tint over a dark page turns
 // yellow olive and orange brown, so surfaces are painted solid in the icon's color, a little darker
@@ -146,7 +146,7 @@ const TRIGGER = 'button,a[href],summary,label,[role=button],[role=link],[role=me
 const DARK_TINT = 'oklch(from var(--_c) calc(l * .93) calc(c * 1.08) h / clamp(0, var(--_t) / .24, 1))';
 const DARK_ACCENT = 'oklch(from var(--_c) calc(l + (1 - l) * .4) c h)';
 const DARK_IF = '@supports (color:light-dark(#000,#fff)) and (color:oklch(from red calc(l * pow(max(0, cos(1deg)), 2)) c h / clamp(0, .5, 1))) and (color:color-mix(in srgb,red calc(.24 * 100%),transparent)){';
-const DARK = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),${DARK_TINT});fill-opacity:1}.a{stroke:light-dark(var(--_c),${DARK_ACCENT})}.f{fill:light-dark(var(--_c),${DARK_ACCENT})}:host([tone=line]) .a{stroke:var(--_c)}:host([tone=line]) .f{fill:var(--_c)}}`;
+const DARK = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),${DARK_TINT});fill-opacity:1}.a{stroke:light-dark(var(--_c),${DARK_ACCENT})}.f{fill:light-dark(var(--_c),${DARK_ACCENT})}.e{stroke:light-dark(${ERROR},oklch(from ${ERROR} calc(l + (1 - l) * .4) c h))}:host([tone=line]) .a{stroke:var(--_c)}:host([tone=line]) .f{fill:var(--_c)}}`;
 // Icons whose state fills the whole shape (a .f part named fill or glow: heart, star, bookmark,
 // thumbs up, toggle, filter, bulb, lamp) are just an outline when empty in the dark scheme, so the
 // empty and filled states still read apart, and fill with the icon's own color.
@@ -157,9 +157,10 @@ const hollowOf = def => def.states?.length > 1 && ['fill', 'glow'].some(part => 
   return Math.min(...o) === 0 && Math.max(...o) > 0;
 });
 // Color tone: ink strokes, the icon's own color on tinted surfaces (.s, .t) and
-// on one or two signal details (.a strokes, .f fills). .y is a fixed sun yellow
+// on one or two signal details (.a strokes, .f fills). .e is a fixed red for error marks
+// (it ignores accent so a failure never reads as success). .y is a fixed sun yellow
 // for the rare detail that must not take the icon's color. Line tone is monochrome.
-const STYLE = (color, hollow) => `:host{display:inline-block;width:var(--li-size,24px);height:var(--li-size,24px);flex:none;line-height:0;vertical-align:middle;contain:layout style;--_c:var(--li-accent,${color});--_t:var(--li-tint,${TINT})}:host([tone=line]){--_c:var(--li-accent,currentColor);--_t:0}svg{display:block;width:100%;height:100%;overflow:visible;stroke-width:var(--li-weight,1.75)}[data-part]{transform-box:view-box}.s{fill:var(--_c);fill-opacity:var(--_t)}.t{fill:var(--_c);fill-opacity:var(--_t);stroke:none}.a{stroke:var(--_c)}.f{fill:var(--_c);stroke:none}.k{fill:currentColor;stroke:none}.y{fill:${SUN};stroke:none}:host([tone=line]) .y{fill:currentColor}${DARK}${hollow ? HOLLOW : ''}`;
+const STYLE = (color, hollow) => `:host{display:inline-block;width:var(--li-size,24px);height:var(--li-size,24px);flex:none;line-height:0;vertical-align:middle;contain:layout style;--_c:var(--li-accent,${color});--_t:var(--li-tint,${TINT})}:host([tone=line]){--_c:var(--li-accent,currentColor);--_t:0}svg{display:block;width:100%;height:100%;overflow:visible;stroke-width:var(--li-weight,1.75)}[data-part]{transform-box:view-box}.s{fill:var(--_c);fill-opacity:var(--_t)}.t{fill:var(--_c);fill-opacity:var(--_t);stroke:none}.a{stroke:var(--_c)}.f{fill:var(--_c);stroke:none}.k{fill:currentColor;stroke:none}.y{fill:${SUN};stroke:none}:host([tone=line]) .y{fill:currentColor}.e{stroke:${ERROR}}:host([tone=line]) .e{stroke:var(--_c)}${DARK}${hollow ? HOLLOW : ''}`;
 const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 export function defineIcon(def) {
   const tag = `lucian-${def.id}`;

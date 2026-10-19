@@ -37,7 +37,7 @@ const transfer = dir => ({
   }
 });
 const TRAY = '<path data-part="tray" class="s" d="M3.75 14.5v3.25A2.25 2.25 0 0 0 6 20h12a2.25 2.25 0 0 0 2.25-2.25V14.5"/>';
-const MARKS = '<path data-part="check" class="a" d="m8 10.25 2.75 2.75L16.5 7.25"/><g data-part="error" class="a"><path d="M12 4.5v5.25"/><path d="M12 13h.01"/></g>';
+const MARKS = '<path data-part="check" class="a" d="m8 10.25 2.75 2.75L16.5 7.25"/><g data-part="error" class="e"><path d="M12 4.5v5.25"/><path d="M12 13h.01"/></g>';
 
 export default group('files', [
   icon({

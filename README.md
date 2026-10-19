@@ -65,6 +65,8 @@ PLAYWRIGHT_CORE=/path/to/node_modules/playwright-core node tests/browser.mjs
 
 `dist/icons/` is served at `/icons/` of the existing site through scoped rewrites; see [docs/deployment.md](docs/deployment.md). Never deploy it over the root site.
 
+Release history is in [CHANGELOG.md](CHANGELOG.md). Icon rules and pull requests: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## License
 
 [MIT](LICENSE), Copyright (c) 2026 Lucian. All drawings are original. Pretendard uses the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No tracking, no external icon package, no animation library.

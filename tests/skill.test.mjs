@@ -17,16 +17,28 @@ test('skill searches in Korean and English', () => {
   assert.equal(run('list').length, 211);
 });
 
+test('skill search ranks exact ids and names above partial matches', () => {
+  const top = q => run('search', ...q.split(' '))[0].id;
+  assert.equal(top('close'), 'close', 'not menu, which lists close as a keyword');
+  assert.equal(top('arrow'), 'arrow', 'not filter (narrow)');
+  assert.equal(top('bell'), 'bell', 'not dumbbell');
+  assert.equal(top('lock'), 'lock', 'not clock');
+  assert.equal(top('닫기'), 'close');
+  assert.equal(top('자물쇠'), 'lock');
+  assert.equal(top('bell notification'), 'bell');
+  assert.equal(run('search', 'xyzzy').length, 0);
+});
+
 test('skill retrieves only the selected icons with version and integrity', () => {
   const out = run('get', 'download', 'heart');
-  assert.equal(out.version, '2.0.8');
+  assert.equal(out.version, '2.0.9');
   assert.deepEqual(out.icons.map(i => i.id), ['download', 'heart']);
   assert.match(out.runtime, /export function defineIcon/);
   assert.ok(out.icons.every(i => !i.code.includes('lucian-folder')));
   assert.throws(() => execFileSync('node', [cli, 'get', 'nosuchicon'], { stdio: 'pipe' }));
 });
 
-test('skill copies just the needed files and never overwrites', async () => {
+test('skill copies just the needed files, adds to the same directory and never overwrites', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'lucian-skill-'));
   try {
     execFileSync('node', [cli, 'get', 'download', '--out', dir], { encoding: 'utf8' });
@@ -35,6 +47,13 @@ test('skill copies just the needed files and never overwrites', async () => {
     await writeFile(path.join(dir, 'heart.js'), 'mine');
     assert.throws(() => execFileSync('node', [cli, 'get', 'heart', '--out', dir], { stdio: 'pipe' }));
     assert.equal(await readFile(path.join(dir, 'heart.js'), 'utf8'), 'mine', 'user file untouched');
+    const added = run('get', 'bell', 'download', '--out', dir);
+    assert.deepEqual(added.written.map(f => path.basename(f)), ['bell.js'], 'only the new icon is written');
+    assert.deepEqual(added.unchanged.map(f => path.basename(f)).sort(), ['LICENSE', 'download.js', 'runtime.js']);
+    assert.throws(() => execFileSync('node', [cli, 'get', 'star', 'heart', '--out', dir], { stdio: 'pipe' }));
+    assert.ok(!(await readdir(dir)).includes('star.js'), 'a conflict writes nothing');
+    await writeFile(path.join(dir, 'runtime.js'), "export const VERSION = '2.0.1';");
+    assert.throws(() => execFileSync('node', [cli, 'get', 'lock', '--out', dir], { stdio: 'pipe' }), /existing runtime is v2\.0\.1/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
@@ -42,8 +61,8 @@ test('skill docs describe the v2 API', async () => {
   const skill = await readFile('skills/lucian-icons/SKILL.md', 'utf8');
   const porting = await readFile('skills/lucian-icons/references/porting.md', 'utf8');
   const install = await readFile('skills/lucian-icons/INSTALL.md', 'utf8');
-  assert.match(skill, /version 2\.0\.8/);
-  assert.match(install, /lucian-icons-skill-2\.0\.8\.zip/);
+  assert.match(skill, /version 2\.0\.9/);
+  assert.match(install, /lucian-icons-skill-2\.0\.9\.zip/);
   for (const word of ['tone', 'accent', 'weight', 'animate', 'play()', 'next()', '--li-accent']) assert.ok(porting.includes(word), word);
   assert.doesNotMatch(porting + skill, /\bink\b.*\bpaper\b.*six-digit/);
 });

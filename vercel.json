@@ -10,11 +10,47 @@
       "source": "/icons/(.*)",
       "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }]
     },
-    { "source": "/icons/all.js", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
-    { "source": "/icons/export.js", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
-    { "source": "/icons/catalog.json", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
-    { "source": "/icons/modules/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
-    { "source": "/icons/runtime/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] },
-    { "source": "/icons/api/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] }
+    {
+      "source": "/icons/all.js",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/icons/export.js",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/icons/catalog.json",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/icons/modules/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/icons/runtime/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/icons/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+      ]
+    }
   ]
 }

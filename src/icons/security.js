@@ -24,14 +24,14 @@ export default group('security', [
   icon({
     id: 'shield', name: ['방패', 'Shield'], color: C.green,
     keywords: '방패 보호 보안 안전 경고 shield protect security safe warning',
-    desc: ['보호 상태에서는 체크가, 경고 상태에서는 흔들림과 함께 느낌표가 나타납니다.', 'Protected shows a check; the alert state shakes and shows an exclamation.'],
+    desc: ['보호 상태에서는 체크가 나타나고, 경고 상태에서는 방패가 비워지며 흔들리고 빨간 느낌표가 나타납니다.', 'Protected shows a check; on alert the shield empties, shakes and shows a red exclamation mark.'],
     states: { protected: ['보호됨', 'Protected'], alert: ['경고', 'Alert'] },
-    svg: '<path class="s" d="M12 21s7.5-3.2 7.5-9.25V5.75L12 3 4.5 5.75v6C4.5 17.8 12 21 12 21z"/><path data-part="check" class="a" d="m8.75 11.75 2.25 2.25 4.25-4.5"/><g data-part="alert" class="a"><path d="M12 7.75v4.5"/><path d="M12 15.25h.01"/></g>',
+    svg: '<path data-part="surface" class="t" d="M12 21s7.5-3.2 7.5-9.25V5.75L12 3 4.5 5.75v6C4.5 17.8 12 21 12 21z"/><path d="M12 21s7.5-3.2 7.5-9.25V5.75L12 3 4.5 5.75v6C4.5 17.8 12 21 12 21z"/><path data-part="check" class="a" d="m8.75 11.75 2.25 2.25 4.25-4.5"/><g data-part="alert" class="e"><path d="M12 7.75v4.5"/><path d="M12 15.25h.01"/></g>',
     origins: { check: [12, 12], alert: [12, 12] },
-    poses: { '*': { alert: { opacity: 0, scale: 0.5 } }, alert: { check: { draw: 0, opacity: 0 }, alert: { opacity: 1, scale: 1 } } },
+    poses: { '*': { alert: { opacity: 0, scale: 0.5 } }, alert: { surface: { opacity: 0 }, check: { draw: 0, opacity: 0 }, alert: { opacity: 1, scale: 1 } } },
     transitions: {
-      'protected>alert': { check: { e: 'in', d: 140 }, alert: { e: 'bouncy', delay: 120 }, '*': fx.shake(1.2, 520, 100) },
-      'alert>protected': { alert: { e: 'in', d: 140 }, check: DRAW_IN(), '*': fx.pop(1.08, 420, 80) }
+      'protected>alert': { surface: { e: 'out', d: 260 }, check: { e: 'in', d: 140 }, alert: { e: 'bouncy', delay: 120 }, '*': fx.shake(1.2, 520, 100) },
+      'alert>protected': { surface: { e: 'out', d: 320, delay: 60 }, alert: { e: 'in', d: 140 }, check: DRAW_IN(), '*': fx.pop(1.08, 420, 80) }
     },
     effect: { '*': fx.pop(1.1, 520), check: fx.redraw(420, 120) }
   }),
