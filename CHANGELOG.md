@@ -8,7 +8,7 @@ Every release's skill and source ZIPs stay downloadable at `https://lucianlabs.d
 - Shield empties on alert: the green surface fades out so the red mark stands on the page, readable in dark themes and without relying on red versus green.
 - Skill CLI search ranks exact ids first, then names, keywords (earlier keywords weigh more), word prefixes and substrings. `close` now finds Close before Menu, `arrow` finds Arrow before Filter.
 - Skill CLI `get --out` can add icons to an existing directory: identical files are kept and only new modules are written. A differing file still stops the command before anything is written. The output lists `written` and `unchanged` files.
-- Public code and data paths (`all.js`, `export.js`, `catalog.json`, `modules/`, `runtime/`, `api/`) are cached by browsers for 10 minutes, with stale-while-revalidate for a day, so sites that load icons from lucianlabs.dev revalidate far less often.
+- Public code and data paths (`all.js`, `export.js`, `catalog.json`, `modules/`, `runtime/`, `api/`) are cached by browsers for 10 minutes, so sites that load icons from lucianlabs.dev revalidate far less often. CDNs keep revalidating, so a release is live as soon as it deploys.
 - GitHub Actions runs the build and tests on Node 18, 22 and 24 and checks that generated skill files are committed. Added this changelog and CONTRIBUTING.md; internal working notes left the repository.
 
 ## 2.0.8 (2026-10-19)

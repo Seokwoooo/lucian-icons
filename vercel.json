@@ -14,42 +14,48 @@
       "source": "/icons/all.js",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=600" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
       "source": "/icons/export.js",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=600" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
       "source": "/icons/catalog.json",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=600" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
       "source": "/icons/modules/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=600" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
       "source": "/icons/runtime/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=600" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
       "source": "/icons/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=600" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ]

@@ -20,7 +20,8 @@ Lucian Icons is served at https://lucianlabs.dev/icons/. This page is for mainta
 `vercel.json` sets, for the public code and data paths (`/icons/all.js`, `/icons/export.js`, `/icons/catalog.json`, `/icons/modules/*`, `/icons/runtime/*`, `/icons/api/*`):
 
 - `Access-Control-Allow-Origin: *`, because the gallery and README advertise loading modules straight from `https://lucianlabs.dev/icons/`. Cross-origin module scripts fail without it.
-- `Cache-Control: public, max-age=600, stale-while-revalidate=86400`, so pages that load icons from lucianlabs.dev do not revalidate every module on every view. Browsers may keep the previous release for up to 10 minutes after a deploy (one more load with stale-while-revalidate). The headers set no `s-maxage` or `CDN-Cache-Control`, so Vercel's CDN does not keep old files after a deploy.
+- `Cache-Control: public, max-age=600`, so browsers on pages that load icons from lucianlabs.dev do not revalidate every module on every view. A returning visitor may keep the previous release for up to 10 minutes after a deploy.
+- `CDN-Cache-Control: public, max-age=0, must-revalidate`. Without it, Vercel's CDN would also cache by `Cache-Control`, including the site's proxy in front of the external rewrite, and lucianlabs.dev could serve the previous release after a deploy. `CDN-Cache-Control` takes priority on Vercel and is forwarded to other CDNs. Do not add `s-maxage` or `stale-while-revalidate`: Vercel treats both as CDN directives and strips them from the browser's header.
 
 Pages (`index.html`, `guide.html`) and gallery assets keep Vercel's default `max-age=0, must-revalidate`. The headers come from the icons project and pass through the site's rewrite.
 
