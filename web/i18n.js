@@ -28,7 +28,6 @@ export const copy = {
     metaCats: '{cats}가지 분류',
     metaMotion: '스프링 모션',
     copyCmd: '코드 복사',
-    sourceBtn: '소스 받기',
     skillLink: '에이전트 스킬로 쓰기 →',
     cats: '분류',
     all: '전체',
@@ -122,6 +121,7 @@ export const copy = {
     useCall: '바로 부르기',
     guideMore: 'API 문서 전체 보기 →',
     footerNote: '작은 움직임을 만드는 실험실.',
+    brandNotice: '브랜드 안내',
     credits: '크레딧'
   },
   en: {
@@ -152,7 +152,6 @@ export const copy = {
     metaCats: '{cats} categories',
     metaMotion: 'Spring motion',
     copyCmd: 'Copy code',
-    sourceBtn: 'Source',
     skillLink: 'Use as an agent skill →',
     cats: 'Categories',
     all: 'All',
@@ -246,6 +245,7 @@ export const copy = {
     useCall: 'Call directly',
     guideMore: 'Read the full API guide →',
     footerNote: 'A lab for small motions.',
+    brandNotice: 'Brand notice',
     credits: 'Credits'
   }
 };

@@ -7,7 +7,7 @@
 - Hover and keyboard-focus effects attach automatically to the nearest control. Use `animate="none"` to opt out.
 - States now exist only where they mirror real application state. Icons whose 1.x states were only visual poses (pressed, raised, turned) now have no states and play an effect instead. Remove their `state` attributes and `setState` calls.
 - `size` range is 8–512 (default 24). `progress` now also applies to upload and battery.
-- 1.x packages remain at https://lucianlabs.dev/icons/downloads/lucian-icons-skill-1.2.0.zip and lucian-icons-source-1.2.0.zip.
+- 1.x packages remain at https://lucianlabs.dev/icons/downloads/lucian-icons-skill-1.2.0.zip.
 
 ## State names, all 112 icons from 1.x
 

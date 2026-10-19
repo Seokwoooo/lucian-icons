@@ -28,12 +28,12 @@ Pages (`index.html`, `guide.html`) and gallery assets keep Vercel's default `max
 ## Releasing
 
 1. Bump the version in `package.json`, `src/runtime/icon.js` (header and `VERSION`), `src/export.js`, the skill (`SKILL.md`, `INSTALL.md`, `references/porting.md`, `scripts/lucian-icons.mjs`, `tokens.css`) and the expected versions in `tests/`.
-2. Archive the previous release: download its skill and source ZIPs from `https://lucianlabs.dev/icons/downloads/` into `web/downloads/` and check that bytes and SHA-256 match the live `manifest.json`. Add the new version to the ZIP list in `tests/build.test.mjs`.
+2. Archive the previous release: download its skill ZIP from `https://lucianlabs.dev/icons/downloads/` into `web/downloads/` and check that bytes and SHA-256 match the live `manifest.json`. Add the new version to the ZIP list in `tests/build.test.mjs`.
 3. Add a `CHANGELOG.md` entry, then `npm run build`, `npm test` and the browser checks against the local preview.
 4. Commit and push `main`. When the deployment is READY, verify production:
-   - `https://lucianlabs.dev/icons/manifest.json` shows the new version, and every file it lists is served with matching bytes and SHA-256. (Vercel rewrites `vercel.json` to one line during the build, so the source ZIP's hash differs from a local build; that is expected.)
+   - `https://lucianlabs.dev/icons/manifest.json` shows the new version, and every file it lists is served with matching bytes and SHA-256.
    - `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS and cache headers.
-   - Older archive URLs still download.
+   - Older skill archive URLs still download. Website source ZIP URLs must return 404; do not archive or republish them because they contain reserved brand artwork.
    - `TEST_URL=https://lucianlabs.dev/icons/ node tests/browser.mjs` passes.
    - Bulk checks (hundreds of requests in a few minutes) can make Vercel's automatic protection challenge your IP on lucianlabs.dev (403 with `x-vercel-mitigated: challenge`, even for headless browsers). Compare every file against the origin `https://lucian-icons.vercel.app/icons/`, keep checks on lucianlabs.dev to a few requests, and confirm public reachability from other networks (for example check-host.net) before assuming an outage.
    - The site root and `/uxui-prompt/` are unchanged.

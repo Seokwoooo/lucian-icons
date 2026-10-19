@@ -67,7 +67,11 @@ for (const url of [new URL('catalog.json', out), new URL('api/v1/catalog.json', 
 await cp(new URL('LICENSE', root), new URL('LICENSE', skill));
 
 // Gallery
-await cp(new URL('web/', root), out, { recursive: true });
+await cp(new URL('web/', root), out, {
+  recursive: true,
+  // Never republish archived website bundles containing the Lucian brand assets.
+  filter: source => !/lucian-icons-source-[^/\\]+\.zip$/.test(source),
+});
 const escHTML = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const stateRows = defs.filter(d => statesOf(d).length).map(d => `<tr><td><a href="./#${d.id}"><lucian-${d.id} size="20" animate="none"></lucian-${d.id}><span>${d.id}</span></a> <i lang="ko" class="ko">${escHTML(d.name.ko)}</i><i lang="en" class="en">${escHTML(d.name.en)}</i></td><td><span class="d-st">${statesOf(d).map(s => `<code>${s}</code>`).join('')}</span></td></tr>`).join('');
 const counts = { '{{VERSION}}': version, '{{ICON_COUNT}}': String(defs.length), '{{CATEGORY_COUNT}}': String(Object.keys(CATEGORIES).length), '{{STATEFUL_COUNT}}': String(defs.filter(d => statesOf(d).length).length), '{{STATE_TABLE}}': stateRows };
@@ -79,6 +83,7 @@ for (const name of ['index.html', 'guide.html']) {
 }
 await cp(new URL('src/export.js', root), new URL('export.js', out));
 await cp(new URL('LICENSE', root), new URL('LICENSE', out));
+await cp(new URL('TRADEMARKS.md', root), new URL('TRADEMARKS.md', out));
 
 // Runnable skill example, published next to the modules it imports
 await cp(new URL('examples/download.html', skill), new URL('examples/download.html', out));
@@ -86,14 +91,8 @@ for (const name of ['download.js', 'runtime.js']) await cp(new URL('modules/' + 
 const example = await readFile(new URL('examples/download.html', out), 'utf8');
 await writeFile(new URL('examples/download.html', out), example.replace("'../code/download.js'", "'./code/download.js'"));
 
-// Packages
+// Distribute the icon-only skill; the branded website is not a source ZIP.
 await zipDirectory(fileURLToPath(skill), fileURLToPath(new URL(`downloads/lucian-icons-skill-${version}.zip`, out)), 'lucian-icons/');
-const stage = new URL('.artifacts/source-package/', root);
-await rm(stage, { recursive: true, force: true });
-await mkdir(stage, { recursive: true });
-for (const item of ['src', 'web', 'scripts', 'skills', 'tests', 'docs', 'LICENSE', 'README.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'package.json', 'vercel.json']) await cp(new URL(item, root), new URL(item, stage), { recursive: true });
-await rm(new URL('web/downloads/', stage), { recursive: true, force: true });
-await zipDirectory(fileURLToPath(stage), fileURLToPath(new URL(`downloads/lucian-icons-source-${version}.zip`, out)), 'lucian-icons/');
 
 // Visual check page: every icon, every state, three sizes
 const sizes = [16, 24, 48];

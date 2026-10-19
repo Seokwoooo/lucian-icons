@@ -42,7 +42,7 @@ test('skill resolves gallery numbers', () => {
 
 test('skill retrieves only the selected icons with version and integrity', () => {
   const out = run('get', 'download', 'heart');
-  assert.equal(out.version, '2.0.12');
+  assert.equal(out.version, '2.0.13');
   assert.deepEqual(out.icons.map(i => i.id), ['download', 'heart']);
   assert.match(out.runtime, /export function defineIcon/);
   assert.ok(out.icons.every(i => !i.code.includes('lucian-folder')));
@@ -72,8 +72,8 @@ test('skill docs describe the v2 API', async () => {
   const skill = await readFile('skills/lucian-icons/SKILL.md', 'utf8');
   const porting = await readFile('skills/lucian-icons/references/porting.md', 'utf8');
   const install = await readFile('skills/lucian-icons/INSTALL.md', 'utf8');
-  assert.match(skill, /version 2\.0\.12/);
-  assert.match(install, /lucian-icons-skill-2\.0\.12\.zip/);
+  assert.match(skill, /version 2\.0\.13/);
+  assert.match(install, /lucian-icons-skill-2\.0\.13\.zip/);
   for (const word of ['tone', 'accent', 'weight', 'animate', 'play()', 'next()', '--li-accent']) assert.ok(porting.includes(word), word);
   assert.doesNotMatch(porting + skill, /\bink\b.*\bpaper\b.*six-digit/);
 });

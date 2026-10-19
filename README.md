@@ -1,7 +1,5 @@
 # Lucian Icons
 
-[![Lucian Icons: 211 animated icons](web/og.png)](https://lucianlabs.dev/icons/)
-
 **211 original animated SVG icons.** Each one has its own color, a hover effect and, where it means something, real states your app controls: a heart that fills, a bell with unread mail, a download that shows measured progress. Dependency-free web components, MIT licensed, with an agent skill for Claude Code and Codex.
 
 [Gallery](https://lucianlabs.dev/icons/) · [API guide](https://lucianlabs.dev/icons/guide.html) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md)
@@ -89,3 +87,5 @@ Icon rules and pull requests: [CONTRIBUTING.md](CONTRIBUTING.md). Maintainers de
 ## License
 
 [MIT](LICENSE), Copyright (c) 2026 Lucian. All drawings are original. The gallery's fonts, Pretendard and Geist Mono, use the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No tracking scripts, no external icon package, no animation library.
+
+The Lucian and lucianLabs names, Loop L logo, and related brand artwork are reserved brand assets, excluded from the icon library’s MIT grant. The software license grants no trademark rights. See [the brand notice](TRADEMARKS.md). Logo source files and branded images are not bundled in this repository. The official gallery references the logo hosted separately on lucianlabs.dev. Website source ZIPs are no longer distributed; use the icon modules, individual exports or agent skill.

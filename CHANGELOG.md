@@ -1,6 +1,14 @@
 # Changelog
 
-Every release's skill and source ZIPs stay downloadable at `https://lucianlabs.dev/icons/downloads/lucian-icons-{skill,source}-<version>.zip`.
+Released skill ZIPs stay downloadable at `https://lucianlabs.dev/icons/downloads/lucian-icons-skill-<version>.zip`. Website source ZIPs have been withdrawn because they include reserved brand assets.
+
+## 2.0.13 (2026-10-20)
+
+- Removed website source download buttons and links from the gallery and API guide.
+- Stopped generating website source ZIPs and removed archived source bundles from the current distribution. Individual icon exports and skill ZIPs remain available.
+- Kept the official header logo and favicon by referencing the separately hosted lucianlabs.dev asset; removed bundled logo source files, footer artwork and the branded share image.
+- Added an explicit brand notice separating the Lucian names and Loop L logo from the MIT-licensed icon library.
+- Archived the verified 2.0.12 skill ZIP.
 
 ## 2.0.12 (2026-10-20)
 
