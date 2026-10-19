@@ -158,6 +158,11 @@ a{color:inherit}
 .g-pick[aria-pressed="true"]{background:color-mix(in oklab,var(--h) 10%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--h) 40%,transparent)}
 .g-card-foot{display:flex;justify-content:space-between;gap:12px;margin:14px 4px 0;font-size:12.5px;color:var(--ink-3)}
 .g-card-foot b{font:500 11px/1.5 var(--mono)}
+/* Dark theme: white strokes on a dark page look heavier, so the gallery draws them at 1.35. The component
+   default stays 1.75; the inspector sets the weight it shows, so previews match the exported code. */
+.g-sw-d{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body[data-count]{--li-weight:1.35}:root:not([data-theme="light"]) .g-sw-l{display:none}:root:not([data-theme="light"]) .g-sw-d{display:inline}}
+:root[data-theme="dark"] body[data-count]{--li-weight:1.35}:root[data-theme="dark"] .g-sw-l{display:none}:root[data-theme="dark"] .g-sw-d{display:inline}
 
 /* Demo pointer: a Mac-style cursor shows where the autoplay hovers and clicks (same as uxui-prompt). */
 .g-ghost{position:absolute;left:0;top:0;z-index:4;width:0;height:0;pointer-events:none;opacity:0;transform:translate(var(--gx,0),var(--gy,0));

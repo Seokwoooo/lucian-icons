@@ -2,6 +2,15 @@
 
 Product path `/icons/`.
 
+## Release 2.0.8 dark theme tuning
+
+Date: 2026-10-19.
+
+- Dark surfaces compared side by side on contact sheets (x.8, pure color, x1.06, x.93/x.95, x.9/x.93, x.87/x.92, x.93/x1.08, x.9/x1.12); the user chose x.93 lightness, x1.08 chroma. Strokes compared at 1.75, 1.5 and 1.5 at 85%; computed `stroke-width` is 1.75px in both themes by default and 1.35px in the gallery's dark theme (deck, hero card, reels), 1.75px in the guide.
+- Off/on pairs: in dark, the eight fill-state icons are an outline when off and filled when on; the browser check asserts an off heart has no surface and a liked heart is `rgb(240, 84, 101)`.
+- Light rendering pixel-identical to 2.0.5 (first 36 icons at 64px).
+- `npm test` 14 of 14, `tests/browser.mjs` 18 of 18 in Chrome.
+
 ## Release 2.0.7 empty and filled states in dark
 
 Date: 2026-10-19.

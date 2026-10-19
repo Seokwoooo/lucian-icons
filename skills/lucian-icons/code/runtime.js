@@ -1,5 +1,5 @@
-/* Lucian Icons v2.0.7 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '2.0.7';
+/* Lucian Icons v2.0.8 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '2.0.8';
 
 // Motion vocabulary ---------------------------------------------------------
 // Springs follow Apple's (duration, bounce) model. The runtime samples each
@@ -137,20 +137,20 @@ export function staticSVG(def, options = {}) {
 const TINT = 0.24, SUN = '#F4AF2D';
 const TRIGGER = 'button,a[href],summary,label,[role=button],[role=link],[role=menuitem],[role=tab],[role=switch],[role=checkbox],[role=option]';
 // Dark color scheme (the page declares color-scheme: dark): a thin tint over a dark page turns
-// yellow olive and orange brown, so surfaces get a solid, slightly deeper version of the icon's
-// color instead. Orange, amber, yellow and lime (W, a smooth window around hue 90 that is zero
-// below 0 and above 270) stay lighter and keep their chroma, and yellow leans a little toward gold.
-// Accent details get a little lighter so they stay apart from the surface. --li-tint still scales
-// the surface (0 = none). Browsers without light-dark() or relative colors keep the light rendering.
-const W = 'pow(max(0, cos((h - 90) * .5deg)), 16)';
-const DARK_TINT = `oklch(from var(--_c) calc(l * (.8 + .14 * ${W})) calc(c * (.85 + .1 * ${W})) calc(h - 10 * pow(max(0, cos((h - 98) * .5deg)), 60)) / clamp(0, var(--_t) / .24, 1))`;
-const DARK_ACCENT = 'oklch(from var(--_c) calc(l + (1 - l) * .32) c h)';
+// yellow olive and orange brown, so surfaces are painted solid in the icon's color, a little darker
+// and richer (OKLCH lightness x.93, chroma x1.08; less chroma looks faded, less lightness turns
+// yellow mustard), and accent details move part of
+// the way to white so they stay apart from the surface. --li-tint
+// still scales the surface (0 = none). Browsers without light-dark() or relative colors keep the
+// light rendering.
+const DARK_TINT = 'oklch(from var(--_c) calc(l * .93) calc(c * 1.08) h / clamp(0, var(--_t) / .24, 1))';
+const DARK_ACCENT = 'oklch(from var(--_c) calc(l + (1 - l) * .4) c h)';
 const DARK_IF = '@supports (color:light-dark(#000,#fff)) and (color:oklch(from red calc(l * pow(max(0, cos(1deg)), 2)) c h / clamp(0, .5, 1))) and (color:color-mix(in srgb,red calc(.24 * 100%),transparent)){';
 const DARK = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),${DARK_TINT});fill-opacity:1}.a{stroke:light-dark(var(--_c),${DARK_ACCENT})}.f{fill:light-dark(var(--_c),${DARK_ACCENT})}:host([tone=line]) .a{stroke:var(--_c)}:host([tone=line]) .f{fill:var(--_c)}}`;
 // Icons whose state fills the whole shape (a .f part named fill or glow: heart, star, bookmark,
-// thumbs up, toggle, filter, bulb, lamp) keep a faint surface in the dark scheme, so the empty and
-// filled states still read apart, and fill with the icon's own color.
-const HOLLOW = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),oklch(from var(--_c) calc(l * .8) calc(c * .85) h / calc(.18 * clamp(0, var(--_t) / .24, 1))))}.a{stroke:var(--_c)}.f{fill:var(--_c)}}`;
+// thumbs up, toggle, filter, bulb, lamp) are just an outline when empty in the dark scheme, so the
+// empty and filled states still read apart, and fill with the icon's own color.
+const HOLLOW = `${DARK_IF}.s,.t{fill:light-dark(color-mix(in srgb,var(--_c) calc(var(--_t) * 100%),transparent),transparent)}.a{stroke:var(--_c)}.f{fill:var(--_c)}}`;
 const hollowOf = def => def.states?.length > 1 && ['fill', 'glow'].some(part => {
   if (!new RegExp(`<[^>]*data-part="${part}"[^>]*class="f"|<[^>]*class="f"[^>]*data-part="${part}"`).test(def.svg)) return false;
   const o = def.states.map(st => poseOf(def, st)[part]?.opacity ?? 1);

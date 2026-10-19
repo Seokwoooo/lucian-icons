@@ -120,7 +120,7 @@ await check('dark theme: surfaces keep their hue (no olive or brown); empty hear
   await page.evaluate(() => localStorage.setItem('lucian-icons-theme', 'dark'));
   await page.reload(); await page.waitForFunction(() => customElements.get('lucian-folder')); await page.waitForTimeout(300);
   const { heart, ...dark } = await surfaces();
-  assert.ok(heart[3] > 0 && heart[3] < 70, `a heart that is off keeps a faint surface in dark (${heart})`);
+  assert.equal(heart[3], 0, `a heart that is off is an empty outline in dark (${heart})`);
   const liked = await page.evaluate(() => { const el = document.createElement('lucian-heart'); el.setAttribute('state', 'on'); document.body.append(el);
     const f = el.shadowRoot.querySelector('[data-part="fill"]'), c = getComputedStyle(f); return [c.fill, c.opacity]; });
   assert.deepEqual(liked, ['rgb(240, 84, 101)', '1'], 'a liked heart fills with its own red');

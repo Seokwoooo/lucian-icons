@@ -1,4 +1,4 @@
-# Integration API (v2.0.7)
+# Integration API (v2.0.8)
 
 Import just the chosen module, for example `code/download.js`, with its sibling `runtime.js`. Every module registers `<lucian-ID>` idempotently and exports its `definition`. Registration installs no document listeners or timers.
 
@@ -25,7 +25,7 @@ Import just the chosen module, for example `code/download.js`, with its sibling 
 
 CSS variables: `--li-accent`, `--li-tint` (surface fill opacity, default .24), `--li-size`, `--li-weight`. Strokes always follow `color`.
 
-Dark pages: when the page (or any ancestor) declares `color-scheme: dark`, surfaces become a solid, slightly deeper version of the icon color instead of a thin tint, and accent details get a little lighter. Icons whose state fills the shape (heart, star, bookmark, thumbs up, toggle, filter, bulb, lamp) keep a faint surface so off and on stay distinct. `--li-tint` still scales the surface (0 removes it). Keep the site's existing `color-scheme`; add `color-scheme: dark` to its dark theme if it is missing. Browsers without `light-dark()` and relative colors keep the light rendering.
+Dark pages: when the page (or any ancestor) declares `color-scheme: dark`, surfaces are painted solid in a slightly deeper, richer version of the icon color instead of a thin tint, and accent details get lighter. Icons whose state fills the shape (heart, star, bookmark, thumbs up, toggle, filter, bulb, lamp) are just an outline when off, so off and on stay distinct. `--li-tint` still scales the surface (0 removes it). Keep the site's existing `color-scheme`; add `color-scheme: dark` to its dark theme if it is missing. Browsers without `light-dark()` and relative colors keep the light rendering.
 
 ## Methods
 

@@ -33,6 +33,11 @@ The existing root deployment, domain alias, `/uxui-prompt/`, its introducing pag
 - 1.x archives stay downloadable: `web/downloads/` keeps the 1.0.0, 1.1.0 and 1.2.0 skill and source ZIPs (1.2.0 copies match the production hashes).
 - After pushing `main`, verify on https://lucianlabs.dev/icons/: catalog version 2.0.0 with 212 icons, manifest hashes, `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS header, gallery and guide load without page errors, and the root site and `/uxui-prompt/` are unchanged.
 
+## Release 2.0.8 notes
+
+- Dark theme tuning (see design.md): richer surface color, outline-only empty states, and 1.35 strokes in the gallery's dark theme. Runtime and gallery CSS change; same routing and headers. The 2.0.7 skill and source ZIPs were archived in `web/downloads/` (bytes and SHA-256 match the 2.0.7 production manifest).
+- After pushing `main`, verify catalog 2.0.8, every manifest file, CORS, archive URLs, `tests/browser.mjs` against production (18 checks), and that the root site and `/uxui-prompt/` are unchanged.
+
 ## Release 2.0.7 notes
 
 - Fix for 2.0.6: in the dark scheme, the eight icons whose state fills the shape keep a faint surface so off and on read apart (see design.md). Runtime-only change; same routing and headers. The 2.0.6 skill and source ZIPs were archived in `web/downloads/` (bytes and SHA-256 match the 2.0.6 production manifest).
