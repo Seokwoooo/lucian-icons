@@ -29,9 +29,20 @@ test('skill search ranks exact ids and names above partial matches', () => {
   assert.equal(run('search', 'xyzzy').length, 0);
 });
 
+test('skill resolves gallery numbers', () => {
+  const heart = run('search', 'heart')[0];
+  for (const n of [String(heart.order), `#${heart.order}`, `${heart.order}번`, String(heart.order).padStart(3, '0')]) {
+    assert.deepEqual(run('get', n).icons.map(i => i.id), ['heart'], n);
+    assert.equal(run('search', n)[0].id, 'heart', n);
+  }
+  assert.equal(run('get', '1').icons[0].order, 1);
+  assert.deepEqual(run('get', String(heart.order), 'heart').icons.map(i => i.id), ['heart'], 'a number and its id are one icon');
+  assert.throws(() => execFileSync('node', [cli, 'get', '999'], { stdio: 'pipe' }), /gallery numbers run from 1 to 211/);
+});
+
 test('skill retrieves only the selected icons with version and integrity', () => {
   const out = run('get', 'download', 'heart');
-  assert.equal(out.version, '2.0.9');
+  assert.equal(out.version, '2.0.10');
   assert.deepEqual(out.icons.map(i => i.id), ['download', 'heart']);
   assert.match(out.runtime, /export function defineIcon/);
   assert.ok(out.icons.every(i => !i.code.includes('lucian-folder')));
@@ -61,8 +72,8 @@ test('skill docs describe the v2 API', async () => {
   const skill = await readFile('skills/lucian-icons/SKILL.md', 'utf8');
   const porting = await readFile('skills/lucian-icons/references/porting.md', 'utf8');
   const install = await readFile('skills/lucian-icons/INSTALL.md', 'utf8');
-  assert.match(skill, /version 2\.0\.9/);
-  assert.match(install, /lucian-icons-skill-2\.0\.9\.zip/);
+  assert.match(skill, /version 2\.0\.10/);
+  assert.match(install, /lucian-icons-skill-2\.0\.10\.zip/);
   for (const word of ['tone', 'accent', 'weight', 'animate', 'play()', 'next()', '--li-accent']) assert.ok(porting.includes(word), word);
   assert.doesNotMatch(porting + skill, /\bink\b.*\bpaper\b.*six-digit/);
 });

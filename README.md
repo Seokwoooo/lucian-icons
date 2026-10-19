@@ -40,8 +40,11 @@ Upgrading from 1.x is a breaking change: see [the migration table](skills/lucian
 
 Copy `skills/lucian-icons` to `.claude/skills/lucian-icons/` (Claude Code) or `.agents/skills/lucian-icons/` (Codex), or download the skill ZIP from the gallery. User-wide paths are `~/.claude/skills/lucian-icons/` and `~/.agents/skills/lucian-icons/`. Invoke `/lucian-icons ...` in Claude Code or `$lucian-icons ...` in Codex.
 
+Ask in words ("add icons that fit this screen") and the agent picks them, or name the number shown in the gallery ("add icon 197" is the heart).
+
 ```sh
 node skills/lucian-icons/scripts/lucian-icons.mjs search 다운로드
+node skills/lucian-icons/scripts/lucian-icons.mjs get 197          # gallery number or id
 node skills/lucian-icons/scripts/lucian-icons.mjs get download --out ./src/vendor/lucian-icons
 ```
 

@@ -356,10 +356,13 @@ function localize() {
 /* ---------- Copy, download, toast ---------- */
 let toastT;
 function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('is-on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('is-on'), 2200); }
+// text may be a Promise (the prompt loads the runtime first). Safari only keeps the click's
+// permission when the pending text goes straight into a ClipboardItem.
 async function copyText(text, button, select, done = t('copied')) {
   try {
     if (!navigator.clipboard?.writeText) throw new Error('no clipboard');
-    await navigator.clipboard.writeText(text);
+    if (typeof text !== 'string' && navigator.clipboard.write && typeof ClipboardItem === 'function') await navigator.clipboard.write([new ClipboardItem({ 'text/plain': Promise.resolve(text).then(s => new Blob([s], { type: 'text/plain' })) })]);
+    else await navigator.clipboard.writeText(await text);
     toast(done);
     if (button) {
       button.classList.add('is-done');
@@ -373,7 +376,8 @@ async function copyText(text, button, select, done = t('copied')) {
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-copy]'); if (!b) return;
-  const src = $(b.dataset.copy); copyText(src.value ?? src.textContent, b);
+  // Non-breaking spaces only keep words together on screen; copy plain spaces.
+  const src = $(b.dataset.copy); copyText((src.value ?? src.textContent).replace(/\u00a0/g, ' '), b);
 });
 function download(text, type, filename) {
   const url = URL.createObjectURL(new Blob([text], { type }));
@@ -385,7 +389,8 @@ function download(text, type, filename) {
 
 /* ---------- Inspector: docked beside the deck on wide screens, a sheet elsewhere ---------- */
 const insp = $('#insp'), inspIn = $('#insp-in'), sheet = $('#dlg-icon'), dHit = $('#d-hit');
-const detail = { def: null, opts: {}, tab: 'html', player: null };
+// The prompt tab comes first: pasting it into an AI tool is the quickest way to use an icon.
+const detail = { def: null, opts: {}, tab: 'prompt', player: null };
 let exportsMod;
 const loadExports = () => exportsMod ??= import('./export.js');
 const inspIcon = () => $('[data-icon]', dHit);
@@ -476,7 +481,8 @@ function refreshDetail() {
   $('#d-cat').textContent = catText(d.category);
   $('#d-title').textContent = d.name[lang];
   $('#d-desc').textContent = d.description[lang];
-  $('#d-skill').textContent = `/lucian-icons ${d.id}`;
+  $('#d-ask-auto').textContent = t('askAuto');
+  $('#d-ask-num').textContent = t('askNum').replace(/ \{n\}/, '\u00a0{n}').replace('{n}', numOf(d));
   dHit.setAttribute('aria-label', `${d.name[lang]}. ${statesOf(d).length ? t('tileHint') : t('tilePlay')}`);
   renderStates(); applyOptions(); renderCode();
 }
@@ -700,7 +706,7 @@ reel.addEventListener('click', async e => {
   const b = e.target.closest('[data-act]'); if (!b) return;
   const opts = { tone, state: icon.state || d.defaultState };
   if (b.dataset.act === 'code') inspect(d, { state: opts.state, asSheet: true });
-  else if (b.dataset.act === 'copy') copyText((await loadExports()).usageHTML(d, opts, lang), b, null, t('copiedHTML'));
+  else if (b.dataset.act === 'copy') copyText(loadExports().then(m => m.applicationPrompt(d, opts, lang)), b, null, t('copiedPrompt'));
   else if (b.dataset.act === 'svg') { download((await loadExports()).staticSVG(d, opts), 'image/svg+xml', `lucian-${d.id}${opts.state ? '-' + opts.state : ''}.svg`); $('lucian-download', b)?.play(); }
 });
 hud.addEventListener('click', e => {

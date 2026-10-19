@@ -1,4 +1,4 @@
-/* Lucian Icons v2.0.9 | MIT (c) 2026 Lucian
+/* Lucian Icons v2.0.10 | MIT (c) 2026 Lucian
    Optional CSS variables. Strokes follow `color`; these tune the rest. */
 .lucian-icon-theme {
   --li-accent: var(--brand, #6a57f2); /* replaces each icon's own color; omit to keep per-icon colors */

@@ -130,10 +130,10 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
       <p class="g-insp-d" id="d-desc"></p>
       <div class="d-states" id="d-states" role="group"></div>
       <div class="g-seg" id="d-tabs" role="tablist" aria-label="코드" data-i18n-attr="aria-label:codeLabel">
-        <button class="g-seg-b" type="button" role="tab" data-tab="html" aria-selected="true" aria-controls="d-panel" data-i18n="tabHTML">HTML</button>
+        <button class="g-seg-b" type="button" role="tab" data-tab="prompt" aria-selected="true" aria-controls="d-panel" data-i18n="tabPrompt">프롬프트</button>
+        <button class="g-seg-b" type="button" role="tab" data-tab="html" aria-selected="false" aria-controls="d-panel" data-i18n="tabHTML">HTML</button>
         <button class="g-seg-b" type="button" role="tab" data-tab="react" aria-selected="false" aria-controls="d-panel" data-i18n="tabReact">React</button>
         <button class="g-seg-b" type="button" role="tab" data-tab="svg" aria-selected="false" aria-controls="d-panel" data-i18n="tabSVG">SVG</button>
-        <button class="g-seg-b" type="button" role="tab" data-tab="prompt" aria-selected="false" aria-controls="d-panel" data-i18n="tabPrompt">프롬프트</button>
         <span class="g-seg-pill" aria-hidden="true"></span>
       </div>
       <div class="d-panel" id="d-panel" role="tabpanel" aria-label="코드" data-i18n-attr="aria-label:codeLabel"><textarea class="g-code" id="d-code" readonly spellcheck="false" aria-label="코드" data-i18n-attr="aria-label:codeLabel"></textarea></div>
@@ -141,8 +141,17 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
       <div class="d-acts">
         <button class="g-btn" type="button" id="d-svg"><lucian-image tone="line" size="17"></lucian-image><span data-i18n="downloadSVG">SVG 받기</span></button>
         <button class="g-btn" type="button" id="d-html"><lucian-code tone="line" size="17"></lucian-code><span data-i18n="downloadHTML">HTML 받기</span></button>
-        <button class="g-btn g-btn--pri" type="button" id="d-copy"><lucian-copy tone="line" size="17"></lucian-copy><span id="d-copy-t" data-i18n="copy">복사</span></button>
+        <button class="g-btn g-btn--pri" type="button" id="d-copy"><lucian-copy tone="line" size="17"></lucian-copy><span id="d-copy-t" data-i18n="copyPrompt">프롬프트 복사</span></button>
       </div>
+      <section class="d-skill" aria-labelledby="d-skill-t">
+        <h3 class="d-skill-t" id="d-skill-t"><lucian-wand size="18" animate="none"></lucian-wand><span data-i18n="skillCardT">스킬로 쓰면 딸깍 한 번이면 돼요</span></h3>
+        <p class="d-skill-p" data-i18n="skillCardP">lucian-icons 스킬을 설치하면 AI가 화면을 보고 알맞은 아이콘을 골라 기존 버튼과 상태에 연결해요. 원하는 아이콘이 있으면 번호로 말해도 돼요.</p>
+        <ul class="d-asks">
+          <li><span class="d-ask-l" data-i18n="askAutoL">알아서</span><span class="d-ask-q" id="d-ask-auto"></span><button class="g-cmd-c" type="button" data-copy="#d-ask-auto" aria-label="코드 복사" data-i18n-attr="aria-label:copyCmd"><lucian-copy tone="line" size="15"></lucian-copy></button></li>
+          <li><span class="d-ask-l" data-i18n="askNumL">번호로</span><span class="d-ask-q" id="d-ask-num"></span><button class="g-cmd-c" type="button" data-copy="#d-ask-num" aria-label="코드 복사" data-i18n-attr="aria-label:copyCmd"><lucian-copy tone="line" size="15"></lucian-copy></button></li>
+        </ul>
+        <div class="d-skill-acts"><a class="g-btn" href="./downloads/lucian-icons-skill-{{VERSION}}.zip" download><lucian-download tone="line" size="17"></lucian-download><span data-i18n="skillZip">스킬 받기 (ZIP)</span></a><button class="g-link-s" type="button" data-open-skill data-i18n="skillHow">설치 방법</button></div>
+      </section>
       <div class="d-rows">
         <div class="d-row"><span class="d-label" data-i18n="tone">톤</span>
           <div class="g-seg g-seg--sm" id="d-tone" role="radiogroup"><button class="g-seg-b" type="button" role="radio" data-v="color" aria-checked="true" data-i18n="toneColorLabel">컬러</button><button class="g-seg-b" type="button" role="radio" data-v="line" aria-checked="false" data-i18n="toneLineLabel">라인</button><span class="g-seg-pill" aria-hidden="true"></span></div>
@@ -158,7 +167,6 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
         </div>
       </div>
       <div class="d-sizes" id="d-sizes" aria-label="작은 크기" data-i18n-attr="aria-label:sizes"></div>
-      <p class="g-dlg-skill"><span class="g-dlg-skill-l" data-i18n="skillLine">에이전트 스킬로 부르기</span><code id="d-skill"></code><button class="g-cmd-c" type="button" data-copy="#d-skill" aria-label="코드 복사" data-i18n-attr="aria-label:copyCmd"><lucian-copy tone="line" size="15"></lucian-copy></button><button class="g-link-s" type="button" data-open-skill data-i18n="skillHow">설치 방법</button></p>
       <button class="g-btn d-reel" type="button" id="d-reel"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg><span data-i18n="openReel">릴스로 크게 보기</span></button>
     </div>
   </aside>
@@ -206,6 +214,7 @@ r.setAttribute('lang',l);if(l==='en')r.classList.add('i18n-wait')})();
     </ul>
     <dl class="g-skill-use">
       <dt data-i18n="useAsk">말로 부탁하기</dt><dd data-i18n="useAskEx">“lucian-icons로 좋아요 버튼에 하트 아이콘 넣어줘”</dd>
+      <dt data-i18n="useNum">번호로 고르기</dt><dd data-i18n="useNumEx">“lucian-icons로 197번 아이콘 넣어줘”</dd>
       <dt data-i18n="useCall">바로 부르기</dt><dd>Claude Code <code>/lucian-icons</code> · Codex <code>$lucian-icons</code></dd>
     </dl>
   </section>

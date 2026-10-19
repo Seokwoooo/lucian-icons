@@ -2,6 +2,14 @@
 
 Every release's skill and source ZIPs stay downloadable at `https://lucianlabs.dev/icons/downloads/lucian-icons-{skill,source}-<version>.zip`.
 
+## 2.0.10 (2026-10-20)
+
+- Clicking an icon opens its prompt first: the Prompt tab is the first and default tab, and the reel's Copy button copies the prompt.
+- Right below the prompt, a skill card recommends the agent skill, with two requests to copy: let the AI pick fitting icons, or ask for this icon by its gallery number.
+- The skill resolves gallery numbers: `get 197`, `search 197번` and `#197` all mean the heart. SKILL.md tells agents how to handle number requests and "pick icons that fit" requests.
+- Fix: skill search results include each icon's gallery number (`order`) again; 2.0.9 dropped it.
+- 2.0.9 skill and source ZIPs archived.
+
 ## 2.0.9 (2026-10-20)
 
 - Error marks on download, upload and shield are now a fixed red instead of the icon's own color, so a failure no longer reads as success (a green "!" on the download icon). They ignore `accent`, follow the line color in `tone="line"` and lighten in dark themes like other details. Runtime: new class `e`.

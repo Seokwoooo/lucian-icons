@@ -1,16 +1,18 @@
 ---
 name: lucian-icons
-description: Use when the user requests Lucian Icons, lucian-icons, original animated SVG icons with their own colors, or asks to replace website icons with Lucian Icons. Also use for wiring icon states such as unread bells, open trash lids, lock states, copy confirmation or download/upload progress when the user names this library. Not for redesigning the whole page or implementing backend operations.
+description: Use when the user requests Lucian Icons, lucian-icons, original animated SVG icons with their own colors, asks to replace website icons with Lucian Icons, or names a Lucian Icons gallery number (for example "197번 아이콘"). Also use for wiring icon states such as unread bells, open trash lids, lock states, copy confirmation or download/upload progress when the user names this library. Not for redesigning the whole page or implementing backend operations.
 ---
 
 # Lucian Icons
 
-Original animated SVG icons, version 2.0.9, MIT. 211 icons in 13 categories. Gallery: https://lucianlabs.dev/icons/. API guide: https://lucianlabs.dev/icons/guide.html.
+Original animated SVG icons, version 2.0.10, MIT. 211 icons in 13 categories. Gallery: https://lucianlabs.dev/icons/. API guide: https://lucianlabs.dev/icons/guide.html.
 This installed package works offline. `<skill-dir>` is the folder containing this file. Node.js 18 or later runs the CLI; no package installation is needed.
 
 1. Inspect the target project, its framework, theme, icon locations, existing labels and event handlers. Identify the real source of state and confirm the intended insertion point from the task.
-2. Search the lightweight catalog in English or Korean. Results include each icon's color, category and states:
+2. Search the lightweight catalog in English or Korean. Results include each icon's color, category, states and gallery number (`order`):
    `node <skill-dir>/scripts/lucian-icons.mjs search 다운로드`
+   When the user asks for icons that fit without naming any, read the existing labels and actions, pick one icon per meaning, and list your choices with their reasons.
+   Every icon shows a number in the gallery (heart is 197). When the user names one ("197", "197번", "#197"), `search 197` or `get 197` resolves it. Numbers belong to this catalog version, so state the resolved name and number in your report.
 3. Retrieve only chosen icons, with versions and integrity hashes:
    `node <skill-dir>/scripts/lucian-icons.mjs get download`
    To copy runtime and chosen modules into the project:

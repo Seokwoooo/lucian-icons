@@ -283,9 +283,18 @@ a{color:inherit}
 .d-hint{margin:-4px 0 0;font-size:12px;line-height:1.55;color:var(--ink-3)}
 .d-acts{display:flex;gap:8px;flex-wrap:wrap}
 .d-acts .g-btn{flex:1 1 auto;padding:0 12px}
-.g-dlg-skill{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 8px;margin:0;padding:10px 6px 6px 14px;border-radius:14px;background:var(--surface-2);font-size:12.5px;color:var(--ink-2)}
-.g-dlg-skill code{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 11.5px var(--mono);color:var(--ink)}
-.g-dlg-skill .g-cmd-c{grid-row:2;grid-column:2}
+/* Skill card under the prompt: the agent picks icons itself, or takes a gallery number */
+.d-skill{display:grid;gap:10px;padding:14px 14px 12px;border-radius:14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.d-skill-t{display:flex;align-items:center;gap:8px;margin:0;font-size:14px;font-weight:650;letter-spacing:-.01em;color:var(--ink)}
+.d-skill-p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-2)}
+.d-asks{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 10px;margin:0;padding:0;list-style:none}
+/* Rows share the parent's columns, so both requests start at the same x */
+.d-asks li{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;min-height:38px;padding:6px 2px 6px 12px;border-radius:10px;background:var(--surface)}
+@supports (grid-template-columns:subgrid){.d-asks li{grid-template-columns:subgrid}}
+.d-ask-l{font-size:11.5px;font-weight:600;color:var(--ink-3);white-space:nowrap}
+.d-ask-q{min-width:0;font-size:12.5px;font-weight:500;line-height:1.5;color:var(--ink);word-break:keep-all;overflow-wrap:anywhere}
+.d-skill-acts{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.d-skill-acts .g-btn{height:36px;padding:0 14px;font-size:13px}
 .g-link-s{grid-row:1;grid-column:2;justify-self:end;padding-right:8px;font-size:12.5px;font-weight:600;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:4px}
 .g-link-s:hover{text-decoration-color:var(--ink)}
 .d-reel{width:100%}

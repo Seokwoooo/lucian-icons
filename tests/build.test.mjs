@@ -11,7 +11,7 @@ const built = await access(new URL('manifest.json', dist)).then(() => true, () =
 test('build output matches its manifest and catalog', { skip: !built && 'run npm run build first' }, async () => {
   const manifest = JSON.parse(await read('manifest.json'));
   const catalog = JSON.parse(await read('catalog.json'));
-  assert.equal(manifest.version, '2.0.9');
+  assert.equal(manifest.version, '2.0.10');
   assert.equal(catalog.icons.length, 211);
   assert.equal(Object.keys(catalog.categories).length, 13);
   for (const [file, { sha256 }] of Object.entries(manifest.files)) {
@@ -23,7 +23,7 @@ test('build output matches its manifest and catalog', { skip: !built && 'run npm
     assert.equal(createHash('sha256').update(code).digest('hex'), icon.sha256, icon.id);
     assert.ok(manifest.files[`downloads/svg/${icon.id}.svg`] && manifest.files[`api/v1/icons/${icon.id}.json`], icon.id);
   }
-  for (const zip of ['skill-2.0.9', 'source-2.0.9', 'skill-2.0.8', 'source-2.0.8', 'skill-2.0.7', 'source-2.0.7', 'skill-2.0.6', 'source-2.0.6', 'skill-2.0.5', 'source-2.0.5', 'skill-2.0.4', 'source-2.0.4', 'skill-2.0.3', 'source-2.0.3', 'skill-2.0.2', 'source-2.0.2', 'skill-2.0.1', 'source-2.0.1', 'skill-2.0.0', 'source-2.0.0', 'skill-1.2.0', 'source-1.2.0', 'skill-1.0.0']) assert.ok(manifest.files[`downloads/lucian-icons-${zip}.zip`], zip);
+  for (const zip of ['skill-2.0.10', 'source-2.0.10', 'skill-2.0.9', 'source-2.0.9', 'skill-2.0.8', 'source-2.0.8', 'skill-2.0.7', 'source-2.0.7', 'skill-2.0.6', 'source-2.0.6', 'skill-2.0.5', 'source-2.0.5', 'skill-2.0.4', 'source-2.0.4', 'skill-2.0.3', 'source-2.0.3', 'skill-2.0.2', 'source-2.0.2', 'skill-2.0.1', 'source-2.0.1', 'skill-2.0.0', 'source-2.0.0', 'skill-1.2.0', 'source-1.2.0', 'skill-1.0.0']) assert.ok(manifest.files[`downloads/lucian-icons-${zip}.zip`], zip);
 });
 
 test('pages have no unfilled placeholders', { skip: !built && 'run npm run build first' }, async () => {
