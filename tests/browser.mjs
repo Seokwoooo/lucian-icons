@@ -174,6 +174,8 @@ await check('wide: a click steps the key and opens the docked inspector; both st
   await page.waitForFunction(() => !document.querySelector('#main').classList.contains('has-insp'));
   await page.click(key('bell'));
   await page.waitForSelector('#main.has-insp');
+  assert.equal(await page.getAttribute('#d-tabs [data-tab="prompt"]', 'aria-selected'), 'true', 'another icon opens on its prompt again');
+  await page.waitForFunction(() => /lucian-bell/.test(document.querySelector('#d-code').value));
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('#main').classList.contains('has-insp'));
 });

@@ -2,6 +2,15 @@
 
 Every release's skill and source ZIPs stay downloadable at `https://lucianlabs.dev/icons/downloads/lucian-icons-{skill,source}-<version>.zip`.
 
+## 2.0.11 (2026-10-20)
+
+Fixes from an independent release review.
+
+- Every newly opened icon starts on its Prompt tab. 2.0.10 kept a tab picked for the previous icon.
+- `npm test` passes in an unzipped source ZIP: archived releases are only checked in a full checkout, since the source ZIP leaves `web/downloads/` out.
+- Docs: `tone="line"` with `accent` colors only the details (accent strokes, small fills, error marks). The porting reference, the API guide and the design notes now say so; behavior is unchanged and matches between the component and static SVG.
+- 2.0.10 skill and source ZIPs archived.
+
 ## 2.0.10 (2026-10-20)
 
 - Clicking an icon opens its prompt first: the Prompt tab is the first and default tab, and the reel's Copy button copies the prompt.

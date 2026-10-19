@@ -35,6 +35,7 @@ Pages (`index.html`, `guide.html`) and gallery assets keep Vercel's default `max
    - `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS and cache headers.
    - Older archive URLs still download.
    - `TEST_URL=https://lucianlabs.dev/icons/ node tests/browser.mjs` passes.
+   - Bulk checks (hundreds of requests in a few minutes) can make Vercel's automatic protection challenge your IP on lucianlabs.dev (403 with `x-vercel-mitigated: challenge`, even for headless browsers). Compare every file against the origin `https://lucian-icons.vercel.app/icons/`, keep checks on lucianlabs.dev to a few requests, and confirm public reachability from other networks (for example check-host.net) before assuming an outage.
    - The site root and `/uxui-prompt/` are unchanged.
 
 ## Rollback

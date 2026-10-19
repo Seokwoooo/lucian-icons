@@ -1,4 +1,4 @@
-# Integration API (v2.0.10)
+# Integration API (v2.0.11)
 
 Import just the chosen module, for example `code/download.js`, with its sibling `runtime.js`. Every module registers `<lucian-ID>` idempotently and exports its `definition`. Registration installs no document listeners or timers.
 
@@ -16,7 +16,7 @@ Import just the chosen module, for example `code/download.js`, with its sibling 
 | --- | --- | --- |
 | `state` | per icon (see catalog `states`) | Unsupported values fall back to `defaultState`. |
 | `size` | 8–512, default 24 | CSS pixels. `--li-size` also works. |
-| `tone` | `color` (default), `line` | `line` draws everything in `currentColor`. |
+| `tone` | `color` (default), `line` | `line` draws everything in `currentColor`. Add `accent` to color only the details (accent strokes, small fills and error marks). |
 | `accent` | CSS color | Replaces the icon's own color. Same as CSS `--li-accent`. The mountain's sun stays yellow, and the error marks of download, upload and shield stay red. |
 | `weight` | 0.5–3, default 1.75 | Stroke width on the 24 grid. `--li-weight` also works. |
 | `progress` | 0–100 | Download, upload and battery only. |

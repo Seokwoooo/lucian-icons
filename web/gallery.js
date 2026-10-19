@@ -418,6 +418,9 @@ function inspect(d, { state, asSheet = false } = {}) {
   const fresh = detail.def !== d;
   if (fresh) {
     detail.def = d;
+    // Every newly opened icon starts on its prompt; a tab picked by hand lasts while that icon stays open.
+    detail.tab = 'prompt';
+    $$('#d-tabs .g-seg-b').forEach(x => x.setAttribute('aria-selected', String(x.dataset.tab === 'prompt')));
     detail.opts = { tone, accent: null, weight: 1.75, size: 24, state: state || keyPlayers.get(d.id).icon.state || d.defaultState };
     inspIn.style.setProperty('--h', d.color);
     dHit.innerHTML = GRID + iconTag(d, detail.opts.state ? ` state="${detail.opts.state}"` : '') + GHOST;
