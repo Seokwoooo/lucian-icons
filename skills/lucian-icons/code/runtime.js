@@ -1,5 +1,5 @@
-/* Lucian Icons v2.0.11 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
-export const VERSION = '2.0.11';
+/* Lucian Icons v2.0.12 | MIT (c) 2026 Lucian | https://lucianlabs.dev/icons/ */
+export const VERSION = '2.0.12';
 
 // Motion vocabulary ---------------------------------------------------------
 // Springs follow Apple's (duration, bounce) model. The runtime samples each

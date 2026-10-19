@@ -36,6 +36,9 @@ await check('gallery renders 211 keys in 13 categories, five per row; visible ke
   await open(page);
   assert.equal(await page.locator('#icon-grid .g-key').count(), 211);
   assert.equal(await page.locator('#icon-grid .g-bank').count(), 13);
+  const repo = 'https://github.com/Seokwoooo/lucian-icons';
+  assert.ok(await page.locator(`.g-top a[href="${repo}"]`).isVisible(), 'the header links the GitHub repository');
+  assert.equal(await page.locator(`.g-hero-free a[href="${repo}"], .g-foot a[href="${repo}"]`).count(), 2, 'hero and footer link it too');
   const tops = await page.locator('#icon-grid .g-key').evaluateAll(els => els.slice(0, 6).map(e => e.offsetTop));
   assert.equal(new Set(tops.slice(0, 5)).size, 1, 'first five share a row');
   assert.notEqual(tops[4], tops[5], 'sixth wraps');

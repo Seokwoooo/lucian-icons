@@ -1,10 +1,16 @@
 # Lucian Icons
 
-211 original animated SVG icons. Each one has its own color, a hover effect and, where it means something, real states your app controls. Dependency-free web components, MIT licensed, with a portable Claude Code and Codex skill.
+[![Lucian Icons: 211 animated icons](web/og.png)](https://lucianlabs.dev/icons/)
 
-Gallery: https://lucianlabs.dev/icons/ · API guide: https://lucianlabs.dev/icons/guide.html
+**211 original animated SVG icons.** Each one has its own color, a hover effect and, where it means something, real states your app controls: a heart that fills, a bell with unread mail, a download that shows measured progress. Dependency-free web components, MIT licensed, with an agent skill for Claude Code and Codex.
 
-Source: https://github.com/Seokwoooo/lucian-icons (currently private). Source and skill packages are downloadable from the gallery.
+[Gallery](https://lucianlabs.dev/icons/) · [API guide](https://lucianlabs.dev/icons/guide.html) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md)
+
+## Three ways to use it
+
+1. **Paste a prompt.** Click any icon in the [gallery](https://lucianlabs.dev/icons/). Its prompt opens first: the icon's code plus integration steps, ready to paste into your AI coding tool.
+2. **Let the agent skill do it.** Install the [skill](#agent-skill) and ask for "icons that fit this screen", or name the number shown in the gallery: "add icon 197".
+3. **Add it yourself** with one script tag, as below.
 
 ## Use
 
@@ -38,9 +44,19 @@ Upgrading from 1.x is a breaking change: see [the migration table](skills/lucian
 
 ## Agent skill
 
-Copy `skills/lucian-icons` to `.claude/skills/lucian-icons/` (Claude Code) or `.agents/skills/lucian-icons/` (Codex), or download the skill ZIP from the gallery. User-wide paths are `~/.claude/skills/lucian-icons/` and `~/.agents/skills/lucian-icons/`. Invoke `/lucian-icons ...` in Claude Code or `$lucian-icons ...` in Codex.
+Download the skill ZIP from the [gallery](https://lucianlabs.dev/icons/), or copy [`skills/lucian-icons`](skills/lucian-icons) from this repository:
 
-Ask in words ("add icons that fit this screen") and the agent picks them, or name the number shown in the gallery ("add icon 197" is the heart).
+| Tool | Project | User | Invoke |
+| --- | --- | --- | --- |
+| Claude Code | `.claude/skills/lucian-icons/` | `~/.claude/skills/lucian-icons/` | `/lucian-icons` |
+| Codex | `.agents/skills/lucian-icons/` | `~/.agents/skills/lucian-icons/` | `$lucian-icons` |
+
+Then ask in words, in Korean or English:
+
+- "lucian-icons로 이 화면에 어울리는 아이콘 넣어줘" / "Use lucian-icons to add icons that fit this screen": the agent picks icons for your existing buttons and wires them to real state.
+- "lucian-icons로 197번 아이콘 넣어줘" / "Use lucian-icons to add icon 197": every icon shows its number in the gallery (197 is the heart).
+
+The skill works offline and reads only the icons it picks. Its CLI needs Node.js 18 or later:
 
 ```sh
 node skills/lucian-icons/scripts/lucian-icons.mjs search 다운로드
@@ -53,6 +69,8 @@ node skills/lucian-icons/scripts/lucian-icons.mjs get download --out ./src/vendo
 Node.js 18 or later. No npm dependencies.
 
 ```sh
+git clone https://github.com/Seokwoooo/lucian-icons.git
+cd lucian-icons
 npm run build      # dist/icons/ and skills/lucian-icons/{code,catalog.json}
 npm test           # definitions, exports, skill CLI, build output
 npm run serve      # http://localhost:4173/icons/
@@ -66,10 +84,8 @@ Browser QA (gallery, guide, runtime, widths 320–1440) needs `playwright-core` 
 PLAYWRIGHT_CORE=/path/to/node_modules/playwright-core node tests/browser.mjs
 ```
 
-`dist/icons/` is served at `/icons/` of the existing site through scoped rewrites; see [docs/deployment.md](docs/deployment.md). Never deploy it over the root site.
-
-Release history is in [CHANGELOG.md](CHANGELOG.md). Icon rules and pull requests: [CONTRIBUTING.md](CONTRIBUTING.md).
+Icon rules and pull requests: [CONTRIBUTING.md](CONTRIBUTING.md). Maintainers deploy `dist/icons/` to `/icons/` of lucianlabs.dev; see [docs/deployment.md](docs/deployment.md).
 
 ## License
 
-[MIT](LICENSE), Copyright (c) 2026 Lucian. All drawings are original. Pretendard uses the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No tracking, no external icon package, no animation library.
+[MIT](LICENSE), Copyright (c) 2026 Lucian. All drawings are original. The gallery's fonts, Pretendard and Geist Mono, use the SIL Open Font License; see [notices](web/THIRD_PARTY_NOTICES.txt). No tracking scripts, no external icon package, no animation library.

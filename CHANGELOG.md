@@ -2,6 +2,12 @@
 
 Every release's skill and source ZIPs stay downloadable at `https://lucianlabs.dev/icons/downloads/lucian-icons-{skill,source}-<version>.zip`.
 
+## 2.0.12 (2026-10-20)
+
+- The repository is public: https://github.com/Seokwoooo/lucian-icons . The gallery header (icon only on narrow screens), the hero's "100% free & open source" line, the footer and the API guide link to it.
+- README rewritten for the public repository: the three ways to use the icons (paste a prompt, let the skill do it, one script tag), skill install paths and example requests.
+- 2.0.11 skill and source ZIPs archived.
+
 ## 2.0.11 (2026-10-20)
 
 Fixes from an independent release review.
