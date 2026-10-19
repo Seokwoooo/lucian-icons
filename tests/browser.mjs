@@ -105,6 +105,32 @@ await check('language, tone and theme persist', async page => {
   await page.evaluate(() => localStorage.clear());
 });
 
+await check('dark theme: surfaces keep their hue (no olive or brown); light and line tone unchanged', async page => {
+  // Reads a surface's (.s) fill through a canvas so any CSS color syntax compares as sRGB; alpha includes fill-opacity.
+  const surfaces = () => page.evaluate(() => {
+    const cv = document.createElement('canvas'); cv.width = cv.height = 1; const cx = cv.getContext('2d', { willReadFrequently: true });
+    const rgba = id => { const s = document.querySelector(`.g-key[data-id="${id}"] lucian-${id}`).shadowRoot.querySelector('.s');
+      const cs = getComputedStyle(s); cx.clearRect(0, 0, 1, 1); cx.fillStyle = cs.fill; cx.fillRect(0, 0, 1, 1);
+      const [r, g, b, a] = cx.getImageData(0, 0, 1, 1).data; return [r, g, b, Math.round(a * parseFloat(cs.fillOpacity))]; };
+    return { folder: rgba('folder'), star: rgba('stickynote'), trash: rgba('trash') };
+  });
+  await open(page);
+  const light = await surfaces();
+  assert.ok(Math.abs(light.folder[3] - 61) <= 3, `light tint stays at .24 (${light.folder})`);
+  await page.evaluate(() => localStorage.setItem('lucian-icons-theme', 'dark'));
+  await page.reload(); await page.waitForFunction(() => customElements.get('lucian-folder')); await page.waitForTimeout(300);
+  const dark = await surfaces();
+  for (const [id, [r, g, b, a]] of Object.entries(dark)) {
+    assert.equal(a, 255, `${id} surface is solid in dark (${dark[id]})`);
+    assert.ok(Math.max(r, g, b) >= 170 && Math.max(r, g, b) - Math.min(r, g, b) >= 90, `${id} keeps a bright, saturated hue (${dark[id]})`);
+  }
+  assert.ok(dark.folder[0] > dark.folder[2] + 120 && dark.star[1] > 150, `warm surfaces read as amber and yellow (${dark.folder} ${dark.star})`);
+  await page.click('#tone');
+  await page.waitForFunction(() => document.querySelector('.g-key[data-id="folder"] lucian-folder').getAttribute('tone') === 'line');
+  assert.equal((await surfaces()).folder[3], 0, 'line tone has no surface in dark');
+  await page.evaluate(() => localStorage.clear());
+});
+
 await check('wide: a click steps the key and opens the docked inspector; both stay in sync', async (page, ctx) => {
   await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: new URL(base).origin });
   await open(page);

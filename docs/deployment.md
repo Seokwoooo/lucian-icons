@@ -33,6 +33,11 @@ The existing root deployment, domain alias, `/uxui-prompt/`, its introducing pag
 - 1.x archives stay downloadable: `web/downloads/` keeps the 1.0.0, 1.1.0 and 1.2.0 skill and source ZIPs (1.2.0 copies match the production hashes).
 - After pushing `main`, verify on https://lucianlabs.dev/icons/: catalog version 2.0.0 with 212 icons, manifest hashes, `curl -sI https://lucianlabs.dev/icons/modules/heart.js` shows the CORS header, gallery and guide load without page errors, and the root site and `/uxui-prompt/` are unchanged.
 
+## Release 2.0.6 notes
+
+- Dark-theme icon colors (see design.md) and the hero's "100% free & open source" line. Runtime change: the component style gained one `@supports` block using `light-dark()` and relative OKLCH colors; light rendering, API, ids, states and exports are unchanged. Same routing and headers. The 2.0.5 skill and source ZIPs were archived in `web/downloads/` (bytes and SHA-256 match the 2.0.5 production manifest, which includes the redrawn share image).
+- After pushing `main`, verify catalog 2.0.6 with 211 icons, every manifest file, CORS, archive URLs, `tests/browser.mjs` against production (18 checks), and that the root site and `/uxui-prompt/` are unchanged.
+
 ## Release 2.0.5 notes
 
 - New gallery and guide design (see design.md) and a calmer heart (no burst, smaller pulse). Catalog, ids, states, runtime API, exports, deep links and storage keys are unchanged. Same routing and headers. The 2.0.4 skill and source ZIPs were archived in `web/downloads/` (bytes and SHA-256 match the 2.0.4 production manifest).

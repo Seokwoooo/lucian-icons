@@ -2,6 +2,17 @@
 
 Product path `/icons/`.
 
+## Release 2.0.6 dark colors and hero line
+
+Date: 2026-10-19.
+
+- `npm run build` and `npm test`: 14 of 14 passed.
+- `tests/browser.mjs`: 18 of 18 in Chrome. New check: in the dark theme the folder, sticky note and trash surfaces are solid with a bright, saturated hue (folder reads amber, sticky note yellow), the light tint stays at .24, and line tone has no surface. Run against the 2.0.5 production site, the same check fails (folder surface alpha 61 of 255), so it catches the old behavior.
+- Light rendering pixel-identical to 2.0.5 (first 36 icons at 64px, image diff empty).
+- Dark contact sheets of all 211 icons and of the second state of the 52 stateful icons, with `color-scheme: dark`: no olive, brown or maroon surfaces; accents stay visible on their surfaces. Gallery checked in dark color tone and dark line tone.
+- Playwright WebKit 26.6 (Safari's engine): `CSS.supports` true for `light-dark()`, relative colors and the math used; renders the same as Chrome. Firefox was not available to test; the `@supports` guard falls back to the light rendering if any piece is missing.
+- Hero line: one line from 360px up (English wraps to two lines at 320px), no horizontal overflow at 320 to 1440px, underline draws in once and is static with reduced motion.
+
 ## Release 2.0.5 gallery redesign
 
 Date: 2026-10-18 (local review on branch `gallery-keys`); released as 2.0.5 on 2026-10-19 together with the calmer heart.

@@ -1,4 +1,4 @@
-# Integration API (v2.0.5)
+# Integration API (v2.0.6)
 
 Import just the chosen module, for example `code/download.js`, with its sibling `runtime.js`. Every module registers `<lucian-ID>` idempotently and exports its `definition`. Registration installs no document listeners or timers.
 
@@ -24,6 +24,8 @@ Import just the chosen module, for example `code/download.js`, with its sibling 
 | `animate` | `hover` (default), `click`, `none` | When the effect plays. State transitions always animate. |
 
 CSS variables: `--li-accent`, `--li-tint` (surface fill opacity, default .24), `--li-size`, `--li-weight`. Strokes always follow `color`.
+
+Dark pages: when the page (or any ancestor) declares `color-scheme: dark`, surfaces become a solid, slightly deeper version of the icon color instead of a thin tint, and accent details get a little lighter. `--li-tint` still scales the surface (0 removes it). Keep the site's existing `color-scheme`; add `color-scheme: dark` to its dark theme if it is missing. Browsers without `light-dark()` and relative colors keep the light rendering.
 
 ## Methods
 

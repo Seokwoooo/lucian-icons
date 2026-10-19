@@ -28,7 +28,7 @@ download.setProgress(42);     // download, upload, battery: measured progress on
 icon.play();                  // effect once
 ```
 
-Attributes: `state`, `size` (8–512, default 24), `tone` (`color` | `line`), `accent` (CSS color), `weight` (0.5–3, default 1.75), `progress` (0–100), `label`, `animate` (`hover` | `click` | `none`). CSS variables: `--li-accent`, `--li-tint`, `--li-size`, `--li-weight`. Strokes follow `currentColor`.
+Attributes: `state`, `size` (8–512, default 24), `tone` (`color` | `line`), `accent` (CSS color), `weight` (0.5–3, default 1.75), `progress` (0–100), `label`, `animate` (`hover` | `click` | `none`). CSS variables: `--li-accent`, `--li-tint`, `--li-size`, `--li-weight`. Strokes follow `currentColor`. On pages that declare `color-scheme: dark`, surfaces switch to solid, slightly deeper colors so they stay clean on dark backgrounds.
 
 52 icons have states (heart `off/on`, bell `idle/unread`, download `idle/progress/success/error`, ...). The other 159 only play an effect. The full list is in the [API guide](https://lucianlabs.dev/icons/guide.html#states) and the [catalog](https://lucianlabs.dev/icons/catalog.json).
 

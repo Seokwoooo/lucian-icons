@@ -5,7 +5,7 @@ description: Use when the user requests Lucian Icons, lucian-icons, original ani
 
 # Lucian Icons
 
-Original animated SVG icons, version 2.0.5, MIT. 211 icons in 13 categories. Gallery: https://lucianlabs.dev/icons/. API guide: https://lucianlabs.dev/icons/guide.html.
+Original animated SVG icons, version 2.0.6, MIT. 211 icons in 13 categories. Gallery: https://lucianlabs.dev/icons/. API guide: https://lucianlabs.dev/icons/guide.html.
 This installed package works offline. `<skill-dir>` is the folder containing this file. Node.js 18 or later runs the CLI; no package installation is needed.
 
 1. Inspect the target project, its framework, theme, icon locations, existing labels and event handlers. Identify the real source of state and confirm the intended insertion point from the task.
@@ -16,7 +16,7 @@ This installed package works offline. `<skill-dir>` is the folder containing thi
    To copy runtime and chosen modules to a new project directory:
    `node <skill-dir>/scripts/lucian-icons.mjs get download --out ./src/vendor/lucian-icons`
    The command refuses existing files. Read existing versions before updating. When adding another icon to an existing directory, use `get` to inspect it, compare the shared runtime `VERSION`, and add only the new module. Do not print or load every icon's source.
-4. Read [the porting guide](references/porting.md) for the API and framework lifecycle rules. Preserve the drawing, poses and timing. Import the selected module with its sibling `runtime.js`. Strokes follow `currentColor`; surfaces and details use the icon's own color. Map a brand color through `--li-accent` or `accent`, and use `tone="line"` where the design is monochrome. The component is decorative by default; preserve the existing button text and accessible name. For standalone meaning, supply a localized `label`. Keep focus, keyboard behavior, forms and disabled states. Put the icon inside the existing control, never a nested button.
+4. Read [the porting guide](references/porting.md) for the API and framework lifecycle rules. Preserve the drawing, poses and timing. Import the selected module with its sibling `runtime.js`. Strokes follow `currentColor`; surfaces and details use the icon's own color. On dark themes, keep (or add) `color-scheme: dark` so surfaces switch to their dark colors. Map a brand color through `--li-accent` or `accent`, and use `tone="line"` where the design is monochrome. The component is decorative by default; preserve the existing button text and accessible name. For standalone meaning, supply a localized `label`. Keep focus, keyboard behavior, forms and disabled states. Put the icon inside the existing control, never a nested button.
 5. Icons with states mirror real application state: call `icon.setState(state)` when that state actually changes, and `icon.setProgress(percent)` only for download, upload and battery. A click is not a successful operation. Follow the existing Promise, observable or framework state. Set success only when it resolves, error when it rejects; preserve cancellation. If the source reports no measured progress, stay in `progress` without inventing numbers. Icons without states only play a hover/focus effect; do not invent states for them. Gallery demos and timers are not production adapters.
 6. Test keyboard/touch, both themes, reduced motion, rapid opposite input, duplicate icons, unmount/reinsert, and actual failure. Keep MIT notices. Report changed files, chosen IDs and versions, preserved behavior, completed checks and checks not run.
 
